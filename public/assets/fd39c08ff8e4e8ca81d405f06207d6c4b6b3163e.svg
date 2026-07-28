@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" height="44" overflow="visible" preserveAspectRatio="none" style="display: block;" viewBox="0 0 44 44" width="44">
+<g id="Primary button">
+<rect height="42" rx="9" stroke="var(--stroke-0, #F5F3F1)" stroke-width="2" width="42" x="1" y="1"/>
+<path d="M14 22H30M22 30L30 22L22 14" id="Vector" stroke="var(--stroke-0, #083C14)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+</g>
+</svg>
