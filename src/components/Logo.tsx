@@ -6,11 +6,11 @@ type LogoProps = {
 export function Logo({ variant = "dark", className = "" }: LogoProps) {
   return (
     <img
-      src="/assets/logo-dark.svg"
-      alt="restudio"
-      width={168}
-      height={20}
-      className={`logo logo-${variant} ${className}`.trim()}
+      src="/assets/restudio-logo.svg"
+      alt="RESTUDIO"
+      width={137}
+      height={16}
+      className={`${variant === "light" ? "brightness-0 invert" : ""} ${className}`.trim()}
     />
   );
 }
