@@ -2,15 +2,11 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { I18nProvider } from "./i18n";
 import { Layout } from "./components/Layout";
 import { ScrollToTop } from "./components/ScrollToTop";
+import { HomePage } from "./pages/HomePage";
 import { LoginPage } from "./pages/LoginPage";
 import { PlaceholderPage } from "./pages/PlaceholderPage";
 
 const PAGES = [
-  {
-    path: "/",
-    title: "홈",
-    description: "RESTUDIO 홈섹션을 준비하고 있습니다.",
-  },
   {
     path: "/company",
     title: "회사 소개",
@@ -61,6 +57,7 @@ export default function App() {
         <Routes>
           <Route path="/account" element={<LoginPage />} />
           <Route element={<Layout />}>
+            <Route index element={<HomePage />} />
             {PAGES.map((page) => (
               <Route
                 key={page.path}

@@ -14,3 +14,43 @@
 - Reduced login page typography, input, button, and form spacing scale.
 - Removed desktop dropdown borders from service and language menus.
 - Removed the navigation bottom border and hairline shadow.
+- Added the first homepage hero section with highlighted headline and AI inquiry input.
+- Reduced the homepage AI inquiry input size and spacing.
+- Linked the homepage privacy policy text to the external Notion policy page.
+- Set the homepage hero title to semibold and documented the project font-weight ceiling.
+- Changed the homepage headline highlight into an irregular hand-colored marker style.
+- Increased the first homepage section padding for a roomier hero composition.
+- Changed the homepage headline highlight animation to a path-drawn green marker stroke.
+- Thickened the homepage headline marker and extended it behind the adjacent words.
+- Removed the thin center texture line from the homepage headline marker.
+- Moved the homepage marker behind the full "package to export" headline phrase.
+- Pulled back the homepage marker's left edge to reduce overhang.
+- Scoped the homepage marker back to only the "development, production, export" phrase.
+- Trimmed the homepage marker endpoints so it no longer overlaps adjacent words.
+- Equalized the first homepage section's top and bottom spacing.
+- Added a homepage image showcase scaffold with interactive vertical indicators.
+- Connected the homepage image showcase to the provided category image assets.
+- Reordered the homepage image showcase categories to match the provided layout reference.
+- Matched the homepage image showcase width to the AI inquiry input width.
+- Removed the moving line overlay from homepage showcase image hover states.
+- Thickened the homepage showcase indicators and tightened their spacing.
+- Reduced the shared width of the homepage AI inquiry input and image showcase.
+- Tightened the spacing between the homepage showcase indicators, title, and image group.
+- Slightly shortened the homepage showcase indicator line heights.
+- Further tightened spacing between images in the homepage showcase group.
+- Added a scroll-stacked service excellence section below the homepage image showcase.
+- Changed the service excellence scroll stack to rise from an overlapped bottom position and reduced its typography and spacing.
+- Reduced spacing between service excellence item titles and body text.
+- Fixed the service excellence stack so items separate cleanly after the scroll interaction completes.
+- Reworked the service excellence scroll interaction so the items rise from an overlapped browser-bottom stack into a separated final layout.
+- Adjusted the service excellence stack order so the first item starts on top and later items rise underneath in sequence.
+- Changed the service excellence stack motion so all items begin overlapped, then move upward one at a time in order.
+- Delayed the service excellence stack animation start so the cards are fully overlapped when the section first appears.
+- Pulled the initially overlapped service excellence stack closer to the homepage image showcase.
+- Updated the service excellence stack timing so each item moves by one card height before the next item begins.
+- Removed the sticky positioning from the service excellence stack section.
+- Started the service excellence interaction only after the full stack group enters the browser viewport.
+- Removed all scroll-based interactions from the service excellence stack and restored it as a static list.
+- Reduced the service excellence item title sizes.
+- Added staggered fade-up reveal animation for service excellence items when they enter the viewport.
+- Removed the bottom divider from the final service excellence item.

@@ -106,9 +106,9 @@ Preferred pairings:
 
 Use the typography keys from the token file:
 
-- Hero: `d1eb`, `d1sb`, `d1`
-- Section: `h1eb`, `h1sb`, `h1`
-- Module: `h2eb`, `h2sb`, `h2`
+- Hero: `d1sb`, `d1`
+- Section: `h1sb`, `h1`
+- Module: `h2sb`, `h2`
 - Card/feature: `h3`, `h4`, `h5`
 - Body: `b1`, `b2`
 - Labels: `lb1`, `lb2`
@@ -116,6 +116,7 @@ Use the typography keys from the token file:
 Rules:
 
 - Keep Korean copy word-wrapped by whole words: `word-break: keep-all`.
+- Do not use ExtraBold; keep `SemiBold` / `600` as the maximum font weight.
 - Use large type only where the layout has enough breathing room.
 - Eyebrow labels are uppercase, compact, and usually green.
 - English product/process labels can be larger and more graphic.

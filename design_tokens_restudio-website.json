@@ -10,13 +10,13 @@
       "d1eb": {
         "$value": {
           "fontFamily": "{fontFamily.Pretendard}",
-          "fontWeight": "ExtraBold",
+          "fontWeight": "SemiBold",
           "fontSize": "{fontSize.1rem} * 5",
           "lineHeight": "140%",
           "letterSpacing": "-1%"
         },
         "$type": "typography",
-        "$description": "Display ExtraBold"
+        "$description": "Display SemiBold"
       },
       "d1sb": {
         "$value": {
@@ -43,7 +43,7 @@
       "h1eb": {
         "$value": {
           "fontFamily": "{fontFamily.Pretendard}",
-          "fontWeight": "ExtraBold",
+          "fontWeight": "SemiBold",
           "fontSize": "{fontSize.1rem} *3.75",
           "lineHeight": "140%",
           "letterSpacing": "-1%"
@@ -73,7 +73,7 @@
       "h2eb": {
         "$value": {
           "fontFamily": "{fontFamily.Pretendard}",
-          "fontWeight": "ExtraBold",
+          "fontWeight": "SemiBold",
           "fontSize": "{fontSize.1rem} *2.5",
           "lineHeight": "150%",
           "letterSpacing": "-2%"
@@ -103,7 +103,7 @@
       "h3eb": {
         "$value": {
           "fontFamily": "{fontFamily.Pretendard}",
-          "fontWeight": "ExtraBold",
+          "fontWeight": "SemiBold",
           "fontSize": "{fontSize.1rem} *2",
           "lineHeight": "150%",
           "letterSpacing": "-2%"
@@ -133,7 +133,7 @@
       "h4eb": {
         "$value": {
           "fontFamily": "{fontFamily.Pretendard}",
-          "fontWeight": "ExtraBold",
+          "fontWeight": "SemiBold",
           "fontSize": "{fontSize.1rem} *1.5",
           "lineHeight": "150%",
           "letterSpacing": "-2%"
@@ -163,7 +163,7 @@
       "h5eb": {
         "$value": {
           "fontFamily": "{fontFamily.Pretendard}",
-          "fontWeight": "ExtraBold",
+          "fontWeight": "SemiBold",
           "fontSize": "{fontSize.1rem}*1.25",
           "lineHeight": "150%",
           "letterSpacing": "-3%"
@@ -193,7 +193,7 @@
       "h6eb": {
         "$value": {
           "fontFamily": "{fontFamily.Pretendard}",
-          "fontWeight": "ExtraBold",
+          "fontWeight": "SemiBold",
           "fontSize": "{fontSize.1rem}*1.125",
           "lineHeight": "150%",
           "letterSpacing": "-3%"
@@ -223,7 +223,7 @@
       "b1eb": {
         "$value": {
           "fontFamily": "{fontFamily.Pretendard}",
-          "fontWeight": "ExtraBold",
+          "fontWeight": "SemiBold",
           "fontSize": "{fontSize.1rem}",
           "lineHeight": "150%",
           "letterSpacing": "-3%"
@@ -253,7 +253,7 @@
       "b2eb": {
         "$value": {
           "fontFamily": "{fontFamily.Pretendard}",
-          "fontWeight": "ExtraBold",
+          "fontWeight": "SemiBold",
           "fontSize": "{fontSize.1rem}*0.875",
           "lineHeight": "150%",
           "letterSpacing": "-3%"
@@ -283,7 +283,7 @@
       "lb1eb": {
         "$value": {
           "fontFamily": "{fontFamily.Pretendard}",
-          "fontWeight": "ExtraBold",
+          "fontWeight": "SemiBold",
           "fontSize": "{fontSize.1rem} *0.75",
           "lineHeight": "150%",
           "letterSpacing": "-3%"
@@ -313,7 +313,7 @@
       "lb2eb": {
         "$value": {
           "fontFamily": "{fontFamily.Pretendard}",
-          "fontWeight": "ExtraBold",
+          "fontWeight": "SemiBold",
           "fontSize": "{fontSize.1rem} *0.625",
           "lineHeight": "150%",
           "letterSpacing": "-3%"
