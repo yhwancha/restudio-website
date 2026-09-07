@@ -54,3 +54,42 @@
 - Reduced the service excellence item title sizes.
 - Added staggered fade-up reveal animation for service excellence items when they enter the viewport.
 - Removed the bottom divider from the final service excellence item.
+- Added a two-card core services section using the provided service images.
+- Reduced typography scale across the core services section.
+- Reduced the core service arrow button size and removed its hover effect.
+- Shortened the first service excellence description to fit on one line.
+- Increased the top padding above the core services section heading.
+- Added a scroll-expanding cumulative clients section scaffold for future logo content.
+- Added rotating client logo assets with non-duplicating ten-slot fade transitions.
+- Varied the client logo rotation rhythm with randomized timing and occasional staggered swaps.
+- Added a client testimonial carousel section below the cumulative client logo area.
+- Merged the cumulative client and testimonial areas on a white background with reveal and horizontal slide behavior.
+- Restored the cumulative client logo section's sticky centered stage after the testimonial carousel update.
+- Added an interactive customer case section with hover-driven category details and preview updates.
+- Reduced the customer case section heading and intro copy sizes.
+- Reduced the customer case list label size and changed the active service summary to regular weight.
+- Changed the customer case preview description text to regular weight.
+- Replaced the customer case preview images with the provided Work image set.
+- Reduced the customer case preview title and body text sizes.
+- Added rounded corners to the customer case preview image.
+- Removed the close icon from the active customer case list item.
+- Reduced the active customer case list body text size and tightened its spacing below the title.
+- Changed the customer case content panel background to white.
+- Added a three-slide promotional banner carousel below the customer case section.
+- Replaced the promotional banner icon visuals with generated packaging campaign images.
+- Reduced the promotional banner height and tightened its control placement.
+- Replaced footer social icons with the original SVG assets from the RESTUDIO website.
+- Regenerated the promotional banners with smaller typography embedded in the images.
+- Moved the promotional banner carousel controls closer to the bottom-left corner.
+- Added FAQ and news sections below the promotional banner with responsive layouts and placeholder news visuals.
+- Added the provided news thumbnails and updated the news card copy to match each image.
+- Added smooth FAQ expand/collapse behavior, collapsed the initial FAQ state, and added image-only hover zoom to news cards.
+- Removed the dark radial overlay from the news card images.
+- Added the large closing "Onestop in Restudio" wordmark section below the news area.
+- Added the footer with company contact details, policy links, and social links.
+- Added product development and regulatory response inquiry buttons to the footer.
+- Reduced and left-aligned the closing "Onestop in Restudio" wordmark.
+- Removed the page-level horizontal overflow caused by the client testimonial slider.
+- Aligned the footer divider and footer content with the site responsive page margins.
+- Added scroll-triggered per-character reveal animation to the main section titles.
+- Delayed the hero marker stroke so it draws after the title text finishes revealing.
