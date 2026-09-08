@@ -3,6 +3,8 @@
 ## [Unreleased]
 
 ### Added
+- Added the product development detail hero section with a generated office meeting product prototype image.
+- Added the shared customer case, promotional banner, FAQ, and news sections to the product development and regulatory response detail pages.
 - Tailwind CSS v4 setup for Vite frontend styling.
 - RESTUDIO design guide based on local tokens and Revation reference research.
 - Responsive RESTUDIO navigation shell with logo asset, Phosphor icons, CTA links, and placeholder pages.

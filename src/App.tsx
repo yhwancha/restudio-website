@@ -5,6 +5,7 @@ import { ScrollToTop } from "./components/ScrollToTop";
 import { HomePage } from "./pages/HomePage";
 import { LoginPage } from "./pages/LoginPage";
 import { PlaceholderPage } from "./pages/PlaceholderPage";
+import { ServiceDetailPage } from "./pages/ServiceDetailPage";
 
 const PAGES = [
   {
@@ -16,16 +17,6 @@ const PAGES = [
     path: "/services",
     title: "서비스 이동",
     description: "제품 개발과 규제 대응 서비스를 연결할 빈 페이지입니다.",
-  },
-  {
-    path: "/services/product-development",
-    title: "제품 개발",
-    description: "브랜드 맞춤 제품 기획과 개발 서비스를 담을 빈 페이지입니다.",
-  },
-  {
-    path: "/services/regulatory-response",
-    title: "규제 대응",
-    description: "PPWR 등 글로벌 규제 대응 서비스를 담을 빈 페이지입니다.",
   },
   {
     path: "/stories",
@@ -58,6 +49,14 @@ export default function App() {
           <Route path="/account" element={<LoginPage />} />
           <Route element={<Layout />}>
             <Route index element={<HomePage />} />
+            <Route
+              path="/services/product-development"
+              element={<ServiceDetailPage variant="product-development" />}
+            />
+            <Route
+              path="/services/regulatory-response"
+              element={<ServiceDetailPage variant="regulatory-response" />}
+            />
             {PAGES.map((page) => (
               <Route
                 key={page.path}

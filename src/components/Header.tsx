@@ -107,7 +107,7 @@ function LanguageDropdown() {
       <button
         type="button"
         aria-label="언어변경"
-        className="grid size-9 place-items-center rounded-full border border-primary-600/20 text-primary-700 transition-colors hover:border-primary-600 hover:bg-primary-50"
+        className="grid size-8 place-items-center rounded-full border border-primary-600/20 text-primary-700 transition-colors hover:border-primary-600 hover:bg-primary-50"
       >
         <GlobeHemisphereEast size={20} weight="regular" aria-hidden="true" />
       </button>
@@ -147,7 +147,7 @@ function IconLink({
       aria-label={label}
       className={({ isActive }) =>
         [
-          "grid size-9 place-items-center rounded-full border border-primary-600/20",
+          "grid size-8 place-items-center rounded-full border border-primary-600/20",
           "text-primary-700 transition-colors hover:border-primary-600 hover:bg-primary-50",
           isActive ? "bg-primary-50 text-primary-900" : "",
         ].join(" ")
@@ -184,7 +184,7 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-40 bg-white/[0.72] backdrop-blur-xl backdrop-saturate-150">
-      <div className="mx-auto flex h-14 items-center justify-between px-5 md:px-12 xl:px-[120px]">
+      <div className="mx-auto flex h-12 items-center justify-between px-5 md:px-12 xl:px-[120px]">
         <Link to="/" aria-label="RESTUDIO 홈" className="shrink-0">
           <Logo className="h-[15px] w-auto" />
         </Link>
@@ -207,7 +207,7 @@ export function Header() {
               key={item.to}
               to={item.to}
               className={[
-                "inline-flex h-9 items-center justify-center rounded-full border border-primary-600 px-4",
+                "inline-flex h-8 items-center justify-center rounded-full border border-primary-600 px-4",
                 "text-[14px] font-semibold transition-colors active:scale-[0.98]",
                 "text-primary-700 hover:bg-primary-600 hover:text-primary-25",
               ].join(" ")}
@@ -224,7 +224,7 @@ export function Header() {
           aria-label={menuOpen ? "메뉴 닫기" : "메뉴 열기"}
           aria-controls="mobile-navigation"
           aria-expanded={menuOpen}
-          className="grid size-10 place-items-center rounded-full border border-primary-600/20 text-primary-800 xl:hidden"
+          className="grid size-9 place-items-center rounded-full border border-primary-600/20 text-primary-800 xl:hidden"
           onClick={() => setMenuOpen((open) => !open)}
         >
           {menuOpen ? (
@@ -238,7 +238,7 @@ export function Header() {
       <div
         id="mobile-navigation"
         hidden={!menuOpen}
-        className="border-t border-primary-600/15 bg-warm-neutral px-5 py-5 md:px-12 xl:hidden"
+        className="border-t border-primary-600/15 bg-warm-neutral px-5 py-4 md:px-12 xl:hidden"
       >
         <nav className="flex flex-col gap-1" aria-label="모바일 주요 메뉴">
           {MOBILE_NAV_ITEMS.map((item) => (
@@ -265,7 +265,7 @@ export function Header() {
               key={item.to}
               to={item.to}
               className={[
-                "inline-flex min-h-12 items-center justify-center rounded-full border border-primary-600 px-5",
+                "inline-flex min-h-11 items-center justify-center rounded-full border border-primary-600 px-5",
                 "text-[15px] font-semibold transition-colors active:scale-[0.98]",
                 "text-primary-700 hover:bg-primary-600 hover:text-primary-25",
               ].join(" ")}
@@ -278,14 +278,14 @@ export function Header() {
         <div className="mt-5 flex items-center gap-2">
           <NavLink
             to="/account"
-            className="inline-flex h-11 flex-1 items-center justify-center gap-2 rounded-full border border-primary-600/20 text-[15px] font-medium text-primary-800"
+            className="inline-flex h-10 flex-1 items-center justify-center gap-2 rounded-full border border-primary-600/20 text-[15px] font-medium text-primary-800"
           >
             <UserCircle size={20} weight="regular" aria-hidden="true" />
             회원가입 및 로그인
           </NavLink>
           <button
             type="button"
-            className="inline-flex h-11 items-center justify-center gap-2 rounded-full border border-primary-600/20 px-4 text-[15px] font-medium text-primary-800"
+            className="inline-flex h-10 items-center justify-center gap-2 rounded-full border border-primary-600/20 px-4 text-[15px] font-medium text-primary-800"
           >
             <GlobeHemisphereEast size={20} weight="regular" aria-hidden="true" />
             KO
