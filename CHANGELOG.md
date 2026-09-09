@@ -1,0 +1,97 @@
+# Changelog
+
+## [Unreleased]
+
+### Added
+- Added the product development detail hero section with a generated office meeting product prototype image.
+- Added the shared customer case, promotional banner, FAQ, and news sections to the product development and regulatory response detail pages.
+- Tailwind CSS v4 setup for Vite frontend styling.
+- RESTUDIO design guide based on local tokens and Revation reference research.
+- Responsive RESTUDIO navigation shell with logo asset, Phosphor icons, CTA links, and placeholder pages.
+- Desktop service navigation dropdown with product development and regulatory response placeholder routes.
+- Account login screen matching PPWR AI split-layout reference, outline inquiry buttons, and desktop language dropdown.
+- Slimmer navigation height and white default homepage background.
+- Removed the home tab from navigation while keeping the logo linked to the homepage.
+- Translucent white navigation background with stronger backdrop blur treatment.
+- Reduced login page typography, input, button, and form spacing scale.
+- Removed desktop dropdown borders from service and language menus.
+- Removed the navigation bottom border and hairline shadow.
+- Added the first homepage hero section with highlighted headline and AI inquiry input.
+- Reduced the homepage AI inquiry input size and spacing.
+- Linked the homepage privacy policy text to the external Notion policy page.
+- Set the homepage hero title to semibold and documented the project font-weight ceiling.
+- Changed the homepage headline highlight into an irregular hand-colored marker style.
+- Increased the first homepage section padding for a roomier hero composition.
+- Changed the homepage headline highlight animation to a path-drawn green marker stroke.
+- Thickened the homepage headline marker and extended it behind the adjacent words.
+- Removed the thin center texture line from the homepage headline marker.
+- Moved the homepage marker behind the full "package to export" headline phrase.
+- Pulled back the homepage marker's left edge to reduce overhang.
+- Scoped the homepage marker back to only the "development, production, export" phrase.
+- Trimmed the homepage marker endpoints so it no longer overlaps adjacent words.
+- Equalized the first homepage section's top and bottom spacing.
+- Added a homepage image showcase scaffold with interactive vertical indicators.
+- Connected the homepage image showcase to the provided category image assets.
+- Reordered the homepage image showcase categories to match the provided layout reference.
+- Matched the homepage image showcase width to the AI inquiry input width.
+- Removed the moving line overlay from homepage showcase image hover states.
+- Thickened the homepage showcase indicators and tightened their spacing.
+- Reduced the shared width of the homepage AI inquiry input and image showcase.
+- Tightened the spacing between the homepage showcase indicators, title, and image group.
+- Slightly shortened the homepage showcase indicator line heights.
+- Further tightened spacing between images in the homepage showcase group.
+- Added a scroll-stacked service excellence section below the homepage image showcase.
+- Changed the service excellence scroll stack to rise from an overlapped bottom position and reduced its typography and spacing.
+- Reduced spacing between service excellence item titles and body text.
+- Fixed the service excellence stack so items separate cleanly after the scroll interaction completes.
+- Reworked the service excellence scroll interaction so the items rise from an overlapped browser-bottom stack into a separated final layout.
+- Adjusted the service excellence stack order so the first item starts on top and later items rise underneath in sequence.
+- Changed the service excellence stack motion so all items begin overlapped, then move upward one at a time in order.
+- Delayed the service excellence stack animation start so the cards are fully overlapped when the section first appears.
+- Pulled the initially overlapped service excellence stack closer to the homepage image showcase.
+- Updated the service excellence stack timing so each item moves by one card height before the next item begins.
+- Removed the sticky positioning from the service excellence stack section.
+- Started the service excellence interaction only after the full stack group enters the browser viewport.
+- Removed all scroll-based interactions from the service excellence stack and restored it as a static list.
+- Reduced the service excellence item title sizes.
+- Added staggered fade-up reveal animation for service excellence items when they enter the viewport.
+- Removed the bottom divider from the final service excellence item.
+- Added a two-card core services section using the provided service images.
+- Reduced typography scale across the core services section.
+- Reduced the core service arrow button size and removed its hover effect.
+- Shortened the first service excellence description to fit on one line.
+- Increased the top padding above the core services section heading.
+- Added a scroll-expanding cumulative clients section scaffold for future logo content.
+- Added rotating client logo assets with non-duplicating ten-slot fade transitions.
+- Varied the client logo rotation rhythm with randomized timing and occasional staggered swaps.
+- Added a client testimonial carousel section below the cumulative client logo area.
+- Merged the cumulative client and testimonial areas on a white background with reveal and horizontal slide behavior.
+- Restored the cumulative client logo section's sticky centered stage after the testimonial carousel update.
+- Added an interactive customer case section with hover-driven category details and preview updates.
+- Reduced the customer case section heading and intro copy sizes.
+- Reduced the customer case list label size and changed the active service summary to regular weight.
+- Changed the customer case preview description text to regular weight.
+- Replaced the customer case preview images with the provided Work image set.
+- Reduced the customer case preview title and body text sizes.
+- Added rounded corners to the customer case preview image.
+- Removed the close icon from the active customer case list item.
+- Reduced the active customer case list body text size and tightened its spacing below the title.
+- Changed the customer case content panel background to white.
+- Added a three-slide promotional banner carousel below the customer case section.
+- Replaced the promotional banner icon visuals with generated packaging campaign images.
+- Reduced the promotional banner height and tightened its control placement.
+- Replaced footer social icons with the original SVG assets from the RESTUDIO website.
+- Regenerated the promotional banners with smaller typography embedded in the images.
+- Moved the promotional banner carousel controls closer to the bottom-left corner.
+- Added FAQ and news sections below the promotional banner with responsive layouts and placeholder news visuals.
+- Added the provided news thumbnails and updated the news card copy to match each image.
+- Added smooth FAQ expand/collapse behavior, collapsed the initial FAQ state, and added image-only hover zoom to news cards.
+- Removed the dark radial overlay from the news card images.
+- Added the large closing "Onestop in Restudio" wordmark section below the news area.
+- Added the footer with company contact details, policy links, and social links.
+- Added product development and regulatory response inquiry buttons to the footer.
+- Reduced and left-aligned the closing "Onestop in Restudio" wordmark.
+- Removed the page-level horizontal overflow caused by the client testimonial slider.
+- Aligned the footer divider and footer content with the site responsive page margins.
+- Added scroll-triggered per-character reveal animation to the main section titles.
+- Delayed the hero marker stroke so it draws after the title text finishes revealing.
