@@ -1,5 +1,6 @@
-import { useEffect, useRef, useState } from "react";
+import { type CSSProperties, useEffect, useRef, useState } from "react";
 import {
+  ArrowUp,
   ArrowRight,
   CaretLeft,
   CaretRight,
@@ -9,6 +10,7 @@ import {
   Flask,
   MagnifyingGlass,
   Network,
+  Paperclip,
   Play,
 } from "@phosphor-icons/react";
 import { Link } from "react-router-dom";
@@ -189,6 +191,1037 @@ const productCapabilityItems = [
   },
 ];
 
+const regulatoryGrowthTabs = [
+  {
+    id: "market",
+    label: "매출 증가율",
+    title: "유럽 수출 시 국내 한정 대비 매출 증가율",
+    description: "같은 제품도 시장 규모와 규제 진입장벽에 따라 성장 폭이 달라집니다.",
+  },
+  {
+    id: "fit",
+    label: "필요 기업",
+    title: "이런 기업에 필요합니다",
+    description: "제품 등록, 포장재 증빙, 제출 문서 관리가 필요한 팀에 적합합니다.",
+  },
+  {
+    id: "factor",
+    label: "주요 요인",
+    title: "매출 증가율 차이를 결정짓는 주요 요인",
+    description: "시장 규모와 규제 통과 역량이 가격과 수량 확보에 영향을 줍니다.",
+  },
+] as const;
+
+const regulatoryGrowthRows = [
+  {
+    category: "화장품",
+    growth: "+200% ~ +500%",
+    source: "KOTRA 유럽 CPNP 인증 및 C-뷰티/K-뷰티 분석",
+  },
+  {
+    category: "식품 및 음료",
+    growth: "+150% ~ +400%",
+    source: "농림축산식품부·aT 유럽편 해외시장 맞춤형 조사",
+  },
+  {
+    category: "생활·소형가전",
+    growth: "+150% ~ +350%",
+    source: "KITA 유럽 소비재 유통망 진출 전략, KOTRA 동향",
+  },
+  {
+    category: "소형 전자부품",
+    growth: "+200% ~ +500%",
+    source: "산업통상자원부 주요 품목별 수출입 동향, KEA 정보",
+  },
+];
+
+const regulatoryFitItems = [
+  "EU에 제품을 수출 중이거나 준비하는 기업",
+  "여러 공급사로부터 포장재 증빙을 받는 브랜드사",
+  "제품별 포장재 구성·증빙자료 관리가 어려운 기업",
+  "고객사로부터 PPWR 대응자료 제출을 요청받은 제조사",
+  "TD-DoC 작성 근거를 체계적으로 관리해야 하는 기업",
+  "국가별 EPR 신고용 포장재 증빙관리가 필요한 기업",
+  "다수 SKU를 관리하는 화장품·식품·생활용품·전자제품 기업",
+];
+
+const regulatoryFactorItems = [
+  {
+    title: "시장 규모의 급격한 확장",
+    description:
+      "대한민국 내수 대비 유럽 통합 시장은 더 큰 고객 기반을 제공합니다. 유통망 확보 시 매출 파이가 비선형적으로 증가할 수 있습니다.",
+  },
+  {
+    title: "규제 진입장벽과 독점적 가치",
+    description:
+      "EU CE, CPNP, MDR 등 엄격한 규제 관문을 통과한 제품은 높은 진입장벽 덕분에 국내 대비 더 높은 가격과 수량을 확보할 수 있습니다.",
+  },
+];
+
+const regulatoryWhyItems = [
+  {
+    title: "규제 데이터 자동 정리",
+    description:
+      "제품과 포장재 정보를 입력하면 PPWR 검토에 필요한 항목을 체계적으로 구조화합니다.",
+    Icon: ClipboardText,
+  },
+  {
+    title: "누락 증빙 사전 확인",
+    description:
+      "재질, 시험성적서, 선언서 등 빠진 자료를 제출 전에 먼저 확인해 재작업을 줄입니다.",
+    Icon: MagnifyingGlass,
+  },
+  {
+    title: "AI와 전문가 동시 검토",
+    description:
+      "AI가 자료를 정리하고 PPWR 전문가가 판단이 필요한 부분을 함께 검토합니다.",
+    Icon: Network,
+  },
+  {
+    title: "진행 현황 한눈에 관리",
+    description:
+      "제품별 대응 상태와 제출 준비율을 대시보드에서 확인하고 팀과 공유할 수 있습니다.",
+    Icon: CheckCircle,
+  },
+];
+
+const regulatoryPlatformSteps = [
+  {
+    title: "모든 품목 정보를 하나의 기준 데이터로 관리",
+    shortTitle: "품목 관리",
+    description:
+      "제품 정보를 한 번 등록하면 AI 진단, TD-DoC, EPR 기초자료에 연결해 활용합니다.",
+    bullets: [
+      "제품명, SKU, 판매 국가, 리포트 상태를 품목 단위로 확인합니다.",
+      "포장재 구성과 첨부 문서 확보율을 같은 화면에서 추적합니다.",
+      "진단 시작 전 필요한 입력 항목을 빠르게 점검합니다.",
+    ],
+    image: "/assets/detail-pages/regulatory-platform/product-detail.png",
+    alt: "품목 상세 관리 화면",
+  },
+  {
+    title: "포장자재별 소재와 증빙 상태를 연결",
+    shortTitle: "포장자재 관리",
+    description:
+      "용기, 캡, 라벨, 박스처럼 제품을 구성하는 포장자재를 단계별로 관리합니다.",
+    bullets: [
+      "포장 단계, 재질, 공급사, 연결 품목을 카드 단위로 확인합니다.",
+      "누락 항목과 적합 여부를 포장자재별로 구분합니다.",
+      "동일 자재가 쓰이는 품목을 연결해 반복 입력을 줄입니다.",
+    ],
+    image: "/assets/detail-pages/regulatory-platform/packaging-materials.png",
+    alt: "포장자재 관리 화면",
+  },
+  {
+    title: "부자재와 공급사 정보를 한 번에 정리",
+    shortTitle: "부자재 관리",
+    description:
+      "착색제, 접착제, 부속 구성품처럼 놓치기 쉬운 부자재도 함께 추적합니다.",
+    bullets: [
+      "공급사, 유형, 연결된 포장자재 기준으로 부자재를 검색합니다.",
+      "부자재별 문서 수와 보완 필요 상태를 바로 확인합니다.",
+      "포장자재 등록 흐름과 연결해 규제 검토 범위를 넓힙니다.",
+    ],
+    image: "/assets/detail-pages/regulatory-platform/sub-materials.png",
+    alt: "부자재 관리 화면",
+  },
+  {
+    title: "첨부 문서를 제품 데이터와 자동 매칭",
+    shortTitle: "문서 관리",
+    description:
+      "시험성적서, TDS, 공급사 확인서 등 제출 근거 문서를 한 곳에서 관리합니다.",
+    bullets: [
+      "문서 유형, 진단 상태, 업로드 날짜를 기준으로 정렬합니다.",
+      "관련 부자재, 포장자재, 영향 품목을 문서별로 연결합니다.",
+      "만료일과 보완 필요 여부를 확인해 제출 전 리스크를 줄입니다.",
+    ],
+    image: "/assets/detail-pages/regulatory-platform/documents.png",
+    alt: "문서 관리 화면",
+  },
+];
+
+const regulatoryReportSteps = [
+  {
+    title: "AI가 진단하는 수출 가능성",
+    shortTitle: "간단 리포트",
+    description:
+      "입력된 제품·포장재 데이터를 바탕으로 보완 항목과 우선순위를 먼저 확인합니다.",
+    bullets: [
+      "필수 보완, 권장 보완, 향후 준비 항목을 구분합니다.",
+      "PPWR Article별 진단 요약과 예상 작성 방향을 확인합니다.",
+      "위험도와 타임라인을 보고 다음 조치를 빠르게 결정합니다.",
+    ],
+    image: "/assets/detail-pages/regulatory-reports/simple-report.png",
+    alt: "PPWR 간단 리포트 화면",
+  },
+  {
+    title: "TD 리포트 작성 근거를 자동 구성",
+    shortTitle: "TD 리포트",
+    description:
+      "포장 시스템 정보와 구성품 관계를 기술문서 양식에 맞춰 정리합니다.",
+    bullets: [
+      "문서 관리 번호, 대상 범위, 제조사 정보를 체계적으로 정리합니다.",
+      "포장 단위 이미지와 구성품 관계를 리포트 안에 연결합니다.",
+      "제출에 필요한 시험 데이터와 근거 자료 위치를 함께 남깁니다.",
+    ],
+    image: "/assets/detail-pages/regulatory-reports/td-report.png",
+    alt: "TD 리포트 화면",
+  },
+  {
+    title: "DoC 선언 문서를 제출 가능한 형태로 준비",
+    shortTitle: "DoC 리포트",
+    description:
+      "적합성 선언에 필요한 조항별 판단과 제품 정보를 문서 형태로 정리합니다.",
+    bullets: [
+      "선언 기준, 발행일, 제조사와 EU 대리인 정보를 정돈합니다.",
+      "Article별 적용 여부와 판단 근거를 표 형태로 확인합니다.",
+      "검토 후 서명과 발행 단계로 이어질 수 있도록 준비합니다.",
+    ],
+    image: "/assets/detail-pages/regulatory-reports/doc-report.png",
+    alt: "DoC 리포트 화면",
+  },
+];
+
+const regulatoryDiagnosisSteps = [
+  {
+    title: "기업 정보 등록",
+    description:
+      "제조자, 담당자, EU 수입자 정보를 먼저 등록해 리포트와 제출 문서의 기본값으로 사용합니다.",
+    image: "/assets/detail-pages/regulatory-diagnosis/company-info.png",
+    alt: "기업 정보 등록 화면",
+  },
+  {
+    title: "품목 정보 입력",
+    description:
+      "품목명, SKU, 판매 국가, 출시 예정일을 입력해 진단 대상과 시장 범위를 확정합니다.",
+    image: "/assets/detail-pages/regulatory-diagnosis/product-info.png",
+    alt: "품목 정보 입력 화면",
+  },
+  {
+    title: "포장자재 정보 입력",
+    description:
+      "포장 단계, 재질, 중량, 사용량을 입력해 PPWR 기준으로 검토할 포장 단위를 정리합니다.",
+    image: "/assets/detail-pages/regulatory-diagnosis/packaging-info.png",
+    alt: "포장자재 정보 입력 화면",
+  },
+  {
+    title: "부자재 정보 입력",
+    description:
+      "착색제, 접착제, 라벨 부속물처럼 포장자재에 포함되는 부자재 정보를 함께 연결합니다.",
+    image: "/assets/detail-pages/regulatory-diagnosis/sub-material-info.png",
+    alt: "부자재 정보 입력 화면",
+  },
+  {
+    title: "첨부 문서 등록",
+    description:
+      "TDS, 시험성적서, 공급사 확인서 등 진단 근거가 되는 문서를 항목별로 업로드합니다.",
+    image: "/assets/detail-pages/regulatory-diagnosis/document-upload.png",
+    alt: "첨부 문서 등록 화면",
+  },
+  {
+    title: "진단 전 확인 사항",
+    description:
+      "입력 누락과 유의사항을 확인한 뒤 AI 진단을 실행해 보완 필요 항목을 확인합니다.",
+    image: "/assets/detail-pages/regulatory-diagnosis/pre-check.png",
+    alt: "진단 전 확인 화면",
+  },
+];
+
+const regulatoryPricingPlans = [
+  {
+    name: "무료",
+    caption: "필요 시 단건 이용",
+    price: "0원",
+    action: "내가 구독중인 플랜",
+    current: true,
+  },
+  {
+    name: "월 구독",
+    caption: "소규모 / 초기 대응 기업",
+    price: "99,000원",
+    unit: "/ 월",
+    action: "구독하러 가기",
+  },
+  {
+    name: "연 구독",
+    caption: "다수 SKU / 지속 대응 기업",
+    price: "9,900,000원",
+    unit: "/ 연",
+    action: "구독하러 가기",
+  },
+  {
+    name: "엔터프라이즈",
+    caption: "대기업 / 다부서 / 다브랜드",
+    price: "별도 견적",
+    action: "구독 문의",
+  },
+];
+
+const regulatoryPricingRows = [
+  {
+    label: "정기 구독료",
+    values: ["0원", "99,000원 / 월", "9,900,000원 / 연", "별도 견적"],
+  },
+  {
+    label: "제품, 포장 정보 관리",
+    values: ["check", "check", "check", "check"],
+  },
+  {
+    label: "AI 데이터 입력 / 작성 지원",
+    values: ["none", "check", "check", "check"],
+  },
+  {
+    label: "AI 채팅 에이전트 지원",
+    values: ["none", "check", "check", "check"],
+  },
+  {
+    label: "PPWR 간단 리포트 진단 비용",
+    values: ["300,000원 / 제품", "250,000원 / 제품", "무료, 무제한 진단 가능", "협의"],
+  },
+  {
+    label: "TD / DoC 리포트 발행 비용",
+    values: ["700,000원 / 제품", "550,000원 / 제품", "무료, 무제한 발행 가능", "협의"],
+  },
+  {
+    label: "TD / DoC 리포트 재발행 비용",
+    values: ["400,000원 / 제품", "300,000원 / 제품", "무료, 무제한 재발행 가능", "협의"],
+  },
+  {
+    label: "전문가 TD / DoC 문서 점검 비용",
+    values: ["1,000,000원 / 건", "1,000,000원 / 건", "별도 견적", "협의"],
+  },
+  {
+    label: "PPWR 전문가 진단 대행",
+    values: ["3,000,000원~ / 제품", "2,500,000원~ / 제품", "별도 견적", "협의"],
+  },
+  {
+    label: "규제 업데이트 안내",
+    values: ["기본 공지", "시스템 연동 안내", "시스템 연동 안내", "시스템 연동 안내"],
+  },
+  {
+    label: "시험 성적서 발급 대행",
+    values: ["별도 견적", "별도 견적", "별도 견적", "협의"],
+  },
+  {
+    label: "문서 관리 용량",
+    values: ["500MB", "10GB", "100GB", "협의"],
+    meter: [5, 18, 86, 100],
+  },
+  {
+    label: "TD / DoC 문서 용량",
+    values: ["500MB", "10GB", "100GB", "협의"],
+    meter: [5, 18, 86, 100],
+  },
+];
+
+interface ProductClientSectionProps {
+  activePage: number;
+  onPrev: () => void;
+  onNext: () => void;
+}
+
+function ProductClientSection({ activePage, onPrev, onNext }: ProductClientSectionProps) {
+  return (
+    <section className="product-client-section" aria-label="제품 개발 고객사와 후기">
+      <div className="product-client-marquee" aria-hidden="true">
+        <div className="product-client-marquee__track">
+          {[...productClientLogos, ...productClientLogos].map((logo, index) => (
+            <span className="product-client-logo" key={`${logo.src}-${index}`}>
+              <img src={logo.src} alt="" />
+            </span>
+          ))}
+        </div>
+      </div>
+
+      <div className="product-client-testimonials">
+        <div className="product-client-testimonials__viewport">
+          <div
+            className="product-client-testimonials__track"
+            style={{
+              transform: `translateX(-${activePage * 100}%)`,
+            }}
+          >
+            {productTestimonialPages.map((page, pageIndex) => (
+              <div
+                className="product-client-testimonials__page"
+                key={`product-testimonial-page-${pageIndex}`}
+              >
+                {page.map((testimonial) => (
+                  <article className="product-client-testimonial" key={testimonial.author}>
+                    {testimonial.logo ? (
+                      <div className="product-client-testimonial__logo">
+                        <img src={testimonial.logo} alt={testimonial.logoLabel} />
+                      </div>
+                    ) : (
+                      <div className="product-client-testimonial__image">
+                        <img src={testimonial.image} alt={testimonial.imageLabel} />
+                      </div>
+                    )}
+                    <div className="product-client-testimonial__content">
+                      <p>"{testimonial.quote}"</p>
+                      <div>
+                        <strong>{testimonial.author}</strong>
+                        <span>{testimonial.role}</span>
+                      </div>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="product-client-testimonials__controls">
+          <button type="button" aria-label="이전 제품 개발 후기 보기" onClick={onPrev}>
+            <CaretLeft size={18} weight="bold" aria-hidden="true" />
+          </button>
+          <button type="button" aria-label="다음 제품 개발 후기 보기" onClick={onNext}>
+            <CaretRight size={18} weight="bold" aria-hidden="true" />
+          </button>
+          <span>
+            {activePage + 1}/{productTestimonialPages.length}
+          </span>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function RegulatoryHero() {
+  return (
+    <section className="regulatory-hero">
+      <div className="regulatory-hero__inner">
+        <h1>AI 기반의 PPWR 규제 대응 서비스</h1>
+        <p>제품 등록부터 증빙 검토, 제출 문서 준비까지</p>
+
+        <form
+          className="relative z-[3] mx-auto mt-10 w-full max-w-[760px] rounded-2xl border border-[#d7dde2] bg-white px-4 py-4 shadow-[0_12px_28px_rgba(23,33,27,0.035)] md:mt-11 md:px-5 md:py-4"
+          onSubmit={(event) => event.preventDefault()}
+        >
+          <div className="flex items-center gap-2.5">
+            <Paperclip
+              size={21}
+              weight="regular"
+              aria-hidden="true"
+              className="shrink-0 text-[#9aa8b7]"
+            />
+            <label className="sr-only" htmlFor="regulatory-ai-question">
+              AI Agent 리사에게 규제 대응 문의하기
+            </label>
+            <input
+              id="regulatory-ai-question"
+              type="text"
+              className="h-8 min-w-0 flex-1 bg-transparent text-[13px] font-medium text-primary-900 outline-none placeholder:text-[#9aa3af] md:text-[14px]"
+              placeholder="PPWR 규제 대응에 대해 궁금한 것이 있나요? AI Agent 리사가 도와드릴게요!"
+            />
+            <button
+              type="submit"
+              aria-label="문의 보내기"
+              className="grid size-8 shrink-0 place-items-center rounded-full bg-[#bfc5c1] text-white transition hover:bg-primary-600 active:scale-[0.98] md:size-9"
+            >
+              <ArrowUp size={18} weight="bold" aria-hidden="true" />
+            </button>
+          </div>
+
+          <p className="mt-2.5 text-center text-[10px] font-semibold text-[#b6bdc5] md:text-[11px]">
+            대화를 진행하면{" "}
+            <a
+              href="https://material-beam-ed6.notion.site/20224acd6ea980ee90cae0df5e5cc6af"
+              target="_blank"
+              rel="noreferrer"
+              className="underline underline-offset-2 hover:text-primary-600"
+            >
+              개인정보처리방침
+            </a>
+            에 동의하신 것으로 이해됩니다
+          </p>
+        </form>
+
+        <div className="regulatory-hero__visual" aria-hidden="true">
+          <div className="regulatory-hero__dashboard">
+            <img
+              src="/assets/detail-pages/regulatory-product-detail.png"
+              alt=""
+            />
+          </div>
+          <div className="regulatory-hero__floating-panel">
+            <strong>1. 포장 데이터</strong>
+            <p>보호해야 할 제품과 포장 구성을 선택하세요.</p>
+            <div className="regulatory-hero__segment">
+              <span>용기·캡</span>
+              <span>라벨·박스</span>
+            </div>
+            <p>필요한 증빙 유형을 선택하면 AI가 누락 자료를 정리합니다.</p>
+            <div className="regulatory-hero__checks">
+              <span>
+                <i />
+                <b>재질</b>
+                자동 검토
+              </span>
+              <span>
+                <i />
+                <b>시험</b>
+                자동 검토
+              </span>
+              <span>
+                <i />
+                <b>선언</b>
+                자동 검토
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function RegulatoryGrowthSection() {
+  const [activeTab, setActiveTab] = useState<(typeof regulatoryGrowthTabs)[number]["id"]>(
+    "market",
+  );
+  const currentTab = regulatoryGrowthTabs.find((tab) => tab.id === activeTab) ?? regulatoryGrowthTabs[0];
+
+  return (
+    <section className="regulatory-growth-section">
+      <div className="regulatory-growth-section__inner">
+        <div className="regulatory-growth-section__header">
+          <h2>꾸준히 성장하는 기업의 매출은 해외에서 발생합니다.</h2>
+          <p>특히 제조업 분야에서 국내만으로 회사가 성장하기에는 그 한계가 명확합니다.</p>
+        </div>
+
+        <div className="regulatory-growth-tabs" role="tablist" aria-label="규제 대응 성장 정보">
+          {regulatoryGrowthTabs.map((tab) => (
+            <button
+              key={tab.id}
+              type="button"
+              role="tab"
+              aria-selected={activeTab === tab.id}
+              className={activeTab === tab.id ? "is-active" : ""}
+              onClick={() => setActiveTab(tab.id)}
+            >
+              {tab.label}
+            </button>
+          ))}
+        </div>
+
+        <div className="regulatory-growth-panel">
+          <div className="regulatory-growth-panel__copy">
+            <h3>{currentTab.title}</h3>
+            <p>{currentTab.description}</p>
+          </div>
+
+          {activeTab === "market" && (
+            <div className="regulatory-growth-table">
+              {regulatoryGrowthRows.map((row) => (
+                <article key={row.category}>
+                  <strong>{row.category}</strong>
+                  <span>{row.growth}</span>
+                  <p>{row.source}</p>
+                </article>
+              ))}
+            </div>
+          )}
+
+          {activeTab === "fit" && (
+            <div className="regulatory-fit-list">
+              {regulatoryFitItems.map((item) => (
+                <span key={item}>
+                  <CheckCircle size={18} weight="bold" aria-hidden="true" />
+                  {item}
+                </span>
+              ))}
+            </div>
+          )}
+
+          {activeTab === "factor" && (
+            <div className="regulatory-factor-list">
+              {regulatoryFactorItems.map((item) => (
+                <article key={item.title}>
+                  <strong>{item.title}</strong>
+                  <p>{item.description}</p>
+                </article>
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function RegulatoryPpwrSection() {
+  return (
+    <section className="regulatory-ppwr-section">
+      <div className="regulatory-ppwr-section__inner">
+        <div className="regulatory-ppwr-section__header">
+          <h2>AI, PPWR 전문가와 함께하는 유럽 수출</h2>
+          <div className="regulatory-ppwr-section__definition">
+            <strong>PPWR이란?</strong>
+            <p>
+              EU의 PPWR은 유럽연합 역내에 유통·출시되는 모든 포장재의 감량,
+              재사용, 재활용성을 법적으로 강화하는 환경 규제입니다. 기존의 자율적
+              지침과 달리 회원국 전역에 직접 적용되는 구속력을 가집니다.
+            </p>
+          </div>
+        </div>
+
+        <div className="regulatory-ppwr-section__media">
+          <img
+            src="/assets/detail-pages/regulatory-export-consulting.png"
+            alt="회의실에서 PPWR 규제 대응 대시보드를 보며 상담하는 모습"
+          />
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function RegulatoryWhySection() {
+  return (
+    <section className="regulatory-why-section">
+      <div className="regulatory-why-section__inner">
+        <h2>왜 리스튜디오인가요?</h2>
+        <div className="regulatory-why-grid">
+          {regulatoryWhyItems.map(({ title, description, Icon }) => (
+            <article className="regulatory-why-item" key={title}>
+              <span className="regulatory-why-item__icon">
+                <Icon size={34} weight="regular" aria-hidden="true" />
+              </span>
+              <h3>{title}</h3>
+              <p>{description}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function RegulatoryPlatformSection() {
+  const [activeStep, setActiveStep] = useState(0);
+  const stepRefs = useRef<Array<HTMLDivElement | null>>([]);
+  const currentStep = regulatoryPlatformSteps[activeStep] ?? regulatoryPlatformSteps[0];
+
+  useEffect(() => {
+    const steps = stepRefs.current.filter((step): step is HTMLDivElement => step !== null);
+
+    if (steps.length === 0) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const centeredEntry = entries.find((entry) => entry.isIntersecting);
+
+        if (!centeredEntry) {
+          return;
+        }
+
+        const nextIndex = Number(
+          (centeredEntry.target as HTMLDivElement).dataset.platformStep ?? 0,
+        );
+        setActiveStep(nextIndex);
+      },
+      {
+        root: null,
+        rootMargin: "-45% 0px -45% 0px",
+        threshold: 0,
+      },
+    );
+
+    steps.forEach((step) => observer.observe(step));
+
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <section className="regulatory-platform-section">
+      <div className="regulatory-platform-stage">
+        <div className="regulatory-platform-section__inner">
+          <div className="regulatory-platform-copy" aria-live="polite">
+            <div className="regulatory-platform-copy__content" key={currentStep.shortTitle}>
+              <h2>{currentStep.title}</h2>
+              <p>{currentStep.description}</p>
+              <ul>
+                {currentStep.bullets.map((bullet) => (
+                  <li key={bullet}>{bullet}</li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="regulatory-platform-indicator" aria-label="관리 화면 단계">
+              <strong>{currentStep.shortTitle}</strong>
+              {regulatoryPlatformSteps.map((step, index) => (
+                <button
+                  key={step.shortTitle}
+                  type="button"
+                  className={index === activeStep ? "is-active" : ""}
+                  onClick={() => setActiveStep(index)}
+                  aria-pressed={index === activeStep}
+                  aria-label={`${step.shortTitle} 화면 보기`}
+                >
+                  <i aria-hidden="true" />
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="regulatory-platform-media" aria-label={currentStep.alt}>
+            {regulatoryPlatformSteps.map((step, index) => (
+              <img
+                key={step.image}
+                src={step.image}
+                alt={step.alt}
+                className={index === activeStep ? "is-active" : ""}
+                aria-hidden={index !== activeStep}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div className="regulatory-platform-scroll-track" aria-hidden="true">
+        {regulatoryPlatformSteps.map((step, index) => (
+          <div
+            key={step.shortTitle}
+            ref={(element) => {
+              stepRefs.current[index] = element;
+            }}
+            data-platform-step={index}
+          />
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function RegulatoryReportSection() {
+  const [activeStep, setActiveStep] = useState(0);
+  const stepRefs = useRef<Array<HTMLDivElement | null>>([]);
+  const currentStep = regulatoryReportSteps[activeStep] ?? regulatoryReportSteps[0];
+
+  useEffect(() => {
+    const steps = stepRefs.current.filter((step): step is HTMLDivElement => step !== null);
+
+    if (steps.length === 0) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const centeredEntry = entries.find((entry) => entry.isIntersecting);
+
+        if (!centeredEntry) {
+          return;
+        }
+
+        const nextIndex = Number(
+          (centeredEntry.target as HTMLDivElement).dataset.reportStep ?? 0,
+        );
+        setActiveStep(nextIndex);
+      },
+      {
+        root: null,
+        rootMargin: "-45% 0px -45% 0px",
+        threshold: 0,
+      },
+    );
+
+    steps.forEach((step) => observer.observe(step));
+
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <section className="regulatory-report-section">
+      <div className="regulatory-report-stage">
+        <div className="regulatory-report-section__inner">
+          <div className="regulatory-report-media" aria-label={currentStep.alt}>
+            {regulatoryReportSteps.map((step, index) => (
+              <img
+                key={step.image}
+                src={step.image}
+                alt={step.alt}
+                className={index === activeStep ? "is-active" : ""}
+                aria-hidden={index !== activeStep}
+              />
+            ))}
+          </div>
+
+          <div className="regulatory-report-copy" aria-live="polite">
+            <div className="regulatory-report-copy__content" key={currentStep.shortTitle}>
+              <h2>{currentStep.title}</h2>
+              <p>{currentStep.description}</p>
+              <ul>
+                {currentStep.bullets.map((bullet) => (
+                  <li key={bullet}>{bullet}</li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="regulatory-report-indicator" aria-label="리포트 화면 단계">
+              <strong>{currentStep.shortTitle}</strong>
+              {regulatoryReportSteps.map((step, index) => (
+                <button
+                  key={step.shortTitle}
+                  type="button"
+                  className={index === activeStep ? "is-active" : ""}
+                  onClick={() => setActiveStep(index)}
+                  aria-pressed={index === activeStep}
+                  aria-label={`${step.shortTitle} 화면 보기`}
+                >
+                  <i aria-hidden="true" />
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="regulatory-report-scroll-track" aria-hidden="true">
+        {regulatoryReportSteps.map((step, index) => (
+          <div
+            key={step.shortTitle}
+            ref={(element) => {
+              stepRefs.current[index] = element;
+            }}
+            data-report-step={index}
+          />
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function RegulatoryDiagnosisSection() {
+  const [activeStep, setActiveStep] = useState(0);
+  const stepRefs = useRef<Array<HTMLDivElement | null>>([]);
+
+  useEffect(() => {
+    const steps = stepRefs.current.filter((step): step is HTMLDivElement => step !== null);
+
+    if (steps.length === 0) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const centeredEntry = entries.find((entry) => entry.isIntersecting);
+
+        if (!centeredEntry) {
+          return;
+        }
+
+        const nextIndex = Number(
+          (centeredEntry.target as HTMLDivElement).dataset.diagnosisStep ?? 0,
+        );
+        setActiveStep(nextIndex);
+      },
+      {
+        root: null,
+        rootMargin: "-45% 0px -45% 0px",
+        threshold: 0,
+      },
+    );
+
+    steps.forEach((step) => observer.observe(step));
+
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <section className="regulatory-diagnosis-section">
+      <div className="regulatory-diagnosis-stage">
+        <div className="regulatory-diagnosis-section__inner">
+          <h2>수출을 위한 품목 진단 과정</h2>
+
+          <div className="regulatory-diagnosis-board">
+            <ol
+              className="regulatory-diagnosis-list"
+              aria-label="품목 진단 과정"
+              style={{ "--diagnosis-active-step": activeStep } as CSSProperties}
+            >
+              {regulatoryDiagnosisSteps.map((step, index) => (
+                <li
+                  key={step.title}
+                  className={index === activeStep ? "is-active" : ""}
+                >
+                  <span>{index + 1}</span>
+                  <div>
+                    <strong>{step.title}</strong>
+                    <p>{step.description}</p>
+                  </div>
+                  <div className="regulatory-diagnosis-item__media" aria-hidden={index !== activeStep}>
+                    <img src={step.image} alt={step.alt} />
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <div className="regulatory-diagnosis-scroll-track" aria-hidden="true">
+        {regulatoryDiagnosisSteps.map((step, index) => (
+          <div
+            key={step.title}
+            ref={(element) => {
+              stepRefs.current[index] = element;
+            }}
+            data-diagnosis-step={index}
+          />
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function RegulatoryRequestSection() {
+  return (
+    <section className="regulatory-request-section">
+      <div className="regulatory-request-section__inner">
+        <div className="regulatory-request-section__header">
+          <p>이 모든 과정이 복잡하다면?</p>
+          <h2>품목 등록 및 진단 대행 서비스</h2>
+          <span>
+            PPWR 전문가로 이루어진 리스튜디오에서 품목, 포장자재, 부자재, 문서 등록에 대한
+            조언, 등록 대행 서비스를 제공합니다.
+          </span>
+        </div>
+
+        <form
+          className="regulatory-request-form"
+          onSubmit={(event) => event.preventDefault()}
+        >
+          <label>
+            <span>품목 등록 요청 수량 *</span>
+            <input type="number" min="1" placeholder="1" />
+          </label>
+
+          <label>
+            <span>등록 요청 내용 *</span>
+            <textarea placeholder="품목 정보를 자유롭게 입력해주세요..." />
+          </label>
+
+          <div className="regulatory-request-form__upload">
+            <span>첨부파일</span>
+            <button type="button">불러오기</button>
+          </div>
+
+          <div className="regulatory-request-form__divider" />
+
+          <div className="regulatory-request-form__grid">
+            <label>
+              <span>EU 시장 출시 형태</span>
+              <select defaultValue="">
+                <option value="" disabled>
+                  선택
+                </option>
+                <option>출시 예정</option>
+                <option>출시 중</option>
+                <option>미정</option>
+              </select>
+            </label>
+
+            <label>
+              <span>EU 출시 예정일</span>
+              <input type="text" placeholder="YYYY. MM. DD" />
+            </label>
+          </div>
+
+          <label>
+            <span>EU 판매 예정국가</span>
+            <select defaultValue="">
+              <option value="" disabled>
+                선택
+              </option>
+              <option>독일</option>
+              <option>프랑스</option>
+              <option>스페인</option>
+              <option>EU 전체</option>
+            </select>
+          </label>
+
+          <button type="submit" className="regulatory-request-form__submit">
+            서비스 신청하기
+          </button>
+        </form>
+      </div>
+    </section>
+  );
+}
+
+function RegulatoryPricingSection() {
+  return (
+    <section className="regulatory-pricing-section">
+      <div className="regulatory-pricing-section__inner">
+        <h2>구독 및 요금제</h2>
+
+        <div className="regulatory-pricing-table">
+          <div className="regulatory-pricing-labels" aria-hidden="true">
+            <div />
+            {regulatoryPricingRows.map((row) => (
+              <span key={row.label}>{row.label}</span>
+            ))}
+          </div>
+
+          <div className="regulatory-pricing-plans">
+            {regulatoryPricingPlans.map((plan, planIndex) => (
+              <article
+                key={plan.name}
+                className={`regulatory-pricing-plan${plan.current ? " is-current" : ""}`}
+              >
+                <header>
+                  <h3>{plan.name}</h3>
+                  <p>{plan.caption}</p>
+                </header>
+
+                <div className="regulatory-pricing-plan__body">
+                  {regulatoryPricingRows.map((row) => {
+                    const value = row.values[planIndex];
+
+                    return (
+                      <div className="regulatory-pricing-cell" key={`${plan.name}-${row.label}`}>
+                        <span className="regulatory-pricing-cell__label">{row.label}</span>
+                        {value === "check" ? (
+                          <CheckCircle size={20} weight="bold" aria-label="포함" />
+                        ) : value === "none" ? (
+                          <span className="regulatory-pricing-cell__none" aria-label="미포함">
+                            ×
+                          </span>
+                        ) : (
+                          <strong>
+                            {row.label === "정기 구독료" ? (
+                              <>
+                                {plan.price}
+                                {plan.unit ? <em>{plan.unit}</em> : null}
+                              </>
+                            ) : (
+                              value
+                            )}
+                          </strong>
+                        )}
+                        {row.meter ? (
+                          <span className="regulatory-pricing-meter">
+                            <i style={{ width: `${row.meter[planIndex]}%` }} />
+                          </span>
+                        ) : null}
+                      </div>
+                    );
+                  })}
+                </div>
+
+                <button type="button">{plan.action}</button>
+              </article>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 interface ServiceDetailPageProps {
   variant: "product-development" | "regulatory-response";
 }
@@ -261,6 +1294,18 @@ export function ServiceDetailPage({ variant }: ServiceDetailPageProps) {
     processVideoRef.current.currentTime = 0;
   };
 
+  const showPrevProductTestimonial = () => {
+    setActiveProductTestimonial((current) =>
+      current === 0 ? productTestimonialPages.length - 1 : current - 1,
+    );
+  };
+
+  const showNextProductTestimonial = () => {
+    setActiveProductTestimonial((current) =>
+      current === productTestimonialPages.length - 1 ? 0 : current + 1,
+    );
+  };
+
   return (
     <main className="bg-white">
       {isProductDevelopment && (
@@ -300,87 +1345,11 @@ export function ServiceDetailPage({ variant }: ServiceDetailPageProps) {
             </div>
           </section>
 
-          <section className="product-client-section" aria-label="제품 개발 고객사와 후기">
-            <div className="product-client-marquee" aria-hidden="true">
-              <div className="product-client-marquee__track">
-                {[...productClientLogos, ...productClientLogos].map((logo, index) => (
-                  <span className="product-client-logo" key={`${logo.src}-${index}`}>
-                    <img src={logo.src} alt="" />
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            <div className="product-client-testimonials">
-              <div className="product-client-testimonials__viewport">
-                <div
-                  className="product-client-testimonials__track"
-                  style={{
-                    transform: `translateX(-${activeProductTestimonial * 100}%)`,
-                  }}
-                >
-                  {productTestimonialPages.map((page, pageIndex) => (
-                    <div
-                      className="product-client-testimonials__page"
-                      key={`product-testimonial-page-${pageIndex}`}
-                    >
-                      {page.map((testimonial) => (
-                        <article
-                          className="product-client-testimonial"
-                          key={testimonial.author}
-                        >
-                          {testimonial.logo ? (
-                            <div className="product-client-testimonial__logo">
-                              <img src={testimonial.logo} alt={testimonial.logoLabel} />
-                            </div>
-                          ) : (
-                            <div className="product-client-testimonial__image">
-                              <img src={testimonial.image} alt={testimonial.imageLabel} />
-                            </div>
-                          )}
-                          <div className="product-client-testimonial__content">
-                            <p>"{testimonial.quote}"</p>
-                            <div>
-                              <strong>{testimonial.author}</strong>
-                              <span>{testimonial.role}</span>
-                            </div>
-                          </div>
-                        </article>
-                      ))}
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <div className="product-client-testimonials__controls">
-                <button
-                  type="button"
-                  aria-label="이전 제품 개발 후기 보기"
-                  onClick={() =>
-                    setActiveProductTestimonial((current) =>
-                      current === 0 ? productTestimonialPages.length - 1 : current - 1,
-                    )
-                  }
-                >
-                  <CaretLeft size={18} weight="bold" aria-hidden="true" />
-                </button>
-                <button
-                  type="button"
-                  aria-label="다음 제품 개발 후기 보기"
-                  onClick={() =>
-                    setActiveProductTestimonial((current) =>
-                      current === productTestimonialPages.length - 1 ? 0 : current + 1,
-                    )
-                  }
-                >
-                  <CaretRight size={18} weight="bold" aria-hidden="true" />
-                </button>
-                <span>
-                  {activeProductTestimonial + 1}/{productTestimonialPages.length}
-                </span>
-              </div>
-            </div>
-          </section>
+          <ProductClientSection
+            activePage={activeProductTestimonial}
+            onPrev={showPrevProductTestimonial}
+            onNext={showNextProductTestimonial}
+          />
 
           <section className="product-challenge-section">
             <div className="product-challenge-section__inner">
@@ -575,6 +1544,24 @@ export function ServiceDetailPage({ variant }: ServiceDetailPageProps) {
               <Link to="/inquiry/product">맞춤 견적 받기</Link>
             </div>
           </aside>
+        </>
+      )}
+      {!isProductDevelopment && (
+        <>
+          <RegulatoryHero />
+          <ProductClientSection
+            activePage={activeProductTestimonial}
+            onPrev={showPrevProductTestimonial}
+            onNext={showNextProductTestimonial}
+          />
+          <RegulatoryGrowthSection />
+          <RegulatoryPpwrSection />
+          <RegulatoryWhySection />
+          <RegulatoryPlatformSection />
+          <RegulatoryReportSection />
+          <RegulatoryDiagnosisSection />
+          <RegulatoryRequestSection />
+          <RegulatoryPricingSection />
         </>
       )}
       <ServiceDetailSharedSections />
