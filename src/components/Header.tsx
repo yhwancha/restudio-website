@@ -17,14 +17,11 @@ interface NavItem {
 
 const NAV_ITEMS: NavItem[] = [
   { label: "고객 사례", to: "/stories" },
+  { label: "자료실", to: "/resources" },
   { label: "새로운 소식", to: "/news" },
 ];
 
-const MOBILE_NAV_ITEMS: NavItem[] = [
-  { label: "회사 소개", to: "/company" },
-  { label: "서비스 이동", to: "/services" },
-  ...NAV_ITEMS,
-];
+const MOBILE_NAV_ITEMS: NavItem[] = [...NAV_ITEMS];
 
 const SERVICE_ITEMS = [
   {
@@ -40,8 +37,13 @@ const SERVICE_ITEMS = [
 ] as const;
 
 const ACTION_ITEMS = [
-  { label: "제품 개발 문의", to: "/inquiry/product" },
-  { label: "규제 대응 문의", to: "/inquiry/regulation" },
+  { label: "제품 개발 문의", to: "/project-management/quote?service=product-development" },
+  { label: "규제 대응 문의", to: "/services/regulatory-response" },
+] as const;
+
+const SERVICE_DETAIL_PATHS = [
+  "/services/product-development",
+  "/services/regulatory-response",
 ] as const;
 
 function navLinkClass({ isActive }: { isActive: boolean }) {
@@ -53,17 +55,22 @@ function navLinkClass({ isActive }: { isActive: boolean }) {
 }
 
 function ServiceDropdown() {
+  const location = useLocation();
+  const [open, setOpen] = useState(false);
+  const isActive = SERVICE_ITEMS.some((item) => item.to === location.pathname);
+
   return (
-    <div className="group relative">
-      <NavLink
-        to="/services"
-        className={({ isActive }) =>
-          [
-            "inline-flex items-center gap-1.5 text-[15px] font-medium transition-colors",
-            "hover:text-primary-800",
-            isActive ? "text-primary-900" : "text-primary-700/75",
-          ].join(" ")
-        }
+    <div className={`group relative${open ? " is-open" : ""}`} onMouseLeave={() => setOpen(false)}>
+      <button
+        type="button"
+        className={[
+          "inline-flex items-center gap-1.5 text-[15px] font-medium transition-colors",
+          "hover:text-primary-800",
+          isActive ? "text-primary-900" : "text-primary-700/75",
+        ].join(" ")}
+        aria-haspopup="menu"
+        aria-expanded={open}
+        onClick={() => setOpen((current) => !current)}
       >
         서비스 이동
         <CaretDown
@@ -72,9 +79,15 @@ function ServiceDropdown() {
           aria-hidden="true"
           className="transition-transform group-hover:rotate-180"
         />
-      </NavLink>
+      </button>
 
-      <div className="invisible absolute left-1/2 top-full z-50 w-[260px] -translate-x-1/2 pt-5 opacity-0 transition duration-150 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+      <div
+        className={[
+          "invisible absolute left-1/2 top-full z-50 w-[260px] -translate-x-1/2 pt-5 opacity-0 transition duration-150",
+          "group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100",
+          open ? "visible opacity-100" : "",
+        ].join(" ")}
+      >
         <div className="rounded-lg bg-primary-25 p-2 shadow-[0_18px_44px_rgba(23,33,27,0.14)]">
           {SERVICE_ITEMS.map((item) => (
             <NavLink
@@ -161,10 +174,50 @@ function IconLink({
 export function Header() {
   const location = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [mobileServiceOpen, setMobileServiceOpen] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(() => {
+    if (typeof window === "undefined") return false;
+    return window.localStorage.getItem("restudio-login-status") === "authenticated";
+  });
+  const isServiceDetailPage = SERVICE_DETAIL_PATHS.includes(
+    location.pathname as (typeof SERVICE_DETAIL_PATHS)[number],
+  );
+  const currentService =
+    location.pathname === "/services/regulatory-response"
+      ? "regulatory-response"
+      : "product-development";
+  const actionItems = isServiceDetailPage
+    ? [
+        loggedIn
+          ? { label: "프로젝트 관리", to: `/project-management?service=${currentService}` }
+          : {
+              label: "무료로 시작하기",
+              to:
+                currentService === "product-development"
+                  ? "/project-management/quote?service=product-development"
+                  : `/account?service=${currentService}`,
+            },
+      ]
+    : ACTION_ITEMS;
 
   useEffect(() => {
     setMenuOpen(false);
+    setMobileServiceOpen(false);
   }, [location.pathname]);
+
+  useEffect(() => {
+    const syncLoginStatus = () => {
+      setLoggedIn(window.localStorage.getItem("restudio-login-status") === "authenticated");
+    };
+
+    window.addEventListener("storage", syncLoginStatus);
+    window.addEventListener("restudio-login-change", syncLoginStatus);
+
+    return () => {
+      window.removeEventListener("storage", syncLoginStatus);
+      window.removeEventListener("restudio-login-change", syncLoginStatus);
+    };
+  }, []);
 
   useEffect(() => {
     if (!menuOpen) return;
@@ -202,7 +255,7 @@ export function Header() {
         </nav>
 
         <div className="hidden items-center gap-2 xl:flex">
-          {ACTION_ITEMS.map((item) => (
+          {actionItems.map((item) => (
             <NavLink
               key={item.to}
               to={item.to}
@@ -215,7 +268,17 @@ export function Header() {
               {item.label}
             </NavLink>
           ))}
-          <IconLink to="/account" label="회원가입 및 로그인" IconComponent={UserCircle} />
+          {!(isServiceDetailPage && loggedIn) ? (
+            <IconLink
+              to={
+                loggedIn
+                  ? "/project-management?service=product-development"
+                  : "/account"
+              }
+              label={loggedIn ? "프로젝트 관리" : "회원가입 및 로그인"}
+              IconComponent={UserCircle}
+            />
+          ) : null}
           <LanguageDropdown />
         </div>
 
@@ -241,6 +304,58 @@ export function Header() {
         className="border-t border-primary-600/15 bg-warm-neutral px-5 py-4 md:px-12 xl:hidden"
       >
         <nav className="flex flex-col gap-1" aria-label="모바일 주요 메뉴">
+          <NavLink
+            to="/company"
+            className={({ isActive }) =>
+              [
+                "rounded-xl px-3 py-3 text-[17px] font-semibold transition-colors",
+                isActive
+                  ? "bg-primary-100 text-primary-900"
+                  : "text-primary-800 hover:bg-primary-50",
+              ].join(" ")
+            }
+          >
+            회사 소개
+          </NavLink>
+          <button
+            type="button"
+            className={[
+              "flex items-center justify-between rounded-xl px-3 py-3 text-left text-[17px] font-semibold transition-colors",
+              SERVICE_ITEMS.some((item) => item.to === location.pathname)
+                ? "bg-primary-100 text-primary-900"
+                : "text-primary-800 hover:bg-primary-50",
+            ].join(" ")}
+            aria-expanded={mobileServiceOpen}
+            onClick={() => setMobileServiceOpen((current) => !current)}
+          >
+            서비스 이동
+            <CaretDown
+              size={16}
+              weight="bold"
+              aria-hidden="true"
+              className={`transition-transform ${mobileServiceOpen ? "rotate-180" : ""}`}
+            />
+          </button>
+          {mobileServiceOpen ? (
+            <div className="grid gap-1 px-3 pb-2">
+              {SERVICE_ITEMS.map((item) => (
+                <NavLink
+                  key={item.to}
+                  to={item.to}
+                  className={({ isActive }) =>
+                    [
+                      "rounded-lg px-3 py-2.5 text-[15px] font-semibold transition-colors",
+                      isActive
+                        ? "bg-primary-100 text-primary-900"
+                        : "text-primary-700 hover:bg-primary-50",
+                    ].join(" ")
+                  }
+                >
+                  {item.label}
+                </NavLink>
+              ))}
+            </div>
+          ) : null}
           {MOBILE_NAV_ITEMS.map((item) => (
             <NavLink
               key={item.to}
@@ -259,8 +374,8 @@ export function Header() {
           ))}
         </nav>
 
-        <div className="mt-5 grid gap-2 md:grid-cols-2">
-          {ACTION_ITEMS.map((item) => (
+        <div className={`mt-5 grid gap-2 ${isServiceDetailPage ? "" : "md:grid-cols-2"}`}>
+          {actionItems.map((item) => (
             <NavLink
               key={item.to}
               to={item.to}
@@ -276,13 +391,19 @@ export function Header() {
         </div>
 
         <div className="mt-5 flex items-center gap-2">
-          <NavLink
-            to="/account"
-            className="inline-flex h-10 flex-1 items-center justify-center gap-2 rounded-full border border-primary-600/20 text-[15px] font-medium text-primary-800"
-          >
-            <UserCircle size={20} weight="regular" aria-hidden="true" />
-            회원가입 및 로그인
-          </NavLink>
+          {!(isServiceDetailPage && loggedIn) ? (
+            <NavLink
+              to={
+                loggedIn
+                  ? "/project-management?service=product-development"
+                  : "/account"
+              }
+              className="inline-flex h-10 flex-1 items-center justify-center gap-2 rounded-full border border-primary-600/20 text-[15px] font-medium text-primary-800"
+            >
+              <UserCircle size={20} weight="regular" aria-hidden="true" />
+              {loggedIn ? "프로젝트 관리" : "회원가입 및 로그인"}
+            </NavLink>
+          ) : null}
           <button
             type="button"
             className="inline-flex h-10 items-center justify-center gap-2 rounded-full border border-primary-600/20 px-4 text-[15px] font-medium text-primary-800"

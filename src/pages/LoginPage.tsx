@@ -1,5 +1,5 @@
 import { CheckCircle, GoogleLogo } from "@phosphor-icons/react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { Logo } from "../components/Logo";
 
 const LOGIN_POINTS = [
@@ -9,6 +9,19 @@ const LOGIN_POINTS = [
 ] as const;
 
 export function LoginPage() {
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const requestedService =
+    searchParams.get("service") === "regulatory-response"
+      ? "regulatory-response"
+      : "product-development";
+
+  const completeLogin = () => {
+    window.localStorage.setItem("restudio-login-status", "authenticated");
+    window.dispatchEvent(new Event("restudio-login-change"));
+    navigate(`/project-management?service=${requestedService}`);
+  };
+
   return (
     <main className="grid min-h-[100dvh] bg-white text-primary-900 lg:grid-cols-[46%_54%]">
       <section className="relative hidden min-h-[100dvh] overflow-hidden bg-primary-900 px-12 py-12 text-primary-25 lg:flex lg:flex-col xl:px-[48px]">
@@ -59,7 +72,13 @@ export function LoginPage() {
             </p>
           </div>
 
-          <form className="mt-8 space-y-5" onSubmit={(event) => event.preventDefault()}>
+          <form
+            className="mt-8 space-y-5"
+            onSubmit={(event) => {
+              event.preventDefault();
+              completeLogin();
+            }}
+          >
             <label className="block">
               <span className="text-[13px] font-bold text-[#344052]">
                 이메일 <span className="text-[#d64545]">*</span>
@@ -97,6 +116,9 @@ export function LoginPage() {
             >
               로그인
             </button>
+            <p className="text-center text-[12px] font-semibold leading-5 text-[#6f83a0]">
+              로그인 버튼을 누르면 프로젝트 관리페이지로 넘어갈 수 있습니다.
+            </p>
           </form>
 
           <div className="my-8 flex items-center gap-5 text-[13px] font-semibold text-[#8aa0bc]">
@@ -107,6 +129,7 @@ export function LoginPage() {
 
           <button
             type="button"
+            onClick={completeLogin}
             className="flex h-[46px] w-full items-center justify-center gap-2.5 rounded-lg border border-[#c8d4e4] bg-white text-[14px] font-bold text-[#344052] transition hover:border-primary-600 hover:bg-primary-25 active:scale-[0.99]"
           >
             <GoogleLogo size={21} weight="bold" aria-hidden="true" className="text-[#4285f4]" />
