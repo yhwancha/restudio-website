@@ -1228,8 +1228,10 @@ export function HomePage() {
       <div className="site-footer__top">
         <div className="site-footer__left">
           <div className="site-footer__cta">
-            <Link to="/inquiry/product">제품개발문의</Link>
-            <Link to="/inquiry/regulation">규제대응문의</Link>
+            <Link to="/project-management/quote?service=product-development">
+              제품개발문의
+            </Link>
+            <Link to="/services/regulatory-response">규제대응문의</Link>
           </div>
 
           <address className="site-footer__contact">

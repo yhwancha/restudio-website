@@ -37,8 +37,8 @@ const SERVICE_ITEMS = [
 ] as const;
 
 const ACTION_ITEMS = [
-  { label: "제품 개발 문의", to: "/inquiry/product" },
-  { label: "규제 대응 문의", to: "/inquiry/regulation" },
+  { label: "제품 개발 문의", to: "/project-management/quote?service=product-development" },
+  { label: "규제 대응 문의", to: "/services/regulatory-response" },
 ] as const;
 
 const SERVICE_DETAIL_PATHS = [
@@ -269,7 +269,15 @@ export function Header() {
             </NavLink>
           ))}
           {!(isServiceDetailPage && loggedIn) ? (
-            <IconLink to="/account" label="회원가입 및 로그인" IconComponent={UserCircle} />
+            <IconLink
+              to={
+                loggedIn
+                  ? "/project-management?service=product-development"
+                  : "/account"
+              }
+              label={loggedIn ? "프로젝트 관리" : "회원가입 및 로그인"}
+              IconComponent={UserCircle}
+            />
           ) : null}
           <LanguageDropdown />
         </div>
@@ -385,11 +393,15 @@ export function Header() {
         <div className="mt-5 flex items-center gap-2">
           {!(isServiceDetailPage && loggedIn) ? (
             <NavLink
-              to="/account"
+              to={
+                loggedIn
+                  ? "/project-management?service=product-development"
+                  : "/account"
+              }
               className="inline-flex h-10 flex-1 items-center justify-center gap-2 rounded-full border border-primary-600/20 text-[15px] font-medium text-primary-800"
             >
               <UserCircle size={20} weight="regular" aria-hidden="true" />
-              회원가입 및 로그인
+              {loggedIn ? "프로젝트 관리" : "회원가입 및 로그인"}
             </NavLink>
           ) : null}
           <button
