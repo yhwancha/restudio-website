@@ -17,6 +17,7 @@ interface NavItem {
 
 const NAV_ITEMS: NavItem[] = [
   { label: "고객 사례", to: "/stories" },
+  { label: "자료실", to: "/resources" },
   { label: "새로운 소식", to: "/news" },
 ];
 

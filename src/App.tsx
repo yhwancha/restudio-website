@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { I18nProvider } from "./i18n";
 import { Layout } from "./components/Layout";
+import { AiChatFloatingButton } from "./components/AiChatFloatingButton";
 import { ScrollToTop } from "./components/ScrollToTop";
 import { HomePage } from "./pages/HomePage";
 import { LoginPage } from "./pages/LoginPage";
@@ -27,6 +28,11 @@ const PAGES = [
     path: "/news",
     title: "새로운 소식",
     description: "RESTUDIO의 소식과 업데이트를 담을 빈 페이지입니다.",
+  },
+  {
+    path: "/resources",
+    title: "자료실",
+    description: "고객이 참고할 수 있는 자료와 다운로드 콘텐츠를 담을 빈 페이지입니다.",
   },
   {
     path: "/inquiry/product",
@@ -66,6 +72,7 @@ export default function App() {
             ))}
           </Route>
         </Routes>
+        <AiChatFloatingButton />
       </BrowserRouter>
     </I18nProvider>
   );

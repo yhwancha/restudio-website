@@ -6,7 +6,6 @@ import {
   CaretLeft,
   CaretRight,
   Paperclip,
-  Plus,
 } from "@phosphor-icons/react";
 
 const showcaseCategories = [
@@ -183,6 +182,10 @@ const caseStudies = [
     title: "아이홉 클렌징 건식 패드 패키지",
     description:
       "LEAF, BLENDS, BIODEGRADABLE 세 가지 콘셉트를 담아 건식 패드 제품을 위한 친환경 패키지를 개발했습니다. 페이퍼몰드와 단상자는 디자인 완성도와 창의성을 인정받아 2024 레드닷 어워드 Winner로 선정되었습니다.",
+    tags: ["화장품", "건식 패드", "어워드"],
+    feature:
+      "세 가지 콘셉트를 제품 경험에 맞춰 나누고, 패드 사용성을 고려한 고정 구조와 개봉 경험을 설계",
+    material: "페이퍼몰드와 단상자를 활용해 플라스틱 사용을 줄인 친환경 패키지",
     image: "/assets/cases/Work1.webp",
     alt: "Curved white paper mold package for cosmetics",
   },
@@ -192,6 +195,10 @@ const caseStudies = [
     title: "SK텔레콤 행복나래 친환경 도시락 패키지",
     description:
       "기존 종이몰드의 한계를 보완하기 위해 내구성과 충격 저항성을 높인 필름 라미네이팅 기술을 적용했습니다. 식품 트레이 사용성을 개선하며 지속 가능한 도시락 패키지 방향을 제안했습니다.",
+    tags: ["식품", "도시락", "내구성"],
+    feature:
+      "식품 트레이의 충격 저항성과 사용성을 높여 유통 과정에서 안정적으로 보호되도록 설계",
+    material: "필름 라미네이팅을 적용한 종이몰드 기반 친환경 도시락 패키지",
     image: "/assets/cases/Work2.webp",
     alt: "Paper molded food package with bottles",
   },
@@ -201,6 +208,10 @@ const caseStudies = [
     title: "비올 셀리뉴 페이스 팁 패키징",
     description:
       "의료·뷰티 디바이스 제품을 위해 플라스틱 사용량을 줄이면서도 구조 안정성을 유지하는 페이퍼몰드 패키지를 설계했습니다. 제품 보호와 사용성을 함께 고려한 지속 가능한 솔루션입니다.",
+    tags: ["메디컬", "뷰티 디바이스", "보호 구조"],
+    feature:
+      "의료·뷰티 디바이스를 안정적으로 고정하고 제품 보호와 사용성을 함께 고려한 구조",
+    material: "구조 안정성을 확보한 페이퍼몰드 패키지로 플라스틱 사용량 절감",
     image: "/assets/cases/Work3.webp",
     alt: "Medical beauty product displayed with blue holder",
   },
@@ -210,6 +221,10 @@ const caseStudies = [
     title: "원콤 핀틴 V1 패키징",
     description:
       "시각장애인용 미니 쿼티 커뮤니케이터를 위한 제품 고정 구조를 페이퍼몰드로 개발했습니다. 점자 요소를 패키지에 반영해 지속 가능한 소재와 포용적 디자인을 함께 담았습니다.",
+    tags: ["전자기기", "접근성", "점자"],
+    feature:
+      "미니 쿼티 커뮤니케이터를 고정하는 구조와 점자 요소를 함께 반영한 포용적 패키지",
+    material: "제품 고정 구조를 페이퍼몰드로 전환해 지속 가능한 소재 경험 구현",
     image: "/assets/cases/Work4.webp",
     alt: "Fintin electronics package case study",
   },
@@ -219,6 +234,10 @@ const caseStudies = [
     title: "퍼센트오브 아이웨어 패키지",
     description:
       "무겁고 재활용이 어려운 기존 아이웨어 케이스를 종이 기반 구조로 전환했습니다. 자석을 적용해 재사용성을 높이고, 독창적인 몰드 형태로 패션 카테고리에 맞는 새로운 패키지 경험을 만들었습니다.",
+    tags: ["패션", "아이웨어", "재사용"],
+    feature:
+      "자석 여닫이 구조로 재사용성을 높이고 패션 제품에 맞는 독창적인 몰드 형태를 개발",
+    material: "재활용이 어려운 기존 케이스를 종이 기반 구조로 대체",
     image: "/assets/cases/Work_6.webp",
     alt: "Fashion package case study",
   },
@@ -228,6 +247,10 @@ const caseStudies = [
     title: "트루엔뉴트리션 트루엔키즈 팡팡 쾌변젤리",
     description:
       "아이들의 표정에서 착안한 스마일 텍스처와 휴대 가능한 스트링 구조를 적용했습니다. 종이에 직접 그림을 그릴 수 있는 여백을 더해 창의성과 사용성을 함께 높였습니다.",
+    tags: ["헬스케어", "키즈", "휴대성"],
+    feature:
+      "스마일 텍스처와 휴대 가능한 스트링 구조로 아이들이 쓰기 쉬운 패키지 경험 설계",
+    material: "그림을 그릴 수 있는 종이 표면을 활용해 창의성과 친환경성을 함께 강화",
     image: "/assets/cases/Work6.webp",
     alt: "Healthcare product package case study",
   },
@@ -237,6 +260,10 @@ const caseStudies = [
     title: "두루두루 혁오 바이닐 박스셋",
     description:
       "탄소 저감 효과가 검증된 라임스톤 소재를 적용해 고밀도 질감과 묵직한 완성도를 구현했습니다. 기존 바이닐 패키지에서 보기 어려웠던 새로운 소재 경험을 제안했습니다.",
+    tags: ["엔터테인먼트", "바이닐", "탄소저감"],
+    feature:
+      "바이닐 박스셋에 어울리는 고밀도 질감과 묵직한 제품 경험을 완성",
+    material: "탄소 저감 효과가 검증된 라임스톤 소재 적용",
     image: "/assets/cases/Work7.webp",
     alt: "Minimal molded object for entertainment package",
   },
@@ -246,6 +273,10 @@ const caseStudies = [
     title: "희녹 더 스프레이 세트 패키징",
     description:
       "재활용 박스지를 기반으로 반건식 공정 방식을 도입해 브랜드의 시그니처 형상을 구현했습니다. 자연스러운 텍스처와 구조감을 살린 페이퍼몰드 패키지입니다.",
+    tags: ["라이프스타일", "리필", "텍스처"],
+    feature:
+      "브랜드의 시그니처 형상을 자연스러운 텍스처와 구조감으로 구현",
+    material: "재활용 박스지 기반 반건식 공정으로 제작한 페이퍼몰드 패키지",
     image: "/assets/cases/Work8.webp",
     alt: "Paper mold package case study",
   },
@@ -500,14 +531,12 @@ export function HomePage() {
     useState(getInitialClientLogos);
   const [fadingClientSlots, setFadingClientSlots] = useState<number[]>([]);
   const [activeTestimonial, setActiveTestimonial] = useState(0);
-  const [activeCaseStudy, setActiveCaseStudy] = useState(0);
   const [activeAdBanner, setActiveAdBanner] = useState(0);
   const [activeFaq, setActiveFaq] = useState(-1);
   const [testimonialSlideWidth, setTestimonialSlideWidth] = useState(0);
   const clientSectionRef = useRef<HTMLElement | null>(null);
   const clientSceneRef = useRef<HTMLDivElement | null>(null);
   const activeCategory = showcaseCategories[activeShowcase];
-  const currentCaseStudy = caseStudies[activeCaseStudy];
   const currentAdBanner = adBanners[activeAdBanner];
 
   useEffect(() => {
@@ -716,7 +745,7 @@ export function HomePage() {
   return (
     <>
     <main className="bg-[#f7f8f8]">
-      <section className="flex items-start bg-[#f7f8f8] px-5 py-16 md:px-12 md:py-24 xl:px-[120px]">
+      <section className="home-hero-section bg-[#f7f8f8] px-5 py-16 md:px-12 md:py-24 xl:px-[120px]">
         <div className="mx-auto w-full max-w-[1040px]">
           <h1 className="title-reveal mx-auto max-w-[720px] text-center text-[32px] font-semibold leading-[1.16] text-black md:text-[44px] xl:text-[48px]">
             {renderAnimatedTitle([
@@ -734,8 +763,69 @@ export function HomePage() {
             ])}
           </h1>
 
+          <div className="ad-banner-section ad-banner-section--embedded" aria-label="프로모션 배너">
+            <div className="ad-banner">
+              <div
+                className="ad-banner__track"
+                style={{ transform: `translateX(-${activeAdBanner * 100}%)` }}
+              >
+                {adBanners.map(({ alt, description, image, theme, title }) => (
+                  <article
+                    key={theme}
+                    className={`ad-banner__slide ad-banner__slide--${theme}`}
+                  >
+                    <img className="ad-banner__image" src={image} alt={alt} />
+                    <span className="sr-only">
+                      {title}. {description}
+                    </span>
+                  </article>
+                ))}
+              </div>
+
+              <div className="ad-banner__controls">
+                <button
+                  type="button"
+                  aria-label="이전 광고 배너 보기"
+                  onClick={() =>
+                    setActiveAdBanner((current) =>
+                      current === 0 ? adBanners.length - 1 : current - 1,
+                    )
+                  }
+                >
+                  <CaretLeft size={19} weight="bold" aria-hidden="true" />
+                </button>
+                <button
+                  type="button"
+                  aria-label="다음 광고 배너 보기"
+                  onClick={() =>
+                    setActiveAdBanner((current) =>
+                      current === adBanners.length - 1 ? 0 : current + 1,
+                    )
+                  }
+                >
+                  <CaretRight size={19} weight="bold" aria-hidden="true" />
+                </button>
+                <div className="ad-banner__indicator" aria-hidden="true">
+                  <span
+                    style={{
+                      transform: `translateX(${activeAdBanner * 100}%)`,
+                      width: `${100 / adBanners.length}%`,
+                    }}
+                  />
+                </div>
+                <span className="ad-banner__count">
+                  {activeAdBanner + 1}/{adBanners.length}
+                </span>
+              </div>
+
+              <span className="sr-only">
+                현재 배너: {currentAdBanner.title}
+              </span>
+            </div>
+          </div>
+
           <form
-            className="mx-auto mt-10 max-w-[760px] rounded-2xl border border-[#d7dde2] bg-white px-4 py-4 shadow-[0_12px_28px_rgba(23,33,27,0.035)] md:mt-11 md:px-5 md:py-4"
+            className="mx-auto mt-4 max-w-[760px] rounded-2xl border border-[#d7dde2] bg-white px-4 py-4 shadow-[0_12px_28px_rgba(23,33,27,0.035)] md:mt-5 md:px-5 md:py-4"
             onSubmit={(event) => event.preventDefault()}
           >
             <div className="flex items-center gap-2.5">
@@ -1018,113 +1108,42 @@ export function HomePage() {
             </p>
           </div>
 
-          <div className="case-studies__panel">
-            <div className="case-studies__list" aria-label="고객 사례 분야">
-              {caseStudies.map((caseStudy, index) => {
-                const isActive = activeCaseStudy === index;
-
-                return (
-                  <button
-                    key={caseStudy.category}
-                    type="button"
-                    className={`case-study-tab ${isActive ? "is-active" : ""}`}
-                    onMouseEnter={() => setActiveCaseStudy(index)}
-                    onFocus={() => setActiveCaseStudy(index)}
-                    onClick={() => setActiveCaseStudy(index)}
-                    aria-pressed={isActive}
-                  >
-                    <span className="case-study-tab__header">
-                      <span>{caseStudy.category}</span>
-                      {!isActive && (
-                        <Plus size={24} weight="regular" aria-hidden="true" />
-                      )}
-                    </span>
-                    <span className="case-study-tab__services">
-                      {caseStudy.services}
-                    </span>
-                  </button>
-                );
-              })}
+          <div className="case-study-carousel">
+            <div className="case-study-track">
+              {[...caseStudies, ...caseStudies].map((caseStudy, index) => (
+                <article
+                  key={`${caseStudy.title}-${index}`}
+                  className="case-study-card"
+                  aria-hidden={index >= caseStudies.length}
+                >
+                  <div className="case-study-card__media">
+                    <img src={caseStudy.image} alt={caseStudy.alt} />
+                  </div>
+                  <div className="case-study-card__content">
+                    <div
+                      className="case-study-card__tags"
+                      aria-label="사례 태그"
+                    >
+                      {caseStudy.tags.map((tag) => (
+                        <span key={tag}>{tag}</span>
+                      ))}
+                    </div>
+                    <h3>{caseStudy.title}</h3>
+                    <dl className="case-study-card__details">
+                      <div>
+                        <dt>특징</dt>
+                        <dd>{caseStudy.feature}</dd>
+                      </div>
+                      <div>
+                        <dt>소재</dt>
+                        <dd>{caseStudy.material}</dd>
+                      </div>
+                    </dl>
+                  </div>
+                </article>
+              ))}
             </div>
-
-            <article className="case-study-preview">
-              <div className="case-study-preview__media">
-                <img
-                  key={currentCaseStudy.image}
-                  src={currentCaseStudy.image}
-                  alt={currentCaseStudy.alt}
-                />
-              </div>
-              <div className="case-study-preview__content">
-                <h3>{currentCaseStudy.title}</h3>
-                <p>{currentCaseStudy.description}</p>
-                <Link to="/cases" className="case-study-preview__link">
-                  자세히 보기
-                </Link>
-              </div>
-            </article>
           </div>
-        </div>
-      </section>
-
-      <section className="ad-banner-section" aria-label="프로모션 배너">
-        <div className="ad-banner">
-          <div
-            className="ad-banner__track"
-            style={{ transform: `translateX(-${activeAdBanner * 100}%)` }}
-          >
-            {adBanners.map(({ alt, description, image, theme, title }) => (
-              <article
-                key={theme}
-                className={`ad-banner__slide ad-banner__slide--${theme}`}
-              >
-                <img className="ad-banner__image" src={image} alt={alt} />
-                <span className="sr-only">
-                  {title}. {description}
-                </span>
-              </article>
-            ))}
-          </div>
-
-          <div className="ad-banner__controls">
-            <button
-              type="button"
-              aria-label="이전 광고 배너 보기"
-              onClick={() =>
-                setActiveAdBanner((current) =>
-                  current === 0 ? adBanners.length - 1 : current - 1,
-                )
-              }
-            >
-              <CaretLeft size={19} weight="bold" aria-hidden="true" />
-            </button>
-            <button
-              type="button"
-              aria-label="다음 광고 배너 보기"
-              onClick={() =>
-                setActiveAdBanner((current) =>
-                  current === adBanners.length - 1 ? 0 : current + 1,
-                )
-              }
-            >
-              <CaretRight size={19} weight="bold" aria-hidden="true" />
-            </button>
-            <div className="ad-banner__indicator" aria-hidden="true">
-              <span
-                style={{
-                  transform: `translateX(${activeAdBanner * 100}%)`,
-                  width: `${100 / adBanners.length}%`,
-                }}
-              />
-            </div>
-            <span className="ad-banner__count">
-              {activeAdBanner + 1}/{adBanners.length}
-            </span>
-          </div>
-
-          <span className="sr-only">
-            현재 배너: {currentAdBanner.title}
-          </span>
         </div>
       </section>
 

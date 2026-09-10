@@ -11,10 +11,13 @@ import {
   MagnifyingGlass,
   Network,
   Paperclip,
-  Play,
+  XCircle,
 } from "@phosphor-icons/react";
 import { Link } from "react-router-dom";
-import { ServiceDetailSharedSections } from "../components/ServiceDetailSharedSections";
+import {
+  ServiceDetailAdBanner,
+  ServiceDetailSharedSections,
+} from "../components/ServiceDetailSharedSections";
 
 const productClientLogos = Array.from({ length: 14 }, (_, index) => ({
   src: `/assets/clients/client-logo-${String(index + 1).padStart(2, "0")}.svg`,
@@ -1095,11 +1098,6 @@ function RegulatoryRequestSection() {
           onSubmit={(event) => event.preventDefault()}
         >
           <label>
-            <span>품목 등록 요청 수량 *</span>
-            <input type="number" min="1" placeholder="1" />
-          </label>
-
-          <label>
             <span>등록 요청 내용 *</span>
             <textarea placeholder="품목 정보를 자유롭게 입력해주세요..." />
           </label>
@@ -1112,6 +1110,11 @@ function RegulatoryRequestSection() {
           <div className="regulatory-request-form__divider" />
 
           <div className="regulatory-request-form__grid">
+            <label>
+              <span>품목 등록 요청 수량 *</span>
+              <input type="number" min="1" placeholder="1" />
+            </label>
+
             <label>
               <span>EU 시장 출시 형태</span>
               <select defaultValue="">
@@ -1168,52 +1171,71 @@ function RegulatoryPricingSection() {
 
           <div className="regulatory-pricing-plans">
             {regulatoryPricingPlans.map((plan, planIndex) => (
-              <article
-                key={plan.name}
-                className={`regulatory-pricing-plan${plan.current ? " is-current" : ""}`}
-              >
-                <header>
-                  <h3>{plan.name}</h3>
-                  <p>{plan.caption}</p>
-                </header>
+              <div className="regulatory-pricing-plan-shell" key={plan.name}>
+                <article
+                  className={`regulatory-pricing-plan${plan.current ? " is-current" : ""}`}
+                >
+                  <header>
+                    <h3>{plan.name}</h3>
+                    <p>{plan.caption}</p>
+                  </header>
 
-                <div className="regulatory-pricing-plan__body">
-                  {regulatoryPricingRows.map((row) => {
-                    const value = row.values[planIndex];
+                  <div className="regulatory-pricing-plan__body">
+                    {regulatoryPricingRows.map((row) => {
+                      const value = row.values[planIndex];
 
-                    return (
-                      <div className="regulatory-pricing-cell" key={`${plan.name}-${row.label}`}>
-                        <span className="regulatory-pricing-cell__label">{row.label}</span>
-                        {value === "check" ? (
-                          <CheckCircle size={20} weight="bold" aria-label="포함" />
-                        ) : value === "none" ? (
-                          <span className="regulatory-pricing-cell__none" aria-label="미포함">
-                            ×
-                          </span>
-                        ) : (
-                          <strong>
-                            {row.label === "정기 구독료" ? (
-                              <>
-                                {plan.price}
-                                {plan.unit ? <em>{plan.unit}</em> : null}
-                              </>
-                            ) : (
-                              value
-                            )}
-                          </strong>
-                        )}
-                        {row.meter ? (
-                          <span className="regulatory-pricing-meter">
-                            <i style={{ width: `${row.meter[planIndex]}%` }} />
-                          </span>
-                        ) : null}
-                      </div>
-                    );
-                  })}
-                </div>
+                      return (
+                        <div
+                          className={`regulatory-pricing-cell${
+                            row.meter ? " regulatory-pricing-cell--meter" : ""
+                          }${
+                            row.label === "정기 구독료"
+                              ? " regulatory-pricing-cell--price"
+                              : ""
+                          }`}
+                          key={`${plan.name}-${row.label}`}
+                        >
+                          <span className="regulatory-pricing-cell__label">{row.label}</span>
+                          {value === "check" ? (
+                            <CheckCircle size={20} weight="bold" aria-label="포함" />
+                          ) : value === "none" ? (
+                            <XCircle
+                              className="regulatory-pricing-cell__none"
+                              size={20}
+                              weight="bold"
+                              aria-label="미포함"
+                            />
+                          ) : (
+                            <strong>
+                              {row.label === "정기 구독료" ? (
+                                <>
+                                  {plan.price}
+                                  {plan.unit ? <em>{plan.unit}</em> : null}
+                                </>
+                              ) : (
+                                value
+                              )}
+                            </strong>
+                          )}
+                          {row.meter ? (
+                            <span className="regulatory-pricing-meter">
+                              <i style={{ width: `${row.meter[planIndex]}%` }} />
+                            </span>
+                          ) : null}
+                        </div>
+                      );
+                    })}
+                  </div>
+                </article>
 
-                <button type="button">{plan.action}</button>
-              </article>
+                {plan.current ? (
+                  <span className="regulatory-pricing-plan__current">
+                    {plan.action}
+                  </span>
+                ) : (
+                  <button type="button">{plan.action}</button>
+                )}
+              </div>
             ))}
           </div>
         </div>
@@ -1232,7 +1254,6 @@ export function ServiceDetailPage({ variant }: ServiceDetailPageProps) {
   const serviceFlowSectionRef = useRef<HTMLElement | null>(null);
   const serviceFlowViewportRef = useRef<HTMLDivElement | null>(null);
   const serviceFlowTrackRef = useRef<HTMLDivElement | null>(null);
-  const processVideoRef = useRef<HTMLVideoElement | null>(null);
 
   useEffect(() => {
     if (!isProductDevelopment) {
@@ -1280,19 +1301,6 @@ export function ServiceDetailPage({ variant }: ServiceDetailPageProps) {
       window.removeEventListener("resize", requestUpdate);
     };
   }, [isProductDevelopment]);
-
-  const playProcessVideo = () => {
-    processVideoRef.current?.play().catch(() => undefined);
-  };
-
-  const pauseProcessVideo = () => {
-    if (!processVideoRef.current) {
-      return;
-    }
-
-    processVideoRef.current.pause();
-    processVideoRef.current.currentTime = 0;
-  };
 
   const showPrevProductTestimonial = () => {
     setActiveProductTestimonial((current) =>
@@ -1343,6 +1351,7 @@ export function ServiceDetailPage({ variant }: ServiceDetailPageProps) {
                 </div>
               </div>
             </div>
+            <ServiceDetailAdBanner embedded />
           </section>
 
           <ProductClientSection
@@ -1491,45 +1500,6 @@ export function ServiceDetailPage({ variant }: ServiceDetailPageProps) {
             </div>
           </section>
 
-          <section className="product-process-section">
-            <div className="product-process-section__inner">
-              <h2>제조과정</h2>
-              <div className="product-process-video-stage">
-                <button
-                  type="button"
-                  className="product-process-video"
-                  aria-label="제조과정 영상 재생"
-                  onMouseEnter={playProcessVideo}
-                  onMouseLeave={pauseProcessVideo}
-                  onFocus={playProcessVideo}
-                  onBlur={pauseProcessVideo}
-                >
-                  <video
-                    ref={processVideoRef}
-                    muted
-                    loop
-                    playsInline
-                    preload="metadata"
-                    poster="/assets/detail-pages/process-video/manufacturing-process-poster.jpg"
-                  >
-                    <source
-                      src="/assets/detail-pages/process-video/manufacturing-process.mp4"
-                      type="video/mp4"
-                    />
-                  </video>
-                  <span className="product-process-video__play" aria-hidden="true">
-                    <Play size={58} weight="fill" />
-                  </span>
-                </button>
-              </div>
-              <p>
-                제품 설계가 끝나면 원료 수급, 금형 설계, 시제품 제작, 양산이 진행되고,
-                <br />
-                이 과정에서 디자인 수정, 기술 보완 및 제품 생산에 대한 감리까지 이루어집니다.
-              </p>
-            </div>
-          </section>
-
           <aside className="product-sticky-bar" aria-label="제품 개발 상담 바로가기">
             <div className="product-sticky-bar__inner">
               <strong>리스튜디오 원스톱 시스템</strong>
@@ -1564,7 +1534,7 @@ export function ServiceDetailPage({ variant }: ServiceDetailPageProps) {
           <RegulatoryPricingSection />
         </>
       )}
-      <ServiceDetailSharedSections />
+      <ServiceDetailSharedSections showAdBanner={!isProductDevelopment} />
     </main>
   );
 }
