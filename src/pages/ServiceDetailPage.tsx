@@ -1511,7 +1511,9 @@ export function ServiceDetailPage({ variant }: ServiceDetailPageProps) {
                 <CheckCircle size={18} weight="bold" aria-hidden="true" />
                 개발 기간 단축
               </span>
-              <Link to="/inquiry/product">맞춤 견적 받기</Link>
+              <Link to="/project-management/quote?service=product-development">
+                맞춤 견적 받기
+              </Link>
             </div>
           </aside>
         </>

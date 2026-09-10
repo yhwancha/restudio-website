@@ -6,6 +6,8 @@ import { ScrollToTop } from "./components/ScrollToTop";
 import { HomePage } from "./pages/HomePage";
 import { LoginPage } from "./pages/LoginPage";
 import { PlaceholderPage } from "./pages/PlaceholderPage";
+import { ProductQuotePage } from "./pages/ProductQuotePage";
+import { ProjectManagementPage } from "./pages/ProjectManagementPage";
 import { ServiceDetailPage } from "./pages/ServiceDetailPage";
 
 const PAGES = [
@@ -53,6 +55,8 @@ export default function App() {
         <ScrollToTop />
         <Routes>
           <Route path="/account" element={<LoginPage />} />
+          <Route path="/project-management" element={<ProjectManagementPage />} />
+          <Route path="/project-management/quote" element={<ProductQuotePage />} />
           <Route element={<Layout />}>
             <Route index element={<HomePage />} />
             <Route

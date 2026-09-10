@@ -442,6 +442,512 @@
     text-align: center;
   }
 
+  .project-management-page {
+    display: grid;
+    min-height: 100dvh;
+    grid-template-columns: 282px minmax(0, 1fr);
+    background: #ffffff;
+    color: #17211b;
+  }
+
+  .project-management-sidebar {
+    display: grid;
+    min-height: 100dvh;
+    grid-template-rows: auto auto 1fr auto auto;
+    border-right: 1px solid #edf1f3;
+    background: #ffffff;
+    padding: 34px 32px 30px;
+  }
+
+  .project-management-switch {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    overflow: hidden;
+    border-radius: 12px;
+    background: #f2f4f4;
+    padding: 5px;
+  }
+
+  .project-management-switch button {
+    min-height: 38px;
+    border-radius: 8px;
+    color: #5f6e78;
+    font-size: 13px;
+    font-weight: 600;
+    transition:
+      background-color 0.18s ease,
+      color 0.18s ease,
+      box-shadow 0.18s ease;
+  }
+
+  .project-management-switch button.is-active {
+    background: var(--color-primary-600);
+    color: #ffffff;
+    box-shadow: 0 8px 18px rgba(67, 86, 74, 0.22);
+  }
+
+  .project-management-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+    color: #60707c;
+  }
+
+  .project-management-brand strong {
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .project-management-nav {
+    display: grid;
+    align-content: start;
+    gap: 7px;
+    margin: 58px -32px 0;
+  }
+
+  .project-management-nav button,
+  .project-management-settings button:first-child {
+    display: grid;
+    min-height: 44px;
+    grid-template-columns: 24px minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 10px;
+    padding: 0 32px;
+    color: #728292;
+    font-size: 15px;
+    font-weight: 600;
+    text-align: left;
+  }
+
+  .project-management-nav button.is-active {
+    border-right: 4px solid var(--color-primary-600);
+    background: #f2f4f3;
+    color: var(--color-primary-600);
+  }
+
+  .project-management-nav__sub {
+    grid-template-columns: minmax(0, 1fr) !important;
+    padding-left: 64px !important;
+    font-size: 14px !important;
+  }
+
+  .project-management-nav__sub.is-active {
+    border-right: 4px solid var(--color-primary-600);
+    background: #f2f4f3;
+    color: var(--color-primary-600);
+  }
+
+  .project-management-settings {
+    display: grid;
+    gap: 10px;
+    margin-top: 20px;
+    border-top: 1px solid #e5ebef;
+    padding-top: 22px;
+  }
+
+  .project-management-settings button:not(:first-child) {
+    min-height: 31px;
+    padding-left: 32px;
+    color: #728292;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: left;
+  }
+
+  .project-management-user {
+    align-self: end;
+    margin-top: 36px;
+  }
+
+  .project-management-user div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+
+  .project-management-user strong {
+    color: #172331;
+    font-size: 15px;
+    font-weight: 600;
+  }
+
+  .project-management-user span {
+    border-radius: 5px;
+    background: #f2f4f7;
+    padding: 4px 9px;
+    color: #7a8795;
+    font-size: 11px;
+    font-weight: 600;
+  }
+
+  .project-management-user p {
+    margin-top: 6px;
+    color: #778798;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .project-management-user button {
+    width: 100%;
+    min-height: 40px;
+    margin-top: 16px;
+    border: 1px solid #dfe6eb;
+    border-radius: 8px;
+    color: #172331;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .project-management-main {
+    min-width: 0;
+    background: #ffffff;
+  }
+
+  .project-management-topbar {
+    display: grid;
+    min-height: 104px;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: start;
+    gap: 32px;
+    border-bottom: 1px solid #edf1f3;
+    padding: 22px 28px 0;
+  }
+
+  .project-management-breadcrumb {
+    display: flex;
+    min-height: 62px;
+    align-items: center;
+    gap: 12px;
+    border: 1px solid #e0e7ec;
+    border-radius: 8px;
+    padding: 0 26px;
+    color: #6f8090;
+    font-size: 15px;
+    font-weight: 600;
+    box-shadow: 0 3px 10px rgba(23, 33, 27, 0.08);
+  }
+
+  .project-management-topbar > button {
+    display: grid;
+    width: 46px;
+    height: 46px;
+    place-items: center;
+    border: 1px solid #dfe7ec;
+    border-radius: 8px;
+    color: #778798;
+  }
+
+  .project-management-content {
+    position: relative;
+    min-height: calc(100dvh - 104px);
+    padding: 54px 38px;
+  }
+
+  .project-management-content__header {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 30px;
+    align-items: start;
+  }
+
+  .project-management-content__header h1 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #111513;
+    font-size: 26px;
+    font-weight: 600;
+    line-height: 1.25;
+  }
+
+  .project-management-content__header > button {
+    min-width: 124px;
+    min-height: 54px;
+    border-radius: 8px;
+    background: var(--color-primary-600);
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 600;
+  }
+
+  .project-management-search {
+    display: grid;
+    width: min(100%, 680px);
+    min-height: 54px;
+    grid-template-columns: 28px minmax(0, 1fr);
+    align-items: center;
+    gap: 12px;
+    margin-top: 42px;
+    border: 1px solid #dfe6eb;
+    border-radius: 8px;
+    padding: 0 16px;
+    color: #d7dfe6;
+  }
+
+  .project-management-search input {
+    min-width: 0;
+    border: 0;
+    outline: 0;
+    color: #172331;
+    font: inherit;
+    font-size: 15px;
+    font-weight: 500;
+  }
+
+  .project-management-search input::placeholder {
+    color: #bbc6d1;
+  }
+
+  .project-management-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 18px;
+  }
+
+  .project-management-filters button {
+    display: inline-flex;
+    min-width: 182px;
+    min-height: 54px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    border: 1px solid #dfe6eb;
+    border-radius: 8px;
+    padding: 0 20px;
+    color: #728292;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .project-management-filters button:nth-child(3) {
+    min-width: 334px;
+  }
+
+  .project-management-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 18px;
+  }
+
+  .project-management-actions button {
+    display: inline-flex;
+    min-height: 48px;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border: 1px solid #dfe6eb;
+    border-radius: 8px;
+    padding: 0 20px;
+    color: #334052;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .project-management-empty {
+    position: absolute;
+    top: 54%;
+    left: 50%;
+    display: grid;
+    justify-items: center;
+    gap: 14px;
+    color: #8b98a7;
+    font-size: 16px;
+    font-weight: 600;
+    transform: translate(-50%, -50%);
+  }
+
+  .project-management-empty svg {
+    width: 54px;
+    height: 54px;
+    border-radius: 999px;
+    background: #f4f6f6;
+    padding: 14px;
+    color: var(--color-primary-600);
+  }
+
+  .project-management-empty--dashboard {
+    top: 50%;
+  }
+
+  .product-quote-page {
+    min-height: 100dvh;
+    background: #ffffff;
+    color: #111513;
+    padding: 36px 20px 64px;
+  }
+
+  .product-quote-shell {
+    width: min(100%, 560px);
+    margin: 0 auto;
+  }
+
+  .product-quote-back {
+    display: inline-flex;
+    min-height: 38px;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 18px;
+    color: #43564a;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .product-quote-header h1 {
+    color: #000000;
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 1.25;
+  }
+
+  .product-quote-header p {
+    margin-top: 8px;
+    color: #78838d;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.5;
+  }
+
+  .product-quote-steps {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    margin-top: 48px;
+  }
+
+  .product-quote-steps li {
+    display: inline-flex;
+    min-width: 0;
+    align-items: center;
+    gap: 10px;
+    color: #91a0ad;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  .product-quote-steps li > span {
+    display: grid;
+    width: 28px;
+    height: 28px;
+    place-items: center;
+    border: 1px solid #d6e1e8;
+    border-radius: 999px;
+    background: #f8fafb;
+    color: #8fa0ad;
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  .product-quote-steps li.is-active {
+    color: #17211b;
+  }
+
+  .product-quote-steps li.is-active > span {
+    border-color: #17211b;
+    background: #ffffff;
+    color: #17211b;
+  }
+
+  .product-quote-steps svg {
+    margin-left: 22px;
+    color: #8fa0ad;
+  }
+
+  .product-quote-card {
+    display: grid;
+    gap: 22px;
+    margin-top: 28px;
+    border: 1px solid #d8e2e8;
+    border-radius: 6px;
+    padding: 26px 22px 20px;
+  }
+
+  .product-quote-card__intro h2 {
+    color: #17211b;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.35;
+  }
+
+  .product-quote-card__intro p {
+    margin-top: 6px;
+    color: #78838d;
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  .product-quote-card label {
+    display: grid;
+    gap: 10px;
+  }
+
+  .product-quote-card label > span {
+    color: #17211b;
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  .product-quote-card label > button {
+    display: flex;
+    min-height: 40px;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid #d8e2e8;
+    border-radius: 5px;
+    padding: 0 16px;
+    color: #17211b;
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  .product-quote-preview {
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px;
+    background: #dddddd;
+  }
+
+  .product-quote-preview img {
+    width: 100%;
+    aspect-ratio: 1.72 / 1;
+    object-fit: cover;
+  }
+
+  .product-quote-preview span {
+    position: absolute;
+    right: 0;
+    bottom: -30px;
+    border-radius: 4px;
+    background: #152033;
+    padding: 8px 12px;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 600;
+    transform: translateY(-100%);
+  }
+
+  .product-quote-next {
+    display: inline-flex;
+    min-width: 76px;
+    min-height: 42px;
+    align-items: center;
+    justify-content: center;
+    justify-self: end;
+    gap: 6px;
+    border-radius: 7px;
+    background: var(--color-primary-600);
+    padding: 0 18px;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
   .core-service-card {
     display: block;
     min-width: 0;
@@ -3710,6 +4216,43 @@
 }
 
 @media (min-width: 768px) and (max-width: 1279px) {
+  .project-management-page {
+    grid-template-columns: 250px minmax(0, 1fr);
+  }
+
+  .project-management-sidebar {
+    padding: 28px 22px;
+  }
+
+  .project-management-nav {
+    margin-right: -22px;
+    margin-left: -22px;
+  }
+
+  .project-management-nav button,
+  .project-management-settings button:first-child {
+    padding-right: 22px;
+    padding-left: 22px;
+  }
+
+  .project-management-nav__sub {
+    padding-left: 54px !important;
+  }
+
+  .project-management-topbar {
+    padding-right: 22px;
+    padding-left: 22px;
+  }
+
+  .project-management-content {
+    padding-right: 28px;
+    padding-left: 28px;
+  }
+
+  .project-management-content__header {
+    grid-template-columns: 1fr;
+  }
+
   .client-growth-section {
     --page-margin: 48px;
     --testimonial-card-width: calc((100% - var(--testimonial-gap)) * 0.58);
@@ -4098,6 +4641,120 @@
 }
 
 @media (max-width: 767px) {
+  .project-management-page {
+    grid-template-columns: 1fr;
+  }
+
+  .project-management-sidebar {
+    min-height: auto;
+    padding: 20px 16px;
+  }
+
+  .project-management-nav {
+    margin: 22px -16px 0;
+  }
+
+  .project-management-nav button,
+  .project-management-settings button:first-child {
+    min-height: 40px;
+    padding-right: 16px;
+    padding-left: 16px;
+    font-size: 14px;
+  }
+
+  .project-management-nav__sub {
+    padding-left: 46px !important;
+  }
+
+  .project-management-settings {
+    margin-top: 16px;
+  }
+
+  .project-management-user {
+    margin-top: 24px;
+  }
+
+  .project-management-topbar {
+    min-height: auto;
+    grid-template-columns: 1fr auto;
+    gap: 10px;
+    padding: 16px;
+  }
+
+  .project-management-breadcrumb {
+    min-height: 46px;
+    gap: 8px;
+    padding: 0 12px;
+    font-size: 13px;
+  }
+
+  .project-management-topbar > button {
+    width: 46px;
+    height: 46px;
+  }
+
+  .project-management-content {
+    min-height: 480px;
+    padding: 30px 16px;
+  }
+
+  .project-management-content__header {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .project-management-content__header h1 {
+    font-size: 22px;
+  }
+
+  .project-management-content__header > button {
+    width: 100%;
+    min-height: 46px;
+  }
+
+  .project-management-search {
+    min-height: 48px;
+    margin-top: 24px;
+  }
+
+  .project-management-filters button,
+  .project-management-filters button:nth-child(3) {
+    width: 100%;
+    min-width: 0;
+    min-height: 46px;
+  }
+
+  .project-management-actions {
+    justify-content: stretch;
+  }
+
+  .project-management-actions button {
+    flex: 1;
+    min-height: 44px;
+    padding: 0 10px;
+    font-size: 13px;
+  }
+
+  .product-quote-page {
+    padding-top: 28px;
+  }
+
+  .product-quote-steps {
+    gap: 8px;
+    margin-top: 34px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+  }
+
+  .product-quote-steps svg {
+    margin-left: 8px;
+  }
+
+  .product-quote-card {
+    padding-right: 18px;
+    padding-left: 18px;
+  }
+
   .ai-chat-widget {
     right: max(12px, env(safe-area-inset-right));
     bottom: max(12px, env(safe-area-inset-bottom));
