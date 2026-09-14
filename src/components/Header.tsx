@@ -72,7 +72,7 @@ function ServiceDropdown() {
         aria-expanded={open}
         onClick={() => setOpen((current) => !current)}
       >
-        서비스 이동
+        서비스
         <CaretDown
           size={14}
           weight="bold"
@@ -243,15 +243,15 @@ export function Header() {
         </Link>
 
         <nav className="hidden items-center gap-7 xl:flex" aria-label="주요 메뉴">
-          <NavLink to="/company" className={navLinkClass}>
-            회사 소개
-          </NavLink>
           <ServiceDropdown />
           {NAV_ITEMS.map((item) => (
             <NavLink key={item.to} to={item.to} className={navLinkClass}>
               {item.label}
             </NavLink>
           ))}
+          <NavLink to="/company" className={navLinkClass}>
+            회사 소개
+          </NavLink>
         </nav>
 
         <div className="hidden items-center gap-2 xl:flex">
@@ -304,19 +304,6 @@ export function Header() {
         className="border-t border-primary-600/15 bg-warm-neutral px-5 py-4 md:px-12 xl:hidden"
       >
         <nav className="flex flex-col gap-1" aria-label="모바일 주요 메뉴">
-          <NavLink
-            to="/company"
-            className={({ isActive }) =>
-              [
-                "rounded-xl px-3 py-3 text-[17px] font-semibold transition-colors",
-                isActive
-                  ? "bg-primary-100 text-primary-900"
-                  : "text-primary-800 hover:bg-primary-50",
-              ].join(" ")
-            }
-          >
-            회사 소개
-          </NavLink>
           <button
             type="button"
             className={[
@@ -328,7 +315,7 @@ export function Header() {
             aria-expanded={mobileServiceOpen}
             onClick={() => setMobileServiceOpen((current) => !current)}
           >
-            서비스 이동
+            서비스
             <CaretDown
               size={16}
               weight="bold"
@@ -372,6 +359,19 @@ export function Header() {
               {item.label}
             </NavLink>
           ))}
+          <NavLink
+            to="/company"
+            className={({ isActive }) =>
+              [
+                "rounded-xl px-3 py-3 text-[17px] font-semibold transition-colors",
+                isActive
+                  ? "bg-primary-100 text-primary-900"
+                  : "text-primary-800 hover:bg-primary-50",
+              ].join(" ")
+            }
+          >
+            회사 소개
+          </NavLink>
         </nav>
 
         <div className={`mt-5 grid gap-2 ${isServiceDetailPage ? "" : "md:grid-cols-2"}`}>

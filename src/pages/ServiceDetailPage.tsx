@@ -2,15 +2,19 @@ import { type CSSProperties, useEffect, useRef, useState } from "react";
 import {
   ArrowUp,
   ArrowRight,
+  Buildings,
   CaretLeft,
   CaretRight,
+  Briefcase,
   CheckCircle,
   ClipboardText,
   Cube,
   Flask,
+  Leaf,
   MagnifyingGlass,
   Network,
   Paperclip,
+  SquaresFour,
   XCircle,
 } from "@phosphor-icons/react";
 import { Link } from "react-router-dom";
@@ -18,6 +22,7 @@ import {
   ServiceDetailAdBanner,
   ServiceDetailSharedSections,
 } from "../components/ServiceDetailSharedSections";
+import { AnimatedTitle, useTitleReveal } from "../components/AnimatedTitle";
 
 const productClientLogos = Array.from({ length: 14 }, (_, index) => ({
   src: `/assets/clients/client-logo-${String(index + 1).padStart(2, "0")}.svg`,
@@ -79,6 +84,36 @@ const productTestimonialPages = Array.from({ length: 3 }, (_, pageIndex) =>
   productTestimonials.slice(pageIndex * 2, pageIndex * 2 + 2),
 );
 
+const productDevelopmentHeroBanners = [
+  {
+    theme: "product-development-onestop",
+    title: "처음부터 끝까지 리스튜디오 친환경 패키지 완성",
+    description: "친환경 패키지 원스톱 솔루션 상담 신청 배너",
+    image: "/assets/ads/product-development-onestop-banner.png",
+    alt: "처음부터 끝까지 리스튜디오 친환경 패키지 완성 배너",
+  },
+];
+
+const markerStroke = (
+  <svg
+    className="marker-scribble__stroke"
+    viewBox="0 0 320 62"
+    preserveAspectRatio="none"
+    aria-hidden="true"
+  >
+    <path
+      className="marker-scribble__path marker-scribble__path--base"
+      pathLength={1}
+      d="M34 33 C48 15 63 16 76 24 C91 34 99 20 115 18 C133 16 144 31 160 24 C177 17 191 14 206 29 C223 46 235 12 255 17 C272 21 282 14 293 18"
+    />
+    <path
+      className="marker-scribble__path marker-scribble__path--middle"
+      pathLength={1}
+      d="M31 37 C47 46 57 8 75 16 C92 24 96 43 113 36 C132 29 139 9 155 19 C170 29 171 45 189 35 C206 26 211 23 227 30 C244 38 246 17 263 22 C279 27 286 32 296 24"
+    />
+  </svg>
+);
+
 const productChallenges = [
   {
     title: "소재 선택이 어렵습니다",
@@ -113,20 +148,23 @@ const productServiceSteps = [
     description: "제품 특성과 유통 환경을 분석해 친환경 패키지 개발 방향을 잡습니다.",
     image: "/assets/detail-pages/service-flow/consulting.png",
     alt: "친환경 패키지 컨설팅을 위한 소재와 스케치가 놓인 책상",
+    Icon: ClipboardText,
   },
   {
     step: "step 2",
-    title: "디자인 제작",
-    description: "패키지 구조와 제품 디자인, CMF를 함께 검토해 완성도를 높입니다.",
+    title: "소재 큐레이션 / R&D",
+    description: "제품에 적합한 친환경 소재 후보를 추천하고 개발 가능성을 검토합니다.",
     image: "/assets/detail-pages/service-flow/design.png",
     alt: "친환경 패키지 디자인 스케치와 샘플",
+    Icon: Cube,
   },
   {
     step: "step 3",
-    title: "제품 R&D",
-    description: "친환경 소재 후보를 발굴하고 제품에 맞는 물성, 성형성, 리스크를 확인합니다.",
+    title: "패키지 디자인",
+    description: "친환경 소재에 맞는 구조와 사용성을 고려해 패키지를 설계합니다.",
     image: "/assets/detail-pages/service-flow/rnd.png",
     alt: "친환경 소재 연구를 위한 실험실 샘플",
+    Icon: Flask,
   },
   {
     step: "step 4",
@@ -134,6 +172,7 @@ const productServiceSteps = [
     description: "페이퍼몰드와 바이오 플라스틱 등 제품에 맞는 방식으로 양산을 준비합니다.",
     image: "/assets/detail-pages/service-flow/production.png",
     alt: "친환경 패키지 생산 라인",
+    Icon: Buildings,
   },
   {
     step: "step 5",
@@ -141,13 +180,15 @@ const productServiceSteps = [
     description: "QC 기준에 따라 품질을 점검하고 완제품 납품까지 안정적으로 관리합니다.",
     image: "/assets/detail-pages/service-flow/inspection.png",
     alt: "완성된 패키지를 검수하고 납품 준비하는 장면",
+    Icon: MagnifyingGlass,
   },
   {
     step: "step 6",
-    title: "탄소저감 리포트",
-    description: "환경 영향과 친환경 검증 내용을 정리해 ESG 보고와 인증 대응에 활용합니다.",
+    title: "친환경 검증 및 ESG 리포트",
+    description: "친환경 인증과 규제 대응에 필요한 자료를 정리해 리포트로 제공합니다.",
     image: "/assets/detail-pages/service-flow/report.png",
     alt: "탄소저감 리포트와 친환경 패키지 샘플",
+    Icon: Leaf,
   },
 ];
 
@@ -594,7 +635,9 @@ function RegulatoryHero() {
   return (
     <section className="regulatory-hero">
       <div className="regulatory-hero__inner">
-        <h1>AI 기반의 PPWR 규제 대응 서비스</h1>
+        <h1 className="title-reveal">
+          <AnimatedTitle parts="AI 기반의 PPWR 규제 대응 서비스" />
+        </h1>
         <p>제품 등록부터 증빙 검토, 제출 문서 준비까지</p>
 
         <form
@@ -689,7 +732,9 @@ function RegulatoryGrowthSection() {
     <section className="regulatory-growth-section">
       <div className="regulatory-growth-section__inner">
         <div className="regulatory-growth-section__header">
-          <h2>꾸준히 성장하는 기업의 매출은 해외에서 발생합니다.</h2>
+          <h2 className="title-reveal">
+            <AnimatedTitle parts="꾸준히 성장하는 기업의 매출은 해외에서 발생합니다." />
+          </h2>
           <p>특히 제조업 분야에서 국내만으로 회사가 성장하기에는 그 한계가 명확합니다.</p>
         </div>
 
@@ -758,7 +803,9 @@ function RegulatoryPpwrSection() {
     <section className="regulatory-ppwr-section">
       <div className="regulatory-ppwr-section__inner">
         <div className="regulatory-ppwr-section__header">
-          <h2>AI, PPWR 전문가와 함께하는 유럽 수출</h2>
+          <h2 className="title-reveal">
+            <AnimatedTitle parts="AI, PPWR 전문가와 함께하는 유럽 수출" />
+          </h2>
           <div className="regulatory-ppwr-section__definition">
             <strong>PPWR이란?</strong>
             <p>
@@ -784,7 +831,9 @@ function RegulatoryWhySection() {
   return (
     <section className="regulatory-why-section">
       <div className="regulatory-why-section__inner">
-        <h2>왜 리스튜디오인가요?</h2>
+        <h2 className="title-reveal">
+          <AnimatedTitle parts="왜 리스튜디오인가요?" />
+        </h2>
         <div className="regulatory-why-grid">
           {regulatoryWhyItems.map(({ title, description, Icon }) => (
             <article className="regulatory-why-item" key={title}>
@@ -844,7 +893,9 @@ function RegulatoryPlatformSection() {
         <div className="regulatory-platform-section__inner">
           <div className="regulatory-platform-copy" aria-live="polite">
             <div className="regulatory-platform-copy__content" key={currentStep.shortTitle}>
-              <h2>{currentStep.title}</h2>
+              <h2 className="title-reveal">
+                <AnimatedTitle parts={currentStep.title} />
+              </h2>
               <p>{currentStep.description}</p>
               <ul>
                 {currentStep.bullets.map((bullet) => (
@@ -954,7 +1005,9 @@ function RegulatoryReportSection() {
 
           <div className="regulatory-report-copy" aria-live="polite">
             <div className="regulatory-report-copy__content" key={currentStep.shortTitle}>
-              <h2>{currentStep.title}</h2>
+              <h2 className="title-reveal">
+                <AnimatedTitle parts={currentStep.title} />
+              </h2>
               <p>{currentStep.description}</p>
               <ul>
                 {currentStep.bullets.map((bullet) => (
@@ -1037,7 +1090,9 @@ function RegulatoryDiagnosisSection() {
     <section className="regulatory-diagnosis-section">
       <div className="regulatory-diagnosis-stage">
         <div className="regulatory-diagnosis-section__inner">
-          <h2>수출을 위한 품목 진단 과정</h2>
+          <h2 className="title-reveal">
+            <AnimatedTitle parts="수출을 위한 품목 진단 과정" />
+          </h2>
 
           <div className="regulatory-diagnosis-board">
             <ol
@@ -1086,7 +1141,9 @@ function RegulatoryRequestSection() {
       <div className="regulatory-request-section__inner">
         <div className="regulatory-request-section__header">
           <p>이 모든 과정이 복잡하다면?</p>
-          <h2>품목 등록 및 진단 대행 서비스</h2>
+          <h2 className="title-reveal">
+            <AnimatedTitle parts="품목 등록 및 진단 대행 서비스" />
+          </h2>
           <span>
             PPWR 전문가로 이루어진 리스튜디오에서 품목, 포장자재, 부자재, 문서 등록에 대한
             조언, 등록 대행 서비스를 제공합니다.
@@ -1159,7 +1216,9 @@ function RegulatoryPricingSection() {
   return (
     <section className="regulatory-pricing-section">
       <div className="regulatory-pricing-section__inner">
-        <h2>구독 및 요금제</h2>
+        <h2 className="title-reveal">
+          <AnimatedTitle parts="구독 및 요금제" />
+        </h2>
 
         <div className="regulatory-pricing-table">
           <div className="regulatory-pricing-labels" aria-hidden="true">
@@ -1251,56 +1310,8 @@ interface ServiceDetailPageProps {
 export function ServiceDetailPage({ variant }: ServiceDetailPageProps) {
   const isProductDevelopment = variant === "product-development";
   const [activeProductTestimonial, setActiveProductTestimonial] = useState(0);
-  const serviceFlowSectionRef = useRef<HTMLElement | null>(null);
-  const serviceFlowViewportRef = useRef<HTMLDivElement | null>(null);
-  const serviceFlowTrackRef = useRef<HTMLDivElement | null>(null);
 
-  useEffect(() => {
-    if (!isProductDevelopment) {
-      return;
-    }
-
-    const section = serviceFlowSectionRef.current;
-    const viewport = serviceFlowViewportRef.current;
-    const track = serviceFlowTrackRef.current;
-
-    if (!section || !viewport || !track) {
-      return;
-    }
-
-    let frame = 0;
-
-    const updateServiceFlow = () => {
-      const sectionRect = section.getBoundingClientRect();
-      const scrollableDistance = section.offsetHeight - window.innerHeight;
-      const progress =
-        scrollableDistance <= 0
-          ? 0
-          : Math.min(
-              Math.max((window.innerHeight * -1 + sectionRect.bottom) / scrollableDistance, 0),
-              1,
-            );
-      const trackDistance = Math.max(track.scrollWidth - viewport.clientWidth, 0);
-
-      section.style.setProperty("--product-service-progress", `${1 - progress}`);
-      section.style.setProperty("--product-service-distance", `${trackDistance}px`);
-    };
-
-    const requestUpdate = () => {
-      window.cancelAnimationFrame(frame);
-      frame = window.requestAnimationFrame(updateServiceFlow);
-    };
-
-    updateServiceFlow();
-    window.addEventListener("scroll", requestUpdate, { passive: true });
-    window.addEventListener("resize", requestUpdate);
-
-    return () => {
-      window.cancelAnimationFrame(frame);
-      window.removeEventListener("scroll", requestUpdate);
-      window.removeEventListener("resize", requestUpdate);
-    };
-  }, [isProductDevelopment]);
+  useTitleReveal();
 
   const showPrevProductTestimonial = () => {
     setActiveProductTestimonial((current) =>
@@ -1319,39 +1330,123 @@ export function ServiceDetailPage({ variant }: ServiceDetailPageProps) {
       {isProductDevelopment && (
         <>
           <section className="service-detail-hero">
-            <div className="service-detail-hero__header">
-              <h1>리스튜디오를 선택하는 것 만으로,</h1>
-              <p>
-                개발 기간 단축, 비용 절감, 양산 설계, 환경까지
-                <br />
-                4마리 토끼를 한번에 잡을 수 있어요.
-              </p>
-            </div>
+            <ServiceDetailAdBanner
+              banners={productDevelopmentHeroBanners}
+              embedded
+            />
+            <form
+              className="mx-auto mt-4 max-w-[1040px] rounded-2xl border border-[#d7dde2] bg-white px-4 py-4 shadow-[0_12px_28px_rgba(23,33,27,0.035)] md:mt-5 md:px-5 md:py-4"
+              onSubmit={(event) => event.preventDefault()}
+            >
+              <div className="flex items-center gap-2.5">
+                <Paperclip
+                  size={21}
+                  weight="regular"
+                  aria-hidden="true"
+                  className="shrink-0 text-[#9aa8b7]"
+                />
+                <label className="sr-only" htmlFor="product-ai-question">
+                  AI Agent 리사에게 제품 개발 문의하기
+                </label>
+                <input
+                  id="product-ai-question"
+                  type="text"
+                  className="h-8 min-w-0 flex-1 bg-transparent text-[13px] font-medium text-primary-900 outline-none placeholder:text-[#9aa3af] md:text-[14px]"
+                  placeholder="제품 개발에 대해 궁금한 것이 있나요? AI Agent 리사가 도와드릴게요!"
+                />
+                <button
+                  type="submit"
+                  aria-label="문의 보내기"
+                  className="grid size-8 shrink-0 place-items-center rounded-full bg-[#bfc5c1] text-white transition hover:bg-primary-600 active:scale-[0.98] md:size-9"
+                >
+                  <ArrowUp size={18} weight="bold" aria-hidden="true" />
+                </button>
+              </div>
 
-            <div className="service-detail-hero__media" tabIndex={0}>
-              <img
-                src="/assets/detail-pages/product-development-hero.png"
-                alt="사무실에서 여섯 명이 케이스 제품과 3D 모델링 화면을 보며 회의하는 모습"
-              />
-              <div className="service-detail-hero__overlay" aria-hidden="true">
-                <div className="service-detail-hero__overlay-headlines">
-                  <span>대량 양산 설계</span>
-                  <span>친환경 검증</span>
-                  <span>규제 대응</span>
+              <p className="mt-2.5 text-center text-[10px] font-semibold text-[#b6bdc5] md:text-[11px]">
+                대화를 진행하면{" "}
+                <a
+                  href="https://material-beam-ed6.notion.site/20224acd6ea980ee90cae0df5e5cc6af"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="underline underline-offset-2 hover:text-primary-600"
+                >
+                  개인정보처리방침
+                </a>
+                에 동의하신 것으로 이해됩니다
+              </p>
+            </form>
+          </section>
+
+          <section className="product-summary-section" aria-label="리스튜디오 제품개발 핵심 지표">
+            <div className="product-summary-section__inner">
+              <div className="product-summary-metrics" aria-label="제품개발 성과 지표">
+                {[
+                  ["50%", "평균 개발 기간 단축"],
+                  ["30%", "개발비용 최대 절감"],
+                  ["원스톱", "소재 선정부터 양산까지"],
+                  ["ESG", "친환경 검증 · 규제 대응"],
+                ].map(([value, label]) => (
+                  <article className="product-summary-metric" key={value}>
+                    <strong>{value}</strong>
+                    <span>{label}</span>
+                  </article>
+                ))}
+              </div>
+
+              <div className="product-summary-proof">
+                <div className="product-summary-proof__copy">
+                  <h2>
+                    이미{" "}
+                    <span className="marker-scribble product-summary-proof__highlight">
+                      {markerStroke}
+                      <span>다양한 업종의 브랜드</span>
+                    </span>
+                    가
+                    <br />
+                    리스튜디오와 함께 하고 있습니다
+                  </h2>
+                  <p>
+                    화장품, 패션, F&amp;B, 바이오/헬스케어, 전자기기 등
+                    리스튜디오는 업종별 요구조건에 맞는 친환경 패키지 개발을
+                    원스톱으로 대응합니다.
+                  </p>
                 </div>
-                <div className="service-detail-hero__overlay-metrics">
-                  <div>
-                    <span>개발 기간 최대 단축</span>
-                    <strong>50%</strong>
-                  </div>
-                  <div>
-                    <span>개발 비용 최대 절감</span>
-                    <strong>30%</strong>
-                  </div>
+
+                <div className="product-summary-proof__grid">
+                  {[
+                    {
+                      title: "120개사의 선택",
+                      description: "누적 고객사",
+                      Icon: Buildings,
+                    },
+                    {
+                      title: "다양한 업종 올커버",
+                      description: "맞춤 프로젝트 경험 풍부",
+                      Icon: SquaresFour,
+                    },
+                    {
+                      title: "통합 대응",
+                      description: "소재, 디자인, 생산, 친환경 검증까지",
+                      Icon: Briefcase,
+                    },
+                    {
+                      title: "친환경 리더십",
+                      description: "친환경성 검증 지원 및 규제 대응",
+                      Icon: Leaf,
+                    },
+                  ].map(({ title, description, Icon }) => (
+                    <article className="product-summary-proof-card" key={title}>
+                      <span>
+                        <Icon size={28} weight="regular" aria-hidden="true" />
+                      </span>
+                      <strong>{title}</strong>
+                      <p>{description}</p>
+                    </article>
+                  ))}
                 </div>
               </div>
             </div>
-            <ServiceDetailAdBanner embedded />
           </section>
 
           <ProductClientSection
@@ -1363,10 +1458,14 @@ export function ServiceDetailPage({ variant }: ServiceDetailPageProps) {
           <section className="product-challenge-section">
             <div className="product-challenge-section__inner">
               <div className="product-challenge-section__title">
-                <h2>
-                  친환경 패키지 개발,
-                  <br />
-                  왜 늘 오래 걸리고 비쌀까요?
+                <h2 className="title-reveal">
+                  <AnimatedTitle
+                    parts={[
+                      "친환경 패키지 개발,",
+                      { type: "break" },
+                      "왜 늘 오래 걸리고 비쌀까요?",
+                    ]}
+                  />
                 </h2>
               </div>
 
@@ -1386,47 +1485,70 @@ export function ServiceDetailPage({ variant }: ServiceDetailPageProps) {
             </div>
           </section>
 
-          <section ref={serviceFlowSectionRef} className="product-service-flow-section">
+          <section className="product-service-flow-section">
             <div className="product-service-flow-stage">
-              <div className="product-service-flow__header">
-                <h2>서비스 소개</h2>
+              <div className="product-service-flow__copy">
+                <span>서비스 소개</span>
+                <h2 className="title-reveal">
+                  <AnimatedTitle
+                    parts={[
+                      "복잡한 친환경 패키지 개발을",
+                      { type: "break" },
+                      {
+                        text: "원스톱 시스템으로 바꿉니다.",
+                        wrapperClassName: "product-service-flow__accent",
+                      },
+                    ]}
+                  />
+                </h2>
                 <p>
-                  제품 컨설팅부터 디자인, R&D, 생산, 검수, 탄소저감 리포트까지
-                  <br />
-                  전 과정을 통합 지원하는 친환경 패키지 개발 서비스를 제공합니다.
+                  제품 특성 분석부터 소재, 디자인, 생산, 검증 리포트까지
+                  리스튜디오가 하나의 흐름으로 연결합니다.
                 </p>
               </div>
 
-              <div
-                ref={serviceFlowViewportRef}
-                className="product-service-flow__viewport"
-              >
-                <div ref={serviceFlowTrackRef} className="product-service-flow__track">
-                  {productServiceSteps.map((service) => (
-                    <article className="product-service-card" key={service.step}>
-                      <span className="product-service-card__step">
-                        {service.step}
-                      </span>
-                      <div className="product-service-card__media">
-                        <img src={service.image} alt={service.alt} />
-                      </div>
-                      <div className="product-service-card__content">
-                        <h3>{service.title}</h3>
-                        <strong>{service.description}</strong>
-                      </div>
-                    </article>
-                  ))}
+              <div className="product-service-flow__panel">
+                <div className="product-service-flow__timeline" aria-hidden="true" />
+                <div className="product-service-flow__track">
+                  {productServiceSteps.map((service, index) => {
+                    const Icon = service.Icon;
+
+                    return (
+                      <article className="product-service-card" key={service.step}>
+                        <span className="product-service-card__step">
+                          {String(index + 1).padStart(2, "0")}
+                        </span>
+                        <div className="product-service-card__content">
+                          <span className="product-service-card__icon">
+                            <Icon size={26} weight="regular" aria-hidden="true" />
+                          </span>
+                          <div>
+                            <h3>{service.title}</h3>
+                            <strong>{service.description}</strong>
+                          </div>
+                        </div>
+                      </article>
+                    );
+                  })}
                 </div>
+                <Link className="product-service-flow__cta" to="/quote/product-development">
+                  한 번에 가능한 원스톱 시스템 상담받기
+                  <ArrowRight size={18} weight="bold" aria-hidden="true" />
+                </Link>
               </div>
             </div>
           </section>
 
           <section className="product-transition-section">
             <div className="product-transition-section__header">
-              <h2>
-                친환경 전환, 감으로 하지말고
-                <br />
-                실행 가능성까지 따져보세요
+              <h2 className="title-reveal">
+                <AnimatedTitle
+                  parts={[
+                    "친환경 전환, 감으로 하지말고",
+                    { type: "break" },
+                    "실행 가능성까지 따져보세요",
+                  ]}
+                />
               </h2>
               <p>
                 리스튜디오는 실제 개발 속도, 커뮤니케이션 효율, 생산 연결 가능성까지 고려해
@@ -1471,12 +1593,16 @@ export function ServiceDetailPage({ variant }: ServiceDetailPageProps) {
           <section className="product-capability-section">
             <div className="product-capability-section__inner">
               <div className="product-capability-section__copy">
-                <h2>
-                  친환경 패키지,
-                  <br />
-                  어디까지 한번에
-                  <br />
-                  개발 가능한지가 중요합니다
+                <h2 className="title-reveal">
+                  <AnimatedTitle
+                    parts={[
+                      "친환경 패키지,",
+                      { type: "break" },
+                      "어디까지 한번에",
+                      { type: "break" },
+                      "개발 가능한지가 중요합니다",
+                    ]}
+                  />
                 </h2>
                 <p>
                   리스튜디오는 소재 큐레이션, R&D, 생산, 친환경성 검토, ESG 및 글로벌 규제

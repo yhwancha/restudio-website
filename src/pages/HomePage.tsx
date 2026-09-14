@@ -1,4 +1,4 @@
-import { type CSSProperties, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   ArrowRight,
@@ -7,6 +7,10 @@ import {
   CaretRight,
   Paperclip,
 } from "@phosphor-icons/react";
+import {
+  AnimatedTitle,
+  useTitleReveal,
+} from "../components/AnimatedTitle";
 
 const showcaseCategories = [
   {
@@ -107,7 +111,8 @@ const serviceMetrics = [
 
 const coreServices = [
   {
-    title: "친환경 제품 개발 지원",
+    eyebrow: "친환경 제품&패키지를 만들고 싶어요.",
+    title: "친환경 패키지 원스톱 솔루션 바로가기",
     description:
       "친환경 소재 검토부터 설계, 성능 평가까지 제품개발 전 과정을 도와드려요.",
     image: "/assets/services/eco-product-development.png",
@@ -115,7 +120,8 @@ const coreServices = [
     to: "/services/product-development",
   },
   {
-    title: "규제 대응 컨설팅",
+    eyebrow: "EU PPWR 같은 친환경 규제 준비가 필요해요.",
+    title: "친환경 규제대응 솔루션 바로가기",
     description:
       "국내외 규제 동향 분석과 대응 전략 수립으로 비즈니스 리스크를 최소화하고 해외 수출까지 도와드려요.",
     image: "/assets/services/regulatory-consulting.png",
@@ -179,106 +185,124 @@ const caseStudies = [
   {
     category: "Cosmetics",
     services: "PACKAGING DESIGN / PRODUCT DESIGN / 3D MODELING & RENDERING / MANUFACTURE",
-    title: "아이홉 클렌징 건식 패드 패키지",
+    title: "D:Weather 선코타 선블록 패키지",
     description:
-      "LEAF, BLENDS, BIODEGRADABLE 세 가지 콘셉트를 담아 건식 패드 제품을 위한 친환경 패키지를 개발했습니다. 페이퍼몰드와 단상자는 디자인 완성도와 창의성을 인정받아 2024 레드닷 어워드 Winner로 선정되었습니다.",
-    tags: ["화장품", "건식 패드", "어워드"],
+      "해를 연상시키는 제품 외곽을 그대로 담아내고, 상단 양측의 고정부를 통해 제품을 안정적으로 고정하도록 설계했습니다.",
+    tags: ["화장품", "디웨더", "심미성+기능성"],
     feature:
-      "세 가지 콘셉트를 제품 경험에 맞춰 나누고, 패드 사용성을 고려한 고정 구조와 개봉 경험을 설계",
-    material: "페이퍼몰드와 단상자를 활용해 플라스틱 사용을 줄인 친환경 패키지",
-    image: "/assets/cases/Work1.webp",
-    alt: "Curved white paper mold package for cosmetics",
+      "해를 연상시키는 제품 외곽을 그대로 담아내고, 상단 양측의 고정부를 통해 제품을 안정적으로 고정하도록 설계",
+    material:
+      "페이퍼 몰드 제작, 전면의 입체감과 후면의 평면성이 대비를 이루면서도 하나의 구조 안에서 자연스럽게 연결",
+    image: "/assets/cases/featured/dweather-01.jpg",
+    images: [
+      "/assets/cases/featured/dweather-01.jpg",
+      "/assets/cases/featured/dweather-02.jpg",
+    ],
+    alt: "D:Weather sunblock paper mold package",
   },
   {
     category: "Food",
     services: "NEW MATERIALS R&D / CMF DESIGN / 3D MODELING & RENDERING / MANUFACTURE",
-    title: "SK텔레콤 행복나래 친환경 도시락 패키지",
+    title: "노스텔지어 북촌소주 주류 패키지",
     description:
-      "기존 종이몰드의 한계를 보완하기 위해 내구성과 충격 저항성을 높인 필름 라미네이팅 기술을 적용했습니다. 식품 트레이 사용성을 개선하며 지속 가능한 도시락 패키지 방향을 제안했습니다.",
-    tags: ["식품", "도시락", "내구성"],
+      "한국 전통미의 현대화와 서울 북촌의 헤리티지를 담은 핸디한 소주 패키지입니다.",
+    tags: ["F&B", "북촌소주", "심미성+기능성", "2026 iF어워드 수상"],
     feature:
-      "식품 트레이의 충격 저항성과 사용성을 높여 유통 과정에서 안정적으로 보호되도록 설계",
-    material: "필름 라미네이팅을 적용한 종이몰드 기반 친환경 도시락 패키지",
-    image: "/assets/cases/Work2.webp",
-    alt: "Paper molded food package with bottles",
+      "한국 전통미의 현대화와 서울 북촌의 헤리티지를 담은 핸디한 소주 패키지",
+    material:
+      "페이퍼 몰드 제작, 조선백자에서 영감받은 부드러운 곡선 실루엣과 매트한 백자 질감은 현대적 감각을 더해 완성",
+    image: "/assets/cases/featured/bukchon-01.jpg",
+    images: [
+      "/assets/cases/featured/bukchon-01.jpg",
+      "/assets/cases/featured/bukchon-02.jpg",
+    ],
+    alt: "Nostalgia Bukchon Soju paper mold package",
   },
   {
-    category: "Medical",
+    category: "Food",
     services: "STRATEGY / PACKAGING DESIGN / PRODUCT DESIGN / 3D MODELING & RENDERING / MANUFACTURE",
-    title: "비올 셀리뉴 페이스 팁 패키징",
+    title: "티웨이 항공 기내식 트레이 용기 패키지",
     description:
-      "의료·뷰티 디바이스 제품을 위해 플라스틱 사용량을 줄이면서도 구조 안정성을 유지하는 페이퍼몰드 패키지를 설계했습니다. 제품 보호와 사용성을 함께 고려한 지속 가능한 솔루션입니다.",
-    tags: ["메디컬", "뷰티 디바이스", "보호 구조"],
+      "국내 항공업계 최초 페이퍼 몰드 소재로 제작된 친환경 기내식 용기로 기존 알루미늄, 플라스틱 용기를 대체했습니다.",
+    tags: ["F&B", "티웨이항공", "내수·내열·내습인증"],
     feature:
-      "의료·뷰티 디바이스를 안정적으로 고정하고 제품 보호와 사용성을 함께 고려한 구조",
-    material: "구조 안정성을 확보한 페이퍼몰드 패키지로 플라스틱 사용량 절감",
-    image: "/assets/cases/Work3.webp",
-    alt: "Medical beauty product displayed with blue holder",
+      "국내 항공업계 최초 페이퍼 몰드 소재로 제작된 친환경 기내식 용기로 기존 알루미늄, 플라스틱 용기를 대체",
+    material:
+      "페이퍼 몰드 제작, 국제산림관리협의회(FSC) 인증을 받은 지속가능 산림자원을 기반으로 개발",
+    image: "/assets/cases/featured/tway-01.jpg",
+    images: [
+      "/assets/cases/featured/tway-01.jpg",
+      "/assets/cases/featured/tway-02.jpg",
+    ],
+    alt: "T'way Air in-flight meal tray paper mold package",
   },
   {
-    category: "Electronics",
+    category: "Cosmetics",
     services: "PACKAGING DESIGN / PRODUCT DESIGN / 3D MODELING & RENDERING / MANUFACTURE",
-    title: "원콤 핀틴 V1 패키징",
+    title: "GBH 멀티밤 패키지",
     description:
-      "시각장애인용 미니 쿼티 커뮤니케이터를 위한 제품 고정 구조를 페이퍼몰드로 개발했습니다. 점자 요소를 패키지에 반영해 지속 가능한 소재와 포용적 디자인을 함께 담았습니다.",
-    tags: ["전자기기", "접근성", "점자"],
+      "구형의 본품이 지닌 부드러운 조형성이 하나의 정돈된 오브제처럼 인식될 수 있도록 형태와 배열을 함께 설계했습니다.",
+    tags: ["화장품", "GBH 멀티밤", "화장품패키지+브랜딩"],
     feature:
-      "미니 쿼티 커뮤니케이터를 고정하는 구조와 점자 요소를 함께 반영한 포용적 패키지",
-    material: "제품 고정 구조를 페이퍼몰드로 전환해 지속 가능한 소재 경험 구현",
-    image: "/assets/cases/Work4.webp",
-    alt: "Fintin electronics package case study",
+      "구형의 본품이 지닌 부드러운 조형성. 단순한 보호재를 넘어 하나의 정돈된 오브제처럼 인식될 수 있도록 형태와 배열을 함께 설계",
+    material:
+      "페이퍼몰드 제작, 원형 볼륨을 수용하는 반구형 수납부와 이를 감싸는 평면형 프레임의 대비를 중심으로 구성되며 둥근 본품이 구조 안에 안정적으로 안착되도록 내부 곡면의 흐름을 정리",
+    image: "/assets/cases/featured/ppt-image-1.png",
+    images: [
+      "/assets/cases/featured/ppt-image-1.png",
+      "/assets/cases/featured/ppt-image-2.png",
+    ],
+    alt: "GBH multi balm paper mold package",
   },
   {
-    category: "Fashion",
-    services: "STRATEGY / PRODUCT DESIGN / 3D MODELING & RENDERING / MANUFACTURE",
-    title: "퍼센트오브 아이웨어 패키지",
+    category: "Cosmetics",
+    services: "PACKAGING DESIGN / PRODUCT DESIGN / 3D MODELING & RENDERING / MANUFACTURE",
+    title: "아이홉 클렌징 건식 패드 패키지",
     description:
-      "무겁고 재활용이 어려운 기존 아이웨어 케이스를 종이 기반 구조로 전환했습니다. 자석을 적용해 재사용성을 높이고, 독창적인 몰드 형태로 패션 카테고리에 맞는 새로운 패키지 경험을 만들었습니다.",
-    tags: ["패션", "아이웨어", "재사용"],
+      "LEAF + BLENDS + BIODEGRADABLE 세 가지의 컨셉을 담아 제작한 프리미엄 친환경 패키지입니다.",
+    tags: ["화장품", "아이홉 클렌징", "화장품패키지+브랜딩", "2024 Red Dot 수상"],
     feature:
-      "자석 여닫이 구조로 재사용성을 높이고 패션 제품에 맞는 독창적인 몰드 형태를 개발",
-    material: "재활용이 어려운 기존 케이스를 종이 기반 구조로 대체",
-    image: "/assets/cases/Work_6.webp",
-    alt: "Fashion package case study",
+      "[2024 Germany Red Dot Design Award 수상] LEAF + BLENDS + BIODEGRADABLE 세 가지의 컨셉을 담아 제작",
+    material:
+      "페이퍼몰드 제작, 건식 패드 제품의 특성을 살려 페이퍼몰드의 차별화된 형상화와 친환경 소재를 통해 브랜드사의 이념을 담은 프리미엄 패키지로 완성",
+    image: "/assets/cases/featured/ppt-image-3.png",
+    images: [
+      "/assets/cases/featured/ppt-image-3.png",
+      "/assets/cases/featured/ppt-image-4.png",
+    ],
+    alt: "iHOP cleansing dry pad paper mold package",
   },
   {
     category: "Healthcare",
     services: "STRATEGY / PRODUCT DESIGN / 3D MODELING & RENDERING / MANUFACTURE",
-    title: "트루엔뉴트리션 트루엔키즈 팡팡 쾌변젤리",
+    title: "삼양 스핀들 건기식 패키지",
     description:
-      "아이들의 표정에서 착안한 스마일 텍스처와 휴대 가능한 스트링 구조를 적용했습니다. 종이에 직접 그림을 그릴 수 있는 여백을 더해 창의성과 사용성을 함께 높였습니다.",
-    tags: ["헬스케어", "키즈", "휴대성"],
+      "라운드 코너의 직사각형 판형과 원통형 용기를 결합해 중심성과 순환의 이미지를 직관적으로 드러냈습니다.",
+    tags: ["헬스케어", "삼양 스핀들", "건기식+편리성"],
     feature:
-      "스마일 텍스처와 휴대 가능한 스트링 구조로 아이들이 쓰기 쉬운 패키지 경험 설계",
-    material: "그림을 그릴 수 있는 종이 표면을 활용해 창의성과 친환경성을 함께 강화",
-    image: "/assets/cases/Work6.webp",
-    alt: "Healthcare product package case study",
+      "라운드 코너의 직사각형 판형과 원통형 용기를 결합해 중심성과 순환의 이미지를 직관적으로 드러내고, 전면의 돌출 반원형 고정부가 제품을 안정적으로 수용",
+    material:
+      "페이퍼몰드 제작, 원통형 본품이 자연스럽게 안착하는 보관·개봉·분리 흐름 설계",
+    image: "/assets/cases/featured/ppt-image-5.png",
+    alt: "Samyang spindle health supplement paper mold package",
   },
   {
-    category: "Entertainment",
+    category: "Fashion",
     services: "STRATEGY / CMF DEVELOPMENT & COMMERCIALIZATION / PACKAGING DESIGN / MANUFACTURE",
-    title: "두루두루 혁오 바이닐 박스셋",
+    title: "뮤어하이크 리유저블 카고 박스",
     description:
-      "탄소 저감 효과가 검증된 라임스톤 소재를 적용해 고밀도 질감과 묵직한 완성도를 구현했습니다. 기존 바이닐 패키지에서 보기 어려웠던 새로운 소재 경험을 제안했습니다.",
-    tags: ["엔터테인먼트", "바이닐", "탄소저감"],
+      "아웃도어의 거친 매력과 탐험의 여정을 담아낸 신발 패키지입니다.",
+    tags: ["패션", "시에라디자인", "신발패키지+브랜딩"],
     feature:
-      "바이닐 박스셋에 어울리는 고밀도 질감과 묵직한 제품 경험을 완성",
-    material: "탄소 저감 효과가 검증된 라임스톤 소재 적용",
-    image: "/assets/cases/Work7.webp",
-    alt: "Minimal molded object for entertainment package",
-  },
-  {
-    category: "Other",
-    services: "CMF DESIGN / 3D MODELING & RENDERING / MANUFACTURE",
-    title: "희녹 더 스프레이 세트 패키징",
-    description:
-      "재활용 박스지를 기반으로 반건식 공정 방식을 도입해 브랜드의 시그니처 형상을 구현했습니다. 자연스러운 텍스처와 구조감을 살린 페이퍼몰드 패키지입니다.",
-    tags: ["라이프스타일", "리필", "텍스처"],
-    feature:
-      "브랜드의 시그니처 형상을 자연스러운 텍스처와 구조감으로 구현",
-    material: "재활용 박스지 기반 반건식 공정으로 제작한 페이퍼몰드 패키지",
-    image: "/assets/cases/Work8.webp",
-    alt: "Paper mold package case study",
+      "아웃도어의 거친 매력과 탐험의 여정을 담아낸 신발 패키지. 대자연을 연상시키는 요소들을 시각적, 촉각적으로 구현하여 브랜드가 지향하는 아웃도어의 정체성을 패키지 전반에 반영",
+    material:
+      "페이퍼몰드 제작, 등고선을 모티브로 한 음각 디자인을 적용하여 입체적인 깊이감을 더하고, 하이킹의 여정을 상징적으로 표현. 실용성과 브랜딩 요소 모두 충족",
+    image: "/assets/cases/featured/ppt-image-6.png",
+    images: [
+      "/assets/cases/featured/ppt-image-6.png",
+      "/assets/cases/featured/ppt-image-7.png",
+    ],
+    alt: "Muirhike reusable cargo shoe box package",
   },
 ];
 
@@ -311,39 +335,54 @@ const adBanners = [
 
 const faqs = [
   {
-    question: "친환경 패키지 개발은 어디서부터 시작하나요?",
+    question: "리스튜디오는 왜 만들어졌나요?",
     answer:
-      "제품 용도, 유통 환경, 목표 단가를 먼저 확인한 뒤 적합한 소재와 구조 방향을 함께 정리합니다.",
+      "해외 수출에 필수적인 글로벌 규제 대응의 파고 속에서 고객사들의 빠른 친환경 전환을 도와드리기 위해 탄생했습니다. 글로벌 스탠다드에 맞춘 패키징 전환, 지금 바로 리스튜디오 전문가와 1:1로 상담해 보세요. 개발 비용과 시간을 아껴드립니다. 제품 기획부터 소재 선정, 디자인, 생산에 이르는 전 과정을 담은 원스톱 솔루션, 리스튜디오와 함께하세요.",
   },
   {
-    question: "아직 제품 사양이 확정되지 않아도 상담할 수 있나요?",
+    question: "리스튜디오의 차별점은 무엇인가요?",
     answer:
-      "가능합니다. 초기 아이디어 단계에서도 소재 후보, 제작 방식, 예상 리스크를 먼저 검토해 드립니다.",
+      "단순 제조사, 소재 개발사, 디자인 에이전시가 아닙니다. 친환경 규제 대응 컨설팅, 친환경 소재 개발 역량부터 패키지 디자인, 생산, ESG 리포트까지 친환경 패키징의 전 과정을 통합 제공 가능한 원스톱 솔루션입니다. 원스톱 프로세스를 통해 개발 비용 절감, 개발 시간 단축이 가능합니다.",
   },
   {
-    question: "샘플 제작까지 얼마나 걸리나요?",
+    question: "친환경 패키지로 바꾸면 원가가 무조건 올라가나요?",
     answer:
-      "제품 구조와 소재 난이도에 따라 다르지만, 기본 방향 확정 후 샘플 제작 일정과 검증 항목을 안내합니다.",
+      "그렇지 않습니다. 오히려 원스톱 시스템으로 제작되기 때문에 개발 비용과 개발 기간을 획기적으로 줄이실 수 있습니다. 즉 설계 방식과 소재, 구조 최적화에 따라 비용 경쟁력까지 함께 확보할 수 있기 때문에 1석 2조의 효과를 거두실 수 있습니다.",
   },
   {
-    question: "소량 생산도 가능한가요?",
+    question: "친환경 패키지로 바꾸면 디자인 자유도가 떨어지지 않나요?",
     answer:
-      "가능한 제작 방식과 최소 수량을 함께 검토합니다. 양산 전 테스트 목적의 제작도 상담할 수 있습니다.",
+      "오히려 그렇지 않습니다. 리스튜디오는 세계 3대 디자인 어워드인 red dot Design Award, iF Design Award에서 입상한 사례가 있어 글로벌에서 인정받는 수준의 친환경 패키지 디자인을 제공드리고 있습니다. SSOULSSEOUL 사례는 브랜드 정체성을 담은 조형적 패키지를, 노스텔지어 북촌 소주 사례는 전통적 미감을 담은 프리미엄 주류 패키지를 보여줍니다. 친환경 패키지에서도 충분히 차별화된 브랜딩과 고급스러운 심미성을 구현할 수 있습니다.",
   },
   {
-    question: "EU PPWR 같은 해외 규제도 함께 확인하나요?",
+    question: "규제 시행까지 시간이 있는데, 지금 당장 움직여야 할 이유가 있나요?",
     answer:
-      "네. 포장재 구성, 재활용성, 문서화 기준을 제품 개발 단계에서 함께 검토합니다.",
+      "있습니다. 그것도 아주 급하게요. PPWR 대응은 소재 선정 -> 설계 -> R&D -> 양산 안정화까지 평균 3~6개월 이상 소요됩니다. 게다가 PFAS 규제는 이미 2026년 8월 12일부터 시행됩니다. 식품 접촉 포장재를 쓰고 있다면 사실상 '지금이 마감'입니다. 2027년 전체 PPWR 시행 기준으로도, 양산 안정화와 DoC/TD 서류 준비를 역산하면 늦어도 2026년 하반기 안에 소재 전환 결정이 완료되어야 합니다. 지금 시작하는 기업이 선제적으로 바이어 신뢰를 확보하고, 경쟁사보다 먼저 시장을 지킬 수 있습니다.",
   },
   {
-    question: "기존 패키지를 친환경 소재로 바꿀 수 있나요?",
+    question: "아직 구체적인 사양이 없어도 상담 가능한가요?",
     answer:
-      "기존 구조를 분석한 뒤 대체 가능한 소재, 내구성, 생산성, 비용 변화를 비교해 제안합니다.",
+      "네, 가능합니다. 대부분의 프로젝트가 초기 구상 단계에서 시작됩니다. 제품 특성과 목표만 공유해 주시면, 소재 추천부터 구조 설계까지 단계별로 안내해 드립니다.",
   },
   {
-    question: "견적을 받으려면 어떤 자료가 필요한가요?",
+    question: "업종에 상관없이 제작 가능한가요?",
     answer:
-      "제품 크기, 예상 수량, 현재 패키지 사진이나 도면이 있으면 좋습니다. 자료가 부족해도 기본 상담은 가능합니다.",
+      "네, 가능합니다. 제품의 업종과 대략적인 수량, 목표만 알려주시면 기획 단계부터 함께 구조와 소재를 설계해 드립니다. 도면이 없어도 시작할 수 있습니다.",
+  },
+  {
+    question: "친환경 검증이나 규제 대응 관련 상담도 가능한가요?",
+    answer:
+      "GRS, FSC 등 주요 친환경 인증 대응과 함께 객관적인 친환경성 데이터 및 검증 리포트를 발행합니다. EU PPWR 등 수출용 규제 대응 자료도 함께 준비해 드립니다.",
+  },
+  {
+    question: "예상 견적은 얼마나 빨리 받을 수 있나요?",
+    answer:
+      "문의 내용을 검토한 뒤 예상 견적을 빠르게 회신하며, 구조 확정 후 샘플 제작 일정을 별도로 안내합니다. 개발 기간을 단축하는 통합 파이프라인으로 빠른 시장 검증을 지원합니다.",
+  },
+  {
+    question: "최소 제작 수량은 어느 정도인가요?",
+    answer:
+      "품목과 공정에 따라 다르지만, 성장 단계 브랜드를 위한 소량 생산부터 대량 운영까지 폭넓게 대응합니다. 정확한 기준은 상담 시 품목 기준으로 안내해 드립니다.",
   },
 ];
 
@@ -374,29 +413,6 @@ const newsItems = [
     categories: ["인터뷰", "인사이트"],
     image: "/assets/news/news-revation.webp",
     alt: "REVATION interview article thumbnail",
-  },
-];
-
-const footerSocialLinks = [
-  {
-    label: "Instagram",
-    href: "https://www.instagram.com/revation.co.kr/",
-    icon: "/assets/social/instagram.svg",
-  },
-  {
-    label: "Facebook",
-    href: "https://www.facebook.com/revation.co.kr",
-    icon: "/assets/social/facebook-fill.svg",
-  },
-  {
-    label: "LinkedIn",
-    href: "https://www.linkedin.com/company/revation21/?originalSubdomain=kr",
-    icon: "/assets/social/linkedin-original.svg",
-  },
-  {
-    label: "Behance",
-    href: "https://www.behance.net/revation?tracking_source=search_projects|bioplastic",
-    icon: "/assets/social/behance-original.svg",
   },
 ];
 
@@ -438,18 +454,6 @@ const getNextClientLogoIndex = (visibleLogos: number[], slotIndex: number) => {
   );
 };
 
-type AnimatedTitlePart =
-  | string
-  | {
-      type: "break";
-    }
-  | {
-      text: string;
-      wrapperClassName: string;
-      charClassName?: string;
-      withMarker?: boolean;
-    };
-
 const markerStroke = (
   <svg
     className="marker-scribble__stroke"
@@ -470,61 +474,6 @@ const markerStroke = (
   </svg>
 );
 
-const renderAnimatedTitle = (parts: AnimatedTitlePart[]) => {
-  let characterIndex = 0;
-
-  const renderText = (text: string, charClassName = "") =>
-    text.split(/(\s+)/).map((word, wordIndex) => {
-      if (/^\s+$/.test(word)) {
-        return (
-          <span className="title-reveal__space" key={`space-${wordIndex}`}>
-            {word}
-          </span>
-        );
-      }
-
-      return (
-        <span className="title-reveal__word" key={`word-${wordIndex}`}>
-          {Array.from(word).map((character) => {
-            const currentIndex = characterIndex;
-            characterIndex += 1;
-
-            return (
-              <span
-                className={`title-reveal__char ${charClassName}`.trim()}
-                key={`${character}-${currentIndex}`}
-                style={{ "--char-index": currentIndex } as CSSProperties}
-              >
-                {character}
-              </span>
-            );
-          })}
-        </span>
-      );
-    });
-
-  return parts.map((part, partIndex) => {
-    if (typeof part === "string") {
-      return (
-        <span key={`text-${partIndex}`}>{renderText(part)}</span>
-      );
-    }
-
-    if (!("text" in part)) {
-      return <br key={`break-${partIndex}`} />;
-    }
-
-    return (
-      <span className={part.wrapperClassName} key={`part-${partIndex}`}>
-        {part.withMarker && markerStroke}
-        <span className={part.charClassName ? "relative z-10" : undefined}>
-          {renderText(part.text, part.charClassName)}
-        </span>
-      </span>
-    );
-  });
-};
-
 export function HomePage() {
   const [activeShowcase, setActiveShowcase] = useState(0);
   const [visibleClientLogos, setVisibleClientLogos] =
@@ -539,28 +488,7 @@ export function HomePage() {
   const activeCategory = showcaseCategories[activeShowcase];
   const currentAdBanner = adBanners[activeAdBanner];
 
-  useEffect(() => {
-    const revealTitles = document.querySelectorAll(".title-reveal");
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      {
-        rootMargin: "0px 0px -10% 0px",
-        threshold: 0.24,
-      },
-    );
-
-    revealTitles.forEach((title) => observer.observe(title));
-
-    return () => observer.disconnect();
-  }, []);
+  useTitleReveal();
 
   useEffect(() => {
     const revealItems = document.querySelectorAll(".service-excellence__item");
@@ -748,19 +676,20 @@ export function HomePage() {
       <section className="home-hero-section bg-[#f7f8f8] px-5 py-16 md:px-12 md:py-24 xl:px-[120px]">
         <div className="mx-auto w-full max-w-[1040px]">
           <h1 className="title-reveal mx-auto max-w-[720px] text-center text-[32px] font-semibold leading-[1.16] text-black md:text-[44px] xl:text-[48px]">
-            {renderAnimatedTitle([
-              "친환경 패키지 ",
+            <AnimatedTitle
+              parts={[
+              "친환경 패키지, 처음부터 끝까지",
+              { type: "break" },
               {
-                text: "개발, 양산, 수출",
+                text: "리스튜디오",
                 wrapperClassName:
                   "marker-scribble relative inline-block whitespace-nowrap px-1",
                 charClassName: "relative z-10",
-                withMarker: true,
+                prefix: markerStroke,
               },
-              "까지",
-              { type: "break" },
-              "리스튜디오에서 한번에.",
-            ])}
+              " 하나로 완성",
+              ]}
+            />
           </h1>
 
           <div className="ad-banner-section ad-banner-section--embedded" aria-label="프로모션 배너">
@@ -867,123 +796,134 @@ export function HomePage() {
             </p>
           </form>
 
-          <div className="mt-16 md:mt-20">
-            <div
-              className="flex h-16 items-center justify-center gap-1.5"
-              aria-label="이미지 분야 선택"
-            >
-              {showcaseCategories.map((category, index) => {
-                const isActive = activeShowcase === index;
-
-                return (
-                  <button
-                    key={category.title}
-                    type="button"
-                    aria-label={`${category.title} 이미지 보기`}
-                    aria-pressed={isActive}
-                    onMouseEnter={() => setActiveShowcase(index)}
-                    onFocus={() => setActiveShowcase(index)}
-                    className="group flex h-16 w-1.5 items-center justify-center"
-                  >
-                    <span
-                      className={`block w-0.5 rounded-full transition-[height,background-color,transform] duration-300 ease-out group-hover:scale-x-[1.35] ${
-                        isActive
-                          ? "h-16 bg-black"
-                          : "h-[42px] bg-[#d9d9d9] group-hover:h-16 group-hover:bg-black"
-                      }`}
-                    />
-                  </button>
-                );
-              })}
-            </div>
-
-            <h2 className="title-reveal mt-8 text-center text-[28px] font-semibold leading-none text-black md:text-[34px]">
-              {renderAnimatedTitle([activeCategory.title])}
+          <section className="mt-28 md:mt-40" aria-label="핵심 서비스">
+            <h2 className="title-reveal text-center text-[26px] font-semibold leading-[1.18] text-black md:text-[34px] xl:text-[38px]">
+              <AnimatedTitle
+                parts={[
+                  "어떤 고민 있으세요?",
+                  { type: "break" },
+                  "리스튜디오와 함께 해결할 분야를 선택해주세요.",
+                ]}
+              />
             </h2>
 
-            <div className="mx-auto mt-8 grid max-w-[760px] gap-1.5 md:grid-cols-2">
-              {activeCategory.images.map((image, index) => (
-                <div
-                  key={image.src}
-                  className={`showcase-image-frame ${
-                    index === 2
-                      ? "aspect-[1.72/1] md:col-span-2"
-                      : "aspect-[1.62/1]"
-                  }`}
+            <div className="mt-10 grid gap-6 lg:grid-cols-2 xl:gap-8">
+              {coreServices.map((service) => (
+                <Link
+                  key={service.title}
+                  to={service.to}
+                  className="core-service-card group"
+                  aria-label={`${service.title} 자세히 보기`}
                 >
-                  <img
-                    src={image.src}
-                    alt={image.alt}
-                    className="h-full w-full object-cover transition duration-700 ease-out hover:scale-[1.03]"
-                  />
-                </div>
+                  <p className="mb-3 text-[13px] font-medium leading-[1.45] text-[#8d98a4] md:text-[14px]">
+                    {service.eyebrow}
+                  </p>
+
+                  <div className="core-service-card__media">
+                    <img src={service.image} alt={service.alt} />
+                  </div>
+
+                  <div className="mt-6 flex items-end justify-between gap-5 md:mt-7">
+                    <div className="min-w-0">
+                      <h3 className="text-[18px] font-semibold leading-[1.24] text-black md:text-[22px]">
+                        {service.title}
+                      </h3>
+                      <p className="mt-3 text-[13px] font-medium leading-[1.55] text-[#9aa3af] md:text-[14px]">
+                        {service.description}
+                      </p>
+                    </div>
+
+                    <span className="core-service-card__button">
+                      <ArrowRight size={28} weight="regular" aria-hidden="true" />
+                    </span>
+                  </div>
+                </Link>
               ))}
             </div>
+          </section>
 
-            <section className="service-excellence mx-auto mt-10 max-w-[760px] md:mt-12">
-              <div className="service-excellence__stage">
-                <div className="service-excellence__stack">
-                  {serviceMetrics.map((item, index) => (
-                    <article
-                      key={item.title}
-                      className="service-excellence__item"
-                      style={{ transitionDelay: `${index * 80}ms` }}
-                    >
-                      <div className="min-w-0">
-                        <h3 className="text-[18px] font-semibold leading-[1.25] text-black md:text-[21px]">
-                          {item.title}
-                        </h3>
-                        <p className="mt-1.5 max-w-[520px] text-[13px] font-medium leading-[1.55] text-[#657181] md:text-[14px]">
-                          {item.description}
-                        </p>
-                      </div>
-                      <div className="service-excellence__badge">
-                        {item.value}
-                      </div>
-                    </article>
-                  ))}
-                </div>
-              </div>
-            </section>
-          </div>
         </div>
       </section>
 
-      <section className="bg-[#f7f8f8] px-5 pb-20 pt-14 md:px-12 md:pb-28 md:pt-24 xl:px-[120px]">
-        <div className="mx-auto w-full max-w-[1760px]">
-          <h2 className="title-reveal text-center text-[30px] font-semibold leading-[1.15] text-black md:text-[42px] xl:text-[48px]">
-            {renderAnimatedTitle(["2가지 핵심 서비스에서 만나요."])}
+      <section className="bg-[#f7f8f8] px-5 py-16 md:px-12 md:py-24 xl:px-[120px]">
+        <div className="mx-auto w-full max-w-[1040px]">
+          <div
+            className="flex h-16 items-center justify-center gap-1.5"
+            aria-label="이미지 분야 선택"
+          >
+            {showcaseCategories.map((category, index) => {
+              const isActive = activeShowcase === index;
+
+              return (
+                <button
+                  key={category.title}
+                  type="button"
+                  aria-label={`${category.title} 이미지 보기`}
+                  aria-pressed={isActive}
+                  onMouseEnter={() => setActiveShowcase(index)}
+                  onFocus={() => setActiveShowcase(index)}
+                  className="group flex h-16 w-1.5 items-center justify-center"
+                >
+                  <span
+                    className={`block w-0.5 rounded-full transition-[height,background-color,transform] duration-300 ease-out group-hover:scale-x-[1.35] ${
+                      isActive
+                        ? "h-16 bg-black"
+                        : "h-[42px] bg-[#d9d9d9] group-hover:h-16 group-hover:bg-black"
+                    }`}
+                  />
+                </button>
+              );
+            })}
+          </div>
+
+          <h2 className="title-reveal mt-8 text-center text-[28px] font-semibold leading-none text-black md:text-[34px]">
+            <AnimatedTitle parts={[activeCategory.title]} />
           </h2>
 
-          <div className="mt-16 grid gap-6 lg:grid-cols-2 xl:mt-20 xl:gap-8">
-            {coreServices.map((service) => (
-              <Link
-                key={service.title}
-                to={service.to}
-                className="core-service-card group"
-                aria-label={`${service.title} 자세히 보기`}
+          <div className="mx-auto mt-8 grid max-w-[760px] gap-1.5 md:grid-cols-2">
+            {activeCategory.images.map((image, index) => (
+              <div
+                key={image.src}
+                className={`showcase-image-frame ${
+                  index === 2
+                    ? "aspect-[1.72/1] md:col-span-2"
+                    : "aspect-[1.62/1]"
+                }`}
               >
-                <div className="core-service-card__media">
-                  <img src={service.image} alt={service.alt} />
-                </div>
-
-                <div className="mt-6 flex items-end justify-between gap-5 md:mt-7">
-                  <div className="min-w-0">
-                    <h3 className="text-[21px] font-semibold leading-[1.24] text-black md:text-[26px]">
-                      {service.title}
-                    </h3>
-                    <p className="mt-3 text-[13px] font-medium leading-[1.55] text-[#9aa3af] md:text-[14px]">
-                      {service.description}
-                    </p>
-                  </div>
-
-                  <span className="core-service-card__button">
-                    <ArrowRight size={28} weight="regular" aria-hidden="true" />
-                  </span>
-                </div>
-              </Link>
+                <img
+                  src={image.src}
+                  alt={image.alt}
+                  className="h-full w-full object-cover transition duration-700 ease-out hover:scale-[1.03]"
+                />
+              </div>
             ))}
           </div>
+
+          <section className="service-excellence mx-auto mt-10 max-w-[760px] md:mt-12">
+            <div className="service-excellence__stage">
+              <div className="service-excellence__stack">
+                {serviceMetrics.map((item, index) => (
+                  <article
+                    key={item.title}
+                    className="service-excellence__item"
+                    style={{ transitionDelay: `${index * 80}ms` }}
+                  >
+                    <div className="min-w-0">
+                      <h3 className="text-[18px] font-semibold leading-[1.25] text-black md:text-[21px]">
+                        {item.title}
+                      </h3>
+                      <p className="mt-1.5 max-w-[520px] text-[13px] font-medium leading-[1.55] text-[#657181] md:text-[14px]">
+                        {item.description}
+                      </p>
+                    </div>
+                    <div className="service-excellence__badge">
+                      {item.value}
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </div>
+          </section>
         </div>
       </section>
 
@@ -991,7 +931,7 @@ export function HomePage() {
         <div className="client-growth-stage">
           <div ref={clientSceneRef} className="client-growth-scene">
             <div className="title-reveal client-growth-label client-growth-label--left">
-              {renderAnimatedTitle(["누적 고객사"])}
+              <AnimatedTitle parts={["누적 고객사"]} />
             </div>
 
             <div className="client-growth-panel" aria-label="고객사 로고 영역">
@@ -1010,7 +950,7 @@ export function HomePage() {
             </div>
 
             <div className="title-reveal client-growth-label client-growth-label--right">
-              {renderAnimatedTitle(["120개"])}
+              <AnimatedTitle parts={["120개"]} />
             </div>
           </div>
 
@@ -1101,7 +1041,7 @@ export function HomePage() {
         <div className="case-studies">
           <div>
             <h2 className="title-reveal case-studies__title">
-              {renderAnimatedTitle(["고객 사례"])}
+              <AnimatedTitle parts={["고객 사례"]} />
             </h2>
             <p className="case-studies__description">
               산업별 특징과 고객의 니즈를 분석하여 지속가능한 패키지 솔루션을 개발합니다.
@@ -1117,7 +1057,22 @@ export function HomePage() {
                   aria-hidden={index >= caseStudies.length}
                 >
                   <div className="case-study-card__media">
-                    <img src={caseStudy.image} alt={caseStudy.alt} />
+                    {caseStudy.images?.length ? (
+                      <div className="case-study-card__image-track">
+                        {[...caseStudy.images, caseStudy.images[0]].map(
+                          (image, imageIndex) => (
+                            <img
+                              key={`${image}-${imageIndex}`}
+                              src={image}
+                              alt={imageIndex === 0 ? caseStudy.alt : ""}
+                              aria-hidden={imageIndex !== 0}
+                            />
+                          ),
+                        )}
+                      </div>
+                    ) : (
+                      <img src={caseStudy.image} alt={caseStudy.alt} />
+                    )}
                   </div>
                   <div className="case-study-card__content">
                     <div
@@ -1150,7 +1105,7 @@ export function HomePage() {
       <section className="faq-section" id="faq">
         <div className="faq-section__inner">
           <h2 className="title-reveal section-title">
-            {renderAnimatedTitle(["FAQ"])}
+            <AnimatedTitle parts={["FAQ"]} />
           </h2>
 
           <div className="faq-list">
@@ -1184,7 +1139,7 @@ export function HomePage() {
       <section className="news-section" id="news">
         <div className="news-section__header">
           <h2 className="title-reveal section-title">
-            {renderAnimatedTitle(["새로운 소식"])}
+            <AnimatedTitle parts={["새로운 소식"]} />
           </h2>
           <Link to="/news" className="news-section__more">
             더 보기
@@ -1218,78 +1173,7 @@ export function HomePage() {
         </div>
       </section>
 
-      <section className="closing-wordmark-section" aria-label="리스튜디오 원스톱 메시지">
-        <p className="title-reveal">
-          {renderAnimatedTitle(["Onestop in Restudio"])}
-        </p>
-      </section>
     </main>
-    <footer className="site-footer">
-      <div className="site-footer__top">
-        <div className="site-footer__left">
-          <div className="site-footer__cta">
-            <Link to="/project-management/quote?service=product-development">
-              제품개발문의
-            </Link>
-            <Link to="/services/regulatory-response">규제대응문의</Link>
-          </div>
-
-          <address className="site-footer__contact">
-            <p>
-              <strong>주소</strong>
-              서울특별시 강서구 마곡중앙로 143, 타워B, 3층
-            </p>
-            <p>
-              <strong>이메일</strong>
-              <a href="mailto:sales@revation.co.kr">sales@revation.co.kr</a>
-            </p>
-            <p>
-              <strong>전화번호</strong>
-              <a href="tel:0264897080">02-6489-7080</a>
-            </p>
-          </address>
-        </div>
-
-        <div className="site-footer__social" aria-label="소셜 링크">
-          {footerSocialLinks.map(({ href, icon, label }) => (
-            <a
-              key={label}
-              href={href}
-              target="_blank"
-              rel="noreferrer"
-              aria-label={label}
-            >
-              <img src={icon} alt="" aria-hidden="true" />
-            </a>
-          ))}
-        </div>
-      </div>
-
-      <div className="site-footer__bottom">
-        <div className="site-footer__brand">
-          <img src="/assets/logo-dark.svg" alt="RESTUDIO" />
-          <p>@2024 REVATION. All rights reserved.</p>
-        </div>
-
-        <nav className="site-footer__policies" aria-label="정책 링크">
-          <a
-            href="https://material-beam-ed6.notion.site/20224acd6ea980678464cdaa66662ec7"
-            target="_blank"
-            rel="noreferrer"
-          >
-            이용약관
-          </a>
-          <span aria-hidden="true" />
-          <a
-            href="https://material-beam-ed6.notion.site/20224acd6ea980ee90cae0df5e5cc6af"
-            target="_blank"
-            rel="noreferrer"
-          >
-            개인정보처리방침
-          </a>
-        </nav>
-      </div>
-    </footer>
     </>
   );
 }
