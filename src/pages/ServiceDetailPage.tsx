@@ -145,7 +145,7 @@ const productServiceSteps = [
   {
     step: "step 1",
     title: "제품 컨설팅",
-    description: "제품 특성과 유통 환경을 분석해 친환경 패키지 개발 방향을 잡습니다.",
+    description: "제품 특성과 목표 분석, 최적의 방향 제시",
     image: "/assets/detail-pages/service-flow/consulting.png",
     alt: "친환경 패키지 컨설팅을 위한 소재와 스케치가 놓인 책상",
     Icon: ClipboardText,
@@ -153,7 +153,7 @@ const productServiceSteps = [
   {
     step: "step 2",
     title: "소재 큐레이션 / R&D",
-    description: "제품에 적합한 친환경 소재 후보를 추천하고 개발 가능성을 검토합니다.",
+    description: "제품에 적합한 소재 추천 및 개발",
     image: "/assets/detail-pages/service-flow/design.png",
     alt: "친환경 패키지 디자인 스케치와 샘플",
     Icon: Cube,
@@ -161,7 +161,7 @@ const productServiceSteps = [
   {
     step: "step 3",
     title: "패키지 디자인",
-    description: "친환경 소재에 맞는 구조와 사용성을 고려해 패키지를 설계합니다.",
+    description: "친환경 소재 최적화 맞춤 디자인",
     image: "/assets/detail-pages/service-flow/rnd.png",
     alt: "친환경 소재 연구를 위한 실험실 샘플",
     Icon: Flask,
@@ -169,7 +169,7 @@ const productServiceSteps = [
   {
     step: "step 4",
     title: "제품 제작 및 생산",
-    description: "페이퍼몰드와 바이오 플라스틱 등 제품에 맞는 방식으로 양산을 준비합니다.",
+    description: "페이퍼 몰드, 바이오 플라스틱(사출)",
     image: "/assets/detail-pages/service-flow/production.png",
     alt: "친환경 패키지 생산 라인",
     Icon: Buildings,
@@ -177,7 +177,7 @@ const productServiceSteps = [
   {
     step: "step 5",
     title: "검수 및 납품",
-    description: "QC 기준에 따라 품질을 점검하고 완제품 납품까지 안정적으로 관리합니다.",
+    description: "QC 품질 관리, 완제품 납품",
     image: "/assets/detail-pages/service-flow/inspection.png",
     alt: "완성된 패키지를 검수하고 납품 준비하는 장면",
     Icon: MagnifyingGlass,
@@ -185,7 +185,7 @@ const productServiceSteps = [
   {
     step: "step 6",
     title: "친환경 검증 및 ESG 리포트",
-    description: "친환경 인증과 규제 대응에 필요한 자료를 정리해 리포트로 제공합니다.",
+    description: "친환경 인증 및 규제 완벽 대응",
     image: "/assets/detail-pages/service-flow/report.png",
     alt: "탄소저감 리포트와 친환경 패키지 샘플",
     Icon: Leaf,
@@ -1310,8 +1310,78 @@ interface ServiceDetailPageProps {
 export function ServiceDetailPage({ variant }: ServiceDetailPageProps) {
   const isProductDevelopment = variant === "product-development";
   const [activeProductTestimonial, setActiveProductTestimonial] = useState(0);
+  const serviceFlowSectionRef = useRef<HTMLElement | null>(null);
+  const serviceFlowViewportRef = useRef<HTMLDivElement | null>(null);
+  const serviceFlowTrackRef = useRef<HTMLDivElement | null>(null);
 
   useTitleReveal();
+
+  useEffect(() => {
+    if (!isProductDevelopment) {
+      return;
+    }
+
+    const section = serviceFlowSectionRef.current;
+    const viewport = serviceFlowViewportRef.current;
+    const track = serviceFlowTrackRef.current;
+
+    if (!section || !viewport || !track) {
+      return;
+    }
+
+    let frame = 0;
+
+    const updateServiceFlow = () => {
+      const sectionRect = section.getBoundingClientRect();
+      const scrollableDistance = section.offsetHeight - window.innerHeight;
+      const progress =
+        scrollableDistance <= 0
+          ? 0
+          : Math.min(
+              Math.max((window.innerHeight * -1 + sectionRect.bottom) / scrollableDistance, 0),
+              1,
+            );
+      const endPadding =
+        parseFloat(
+          window
+            .getComputedStyle(section)
+            .getPropertyValue("--product-service-end-padding"),
+        ) || 0;
+      const startPadding =
+        parseFloat(
+          window
+            .getComputedStyle(section)
+            .getPropertyValue("--product-service-start-padding"),
+        ) || 0;
+      const trackDistance = Math.max(
+        track.scrollWidth - viewport.clientWidth + startPadding + endPadding,
+        0,
+      );
+      const rawHorizontalProgress = 1 - progress;
+      const horizontalProgress = Math.min(
+        Math.max((rawHorizontalProgress - 0.1) / 0.9, 0),
+        1,
+      );
+      const horizontalOffset = startPadding - horizontalProgress * trackDistance;
+
+      section.style.setProperty("--product-service-offset", `${horizontalOffset}px`);
+    };
+
+    const requestUpdate = () => {
+      window.cancelAnimationFrame(frame);
+      frame = window.requestAnimationFrame(updateServiceFlow);
+    };
+
+    updateServiceFlow();
+    window.addEventListener("scroll", requestUpdate, { passive: true });
+    window.addEventListener("resize", requestUpdate);
+
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", requestUpdate);
+      window.removeEventListener("resize", requestUpdate);
+    };
+  }, [isProductDevelopment]);
 
   const showPrevProductTestimonial = () => {
     setActiveProductTestimonial((current) =>
@@ -1485,7 +1555,7 @@ export function ServiceDetailPage({ variant }: ServiceDetailPageProps) {
             </div>
           </section>
 
-          <section className="product-service-flow-section">
+          <section ref={serviceFlowSectionRef} className="product-service-flow-section">
             <div className="product-service-flow-stage">
               <div className="product-service-flow__copy">
                 <span>서비스 소개</span>
@@ -1508,28 +1578,34 @@ export function ServiceDetailPage({ variant }: ServiceDetailPageProps) {
               </div>
 
               <div className="product-service-flow__panel">
-                <div className="product-service-flow__timeline" aria-hidden="true" />
-                <div className="product-service-flow__track">
-                  {productServiceSteps.map((service, index) => {
-                    const Icon = service.Icon;
+                <div
+                  ref={serviceFlowViewportRef}
+                  className="product-service-flow__viewport"
+                >
+                  <div ref={serviceFlowTrackRef} className="product-service-flow__track">
+                    {productServiceSteps.map((service, index) => {
+                      const Icon = service.Icon;
 
-                    return (
-                      <article className="product-service-card" key={service.step}>
-                        <span className="product-service-card__step">
-                          {String(index + 1).padStart(2, "0")}
-                        </span>
-                        <div className="product-service-card__content">
-                          <span className="product-service-card__icon">
-                            <Icon size={26} weight="regular" aria-hidden="true" />
-                          </span>
-                          <div>
-                            <h3>{service.title}</h3>
-                            <strong>{service.description}</strong>
+                      return (
+                        <article className="product-service-card" key={service.step}>
+                          <div className="product-service-card__top">
+                            <span className="product-service-card__step">
+                              {String(index + 1).padStart(2, "0")}
+                            </span>
+                            <span className="product-service-card__icon">
+                              <Icon size={26} weight="regular" aria-hidden="true" />
+                            </span>
                           </div>
-                        </div>
-                      </article>
-                    );
-                  })}
+                          <div className="product-service-card__content">
+                            <div>
+                              <h3>{service.title}</h3>
+                              <strong>{service.description}</strong>
+                            </div>
+                          </div>
+                        </article>
+                      );
+                    })}
+                  </div>
                 </div>
                 <Link className="product-service-flow__cta" to="/quote/product-development">
                   한 번에 가능한 원스톱 시스템 상담받기
