@@ -5,6 +5,7 @@ import { AiChatFloatingButton } from "./components/AiChatFloatingButton";
 import { ScrollToTop } from "./components/ScrollToTop";
 import { HomePage } from "./pages/HomePage";
 import { LoginPage } from "./pages/LoginPage";
+import { NewsPage } from "./pages/NewsPage";
 import { PlaceholderPage } from "./pages/PlaceholderPage";
 import { ProductQuotePage } from "./pages/ProductQuotePage";
 import { ProjectManagementPage } from "./pages/ProjectManagementPage";
@@ -25,11 +26,6 @@ const PAGES = [
     path: "/stories",
     title: "고객 사례",
     description: "브랜드 사례와 포트폴리오를 보여줄 빈 페이지입니다.",
-  },
-  {
-    path: "/news",
-    title: "새로운 소식",
-    description: "RESTUDIO의 소식과 업데이트를 담을 빈 페이지입니다.",
   },
   {
     path: "/resources",
@@ -67,6 +63,8 @@ export default function App() {
               path="/services/regulatory-response"
               element={<ServiceDetailPage variant="regulatory-response" />}
             />
+            <Route path="/news" element={<NewsPage />} />
+            <Route path="/news/:slug" element={<NewsPage />} />
             {PAGES.map((page) => (
               <Route
                 key={page.path}
