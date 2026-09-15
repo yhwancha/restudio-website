@@ -333,80 +333,98 @@ export function ServiceDetailAdBanner({
 
 interface ServiceDetailSharedSectionsProps {
   showAdBanner?: boolean;
+  showCaseStudies?: boolean;
+}
+
+interface CaseStudiesSectionProps {
+  className?: string;
+}
+
+function CaseStudiesSection({ className = "" }: CaseStudiesSectionProps) {
+  return (
+    <section className={`case-studies-section ${className}`.trim()} id="customer-cases">
+      <div className="case-studies">
+        <div>
+          <h2 className="title-reveal case-studies__title">
+            <AnimatedTitle parts="고객 사례" />
+          </h2>
+          <p className="case-studies__description">
+            산업별 특징과 고객의 니즈를 분석하여 지속가능한 패키지 솔루션을 개발합니다.
+          </p>
+        </div>
+
+        <div className="case-study-carousel">
+          <div className="case-study-track">
+            {[...caseStudies, ...caseStudies].map((caseStudy, index) => (
+              <article
+                key={`${caseStudy.title}-${index}`}
+                className="case-study-card"
+                aria-hidden={index >= caseStudies.length}
+              >
+                <div className="case-study-card__media">
+                  {caseStudy.images?.length ? (
+                    <div className="case-study-card__image-track">
+                      {[...caseStudy.images, caseStudy.images[0]].map(
+                        (image, imageIndex) => (
+                          <img
+                            key={`${image}-${imageIndex}`}
+                            src={image}
+                            alt={imageIndex === 0 ? caseStudy.alt : ""}
+                            aria-hidden={imageIndex !== 0}
+                          />
+                        ),
+                      )}
+                    </div>
+                  ) : (
+                    <img src={caseStudy.image} alt={caseStudy.alt} />
+                  )}
+                </div>
+                <div className="case-study-card__content">
+                  <div
+                    className="case-study-card__tags"
+                    aria-label="사례 태그"
+                  >
+                    {caseStudy.tags.map((tag) => (
+                      <span key={tag}>{tag}</span>
+                    ))}
+                  </div>
+                  <h3>{caseStudy.title}</h3>
+                  <dl className="case-study-card__details">
+                    <div>
+                      <dt>특징</dt>
+                      <dd>{caseStudy.feature}</dd>
+                    </div>
+                    <div>
+                      <dt>소재</dt>
+                      <dd>{caseStudy.material}</dd>
+                    </div>
+                  </dl>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function CustomerCaseStudiesSection({ className = "" }: CaseStudiesSectionProps) {
+  useTitleReveal();
+
+  return <CaseStudiesSection className={className} />;
 }
 
 export function ServiceDetailSharedSections({
   showAdBanner = true,
+  showCaseStudies = true,
 }: ServiceDetailSharedSectionsProps) {
   const [activeFaq, setActiveFaq] = useState(-1);
   useTitleReveal();
 
   return (
     <>
-      <section className="case-studies-section" id="customer-cases">
-        <div className="case-studies">
-          <div>
-            <h2 className="title-reveal case-studies__title">
-              <AnimatedTitle parts="고객 사례" />
-            </h2>
-            <p className="case-studies__description">
-              산업별 특징과 고객의 니즈를 분석하여 지속가능한 패키지 솔루션을 개발합니다.
-            </p>
-          </div>
-
-          <div className="case-study-carousel">
-            <div className="case-study-track">
-              {[...caseStudies, ...caseStudies].map((caseStudy, index) => (
-                <article
-                  key={`${caseStudy.title}-${index}`}
-                  className="case-study-card"
-                  aria-hidden={index >= caseStudies.length}
-                >
-                  <div className="case-study-card__media">
-                    {caseStudy.images?.length ? (
-                      <div className="case-study-card__image-track">
-                        {[...caseStudy.images, caseStudy.images[0]].map(
-                          (image, imageIndex) => (
-                            <img
-                              key={`${image}-${imageIndex}`}
-                              src={image}
-                              alt={imageIndex === 0 ? caseStudy.alt : ""}
-                              aria-hidden={imageIndex !== 0}
-                            />
-                          ),
-                        )}
-                      </div>
-                    ) : (
-                      <img src={caseStudy.image} alt={caseStudy.alt} />
-                    )}
-                  </div>
-                  <div className="case-study-card__content">
-                    <div
-                      className="case-study-card__tags"
-                      aria-label="사례 태그"
-                    >
-                      {caseStudy.tags.map((tag) => (
-                        <span key={tag}>{tag}</span>
-                      ))}
-                    </div>
-                    <h3>{caseStudy.title}</h3>
-                    <dl className="case-study-card__details">
-                      <div>
-                        <dt>특징</dt>
-                        <dd>{caseStudy.feature}</dd>
-                      </div>
-                      <div>
-                        <dt>소재</dt>
-                        <dd>{caseStudy.material}</dd>
-                      </div>
-                    </dl>
-                  </div>
-                </article>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+      {showCaseStudies && <CaseStudiesSection />}
 
       {showAdBanner && <ServiceDetailAdBanner />}
 

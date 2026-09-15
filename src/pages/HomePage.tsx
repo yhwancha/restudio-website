@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   ArrowRight,
@@ -11,77 +11,6 @@ import {
   AnimatedTitle,
   useTitleReveal,
 } from "../components/AnimatedTitle";
-
-const showcaseCategories = [
-  {
-    title: "PAPERMOLD",
-    images: [
-      {
-        src: "/assets/showcase/papermold1.png",
-        alt: "PAPERMOLD molded package with sesame oil bottles",
-      },
-      {
-        src: "/assets/showcase/papermold2.png",
-        alt: "PAPERMOLD curved paper packaging forms",
-      },
-      {
-        src: "/assets/showcase/papermold3.png",
-        alt: "PAPERMOLD wine bottle package on a dark background",
-      },
-    ],
-  },
-  {
-    title: "BIOPLASTIC",
-    images: [
-      {
-        src: "/assets/showcase/bioplastic1.png",
-        alt: "Bioplastic cosmetic tube holder display",
-      },
-      {
-        src: "/assets/showcase/bioplastic2.png",
-        alt: "Blue bioplastic tray with resin pellets",
-      },
-      {
-        src: "/assets/showcase/bioplastic3.png",
-        alt: "Bioplastic display plaque",
-      },
-    ],
-  },
-  {
-    title: "PCR/PIR",
-    images: [
-      {
-        src: "/assets/showcase/pcr-pir.png",
-        alt: "PCR/PIR recycled plastic cosmetic packaging with pink pellets",
-      },
-      {
-        src: "/assets/showcase/pcr-pir2.png",
-        alt: "PCR/PIR package surrounded by blue-gray recycled pellets",
-      },
-      {
-        src: "/assets/showcase/pcr-pir3.png",
-        alt: "PCR/PIR translucent cosmetic cream jar",
-      },
-    ],
-  },
-  {
-    title: "UPCYCLE",
-    images: [
-      {
-        src: "/assets/showcase/upcycle.png",
-        alt: "Upcycled coffee ground hair clips",
-      },
-      {
-        src: "/assets/showcase/upcycle2.png",
-        alt: "Upcycled dark cosmetic jar",
-      },
-      {
-        src: "/assets/showcase/upcycle3.png",
-        alt: "Upcycled coffee ground toothpaste squeezer in use",
-      },
-    ],
-  },
-];
 
 const serviceMetrics = [
   {
@@ -132,52 +61,59 @@ const coreServices = [
 
 const testimonialSlides = [
   {
+    title: "원스톱 전환",
+    subtitle: "소재·인증·디자인 통합 조율",
+    tag: "화장품",
     quote:
-      "소재 후보를 정리하고 샘플 방향을 잡는 시간이 줄어 내부 의사결정이 훨씬 빨라졌습니다.",
-    author: "생활용품 브랜드 제품개발팀",
-    role: "패키지 개발 담당",
-    logo: "/assets/clients/client-logo-01.svg",
-    logoLabel: "Client logo",
+      "소재는 A업체, 인증은 B기관, 디자인은 C에이전시... 각각 따로 연락하면서 중간에서 다 조율하고 있었는데, 리스튜디오를 만나고 모든 과정이 한 번에 해결되었습니다.",
+    author: "김*수",
+    role: "A 코스메틱 마케팅팀",
+    image: "/assets/showcase/bioplastic1.png",
+    imageLabel: "화장품 패키지 원스톱 전환 사례",
   },
   {
+    title: "개발 기간 50% 단축",
+    subtitle: "신제품 패키지 런칭 리드타임 개선",
+    tag: "헬스케어",
     quote:
-      "규제 자료를 흩어진 문서로 관리하지 않아도 되어, 신청서와 증빙 업데이트를 한눈에 확인할 수 있었습니다.",
-    author: "뷰티 브랜드 운영팀",
-    role: "해외 인증 담당",
-    image: "/assets/showcase/pcr-pir2.png",
-    imageLabel: "Recycled package material sample",
-  },
-  {
-    quote:
-      "아이디어 단계에서 바로 생산 가능성과 소재 리스크를 함께 검토할 수 있어 재작업 부담이 줄었습니다.",
-    author: "식품 브랜드 운영팀",
-    role: "신제품 PM",
-    logo: "/assets/clients/client-logo-06.svg",
-    logoLabel: "Client logo",
-  },
-  {
-    quote:
-      "친환경 패키지 콘셉트를 실제 양산 사양까지 연결하는 과정이 명확해서 협력사 커뮤니케이션이 쉬웠습니다.",
-    author: "커머스 브랜드 개발팀",
-    role: "브랜드 매니저",
+      "기존 대비 패키지 개발 기간을 절반으로 줄일 수 있었습니다. 무엇보다 대기업 수준의 결과물을 합리적인 비용으로 얻을 수 있어 매우 만족스럽습니다. 다음 신제품도 함께할 예정입니다.",
+    author: "박*훈",
+    role: "C 헬스케어 스타트업",
     image: "/assets/showcase/papermold1.png",
-    imageLabel: "Paper molded package sample",
+    imageLabel: "헬스케어 신제품 패키지 개발 사례",
   },
   {
+    title: "PPWR 대응",
+    subtitle: "수출 규제 맞춤 패키지 도입",
+    tag: "F&B",
     quote:
-      "PPWR 대응에 필요한 항목을 제품별로 정리해주니, 수출 준비 과정에서 놓치는 부분을 줄일 수 있었습니다.",
-    author: "제조사 수출지원팀",
-    role: "규제 대응 담당",
-    logo: "/assets/clients/client-logo-10.svg",
-    logoLabel: "Client logo",
+      "수출 규제 대응 때문에 고민이 많았는데, 리스튜디오 덕분에 EU PPWR 규격에 맞춘 패키지를 빠르게 도입할 수 있었습니다. 디자인도 너무 만족스럽습니다.",
+    author: "이수진 팀장",
+    role: "B F&B 상품기획팀",
+    image: "/assets/testimonials/fnb-ppwr-response.png",
+    imageLabel: "F&B PPWR 대응 패키지 리뷰 이미지",
   },
   {
+    title: "소재 탐색 단축",
+    subtitle: "콘셉트 맞춤 친환경 소재 매칭",
+    tag: "LIFESTYLE",
     quote:
-      "소재 선정, 구조 검토, 인증 자료 준비가 한 흐름으로 이어져 출시 일정 관리가 훨씬 편해졌습니다.",
-    author: "라이프스타일 브랜드",
-    role: "프로덕트 디렉터",
-    image: "/assets/showcase/upcycle3.png",
-    imageLabel: "Upcycled product usage sample",
+      "브랜드 콘셉트에 맞는 친환경 소재를 찾는 데 시간이 오래 걸렸는데, 리스튜디오가 소재 제안부터 샘플 제작까지 빠르게 연결해 주어 출시 일정에 맞출 수 있었습니다.",
+    author: "정다운 PM",
+    role: "D 라이프스타일 브랜드",
+    image: "/assets/testimonials/lifestyle-material-search.png",
+    imageLabel: "라이프스타일 브랜드 친환경 소재 탐색 리뷰 이미지",
+  },
+  {
+    title: "PPWR 대응진단&필수 서류 점검",
+    subtitle: "수출에 꼭 필요한 업종별 원스톱 맞춤 서비스",
+    tag: "화장품 고객사",
+    quote:
+      "바이어가 갑자기 PPWR 관련 증빙 서류 요청해서 앞 길이 막막했는데 준비할 서류부터 대응해야 할 액션 아이템까지 꼼꼼히 도와주셔서 무사히 수출했습니다.",
+    author: "강*모 실장",
+    role: "A 화장품 상품기획팀",
+    image: "/assets/testimonials/cosmetics-ppwr-documents.png",
+    imageLabel: "화장품 고객사 PPWR 필수 서류 점검 리뷰 이미지",
   },
 ];
 
@@ -308,28 +244,11 @@ const caseStudies = [
 
 const adBanners = [
   {
-    theme: "manufacture",
-    title: "제품 제조를 빠르게",
-    description: "소재 검토부터 샘플, 양산 연결까지 한 번에 준비합니다.",
-    action: "제조 상담 시작하기",
-    image: "/assets/ads/manufacture-banner.png",
-    alt: "Eco-friendly molded packaging prototypes in a studio",
-  },
-  {
-    theme: "discount",
-    title: "첫 생산 부담 낮추기",
-    description: "런칭 제품을 위한 샘플 검토와 견적 비교를 함께 지원합니다.",
-    action: "혜택 확인하기",
-    image: "/assets/ads/discount-banner.png",
-    alt: "Sustainable packaging samples arranged for production support",
-  },
-  {
-    theme: "environment",
-    title: "환경 기준에 맞춘 패키지",
-    description: "재생 소재와 규제 대응 기준을 함께 확인해 제품 방향을 잡습니다.",
-    action: "친환경 소재 문의",
-    image: "/assets/ads/environment-banner.png",
-    alt: "Recycled and paper-based packaging materials with green leaves",
+    theme: "product-development-onestop",
+    title: "처음부터 끝까지 리스튜디오 친환경 패키지 완성",
+    description: "친환경 패키지 원스톱 솔루션 상담 신청 배너",
+    image: "/assets/ads/product-development-onestop-banner.png",
+    alt: "처음부터 끝까지 리스튜디오 친환경 패키지 완성 배너",
   },
 ];
 
@@ -420,8 +339,6 @@ const clientLogos = Array.from({ length: 40 }, (_, index) => ({
   src: `/assets/clients/client-logo-${String(index + 1).padStart(2, "0")}.svg`,
 }));
 
-const visibleClientLogoCount = 10;
-const clientLogoFadeDuration = 620;
 const testimonialPageCount = Math.ceil(testimonialSlides.length / 2);
 
 const testimonialPages = Array.from(
@@ -429,30 +346,6 @@ const testimonialPages = Array.from(
   (_, pageIndex) =>
     testimonialSlides.slice(pageIndex * 2, pageIndex * 2 + 2),
 );
-
-const getRandomNumber = (min: number, max: number) =>
-  Math.floor(Math.random() * (max - min + 1)) + min;
-
-const getInitialClientLogos = () =>
-  clientLogos.slice(0, visibleClientLogoCount).map((_, index) => index);
-
-const getNextClientLogoIndex = (visibleLogos: number[], slotIndex: number) => {
-  const otherVisibleLogos = new Set(
-    visibleLogos.filter((_, index) => index !== slotIndex),
-  );
-  const candidates = clientLogos
-    .map((_, index) => index)
-    .filter(
-      (logoIndex) =>
-        !otherVisibleLogos.has(logoIndex) &&
-        logoIndex !== visibleLogos[slotIndex],
-    );
-
-  return (
-    candidates[Math.floor(Math.random() * candidates.length)] ??
-    visibleLogos[slotIndex]
-  );
-};
 
 const markerStroke = (
   <svg
@@ -475,17 +368,10 @@ const markerStroke = (
 );
 
 export function HomePage() {
-  const [activeShowcase, setActiveShowcase] = useState(0);
-  const [visibleClientLogos, setVisibleClientLogos] =
-    useState(getInitialClientLogos);
-  const [fadingClientSlots, setFadingClientSlots] = useState<number[]>([]);
   const [activeTestimonial, setActiveTestimonial] = useState(0);
   const [activeAdBanner, setActiveAdBanner] = useState(0);
   const [activeFaq, setActiveFaq] = useState(-1);
   const [testimonialSlideWidth, setTestimonialSlideWidth] = useState(0);
-  const clientSectionRef = useRef<HTMLElement | null>(null);
-  const clientSceneRef = useRef<HTMLDivElement | null>(null);
-  const activeCategory = showcaseCategories[activeShowcase];
   const currentAdBanner = adBanners[activeAdBanner];
 
   useTitleReveal();
@@ -511,147 +397,6 @@ export function HomePage() {
     revealItems.forEach((item) => observer.observe(item));
 
     return () => observer.disconnect();
-  }, []);
-
-  useEffect(() => {
-    const section = clientSectionRef.current;
-    const scene = clientSceneRef.current;
-
-    if (!section || !scene) {
-      return;
-    }
-
-    let frame = 0;
-
-    const clamp = (value: number) => Math.min(1, Math.max(0, value));
-
-    const updateClientScene = () => {
-      if (window.innerWidth < 768) {
-        scene.style.setProperty("--client-panel-width", "100%");
-        scene.style.setProperty("--client-panel-height", "280px");
-        scene.style.setProperty("--client-logo-opacity", "1");
-        scene.style.setProperty("--client-logo-y", "0px");
-        scene.style.setProperty("--client-label-opacity", "1");
-        scene.style.setProperty("--client-scene-y", "0px");
-        section.style.setProperty("--client-testimonials-opacity", "1");
-        section.style.setProperty("--client-testimonials-y", "0px");
-        frame = 0;
-        return;
-      }
-
-      const rect = section.getBoundingClientRect();
-      const scrollRange = Math.max(1, rect.height - window.innerHeight);
-      const progress = clamp(-rect.top / scrollRange);
-      const verticalProgress = clamp(progress / 0.34);
-      const horizontalProgress = clamp((progress - 0.34) / 0.42);
-      const logoProgress = clamp((progress - 0.64) / 0.24);
-      const testimonialProgress = clamp((progress - 0.78) / 0.18);
-      const availableWidth = Math.min(1120, Math.max(260, window.innerWidth - 360));
-      const panelWidth = 4 + (availableWidth - 4) * horizontalProgress;
-      const panelHeight = 72 + 250 * verticalProgress;
-
-      scene.style.setProperty("--client-panel-width", `${panelWidth}px`);
-      scene.style.setProperty("--client-panel-height", `${panelHeight}px`);
-      scene.style.setProperty("--client-logo-opacity", `${logoProgress}`);
-      scene.style.setProperty("--client-logo-y", `${(1 - logoProgress) * 18}px`);
-      scene.style.setProperty("--client-label-opacity", `${1 - horizontalProgress * 0.55}`);
-      scene.style.setProperty("--client-scene-y", `${testimonialProgress * -190}px`);
-      section.style.setProperty("--client-testimonials-opacity", `${testimonialProgress}`);
-      section.style.setProperty("--client-testimonials-y", `${(1 - testimonialProgress) * 28}px`);
-
-      frame = 0;
-    };
-
-    const requestUpdate = () => {
-      if (frame) {
-        return;
-      }
-
-      frame = window.requestAnimationFrame(updateClientScene);
-    };
-
-    updateClientScene();
-    window.addEventListener("scroll", requestUpdate, { passive: true });
-    window.addEventListener("resize", requestUpdate);
-
-    return () => {
-      if (frame) {
-        window.cancelAnimationFrame(frame);
-      }
-
-      window.removeEventListener("scroll", requestUpdate);
-      window.removeEventListener("resize", requestUpdate);
-    };
-  }, []);
-
-  useEffect(() => {
-    const timeouts: number[] = [];
-    const activeSlots = new Set<number>();
-
-    const removeActiveSlot = (slotIndex: number) => {
-      activeSlots.delete(slotIndex);
-      setFadingClientSlots((currentSlots) =>
-        currentSlots.filter((currentSlot) => currentSlot !== slotIndex),
-      );
-    };
-
-    const swapRandomLogo = () => {
-      const availableSlots = Array.from(
-        { length: visibleClientLogoCount },
-        (_, slotIndex) => slotIndex,
-      ).filter((slotIndex) => !activeSlots.has(slotIndex));
-
-      if (availableSlots.length === 0) {
-        return;
-      }
-
-      const slotIndex =
-        availableSlots[Math.floor(Math.random() * availableSlots.length)];
-
-      activeSlots.add(slotIndex);
-      setFadingClientSlots((currentSlots) => [...currentSlots, slotIndex]);
-
-      const swapTimeout = window.setTimeout(() => {
-        setVisibleClientLogos((currentLogos) => {
-          const nextLogos = [...currentLogos];
-          nextLogos[slotIndex] = getNextClientLogoIndex(currentLogos, slotIndex);
-
-          return nextLogos;
-        });
-      }, 260);
-
-      const clearTimeoutId = window.setTimeout(() => {
-        removeActiveSlot(slotIndex);
-      }, clientLogoFadeDuration);
-
-      timeouts.push(swapTimeout, clearTimeoutId);
-    };
-
-    const scheduleNextSwap = () => {
-      const timeout = window.setTimeout(() => {
-        swapRandomLogo();
-
-        if (Math.random() > 0.68) {
-          const burstTimeout = window.setTimeout(
-            swapRandomLogo,
-            getRandomNumber(120, 340),
-          );
-          timeouts.push(burstTimeout);
-        }
-
-        scheduleNextSwap();
-      }, getRandomNumber(720, 2200));
-
-      timeouts.push(timeout);
-    };
-
-    const initialTimeout = window.setTimeout(swapRandomLogo, 520);
-    timeouts.push(initialTimeout);
-    scheduleNextSwap();
-
-    return () => {
-      timeouts.forEach((timeout) => window.clearTimeout(timeout));
-    };
   }, []);
 
   useEffect(() => {
@@ -754,7 +499,7 @@ export function HomePage() {
           </div>
 
           <form
-            className="mx-auto mt-4 max-w-[760px] rounded-2xl border border-[#d7dde2] bg-white px-4 py-4 shadow-[0_12px_28px_rgba(23,33,27,0.035)] md:mt-5 md:px-5 md:py-4"
+            className="mx-auto mt-4 max-w-[1040px] rounded-2xl border border-[#d7dde2] bg-white px-4 py-4 shadow-[0_12px_28px_rgba(23,33,27,0.035)] md:mt-5 md:px-5 md:py-4"
             onSubmit={(event) => event.preventDefault()}
           >
             <div className="flex items-center gap-2.5">
@@ -845,58 +590,26 @@ export function HomePage() {
         </div>
       </section>
 
-      <section className="bg-[#f7f8f8] px-5 py-16 md:px-12 md:py-24 xl:px-[120px]">
-        <div className="mx-auto w-full max-w-[1040px]">
-          <div
-            className="flex h-16 items-center justify-center gap-1.5"
-            aria-label="이미지 분야 선택"
-          >
-            {showcaseCategories.map((category, index) => {
-              const isActive = activeShowcase === index;
-
-              return (
-                <button
-                  key={category.title}
-                  type="button"
-                  aria-label={`${category.title} 이미지 보기`}
-                  aria-pressed={isActive}
-                  onMouseEnter={() => setActiveShowcase(index)}
-                  onFocus={() => setActiveShowcase(index)}
-                  className="group flex h-16 w-1.5 items-center justify-center"
-                >
-                  <span
-                    className={`block w-0.5 rounded-full transition-[height,background-color,transform] duration-300 ease-out group-hover:scale-x-[1.35] ${
-                      isActive
-                        ? "h-16 bg-black"
-                        : "h-[42px] bg-[#d9d9d9] group-hover:h-16 group-hover:bg-black"
-                    }`}
-                  />
-                </button>
-              );
-            })}
+      <section className="home-video-section">
+        <div className="home-video-section__inner">
+          <div className="home-video-section__copy">
+            <h2>
+              대한민국 대표 클린테크 기업, 리베이션이 만든
+              <span>원스톱 친환경 패키지 솔루션, 리스튜디오</span>
+            </h2>
+            <p>
+              제품 컨설팅부터 디자인, R&amp;D, 생산, 검수, 탄소저감 리포트까지
+              전 과정을 통합 지원하는 친환경 패키지 개발 서비스를 제공합니다.
+            </p>
           </div>
 
-          <h2 className="title-reveal mt-8 text-center text-[28px] font-semibold leading-none text-black md:text-[34px]">
-            <AnimatedTitle parts={[activeCategory.title]} />
-          </h2>
-
-          <div className="mx-auto mt-8 grid max-w-[760px] gap-1.5 md:grid-cols-2">
-            {activeCategory.images.map((image, index) => (
-              <div
-                key={image.src}
-                className={`showcase-image-frame ${
-                  index === 2
-                    ? "aspect-[1.72/1] md:col-span-2"
-                    : "aspect-[1.62/1]"
-                }`}
-              >
-                <img
-                  src={image.src}
-                  alt={image.alt}
-                  className="h-full w-full object-cover transition duration-700 ease-out hover:scale-[1.03]"
-                />
-              </div>
-            ))}
+          <div className="home-video-section__frame">
+            <iframe
+              src="https://www.youtube-nocookie.com/embed/-qfbylgla54?rel=0"
+              title="리스튜디오 소개 영상"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+            />
           </div>
 
           <section className="service-excellence mx-auto mt-10 max-w-[760px] md:mt-12">
@@ -927,25 +640,36 @@ export function HomePage() {
         </div>
       </section>
 
-      <section ref={clientSectionRef} className="client-growth-section">
+      <section className="client-growth-section">
         <div className="client-growth-stage">
-          <div ref={clientSceneRef} className="client-growth-scene">
+          <div className="client-growth-scene">
             <div className="title-reveal client-growth-label client-growth-label--left">
               <AnimatedTitle parts={["누적 고객사"]} />
             </div>
 
             <div className="client-growth-panel" aria-label="고객사 로고 영역">
-              <div className="client-logo-grid" aria-hidden="true">
-                {visibleClientLogos.map((logoIndex, slot) => (
-                  <span
-                    key={slot}
-                    className={`client-logo-slot ${
-                      fadingClientSlots.includes(slot) ? "is-fading" : ""
-                    }`}
-                  >
-                    <img src={clientLogos[logoIndex].src} alt="" />
-                  </span>
-                ))}
+              <div className="client-logo-marquee" aria-hidden="true">
+                <div className="client-logo-marquee__track client-logo-marquee__track--forward">
+                  {[...clientLogos.slice(0, 14), ...clientLogos.slice(0, 14)].map(
+                    (logo, index) => (
+                      <span className="client-logo-slot" key={`top-${logo.src}-${index}`}>
+                        <img src={logo.src} alt="" />
+                      </span>
+                    ),
+                  )}
+                </div>
+                <div className="client-logo-marquee__track client-logo-marquee__track--reverse">
+                  {[...clientLogos.slice(14, 28), ...clientLogos.slice(14, 28)].map(
+                    (logo, index) => (
+                      <span
+                        className="client-logo-slot"
+                        key={`bottom-${logo.src}-${index}`}
+                      >
+                        <img src={logo.src} alt="" />
+                      </span>
+                    ),
+                  )}
+                </div>
               </div>
             </div>
 
@@ -974,27 +698,27 @@ export function HomePage() {
                         key={testimonial.author}
                         className="client-testimonial-card"
                       >
-                        {testimonial.logo ? (
-                          <div className="client-testimonial-card__logo">
-                            <img
-                              src={testimonial.logo}
-                              alt={testimonial.logoLabel}
-                            />
+                        <div className="client-testimonial-card__image">
+                          <img
+                            src={testimonial.image}
+                            alt={testimonial.imageLabel}
+                          />
+                          <div className="client-testimonial-card__image-copy">
+                            <strong>{testimonial.title}</strong>
+                            <span>{testimonial.subtitle}</span>
                           </div>
-                        ) : (
-                          <div className="client-testimonial-card__image">
-                            <img
-                              src={testimonial.image}
-                              alt={testimonial.imageLabel}
-                            />
-                          </div>
-                        )}
+                        </div>
 
                         <div className="client-testimonial-card__content">
-                          <p className="client-testimonial-card__quote">
-                            "{testimonial.quote}"
-                          </p>
-                          <div>
+                          <div className="client-testimonial-card__body">
+                            <span className="client-testimonial-card__tag">
+                              {testimonial.tag}
+                            </span>
+                            <p className="client-testimonial-card__quote">
+                              "{testimonial.quote}"
+                            </p>
+                          </div>
+                          <div className="client-testimonial-card__author">
                             <strong>{testimonial.author}</strong>
                             <span>{testimonial.role}</span>
                           </div>
@@ -1174,6 +898,12 @@ export function HomePage() {
       </section>
 
     </main>
+    <nav className="home-sticky-cta" aria-label="빠른 문의">
+      <Link to="/project-management/quote?service=product-development">
+        제품 개발 문의
+      </Link>
+      <Link to="/services/regulatory-response">규제 대응 문의</Link>
+    </nav>
     </>
   );
 }

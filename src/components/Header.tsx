@@ -23,16 +23,32 @@ const NAV_ITEMS: NavItem[] = [
 
 const MOBILE_NAV_ITEMS: NavItem[] = [...NAV_ITEMS];
 
+const CASE_INDUSTRIES = [
+  "화장품",
+  "F&B",
+  "패션",
+  "헬스케어",
+  "전자제품",
+  "생활용품",
+] as const;
+
 const SERVICE_ITEMS = [
   {
     label: "제품 개발",
     to: "/services/product-development",
-    description: "브랜드 맞춤 제품 기획과 개발",
+    marker: "✅",
+    description: [
+      "원스톱 솔루션",
+      "친환경 소재개발",
+      "친환경 기술 인증",
+      "독보적 글로벌 네트워크",
+    ],
   },
   {
     label: "규제 대응",
     to: "/services/regulatory-response",
-    description: "PPWR 등 글로벌 규제 대응",
+    marker: "🆚",
+    description: ["인증업체", "일반 컨설팅사", "포장재 공급사"],
   },
 ] as const;
 
@@ -83,12 +99,12 @@ function ServiceDropdown() {
 
       <div
         className={[
-          "invisible absolute left-1/2 top-full z-50 w-[260px] -translate-x-1/2 pt-5 opacity-0 transition duration-150",
+          "invisible absolute left-1/2 top-full z-50 w-[480px] -translate-x-1/2 pt-5 opacity-0 transition duration-150",
           "group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100",
           open ? "visible opacity-100" : "",
         ].join(" ")}
       >
-        <div className="rounded-lg bg-primary-25 p-2 shadow-[0_18px_44px_rgba(23,33,27,0.14)]">
+        <div className="grid grid-cols-2 gap-2 rounded-[28px] bg-primary-25 p-2 shadow-[0_18px_44px_rgba(23,33,27,0.14)]">
           {SERVICE_ITEMS.map((item) => (
             <NavLink
               key={item.to}
@@ -100,14 +116,66 @@ function ServiceDropdown() {
                 ].join(" ")
               }
             >
-              <span className="block text-[15px] font-semibold text-primary-900">
-                {item.label}
+              <span className="flex items-center gap-2 text-[15px] font-semibold text-primary-900">
+                <span aria-hidden="true">{item.marker}</span>
+                <span>{item.label}</span>
               </span>
-              <span className="mt-1 block text-[13px] leading-5 text-primary-700/75">
-                {item.description}
+              <span className="mt-3 block space-y-2 pl-7 text-[13px] leading-5 text-primary-700/75">
+                {item.description.map((line) => (
+                  <span className="block" key={line}>
+                    {line}
+                  </span>
+                ))}
               </span>
             </NavLink>
           ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function CaseDropdown() {
+  const location = useLocation();
+  const isActive = location.pathname === "/stories";
+
+  return (
+    <div className="group relative">
+      <NavLink
+        to="/stories"
+        className={[
+          "inline-flex items-center text-[15px] font-medium transition-colors",
+          "hover:text-primary-800",
+          isActive ? "text-primary-900" : "text-primary-700/75",
+        ].join(" ")}
+        aria-haspopup="menu"
+      >
+        고객 사례
+      </NavLink>
+
+      <div
+        className={[
+          "invisible absolute left-1/2 top-full z-50 w-[440px] -translate-x-1/2 pt-5 opacity-0 transition duration-150",
+          "group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100",
+        ].join(" ")}
+      >
+        <div className="rounded-[20px] bg-white px-5 py-4 shadow-[0_18px_44px_rgba(23,33,27,0.14)]">
+          <div className="grid grid-cols-2 gap-x-8 gap-y-8">
+            {CASE_INDUSTRIES.map((industry) => (
+              <span
+                className="text-[14px] font-semibold leading-none text-primary-900"
+                key={industry}
+              >
+                {industry}
+              </span>
+            ))}
+          </div>
+          <NavLink
+            to="/stories"
+            className="mt-8 flex h-12 items-center justify-center rounded-lg bg-[#f3f2f0] text-[14px] font-medium text-primary-800 transition-colors hover:bg-primary-100"
+          >
+            모든 사례 보기
+          </NavLink>
         </div>
       </div>
     </div>
@@ -244,7 +312,8 @@ export function Header() {
 
         <nav className="hidden items-center gap-7 xl:flex" aria-label="주요 메뉴">
           <ServiceDropdown />
-          {NAV_ITEMS.map((item) => (
+          <CaseDropdown />
+          {NAV_ITEMS.filter((item) => item.label !== "고객 사례").map((item) => (
             <NavLink key={item.to} to={item.to} className={navLinkClass}>
               {item.label}
             </NavLink>
@@ -338,7 +407,17 @@ export function Header() {
                     ].join(" ")
                   }
                 >
-                  {item.label}
+                  <span className="flex items-center gap-2">
+                    <span aria-hidden="true">{item.marker}</span>
+                    <span>{item.label}</span>
+                  </span>
+                  <span className="mt-2 block space-y-1.5 pl-7 text-[13px] font-medium leading-5 text-primary-700/70">
+                    {item.description.map((line) => (
+                      <span className="block" key={line}>
+                        {line}
+                      </span>
+                    ))}
+                  </span>
                 </NavLink>
               ))}
             </div>

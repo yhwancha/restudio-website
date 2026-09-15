@@ -9,6 +9,7 @@ import {
   CheckCircle,
   ClipboardText,
   Cube,
+  Factory,
   Flask,
   Leaf,
   MagnifyingGlass,
@@ -19,6 +20,7 @@ import {
 } from "@phosphor-icons/react";
 import { Link } from "react-router-dom";
 import {
+  CustomerCaseStudiesSection,
   ServiceDetailAdBanner,
   ServiceDetailSharedSections,
 } from "../components/ServiceDetailSharedSections";
@@ -204,6 +206,29 @@ const productTransitionRows = [
   {
     asIs: "친환경 검증 자료 확보 부담",
     toBe: "검토와 보고 자료까지 연계 지원",
+  },
+];
+
+const productChoiceBenefits = [
+  {
+    value: "50%",
+    label: "개발 기간 최대 단축",
+    Icon: null,
+  },
+  {
+    value: "30%",
+    label: "개발비용 최대 절감",
+    Icon: null,
+  },
+  {
+    value: "",
+    label: "대량 양산 가능 초기 설계",
+    Icon: Factory,
+  },
+  {
+    value: "",
+    label: "친환경 근거 정량 자료 지원",
+    Icon: ClipboardText,
   },
 ];
 
@@ -564,9 +589,9 @@ interface ProductClientSectionProps {
   onNext: () => void;
 }
 
-function ProductClientSection({ activePage, onPrev, onNext }: ProductClientSectionProps) {
+function ProductClientLogoMarquee() {
   return (
-    <section className="product-client-section" aria-label="제품 개발 고객사와 후기">
+    <section className="product-client-logo-section" aria-label="제품 개발 고객사 로고">
       <div className="product-client-marquee" aria-hidden="true">
         <div className="product-client-marquee__track">
           {[...productClientLogos, ...productClientLogos].map((logo, index) => (
@@ -576,7 +601,13 @@ function ProductClientSection({ activePage, onPrev, onNext }: ProductClientSecti
           ))}
         </div>
       </div>
+    </section>
+  );
+}
 
+function ProductClientSection({ activePage, onPrev, onNext }: ProductClientSectionProps) {
+  return (
+    <section className="product-client-section" aria-label="제품 개발 고객사와 후기">
       <div className="product-client-testimonials">
         <div className="product-client-testimonials__viewport">
           <div
@@ -1519,6 +1550,10 @@ export function ServiceDetailPage({ variant }: ServiceDetailPageProps) {
             </div>
           </section>
 
+          <CustomerCaseStudiesSection className="product-case-studies-section" />
+
+          <ProductClientLogoMarquee />
+
           <ProductClientSection
             activePage={activeProductTestimonial}
             onPrev={showPrevProductTestimonial}
@@ -1666,6 +1701,38 @@ export function ServiceDetailPage({ variant }: ServiceDetailPageProps) {
             </div>
           </section>
 
+          <section className="product-choice-section" aria-label="리스튜디오 선택 효과">
+            <div className="product-choice-section__inner">
+              <div className="product-choice-section__header">
+                <h2>
+                  리스튜디오를{" "}
+                  <span className="product-choice-section__accent">선택하는 것만으로,</span>
+                </h2>
+                <Link className="product-choice-section__link" to="/quote/product-development">
+                  친환경 전환, 빠르게 알아보기
+                  <ArrowRight size={18} weight="bold" aria-hidden="true" />
+                </Link>
+              </div>
+
+              <div className="product-choice-section__grid">
+                {productChoiceBenefits.map(({ value, label, Icon }) => (
+                  <article className="product-choice-card" key={label}>
+                    {value ? (
+                      <strong>{value}</strong>
+                    ) : (
+                      Icon && (
+                        <span className="product-choice-card__icon">
+                          <Icon size={34} weight="regular" aria-hidden="true" />
+                        </span>
+                      )
+                    )}
+                    <p>{label}</p>
+                  </article>
+                ))}
+              </div>
+            </div>
+          </section>
+
           <section className="product-capability-section">
             <div className="product-capability-section__inner">
               <div className="product-capability-section__copy">
@@ -1704,18 +1771,21 @@ export function ServiceDetailPage({ variant }: ServiceDetailPageProps) {
 
           <aside className="product-sticky-bar" aria-label="제품 개발 상담 바로가기">
             <div className="product-sticky-bar__inner">
-              <strong>리스튜디오 원스톱 시스템</strong>
-              <span>
-                <CheckCircle size={18} weight="bold" aria-hidden="true" />
-                개발 비용 절감
-              </span>
-              <span>
-                <CheckCircle size={18} weight="bold" aria-hidden="true" />
-                개발 기간 단축
-              </span>
-              <Link to="/project-management/quote?service=product-development">
-                맞춤 견적 받기
-              </Link>
+              <p>PPWR 대응부터 소재 추천 / 디자인 / 양산, 지금 원스톱으로 해결하세요.</p>
+              <div className="product-sticky-bar__actions">
+                <Link
+                  className="product-sticky-bar__button product-sticky-bar__button--light"
+                  to="/resources"
+                >
+                  리포트 자료 다운로드
+                </Link>
+                <Link
+                  className="product-sticky-bar__button product-sticky-bar__button--dark"
+                  to="/project-management/quote?service=product-development"
+                >
+                  1:1 맞춤 상담 신청
+                </Link>
+              </div>
             </div>
           </aside>
         </>
@@ -1738,7 +1808,10 @@ export function ServiceDetailPage({ variant }: ServiceDetailPageProps) {
           <RegulatoryPricingSection />
         </>
       )}
-      <ServiceDetailSharedSections showAdBanner={!isProductDevelopment} />
+      <ServiceDetailSharedSections
+        showAdBanner={!isProductDevelopment}
+        showCaseStudies={!isProductDevelopment}
+      />
     </main>
   );
 }

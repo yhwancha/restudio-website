@@ -9,6 +9,7 @@ import { NewsPage } from "./pages/NewsPage";
 import { PlaceholderPage } from "./pages/PlaceholderPage";
 import { ProductQuotePage } from "./pages/ProductQuotePage";
 import { ProjectManagementPage } from "./pages/ProjectManagementPage";
+import { ResourcesPage } from "./pages/ResourcesPage";
 import { ServiceDetailPage } from "./pages/ServiceDetailPage";
 
 const PAGES = [
@@ -26,11 +27,6 @@ const PAGES = [
     path: "/stories",
     title: "고객 사례",
     description: "브랜드 사례와 포트폴리오를 보여줄 빈 페이지입니다.",
-  },
-  {
-    path: "/resources",
-    title: "자료실",
-    description: "고객이 참고할 수 있는 자료와 다운로드 콘텐츠를 담을 빈 페이지입니다.",
   },
   {
     path: "/inquiry/product",
@@ -63,6 +59,7 @@ export default function App() {
               path="/services/regulatory-response"
               element={<ServiceDetailPage variant="regulatory-response" />}
             />
+            <Route path="/resources" element={<ResourcesPage />} />
             <Route path="/news" element={<NewsPage />} />
             <Route path="/news/:slug" element={<NewsPage />} />
             {PAGES.map((page) => (
