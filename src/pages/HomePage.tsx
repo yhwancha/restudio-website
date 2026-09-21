@@ -899,7 +899,7 @@ export function HomePage() {
 
     </main>
     <nav className="home-sticky-cta" aria-label="빠른 문의">
-      <Link to="/project-management/quote?service=product-development">
+      <Link to="/services/product-development">
         제품 개발 문의
       </Link>
       <Link to="/services/regulatory-response">규제 대응 문의</Link>

@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { NavLink, Link, useLocation } from "react-router-dom";
 import {
   CaretDown,
+  Cube,
+  FileText,
   GlobeHemisphereEast,
   List,
   UserCircle,
@@ -52,6 +54,60 @@ const SERVICE_ITEMS = [
   },
 ] as const;
 
+const SERVICE_MENU_GROUPS = [
+  {
+    title: "제품 개발 솔루션",
+    to: "/services/product-development",
+    Icon: Cube,
+    items: [
+      {
+        label: "원스톱 개발 시스템",
+        to: "/services/product-development/onestop-system",
+      },
+      "통합 프로젝트 매니징",
+      "업종별 맞춤 설계 컨설팅",
+      {
+        label: "친환경 소재 연구소",
+        to: "https://www.revation.co.kr/kr/sub/product/list.asp",
+      },
+      {
+        label: "친환경 기술 인증",
+        to: "https://www.revation.co.kr/kr/sub/company/greeting.asp#awards",
+      },
+    ],
+  },
+  {
+    title: "규제 해결 솔루션",
+    to: "/services/regulatory-response",
+    Icon: FileText,
+    items: [
+      "요금제",
+      "원스톱 대응 시스템",
+      "통합 규제 대응 컨트롤",
+      "규제 전문가 밀착진단",
+      "AI Agent 자동화",
+      "FAQ",
+      {
+        label: "타 솔루션 비교",
+        children: [
+          {
+            label: "일반 컨설팅펌",
+            to: "/services/regulatory-response?compare=consulting",
+          },
+          {
+            label: "기존 기술인증사",
+            to: "/services/regulatory-response?compare=certification",
+          },
+          {
+            label: "패키징 공급사",
+            to: "/services/regulatory-response?compare=supplier",
+          },
+        ],
+      },
+    ],
+  },
+] as const;
+
 const ACTION_ITEMS = [
   { label: "제품 개발 문의", to: "/project-management/quote?service=product-development" },
   { label: "규제 대응 문의", to: "/services/regulatory-response" },
@@ -70,10 +126,14 @@ function navLinkClass({ isActive }: { isActive: boolean }) {
   ].join(" ");
 }
 
+function isExternalUrl(to: string) {
+  return /^https?:\/\//.test(to);
+}
+
 function ServiceDropdown() {
   const location = useLocation();
   const [open, setOpen] = useState(false);
-  const isActive = SERVICE_ITEMS.some((item) => item.to === location.pathname);
+  const isActive = SERVICE_ITEMS.some((item) => location.pathname.startsWith(item.to));
 
   return (
     <div className={`group relative${open ? " is-open" : ""}`} onMouseLeave={() => setOpen(false)}>
@@ -99,35 +159,75 @@ function ServiceDropdown() {
 
       <div
         className={[
-          "invisible absolute left-1/2 top-full z-50 w-[480px] -translate-x-1/2 pt-5 opacity-0 transition duration-150",
+          "invisible absolute left-1/2 top-full z-50 w-[720px] -translate-x-1/2 pt-4 opacity-0 transition duration-150",
           "group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100",
           open ? "visible opacity-100" : "",
         ].join(" ")}
       >
-        <div className="grid grid-cols-2 gap-2 rounded-[28px] bg-primary-25 p-2 shadow-[0_18px_44px_rgba(23,33,27,0.14)]">
-          {SERVICE_ITEMS.map((item) => (
-            <NavLink
-              key={item.to}
-              to={item.to}
-              className={({ isActive }) =>
-                [
-                  "block rounded-xl px-4 py-3 transition-colors",
-                  isActive ? "bg-primary-100" : "hover:bg-primary-50",
-                ].join(" ")
-              }
+        <div className="grid grid-cols-2 overflow-hidden rounded-[20px] bg-white shadow-[0_18px_44px_rgba(23,33,27,0.14)]">
+          {SERVICE_MENU_GROUPS.map(({ title, to, Icon, items }, groupIndex) => (
+            <div
+              className={[
+                "px-4 py-3",
+                groupIndex === 0 ? "border-r border-primary-600/10" : "",
+              ].join(" ")}
+              key={title}
             >
-              <span className="flex items-center gap-2 text-[15px] font-semibold text-primary-900">
-                <span aria-hidden="true">{item.marker}</span>
-                <span>{item.label}</span>
-              </span>
-              <span className="mt-3 block space-y-2 pl-7 text-[13px] leading-5 text-primary-700/75">
-                {item.description.map((line) => (
-                  <span className="block" key={line}>
-                    {line}
-                  </span>
-                ))}
-              </span>
-            </NavLink>
+              <NavLink
+                className="mb-3 flex items-center gap-3 rounded-lg px-2 py-1.5 transition-colors hover:bg-primary-50"
+                to={to}
+              >
+                <span className="grid size-9 place-items-center rounded-lg bg-primary-50 text-primary-900">
+                  <Icon size={20} weight="regular" aria-hidden="true" />
+                </span>
+                <strong className="text-[16px] font-semibold leading-none text-primary-900">
+                  {title}
+                </strong>
+              </NavLink>
+
+              <div className="grid grid-cols-2 gap-x-3 border-t border-primary-600/10 pt-3">
+                {items.map((item) => {
+                  const label = typeof item === "string" ? item : item.label;
+                  const children =
+                    typeof item !== "string" && "children" in item ? item.children : [];
+                  const itemTo = typeof item !== "string" && "to" in item ? item.to : "";
+                  const itemClassName =
+                    "flex min-h-9 w-full items-center rounded-md px-2 text-left text-[14px] font-semibold leading-none text-primary-800 transition-colors hover:bg-primary-50 hover:text-primary-900";
+
+                  return (
+                    <div key={label}>
+                      {itemTo && isExternalUrl(itemTo) ? (
+                        <a className={itemClassName} href={itemTo} rel="noreferrer" target="_blank">
+                          {label}
+                        </a>
+                      ) : itemTo ? (
+                        <NavLink className={itemClassName} to={itemTo}>
+                          {label}
+                        </NavLink>
+                      ) : (
+                        <button type="button" className={itemClassName}>
+                          {label}
+                        </button>
+                      )}
+                      {children.length ? (
+                        <div className="grid gap-1 px-1 pb-3 pt-1 text-[14px] font-medium leading-none text-primary-700/75">
+                          {children.map((child) => (
+                            <NavLink
+                              className="inline-flex items-center gap-2 rounded-md px-2 py-1 transition-colors hover:bg-primary-50 hover:text-primary-900"
+                              key={child.label}
+                              to={child.to}
+                            >
+                              <span aria-hidden="true">↳</span>
+                              <span>{child.label}</span>
+                            </NavLink>
+                          ))}
+                        </div>
+                      ) : null}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
           ))}
         </div>
       </div>
@@ -247,8 +347,8 @@ export function Header() {
     if (typeof window === "undefined") return false;
     return window.localStorage.getItem("restudio-login-status") === "authenticated";
   });
-  const isServiceDetailPage = SERVICE_DETAIL_PATHS.includes(
-    location.pathname as (typeof SERVICE_DETAIL_PATHS)[number],
+  const isServiceDetailPage = SERVICE_DETAIL_PATHS.some((path) =>
+    location.pathname.startsWith(path),
   );
   const currentService =
     location.pathname === "/services/regulatory-response"

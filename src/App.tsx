@@ -6,6 +6,7 @@ import { ScrollToTop } from "./components/ScrollToTop";
 import { HomePage } from "./pages/HomePage";
 import { LoginPage } from "./pages/LoginPage";
 import { NewsPage } from "./pages/NewsPage";
+import { OnestopDevelopmentSystemPage } from "./pages/OnestopDevelopmentSystemPage";
 import { PlaceholderPage } from "./pages/PlaceholderPage";
 import { ProductQuotePage } from "./pages/ProductQuotePage";
 import { ProjectManagementPage } from "./pages/ProjectManagementPage";
@@ -54,6 +55,10 @@ export default function App() {
             <Route
               path="/services/product-development"
               element={<ServiceDetailPage variant="product-development" />}
+            />
+            <Route
+              path="/services/product-development/onestop-system"
+              element={<OnestopDevelopmentSystemPage />}
             />
             <Route
               path="/services/regulatory-response"
