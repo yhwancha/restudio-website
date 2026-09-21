@@ -4,6 +4,7 @@ import { Layout } from "./components/Layout";
 import { AiChatFloatingButton } from "./components/AiChatFloatingButton";
 import { ScrollToTop } from "./components/ScrollToTop";
 import { HomePage } from "./pages/HomePage";
+import { IndustryConsultingPage } from "./pages/IndustryConsultingPage";
 import { LoginPage } from "./pages/LoginPage";
 import { NewsPage } from "./pages/NewsPage";
 import { OnestopDevelopmentSystemPage } from "./pages/OnestopDevelopmentSystemPage";
@@ -12,6 +13,8 @@ import { ProductQuotePage } from "./pages/ProductQuotePage";
 import { ProjectManagementPage } from "./pages/ProjectManagementPage";
 import { ResourcesPage } from "./pages/ResourcesPage";
 import { ServiceDetailPage } from "./pages/ServiceDetailPage";
+import { StoryDetailPage } from "./pages/StoryDetailPage";
+import { StoriesListPage } from "./pages/StoriesListPage";
 
 const PAGES = [
   {
@@ -23,11 +26,6 @@ const PAGES = [
     path: "/services",
     title: "서비스 이동",
     description: "제품 개발과 규제 대응 서비스를 연결할 빈 페이지입니다.",
-  },
-  {
-    path: "/stories",
-    title: "고객 사례",
-    description: "브랜드 사례와 포트폴리오를 보여줄 빈 페이지입니다.",
   },
   {
     path: "/inquiry/product",
@@ -61,12 +59,18 @@ export default function App() {
               element={<OnestopDevelopmentSystemPage />}
             />
             <Route
+              path="/services/product-development/industry-consulting"
+              element={<IndustryConsultingPage />}
+            />
+            <Route
               path="/services/regulatory-response"
               element={<ServiceDetailPage variant="regulatory-response" />}
             />
             <Route path="/resources" element={<ResourcesPage />} />
             <Route path="/news" element={<NewsPage />} />
             <Route path="/news/:slug" element={<NewsPage />} />
+            <Route path="/stories" element={<StoriesListPage />} />
+            <Route path="/stories/muir-hike-reusable-box" element={<StoryDetailPage />} />
             {PAGES.map((page) => (
               <Route
                 key={page.path}

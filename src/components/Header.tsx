@@ -65,7 +65,10 @@ const SERVICE_MENU_GROUPS = [
         to: "/services/product-development/onestop-system",
       },
       "통합 프로젝트 매니징",
-      "업종별 맞춤 설계 컨설팅",
+      {
+        label: "업종별 맞춤 설계 컨설팅",
+        to: "/services/product-development/industry-consulting",
+      },
       {
         label: "친환경 소재 연구소",
         to: "https://www.revation.co.kr/kr/sub/product/list.asp",
