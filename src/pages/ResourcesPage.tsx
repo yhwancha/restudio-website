@@ -1,4 +1,5 @@
 import { ArrowRight } from "@phosphor-icons/react";
+import { Link } from "react-router-dom";
 
 const featuredResources = [
   {
@@ -7,6 +8,7 @@ const featuredResources = [
     description: "화장품, F&B, 라이프스타일 브랜드가 참고할 친환경 패키지 흐름을 정리했습니다.",
     tone: "green",
     image: "/assets/resources/resource-book-trend-2026.png",
+    href: "/resources/eco-package-industry-trend-2026",
   },
   {
     tag: "리포트",
@@ -82,21 +84,37 @@ function ResourceCard({
   tag,
   title,
   tone,
+  href,
 }: {
   description: string;
+  href?: string;
   image: string;
   tag: string;
   title: string;
   tone: string;
 }) {
-  return (
-    <article className="resource-card">
+  const content = (
+    <>
       <div className={`resource-card__media resource-card__media--${tone}`}>
         <span className={`resource-card__tag resource-card__tag--${tone}`}>{tag}</span>
         <img src={image} alt="" aria-hidden="true" />
       </div>
       <h3>{title}</h3>
       <p>{description}</p>
+    </>
+  );
+
+  if (href) {
+    return (
+      <Link className="resource-card resource-card--link" to={href}>
+        {content}
+      </Link>
+    );
+  }
+
+  return (
+    <article className="resource-card">
+      {content}
     </article>
   );
 }

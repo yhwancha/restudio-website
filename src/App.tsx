@@ -11,6 +11,7 @@ import { OnestopDevelopmentSystemPage } from "./pages/OnestopDevelopmentSystemPa
 import { PlaceholderPage } from "./pages/PlaceholderPage";
 import { ProductQuotePage } from "./pages/ProductQuotePage";
 import { ProjectManagementPage } from "./pages/ProjectManagementPage";
+import { ResourceDetailPage } from "./pages/ResourceDetailPage";
 import { ResourcesPage } from "./pages/ResourcesPage";
 import { ServiceDetailPage } from "./pages/ServiceDetailPage";
 import { StoryDetailPage } from "./pages/StoryDetailPage";
@@ -67,6 +68,10 @@ export default function App() {
               element={<ServiceDetailPage variant="regulatory-response" />}
             />
             <Route path="/resources" element={<ResourcesPage />} />
+            <Route
+              path="/resources/eco-package-industry-trend-2026"
+              element={<ResourceDetailPage />}
+            />
             <Route path="/news" element={<NewsPage />} />
             <Route path="/news/:slug" element={<NewsPage />} />
             <Route path="/stories" element={<StoriesListPage />} />
