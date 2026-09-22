@@ -3,30 +3,26 @@ import { I18nProvider } from "./i18n";
 import { Layout } from "./components/Layout";
 import { AiChatFloatingButton } from "./components/AiChatFloatingButton";
 import { ScrollToTop } from "./components/ScrollToTop";
+import { CompanyPage } from "./pages/CompanyPage";
 import { HomePage } from "./pages/HomePage";
+import { IndustryConsultingPage } from "./pages/IndustryConsultingPage";
 import { LoginPage } from "./pages/LoginPage";
 import { NewsPage } from "./pages/NewsPage";
+import { OnestopDevelopmentSystemPage } from "./pages/OnestopDevelopmentSystemPage";
 import { PlaceholderPage } from "./pages/PlaceholderPage";
 import { ProductQuotePage } from "./pages/ProductQuotePage";
 import { ProjectManagementPage } from "./pages/ProjectManagementPage";
+import { ResourceDetailPage } from "./pages/ResourceDetailPage";
 import { ResourcesPage } from "./pages/ResourcesPage";
 import { ServiceDetailPage } from "./pages/ServiceDetailPage";
+import { StoryDetailPage } from "./pages/StoryDetailPage";
+import { StoriesListPage } from "./pages/StoriesListPage";
 
 const PAGES = [
-  {
-    path: "/company",
-    title: "회사 소개",
-    description: "브랜드와 팀 이야기를 담을 빈 페이지입니다.",
-  },
   {
     path: "/services",
     title: "서비스 이동",
     description: "제품 개발과 규제 대응 서비스를 연결할 빈 페이지입니다.",
-  },
-  {
-    path: "/stories",
-    title: "고객 사례",
-    description: "브랜드 사례와 포트폴리오를 보여줄 빈 페이지입니다.",
   },
   {
     path: "/inquiry/product",
@@ -51,17 +47,32 @@ export default function App() {
           <Route path="/project-management/quote" element={<ProductQuotePage />} />
           <Route element={<Layout />}>
             <Route index element={<HomePage />} />
+            <Route path="/company" element={<CompanyPage />} />
             <Route
               path="/services/product-development"
               element={<ServiceDetailPage variant="product-development" />}
+            />
+            <Route
+              path="/services/product-development/onestop-system"
+              element={<OnestopDevelopmentSystemPage />}
+            />
+            <Route
+              path="/services/product-development/industry-consulting"
+              element={<IndustryConsultingPage />}
             />
             <Route
               path="/services/regulatory-response"
               element={<ServiceDetailPage variant="regulatory-response" />}
             />
             <Route path="/resources" element={<ResourcesPage />} />
+            <Route
+              path="/resources/eco-package-industry-trend-2026"
+              element={<ResourceDetailPage />}
+            />
             <Route path="/news" element={<NewsPage />} />
             <Route path="/news/:slug" element={<NewsPage />} />
+            <Route path="/stories" element={<StoriesListPage />} />
+            <Route path="/stories/muir-hike-reusable-box" element={<StoryDetailPage />} />
             {PAGES.map((page) => (
               <Route
                 key={page.path}
