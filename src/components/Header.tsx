@@ -64,7 +64,6 @@ const SERVICE_MENU_GROUPS = [
         label: "원스톱 개발 시스템",
         to: "/services/product-development/onestop-system",
       },
-      "통합 프로젝트 매니징",
       {
         label: "업종별 맞춤 설계 컨설팅",
         to: "/services/product-development/industry-consulting",
@@ -80,7 +79,7 @@ const SERVICE_MENU_GROUPS = [
     ],
   },
   {
-    title: "규제 해결 솔루션",
+    title: "규제 마스터 솔루션",
     to: "/services/regulatory-response",
     Icon: FileText,
     items: [

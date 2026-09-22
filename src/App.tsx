@@ -3,6 +3,7 @@ import { I18nProvider } from "./i18n";
 import { Layout } from "./components/Layout";
 import { AiChatFloatingButton } from "./components/AiChatFloatingButton";
 import { ScrollToTop } from "./components/ScrollToTop";
+import { CompanyPage } from "./pages/CompanyPage";
 import { HomePage } from "./pages/HomePage";
 import { IndustryConsultingPage } from "./pages/IndustryConsultingPage";
 import { LoginPage } from "./pages/LoginPage";
@@ -18,11 +19,6 @@ import { StoryDetailPage } from "./pages/StoryDetailPage";
 import { StoriesListPage } from "./pages/StoriesListPage";
 
 const PAGES = [
-  {
-    path: "/company",
-    title: "회사 소개",
-    description: "브랜드와 팀 이야기를 담을 빈 페이지입니다.",
-  },
   {
     path: "/services",
     title: "서비스 이동",
@@ -51,6 +47,7 @@ export default function App() {
           <Route path="/project-management/quote" element={<ProductQuotePage />} />
           <Route element={<Layout />}>
             <Route index element={<HomePage />} />
+            <Route path="/company" element={<CompanyPage />} />
             <Route
               path="/services/product-development"
               element={<ServiceDetailPage variant="product-development" />}

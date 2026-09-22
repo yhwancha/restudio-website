@@ -53,7 +53,7 @@ const coreServices = [
     title: "친환경 규제대응 솔루션 바로가기",
     description:
       "국내외 규제 동향 분석과 대응 전략 수립으로 비즈니스 리스크를 최소화하고 해외 수출까지 도와드려요.",
-    image: "/assets/services/regulatory-consulting.png",
+    image: "/assets/services/regulatory-consulting-clean-white.png",
     alt: "PPWR regulatory consulting dashboard preview",
     to: "/services/regulatory-response",
   },
