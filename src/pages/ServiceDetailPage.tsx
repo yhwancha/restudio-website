@@ -1,21 +1,43 @@
-import { type CSSProperties, useEffect, useRef, useState } from "react";
+import { Fragment, type CSSProperties, useEffect, useRef, useState } from "react";
 import {
   ArrowUp,
   ArrowRight,
+  AirplaneTilt,
+  Bell,
+  Brain,
   Buildings,
+  CaretDown,
   CaretLeft,
   CaretRight,
   Briefcase,
   CheckCircle,
+  CheckSquare,
+  ChartBar,
+  Clock,
   ClipboardText,
+  ClockCounterClockwise,
+  CreditCard,
   Cube,
   Factory,
+  FileMagnifyingGlass,
+  FileText,
+  Key,
   Flask,
   Leaf,
+  LockKey,
   MagnifyingGlass,
   Network,
   Paperclip,
+  PaperPlaneTilt,
+  PlusCircle,
+  Scan,
+  ShieldCheck,
   SquaresFour,
+  TrendUp,
+  UploadSimple,
+  User,
+  UserCircle,
+  WarningCircle,
   XCircle,
 } from "@phosphor-icons/react";
 import { Link } from "react-router-dom";
@@ -112,6 +134,26 @@ const markerStroke = (
       className="marker-scribble__path marker-scribble__path--middle"
       pathLength={1}
       d="M31 37 C47 46 57 8 75 16 C92 24 96 43 113 36 C132 29 139 9 155 19 C170 29 171 45 189 35 C206 26 211 23 227 30 C244 38 246 17 263 22 C279 27 286 32 296 24"
+    />
+  </svg>
+);
+
+const regulatoryMarkerStroke = (
+  <svg
+    className="regulatory-marker-scribble__stroke"
+    viewBox="0 0 520 78"
+    preserveAspectRatio="none"
+    aria-hidden="true"
+  >
+    <path
+      className="regulatory-marker-scribble__path regulatory-marker-scribble__path--base"
+      pathLength={1}
+      d="M13 43 C33 19 55 23 74 33 C96 45 106 18 131 22 C157 26 169 42 193 31 C218 20 238 15 261 34 C286 55 304 13 333 21 C362 29 381 46 407 30 C434 14 455 21 477 29 C492 34 503 29 512 24"
+    />
+    <path
+      className="regulatory-marker-scribble__path regulatory-marker-scribble__path--middle"
+      pathLength={1}
+      d="M10 48 C34 58 49 10 74 19 C99 28 107 55 132 43 C160 30 171 10 195 22 C219 34 224 55 250 40 C277 25 292 27 317 37 C344 48 353 17 379 25 C405 33 420 47 445 34 C470 21 493 38 510 28"
     />
   </svg>
 );
@@ -260,71 +302,392 @@ const productCapabilityItems = [
   },
 ];
 
-const regulatoryGrowthTabs = [
+const regulatoryMasterHighlights = [
   {
-    id: "market",
-    label: "매출 증가율",
-    title: "유럽 수출 시 국내 한정 대비 매출 증가율",
-    description: "같은 제품도 시장 규모와 규제 진입장벽에 따라 성장 폭이 달라집니다.",
+    number: "01",
+    title: "원스톱 솔루션",
+    description: "준비 기간 단축 / 비용 절감",
+    Icon: PaperPlaneTilt,
   },
   {
-    id: "fit",
-    label: "필요 기업",
-    title: "이런 기업에 필요합니다",
-    description: "제품 등록, 포장재 증빙, 제출 문서 관리가 필요한 팀에 적합합니다.",
+    number: "02",
+    title: "AI 에이전트",
+    description: "쉽고 빠른 서류 작성",
+    Icon: Brain,
   },
   {
-    id: "factor",
-    label: "주요 요인",
-    title: "매출 증가율 차이를 결정짓는 주요 요인",
-    description: "시장 규모와 규제 통과 역량이 가격과 수량 확보에 영향을 줍니다.",
-  },
-] as const;
-
-const regulatoryGrowthRows = [
-  {
-    category: "화장품",
-    growth: "+200% ~ +500%",
-    source: "KOTRA 유럽 CPNP 인증 및 C-뷰티/K-뷰티 분석",
+    number: "03",
+    title: "2중 철통진단",
+    description: "AI + 규제 전문가 2중 교차검증",
+    Icon: ShieldCheck,
   },
   {
-    category: "식품 및 음료",
-    growth: "+150% ~ +400%",
-    source: "농림축산식품부·aT 유럽편 해외시장 맞춤형 조사",
+    number: "04",
+    title: "리스크 최소화",
+    description: "납기 지연 / 통관 거부 방지",
+    Icon: WarningCircle,
   },
   {
-    category: "생활·소형가전",
-    growth: "+150% ~ +350%",
-    source: "KITA 유럽 소비재 유통망 진출 전략, KOTRA 동향",
+    number: "05",
+    title: "패스트 런칭",
+    description: "빠른 수출 시장 진출",
+    Icon: AirplaneTilt,
   },
   {
-    category: "소형 전자부품",
-    growth: "+200% ~ +500%",
-    source: "산업통상자원부 주요 품목별 수출입 동향, KEA 정보",
+    number: "06",
+    title: "패스트 트랙",
+    description: "한번 등록으로 준비 끝",
+    Icon: Scan,
   },
 ];
 
-const regulatoryFitItems = [
-  "EU에 제품을 수출 중이거나 준비하는 기업",
-  "여러 공급사로부터 포장재 증빙을 받는 브랜드사",
-  "제품별 포장재 구성·증빙자료 관리가 어려운 기업",
-  "고객사로부터 PPWR 대응자료 제출을 요청받은 제조사",
-  "TD-DoC 작성 근거를 체계적으로 관리해야 하는 기업",
-  "국가별 EPR 신고용 포장재 증빙관리가 필요한 기업",
-  "다수 SKU를 관리하는 화장품·식품·생활용품·전자제품 기업",
+const regulatoryConcernCards = [
+  {
+    title: "규제 서류 준비에 너무 많은 시간과 비용이 들어요.",
+    tag: "글로벌 유통사",
+    quote:
+      "제품마다 필요한 서류가 다르고, 규제가 계속 바뀌어 매번 처음부터 다시 준비하는 것 같아요.",
+    image: "/assets/testimonials/cosmetics-ppwr-documents.png",
+    imageLabel: "규제 서류 준비에 필요한 제품과 시험 자료 이미지",
+  },
+  {
+    title: "고객사마다 요구하는 서류가 달라 대응이 힘들어요.",
+    tag: "OEM / ODM 사",
+    quote:
+      "같은 제품인데도 국가마다, 고객사마다 요구사항이 달라 반복 작업이 많고 인력이 부족해요.",
+    image: "/assets/testimonials/lifestyle-material-search.png",
+    imageLabel: "고객사별 규제 대응 자료를 정리하는 이미지",
+  },
+  {
+    title: "해외 진출을 하고 싶은데 규제가 너무 복잡합니다.",
+    tag: "브랜드 제조사",
+    quote:
+      "친환경 제품과 패키지를 만들었지만 어떤 시장에, 어떤 서류가 필요한지 몰라 시작이 어렵습니다.",
+    image: "/assets/testimonials/fnb-ppwr-response.png",
+    imageLabel: "해외 진출 규제 대응을 준비하는 이미지",
+  },
 ];
 
-const regulatoryFactorItems = [
+const regulatoryMasterShowcaseCards = [
   {
-    title: "시장 규모의 급격한 확장",
+    eyebrow: "무엇이 부족한지,\n정확히 알고 시작하세요.",
+    title: "심층 진단 리포팅 서비스",
     description:
-      "대한민국 내수 대비 유럽 통합 시장은 더 큰 고객 기반을 제공합니다. 유통망 확보 시 매출 파이가 비선형적으로 증가할 수 있습니다.",
+      "무료 진단 현황 리포트에서 한 단계 더 들어가, 증빙서류(도면, BOM, 시험성적서 등)까지 등록하면 AI Agent가 1차로 빠르고 정확하게 산출하고 규제 전문가가 2차로 정밀 진단합니다.",
+    image: "/assets/detail-pages/regulatory-master/doc-report.png",
+    alt: "PPWR 심층 진단 리포트 화면",
   },
   {
-    title: "규제 진입장벽과 독점적 가치",
+    eyebrow: "서류에 쏟던 시간을,\n다시 비즈니스로.",
+    title: "TD / DoC 작성 및 발급 서비스",
     description:
-      "EU CE, CPNP, MDR 등 엄격한 규제 관문을 통과한 제품은 높은 진입장벽 덕분에 국내 대비 더 높은 가격과 수량을 확보할 수 있습니다.",
+      "진단 리포트를 기반으로 규제 대응 필수 서류(TD/DoC)를 AI가 자동 작성 지원하고 발급까지 연결합니다. 수정이 필요하면 언제든 고객이 직접 보완할 수 있습니다.",
+    image: "/assets/detail-pages/regulatory-master/td-report.png",
+    alt: "TD 리포트와 DoC 리포트 작성 화면",
   },
+  {
+    eyebrow: "규제가 바뀌어도, 처음부터\n다시 준비하지 않도록.",
+    title: "후속 관리 서비스",
+    description:
+      "새롭게 추가되거나 변경되는 규제 대응 트렌드를 분석하고, 서류 수정과 후속관리 컨설팅까지 지속적으로 지원합니다.",
+    image: "/assets/detail-pages/regulatory-master/follow-up-meeting.png",
+    alt: "규제 후속 관리를 상담하는 회의 장면",
+  },
+];
+
+const regulatorySolutionFitTags = [
+  "해외 이커머스 셀러",
+  "D2C 수출기업",
+  "수입사",
+  "무역상사",
+  "대행사",
+  "패키징 / 원부자재 공급사",
+  "글로벌 리테일 납품벤더",
+  "PB 공급사",
+  "해외 진출 예정 스타트업 / 중소기업",
+];
+
+const regulatorySolutionChats = [
+  {
+    customer: "해외 수출 유통사",
+    question: "바이어 제출 서류가 나라마다 달라 한 번에 정리가 안돼요.",
+    answer:
+      "제품 정보 / 시험자료 / 공급사 증빙을 시장별 기준에 맞춰 정리하고, DoC / TD 작성 지원부터 제출용 증빙 발급 연계, 후속 대응까지 한 흐름으로 지원해드려요.",
+  },
+  {
+    customer: "OEM / ODM사",
+    question: "고객사마다 요청이 달라 개발 / 생산 문서를 매번 따로 대응해요.",
+    answer:
+      "개발 산출물과 생산 데이터를 규제 문서로 연결해 고객사 대응 프로세스를 표준화해 드립니다.",
+  },
+  {
+    customer: "브랜드 제조사",
+    question: "출시는 빨리 하고 싶은데 친환경 전환과 규제 대응까지 챙기기 벅차요.",
+    answer:
+      "전략 → 소재 → 디자인 → R&D → 생산 → 탄소저감/ESG → PPWR 대응 → 핵심 문서 작성까지 하나의 프로젝트로 통합 관리할 수 있어요.",
+  },
+  {
+    customer: "패키징 / 원부자재 공급사",
+    question: "고객사가 요구하는 재질 증빙과 시험자료 요청이 계속 늘고 있어요.",
+    answer:
+      "공급사 자료를 품목별로 정리하고, 부족한 시험·선언·기술문서 항목을 먼저 확인해 납품 대응 속도를 높입니다.",
+  },
+];
+
+const regulatoryTrustTestimonials = [
+  {
+    tag: "A 유통사",
+    quote:
+      "진단부터 문서 발급, 후속 관리까지 연결해 1회성 대응이 아닌 저희 회사만의 지속가능한 수출 인프라를 구축해줘서 좋았어요.",
+    author: "김*모",
+    role: "과장",
+  },
+  {
+    tag: "OEM / ODM 사",
+    quote:
+      "문서 대응을 표준화하고 TD/DoC까지 빠르게 연결해 고객 대응 효율과 납기 안정성, 고객 만족감이 높아졌어요.",
+    author: "성*나",
+    role: "부장",
+  },
+  {
+    tag: "브랜드 제조사 / 화장품",
+    quote:
+      "친환경 제품 / 패키지와 규제 대응을 함께 설계해줘서 저희 브랜드의 글로벌 진출 기반을 탄탄하게 만들어줬습니다.",
+    author: "박*수",
+    role: "CEO",
+  },
+];
+
+const regulatoryExpertCards = [
+  {
+    number: "01",
+    title: "심층 진단 리포팅 서비스",
+    highlight: "AI Agent + 전문가",
+    description:
+      "회사 정보, 수출 제품/브랜드, 패키지 정보, 증빙 자료를 업로드하면 AI가 빠르게 진단하고 전문가가 한번 더 자세히 검토하여 이해하기 쉬운 리포트를 제공합니다.",
+  },
+  {
+    number: "02",
+    title: "TD / DoC 작성 및 발급 서비스",
+    highlight: "AI Agent",
+    description:
+      "진단 리포트를 바탕으로 필요한 기술문서(TD)와 적합성 선언서(DoC)를 자동으로 작성하고 발급합니다. 언제든지 항목을 추가하거나 수정할 수 있습니다.",
+  },
+  {
+    number: "03",
+    title: "후속 관리 서비스",
+    highlight: "지속적인 규제 모니터링",
+    description:
+      "변화하는 글로벌 규제를 모니터링하고, 문서 수정이 필요한 때 신속히 대응합니다. 추가 컨설팅과 지속적인 지원으로 항상 안정적인 수출을 도와드립니다.",
+  },
+];
+
+const regulatoryValueTargets = [
+  {
+    title: "제조 / 수출업체",
+    items: ["제품 출시 및 수출 지연 최소화", "증빙 문서 체계적 관리", "더 빠른 글로벌 시장 진입"],
+    Icon: Factory,
+  },
+  {
+    title: "OEM / ODM 사",
+    items: ["고객사 요구에 표준화된 대응", "반복적인 문서 작업 시간 절감", "제안 경쟁력 강화"],
+    Icon: Cube,
+  },
+  {
+    title: "브랜드 제조사",
+    items: ["친환경 제품 / 패키지의 글로벌 수출 연계", "내부 인력 부담 감소", "더 큰 비즈니스 기회 확보"],
+    Icon: Flask,
+  },
+];
+
+const regulatoryComparisonRows = [
+  {
+    label: "규제 전문성",
+    restudio: "글로벌 패키징 규제 중심 전문 대응 (유럽 120개 법령)",
+    consulting: "광범위 사안 일반적 조언",
+    packaging: "패키징 생산·소재 중심",
+    certification: "시험 인증 위주의 규제 해석",
+  },
+  {
+    label: "서비스 제공 범위",
+    restudio: "진단 > 개선 > 시험 > 대응 > 인증/등록까지 A-Z",
+    consulting: "진단만 하거나 시험 외부 연계 필요",
+    packaging: "소재 패키지 시험까지",
+    certification: "시험 인증만 수행 중심",
+  },
+  {
+    label: "비용 효율",
+    restudio: "하나의 프로젝트로 통합 관리 → 중복비용 제로 절감 가능",
+    consulting: "단계마다 별도 비용 발생 가능",
+    packaging: "규제 비용은 별도 청구 가능",
+    certification: "시험 인증 시 인건비 포함 별도 정산 가능",
+  },
+  {
+    label: "준비 기간",
+    restudio: "전 과정을 한 곳에서 진행해 대응 기간 단축",
+    consulting: "다양한 기관 연계 시 일정이 길어질 가능성",
+    packaging: "시험 인증 시 인계 시간 별도 소요",
+    certification: "시험 인증 시 인계비 등 별도 기간 소요",
+  },
+  {
+    label: "지속 / 확장성",
+    restudio: "현 구축한 데이터·AI일로 기반으로 지속 대응 + 타 품목 등 규제 확장 대응",
+    consulting: "프로젝트 단위 대응",
+    packaging: "제조·소재 업데이트",
+    certification: "인증→시험 대응만 대응",
+  },
+];
+
+const regulatoryStartSteps = [
+  {
+    title: "회원가입",
+    description: "지금 바로 시작하세요",
+    Icon: UserCircle,
+  },
+  {
+    title: "회사/제품 정보 등록",
+    description: "기본 정보를 입력합니다",
+    Icon: FileText,
+  },
+  {
+    title: "서류 업로드",
+    description: "필요한 자료를 올려주세요",
+    Icon: UploadSimple,
+  },
+  {
+    title: "진단 리포트 확인",
+    description: "AI와 전문가가 분석한 결과를 확인하세요",
+    Icon: ChartBar,
+  },
+];
+
+const regulatoryFreeReportSteps = [
+  {
+    number: "1",
+    title: "회원가입",
+    description: "이메일 등 기본 계정 생성",
+  },
+  {
+    number: "2",
+    title: "기본 정보 입력",
+    description: "제품·업종 등 간단 정보만 입력",
+  },
+  {
+    number: "3",
+    title: "진단 현황 리포트 확인",
+    description: "우리 회사 맞춤 규제 진단 현황을 무료로 즉시 확인",
+    badge: "무료",
+    featured: true,
+  },
+  {
+    number: "4",
+    title: "심층 진단 신청",
+    description: "증빙서류 업로드 후 AI+전문가 정밀 진단",
+  },
+];
+
+const regulatoryDiagnosisMissingDocs = [
+  {
+    status: "danger",
+    title: "시험성적서 내 시험 대상 제품명 불일치",
+    description: "제출된 시험성적서의 제품명이 현재 제품 정보와 다릅니다.",
+    action: "업로드",
+  },
+  {
+    status: "warning",
+    title: "적합성 선언서(DoC) 작성 필요",
+    description: "최신 PPWR 양식에 따라 DoC를 작성해 주세요.",
+    action: "작성하기",
+  },
+  {
+    status: "warning",
+    title: "기술문서 작성용 소재 성분표 보완 필요",
+    description: "모든 포장 재질의 소재 성분 정보가 누락되었습니다.",
+    action: "요청하기",
+  },
+];
+
+const regulatoryDiagnosisAlerts = [
+  {
+    tone: "blue",
+    title: "새로운 규제 동향에 따른 검토 필요",
+    description: "EU가 발표한 PPWR 핵심 가이드에 주요 변경사항이 있습니다.",
+    date: "2025.04.21",
+  },
+  {
+    tone: "yellow",
+    title: "서류 갱신 시점이 임박했습니다",
+    description: "제출한 시험성적서의 유효기간이 30일 남았습니다.",
+    date: "2025.04.20",
+  },
+  {
+    tone: "green",
+    title: "EU 규제 변경(안)이 발표되었습니다",
+    description: "재활용성 평가 기준이 강화될 예정이나 사전 검토가 필요합니다.",
+    date: "2025.04.18",
+  },
+];
+
+const regulatoryDiagnosisBenefits = [
+  {
+    Icon: FileMagnifyingGlass,
+    tone: "blue",
+    title: "진단 결과 & 보완 가이드",
+    description:
+      "제품·패키지·증빙자료를 기반으로 PPWR 대응 현황과 보완이 필요한 항목을 한눈에 확인할 수 있습니다. AI 진단과 전문가 검토를 통해 우선 대응이 필요한 사항까지 안내합니다.",
+  },
+  {
+    Icon: CheckSquare,
+    tone: "green",
+    title: "기술문서 작성 & 관리",
+    description:
+      "진단 결과와 확인된 제품·패키지 정보를 기반으로 기술문서(TD)와 적합성 선언서(DoC) 작성을 지원합니다. 제품 또는 패키지 정보가 변경되면 기존 데이터를 활용해 관련 문서를 효율적으로 업데이트할 수 있습니다.",
+  },
+  {
+    Icon: Bell,
+    tone: "purple",
+    title: "규정 변화 & 후속 관리",
+    description:
+      "PPWR 규정과 가이드의 변경사항을 지속적으로 확인하고, 기존 제품과 문서에 영향을 주는 사항을 안내합니다. 추가 확인이나 보완이 필요한 항목도 함께 관리할 수 있습니다.",
+  },
+];
+
+const regulatorySecurityItems = [
+  {
+    Icon: LockKey,
+    title: "검증된 인프라",
+    description:
+      "Supabase 인프라에서 운영되며, 인증과 보안 정책으로 데이터베이스 접근을 관리합니다.",
+  },
+  {
+    Icon: ShieldCheck,
+    title: "DDoS 보호",
+    description: "Vercel의 DDoS 보호 기능은 악성 트래픽을 탐지하고 완화하는 데 도움을 줍니다.",
+  },
+  {
+    Icon: CreditCard,
+    title: "안전한 결제 처리",
+    description: "결제는 판매 대행사의 포트원이 처리합니다. 리스튜디오는 카드 정보를 저장하지 않습니다.",
+  },
+  {
+    Icon: ClockCounterClockwise,
+    title: "버전 기록",
+    description: "저장된 버전을 확인하고 페이지와 사이트 레이아웃을 이전 버전으로 되돌릴 수 있습니다.",
+  },
+  {
+    Icon: Key,
+    title: "인증과 결제 관리",
+    description: "인증은 Supabase Auth가 관리하고, 결제는 포트원이 처리합니다.",
+  },
+];
+
+const regulatoryFaqItems = [
+  "서류(TD·DoC)는 바로 제출 가능한 형태로 발급되나요?",
+  "진단을 시작하려면 어떤 자료를 준비해야 하나요?",
+  "AI 진단과 전문가 검토는 어떻게 함께 진행되나요?",
+  "규제 변경이 생기면 후속 관리도 받을 수 있나요?",
+  "요금제는 어떻게 구성되어 있나요?",
+  "필요한 자료(시험성적서 등)가 부족해도 신청할 수 있나요?",
 ];
 
 const regulatoryWhyItems = [
@@ -667,12 +1030,58 @@ function RegulatoryHero() {
     <section className="regulatory-hero">
       <div className="regulatory-hero__inner">
         <h1 className="title-reveal">
-          <AnimatedTitle parts="AI 기반의 PPWR 규제 대응 서비스" />
+          <AnimatedTitle
+            parts={[
+              "EU수출, 서류때문에 발목 잡히지 마세요.",
+              { type: "break" },
+              {
+                text: "PPWR 준비부터 서류 제출까지,",
+                wrapperClassName:
+                  "marker-scribble regulatory-hero__highlight",
+                charClassName: "relative z-10",
+                prefix: regulatoryMarkerStroke,
+              },
+              { type: "break" },
+              "리스튜디오 하나로 끝냅니다.",
+            ]}
+          />
         </h1>
-        <p>제품 등록부터 증빙 검토, 제출 문서 준비까지</p>
+        <p>AI와 규제 전문가가 함께 진단부터 통과까지 하나의 흐름으로 완성합니다.</p>
+
+        <div className="ad-banner-section ad-banner-section--embedded" aria-label="프로모션 배너">
+          <div className="ad-banner">
+            <div className="ad-banner__track" style={{ transform: "translateX(0%)" }}>
+              <article className="ad-banner__slide ad-banner__slide--product-development-onestop">
+                <img
+                  className="ad-banner__image"
+                  src="/assets/ads/product-development-onestop-banner.png"
+                  alt="친환경 패키지 처음부터 끝까지 리스튜디오 하나로 완성"
+                />
+                <span className="sr-only">
+                  처음부터 끝까지 리스튜디오 친환경 패키지 완성. 친환경 패키지 원스톱 솔루션 상담 신청 배너
+                </span>
+              </article>
+            </div>
+
+            <div className="ad-banner__controls">
+              <button type="button" aria-label="이전 광고 배너 보기">
+                <CaretLeft size={19} weight="bold" aria-hidden="true" />
+              </button>
+              <button type="button" aria-label="다음 광고 배너 보기">
+                <CaretRight size={19} weight="bold" aria-hidden="true" />
+              </button>
+              <div className="ad-banner__indicator" aria-hidden="true">
+                <span style={{ transform: "translateX(0%)", width: "100%" }} />
+              </div>
+              <span className="ad-banner__count">1/1</span>
+            </div>
+
+            <span className="sr-only">현재 배너: 처음부터 끝까지 리스튜디오 친환경 패키지 완성</span>
+          </div>
+        </div>
 
         <form
-          className="relative z-[3] mx-auto mt-10 w-full max-w-[760px] rounded-2xl border border-[#d7dde2] bg-white px-4 py-4 shadow-[0_12px_28px_rgba(23,33,27,0.035)] md:mt-11 md:px-5 md:py-4"
+          className="mx-auto mt-4 w-full max-w-[1040px] rounded-2xl border border-[#d7dde2] bg-white px-4 py-4 shadow-[0_12px_28px_rgba(23,33,27,0.035)] md:mt-5 md:px-5 md:py-4"
           onSubmit={(event) => event.preventDefault()}
         >
           <div className="flex items-center gap-2.5">
@@ -689,7 +1098,7 @@ function RegulatoryHero() {
               id="regulatory-ai-question"
               type="text"
               className="h-8 min-w-0 flex-1 bg-transparent text-[13px] font-medium text-primary-900 outline-none placeholder:text-[#9aa3af] md:text-[14px]"
-              placeholder="PPWR 규제 대응에 대해 궁금한 것이 있나요? AI Agent 리사가 도와드릴게요!"
+              placeholder="PPWR 규제 대응, AI Agent 리사와 채팅하세요!"
             />
             <button
               type="submit"
@@ -714,22 +1123,51 @@ function RegulatoryHero() {
           </p>
         </form>
 
-        <div className="regulatory-hero__visual" aria-hidden="true">
-          <div className="regulatory-hero__dashboard">
+        <div className="regulatory-hero__cta">
+          <strong>PPWR 3가지 핵심 진단 무료 제공</strong>
+          <Link to="/project-management/quote?service=regulatory-response">
+            무료로 가입하고 진단받기
+          </Link>
+          <p>지금 가입 후 우리 회사 대응 준비 수준을 체크해 보세요.</p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function RegulatoryGrowthSection() {
+  return (
+    <section className="regulatory-growth-section">
+      <div className="regulatory-growth-section__inner">
+        <div className="regulatory-growth-cards" aria-label="규제 마스터 솔루션 핵심 기능">
+          {regulatoryMasterHighlights.map(({ number, title, description, Icon }) => (
+            <article className="regulatory-growth-card" key={number}>
+              <div>
+                <span>{number}</span>
+                <Icon size={24} weight="fill" aria-hidden="true" />
+              </div>
+              <strong>{title}</strong>
+              <p>{description}</p>
+            </article>
+          ))}
+        </div>
+
+        <div className="regulatory-growth-preview" aria-label="PPWR 서류 준비 화면 예시">
+          <div className="regulatory-growth-dashboard">
             <img
               src="/assets/detail-pages/regulatory-product-detail.png"
-              alt=""
+              alt="리스튜디오 PPWR 포장재 관리 대시보드 화면"
             />
           </div>
-          <div className="regulatory-hero__floating-panel">
+          <div className="regulatory-growth-floating-panel">
             <strong>1. 포장 데이터</strong>
             <p>보호해야 할 제품과 포장 구성을 선택하세요.</p>
-            <div className="regulatory-hero__segment">
+            <div className="regulatory-growth-segment">
               <span>용기·캡</span>
               <span>라벨·박스</span>
             </div>
             <p>필요한 증빙 유형을 선택하면 AI가 누락 자료를 정리합니다.</p>
-            <div className="regulatory-hero__checks">
+            <div className="regulatory-growth-checks">
               <span>
                 <i />
                 <b>재질</b>
@@ -753,83 +1191,735 @@ function RegulatoryHero() {
   );
 }
 
-function RegulatoryGrowthSection() {
-  const [activeTab, setActiveTab] = useState<(typeof regulatoryGrowthTabs)[number]["id"]>(
-    "market",
-  );
-  const currentTab = regulatoryGrowthTabs.find((tab) => tab.id === activeTab) ?? regulatoryGrowthTabs[0];
+function RegulatoryConcernSection() {
+  const [activeConcern, setActiveConcern] = useState(0);
+  const [cardStep, setCardStep] = useState(0);
+  const trackRef = useRef<HTMLDivElement | null>(null);
+  const concernCount = regulatoryConcernCards.length;
+
+  useEffect(() => {
+    const track = trackRef.current;
+
+    if (!track) {
+      return;
+    }
+
+    const updateCardStep = () => {
+      const cards = track.querySelectorAll<HTMLElement>(".client-testimonial-card");
+      const firstCard = cards[0];
+      const secondCard = cards[1];
+
+      if (!firstCard) {
+        return;
+      }
+
+      setCardStep(
+        secondCard
+          ? secondCard.offsetLeft - firstCard.offsetLeft
+          : firstCard.offsetWidth,
+      );
+    };
+
+    updateCardStep();
+    window.addEventListener("resize", updateCardStep);
+
+    return () => {
+      window.removeEventListener("resize", updateCardStep);
+    };
+  }, []);
 
   return (
-    <section className="regulatory-growth-section">
-      <div className="regulatory-growth-section__inner">
-        <div className="regulatory-growth-section__header">
-          <h2 className="title-reveal">
-            <AnimatedTitle parts="꾸준히 성장하는 기업의 매출은 해외에서 발생합니다." />
-          </h2>
-          <p>특히 제조업 분야에서 국내만으로 회사가 성장하기에는 그 한계가 명확합니다.</p>
-        </div>
+    <section className="client-growth-section regulatory-concern-section" aria-label="규제 대응 어려움">
+      <div className="client-growth-stage">
+        <h2>규제 대응, 이렇게 어려우신가요?</h2>
 
-        <div className="regulatory-growth-tabs" role="tablist" aria-label="규제 대응 성장 정보">
-          {regulatoryGrowthTabs.map((tab) => (
-            <button
-              key={tab.id}
-              type="button"
-              role="tab"
-              aria-selected={activeTab === tab.id}
-              className={activeTab === tab.id ? "is-active" : ""}
-              onClick={() => setActiveTab(tab.id)}
+        <div className="client-testimonials regulatory-concern-testimonials">
+          <div className="client-testimonials__viewport">
+            <div
+              className="client-testimonials__track"
+              ref={trackRef}
+              style={{ transform: `translateX(-${cardStep * activeConcern}px)` }}
             >
-              {tab.label}
-            </button>
-          ))}
-        </div>
+              {regulatoryConcernCards.map((concern) => (
+                <article className="client-testimonial-card" key={concern.title}>
+                  <div className="client-testimonial-card__image">
+                    <img src={concern.image} alt={concern.imageLabel} />
+                    <div className="client-testimonial-card__image-copy">
+                      <strong>{concern.title}</strong>
+                    </div>
+                  </div>
 
-        <div className="regulatory-growth-panel">
-          <div className="regulatory-growth-panel__copy">
-            <h3>{currentTab.title}</h3>
-            <p>{currentTab.description}</p>
+                  <div className="client-testimonial-card__content">
+                    <div className="client-testimonial-card__body">
+                      <span className="client-testimonial-card__tag">
+                        {concern.tag}
+                      </span>
+                      <p className="client-testimonial-card__quote">
+                        {concern.quote}
+                      </p>
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
           </div>
 
-          {activeTab === "market" && (
-            <div className="regulatory-growth-table">
-              {regulatoryGrowthRows.map((row) => (
-                <article key={row.category}>
-                  <strong>{row.category}</strong>
-                  <span>{row.growth}</span>
-                  <p>{row.source}</p>
-                </article>
-              ))}
-            </div>
-          )}
-
-          {activeTab === "fit" && (
-            <div className="regulatory-fit-list">
-              {regulatoryFitItems.map((item) => (
-                <span key={item}>
-                  <CheckCircle size={18} weight="bold" aria-hidden="true" />
-                  {item}
-                </span>
-              ))}
-            </div>
-          )}
-
-          {activeTab === "factor" && (
-            <div className="regulatory-factor-list">
-              {regulatoryFactorItems.map((item) => (
-                <article key={item.title}>
-                  <strong>{item.title}</strong>
-                  <p>{item.description}</p>
-                </article>
-              ))}
-            </div>
-          )}
+          <div className="client-testimonials__controls">
+            <button
+              type="button"
+              aria-label="이전 규제 대응 어려움 보기"
+              onClick={() =>
+                setActiveConcern((current) =>
+                  current === 0 ? concernCount - 1 : current - 1,
+                )
+              }
+            >
+              <CaretLeft size={21} weight="bold" aria-hidden="true" />
+            </button>
+            <button
+              type="button"
+              aria-label="다음 규제 대응 어려움 보기"
+              onClick={() =>
+                setActiveConcern((current) =>
+                  current === concernCount - 1 ? 0 : current + 1,
+                )
+              }
+            >
+              <CaretRight size={21} weight="bold" aria-hidden="true" />
+            </button>
+            <span>
+              {activeConcern + 1}/{concernCount}
+            </span>
+          </div>
         </div>
       </div>
     </section>
   );
 }
 
-function RegulatoryPpwrSection() {
+function RegulatoryMasterShowcaseSection() {
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const viewportRef = useRef<HTMLDivElement | null>(null);
+  const trackRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    const viewport = viewportRef.current;
+    const track = trackRef.current;
+
+    if (!section || !viewport || !track) {
+      return;
+    }
+
+    let frame = 0;
+
+    const updateShowcaseScroll = () => {
+      const sectionRect = section.getBoundingClientRect();
+      const scrollableDistance = section.offsetHeight - window.innerHeight;
+      const progress =
+        scrollableDistance <= 0
+          ? 0
+          : Math.min(
+              Math.max((window.innerHeight * -1 + sectionRect.bottom) / scrollableDistance, 0),
+              1,
+            );
+      const horizontalProgress = 1 - progress;
+      const trackDistance = Math.max(track.scrollWidth - viewport.clientWidth, 0);
+      const offset = -horizontalProgress * trackDistance;
+
+      track.style.setProperty("--regulatory-master-offset", `${offset}px`);
+    };
+
+    const requestUpdate = () => {
+      window.cancelAnimationFrame(frame);
+      frame = window.requestAnimationFrame(updateShowcaseScroll);
+    };
+
+    updateShowcaseScroll();
+    window.addEventListener("scroll", requestUpdate, { passive: true });
+    window.addEventListener("resize", requestUpdate);
+
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", requestUpdate);
+      window.removeEventListener("resize", requestUpdate);
+    };
+  }, []);
+
+  return (
+    <section
+      className="regulatory-master-showcase-section"
+      ref={sectionRef}
+      aria-label="규제 마스터 솔루션 서비스 소개"
+    >
+      <div className="regulatory-master-showcase-sticky">
+        <div className="regulatory-master-showcase-header">
+          <div className="regulatory-master-showcase-copy">
+            <h2>
+              자주 바뀌는 규제 변화에도 흔들리지 않는,
+              <br />
+              리스튜디오{" "}
+              <span>‘규제 마스터 솔루션’</span>을 체험하세요.
+            </h2>
+            <p>
+              AI가 데이터를 빠르고 정확하게 1차 진단하고, 규제 전문가가 다시 한번 맞춤
+              검증해 최종 보증합니다.
+            </p>
+          </div>
+          <div className="regulatory-master-showcase-cta">
+            <Link to="/project-management/quote?service=regulatory-response">
+              무료로 가입하고 진단받기
+            </Link>
+            <p>
+              무료로 PPWR 3가지 핵심 진단을 받고,
+              <br />
+              필요한만큼 이어서 활용하세요.
+            </p>
+          </div>
+        </div>
+
+        <div className="regulatory-master-showcase-viewport" ref={viewportRef}>
+          <div className="regulatory-master-showcase-track" ref={trackRef}>
+            {regulatoryMasterShowcaseCards.map((card) => (
+              <article className="regulatory-master-showcase-card" key={card.title}>
+                <div className="regulatory-master-showcase-card__head">
+                  <strong>{card.eyebrow}</strong>
+                  <div>
+                    <h3>{card.title}</h3>
+                    <p>{card.description}</p>
+                  </div>
+                </div>
+                <div className="regulatory-master-showcase-card__media">
+                  <img src={card.image} alt={card.alt} />
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function RegulatorySolutionFitSection() {
+  return (
+    <section
+      className="regulatory-solution-fit-section"
+      aria-label="규제 마스터 솔루션 적합 고객"
+    >
+      <div className="regulatory-solution-fit-inner">
+        <div className="regulatory-solution-fit-copy">
+          <h2>
+            PPWR은 이미 시작되었습니다.
+            <br />
+            우리 회사에 맞는 해결책을 제안합니다.
+          </h2>
+          <p>이런 기업들도 리스튜디오 규제 솔루션을 찾고 있어요.</p>
+          <div className="regulatory-solution-fit-tags" aria-label="규제 솔루션 대상 기업">
+            {regulatorySolutionFitTags.map((tag) => (
+              <span key={tag}>{tag}</span>
+            ))}
+          </div>
+        </div>
+
+        <div className="regulatory-solution-fit-chat" aria-label="고객 고민과 리스튜디오 답변">
+          {regulatorySolutionChats.map((chat) => (
+            <div className="regulatory-solution-chat-pair" key={chat.customer}>
+              <div className="regulatory-solution-message regulatory-solution-message--customer">
+                <span className="regulatory-solution-message__avatar" aria-hidden="true">
+                  <User size={34} weight="fill" />
+                </span>
+                <div>
+                  <strong>{chat.customer}</strong>
+                  <p>{chat.question}</p>
+                </div>
+              </div>
+
+              <div className="regulatory-solution-message regulatory-solution-message--restudio">
+                <div>
+                  <strong>리스튜디오</strong>
+                  <p>{chat.answer}</p>
+                </div>
+                <img src="/assets/ai-agent-resa.png?v=2" alt="" aria-hidden="true" />
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function RegulatoryTrustSection() {
+  return (
+    <section className="regulatory-trust-section" aria-label="규제 대응 고객 후기와 고객사 로고">
+      <div className="regulatory-trust-inner">
+        <h2>
+          이미 많은 기업들이 리스튜디오와 함께
+          <br />
+          규제를 준비하고 있습니다.
+        </h2>
+
+        <div className="regulatory-trust-cards">
+          {regulatoryTrustTestimonials.map((testimonial) => (
+            <article className="regulatory-trust-card" key={testimonial.tag}>
+              <span>{testimonial.tag}</span>
+              <p>{testimonial.quote}</p>
+              <strong>
+                {testimonial.author} <em>{testimonial.role}</em>
+              </strong>
+            </article>
+          ))}
+        </div>
+      </div>
+
+      <div className="regulatory-trust-marquee" aria-hidden="true">
+        <div className="regulatory-trust-marquee__track">
+          {[...productClientLogos, ...productClientLogos].map((logo, index) => (
+            <span className="regulatory-trust-logo" key={`${logo.src}-${index}`}>
+              <img src={logo.src} alt="" />
+            </span>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function RegulatoryExpertSection() {
+  return (
+    <section className="regulatory-expert-section" aria-label="AI와 규제 전문가 결합 서비스">
+      <div className="regulatory-expert-inner">
+        <h2>
+          지금 가장 시급한 EU PPWR 대응부터, 앞으로의 글로벌 수출 규제까지,
+          <br />
+          AI와 규제 전문가의 결합으로 빠르고, 더 정확하게, 이제 더 쉽고 스마트하게 준비하세요.
+        </h2>
+
+        <div className="regulatory-expert-layout">
+          <div className="regulatory-expert-summary">
+            <article>
+              <span aria-hidden="true">
+                <Brain size={42} weight="fill" />
+              </span>
+              <div>
+                <strong>
+                  AI가 1차 진단하고, <em>전문가가 최종 보증</em>
+                </strong>
+                <p>
+                  빠르고 정확한 AI, 그리고 풍부한 경험의 전문가가 함께 만들어가는 신뢰할 수 있는 결과입니다.
+                </p>
+              </div>
+            </article>
+            <PlusCircle
+              className="regulatory-expert-plus"
+              size={34}
+              weight="fill"
+              aria-hidden="true"
+            />
+            <article>
+              <span aria-hidden="true">
+                <ClipboardText size={42} weight="fill" />
+              </span>
+              <div>
+                <strong>
+                  AI로 편리하게, <em>전문가가 또 한번 맞춤 검증</em>
+                </strong>
+                <p>
+                  AI가 시간을 줄여주고, 전문가가 비즈니스에 맞는 최적의 솔루션을 제안합니다.
+                </p>
+              </div>
+            </article>
+          </div>
+
+          <div className="regulatory-expert-cards">
+            {regulatoryExpertCards.map((card) => (
+              <article className="regulatory-expert-card" key={card.number}>
+                <span>{card.number}</span>
+                <div>
+                  <h3>{card.title}</h3>
+                  <strong>{card.highlight}</strong>
+                  <p>{card.description}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function RegulatoryAssetizationSection() {
+  return (
+    <section className="regulatory-assetization-section" aria-label="제품 데이터와 서류 자산화">
+      <div className="regulatory-assetization-inner">
+        <div className="regulatory-assetization-copy">
+          <div className="regulatory-assetization-badges" aria-label="리스튜디오 서비스 방향">
+            <span>단순 규제 이론 컨설팅 NO</span>
+            <span>단순 서류 작성 대행 NO</span>
+          </div>
+          <h2>
+            귀사의 제품 데이터와 서류를 자산화하고,
+            <br />
+            경쟁사보다 더 빠른 출시로 더 큰 시장 기회를 만들어드립니다.
+          </h2>
+        </div>
+
+        <div className="regulatory-assetization-stack">
+          <article className="regulatory-assetization-panel">
+            <div className="regulatory-assetization-panel__head">
+              <h3>데이터 자산화</h3>
+              <span>흩어진 문서를 하나의 자산으로</span>
+            </div>
+            <img
+              src="/assets/detail-pages/regulatory-master/data-assetization.png"
+              alt="흩어진 문서를 리스튜디오 데이터 자산으로 정리하는 화면"
+            />
+            <div className="regulatory-assetization-security">
+              <ShieldCheck size={28} weight="fill" aria-hidden="true" />
+              <span>보안으로 안전하게 보호되는 우리 회사 수출 데이터 자산</span>
+            </div>
+          </article>
+
+          <div className="regulatory-assetization-bridge" aria-hidden="true">
+            <span>
+              <CaretDown size={20} weight="bold" />
+            </span>
+            <strong>데이터 자산이 더 큰 가능성으로</strong>
+            <span>
+              <CaretDown size={20} weight="bold" />
+            </span>
+          </div>
+
+          <article className="regulatory-assetization-panel regulatory-assetization-panel--launch">
+            <div className="regulatory-assetization-panel__head">
+              <h3>더 빠른 출시</h3>
+              <span>정리된 데이터로 정확하고 빠른 출시</span>
+            </div>
+            <img
+              src="/assets/detail-pages/regulatory-master/faster-launch.png"
+              alt="평균 준비 기간 50% 단축을 보여주는 리스튜디오 출시 일정 화면"
+            />
+          </article>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function RegulatoryValueSection() {
+  return (
+    <section className="regulatory-value-section" aria-label="규제 마스터 솔루션 가치 비교">
+      <div className="regulatory-value-inner">
+        <div className="regulatory-value-head">
+          <h2>
+            규제 마스터 솔루션은 이런 기업에게
+            <br />
+            더 큰 가치와 효용성을 제공해 드립니다.
+          </h2>
+          <p>
+            규제는 계속 변합니다. 하지만 귀사의 글로벌 비즈니스는 멈추지 않아야 합니다.
+            <br />
+            그래서 일회성 대응은 안됩니다. 모두 같은 대응을 약속하지만 본질은 다릅니다.
+            <br />
+            꼭 확인하세요.
+          </p>
+        </div>
+
+        <div className="regulatory-value-targets">
+          {regulatoryValueTargets.map(({ title, items, Icon }) => (
+            <article className="regulatory-value-target" key={title}>
+              <div>
+                <Icon size={34} weight="regular" aria-hidden="true" />
+                <strong>{title}</strong>
+              </div>
+              <ul>
+                {items.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+
+        <div className="regulatory-value-table" role="table" aria-label="규제 대응 서비스 비교표">
+          <div className="regulatory-value-table__row regulatory-value-table__row--head" role="row">
+            <span role="columnheader">비교 항목</span>
+            <strong role="columnheader">리스튜디오 규제 해결 솔루션</strong>
+            <span role="columnheader">일반 컨설팅사</span>
+            <span role="columnheader">패키징 제조사</span>
+            <span role="columnheader">일반 기술 / 인증사</span>
+          </div>
+          {regulatoryComparisonRows.map((row) => (
+            <div className="regulatory-value-table__row" role="row" key={row.label}>
+              <span role="cell">{row.label}</span>
+              <strong role="cell">{row.restudio}</strong>
+              <span role="cell">{row.consulting}</span>
+              <span role="cell">{row.packaging}</span>
+              <span role="cell">{row.certification}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function RegulatoryStartSection() {
+  return (
+    <section className="regulatory-start-section" aria-label="규제 마스터 솔루션 시작 프로세스">
+      <div className="regulatory-start-inner">
+        <div className="regulatory-start-head">
+          <h2>규제 마스터 솔루션, 지금 바로 시작하세요.</h2>
+          <p>간단한 4단계 프로세스로 글로벌 수출 규제 준비가 시작됩니다.</p>
+        </div>
+
+        <div className="regulatory-start-process" aria-label="규제 마스터 솔루션 4단계 프로세스">
+          {regulatoryStartSteps.map(({ title, description, Icon }, index) => (
+            <Fragment key={title}>
+              <article className="regulatory-start-step">
+                <span className="regulatory-start-step__icon" aria-hidden="true">
+                  <Icon size={24} weight="regular" />
+                </span>
+                <div>
+                  <strong>{title}</strong>
+                  <p>{description}</p>
+                </div>
+              </article>
+              {index < regulatoryStartSteps.length - 1 && (
+                <CaretRight
+                  className="regulatory-start-step__arrow"
+                  size={22}
+                  weight="bold"
+                  aria-hidden="true"
+                />
+              )}
+            </Fragment>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function RegulatoryFreeReportSection() {
+  return (
+    <section className="regulatory-free-report-section" aria-label="무료 진단 리포트 시작 단계">
+      <div className="regulatory-free-report-inner">
+        <div className="regulatory-free-report-head">
+          <h2>회원가입만 하면, 무료 진단 리포트부터 시작됩니다</h2>
+          <p>기본 정보만 입력해도 무료로 현황을 바로 확인할 수 있습니다.</p>
+        </div>
+
+        <div className="regulatory-free-report-steps">
+          {regulatoryFreeReportSteps.map(({ number, title, description, badge, featured }, index) => (
+            <Fragment key={title}>
+              <article className={featured ? "regulatory-free-report-step is-featured" : "regulatory-free-report-step"}>
+                {badge && <span className="regulatory-free-report-step__badge">{badge}</span>}
+                <span className="regulatory-free-report-step__number">{number}</span>
+                <h3>{title}</h3>
+                <p>{description}</p>
+              </article>
+              {index < regulatoryFreeReportSteps.length - 1 && (
+                <span className="regulatory-free-report-steps__line" aria-hidden="true" />
+              )}
+            </Fragment>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function RegulatoryFinalCtaSection() {
+  return (
+    <section className="regulatory-final-cta-section" aria-label="규제 마스터 솔루션 무료 진단 신청">
+      <div className="regulatory-final-cta">
+        <p>규제 마스터 솔루션,</p>
+        <h2>
+          규제 대응을 넘어,
+          <br />
+          지속 가능한 글로벌 비즈니스를 위한 단 하나의 솔루션
+        </h2>
+        <span>지금 우리 회사만의 수출 규제 해결 인프라를 구축하세요.</span>
+        <Link className="regulatory-final-cta__button" to="/project-management/quote?service=regulatory-response">
+          무료로 가입하고 진단 받기
+        </Link>
+        <small>간단한 회원가입 후 'PPWR 3가지 핵심 진단'을 무료로 받으실 수 있습니다.</small>
+      </div>
+    </section>
+  );
+}
+
+function RegulatoryDiagnosisResultSection() {
+  return (
+    <section className="regulatory-diagnosis-result-section" aria-label="진단 후 제공 결과">
+      <div className="regulatory-diagnosis-result-inner">
+        <h2>진단 후, 무엇을 받게 되나요?</h2>
+
+        <div className="regulatory-diagnosis-result-layout">
+          <article className="regulatory-diagnosis-score-card">
+            <h3>규제 진단 점수</h3>
+            <div className="regulatory-diagnosis-gauge-wrap">
+              <div className="regulatory-diagnosis-gauge" aria-label="규제 진단 점수 85점">
+                <img
+                  className="regulatory-diagnosis-gauge__track"
+                  src="/assets/detail-pages/regulatory-master/track-arc.svg"
+                  alt=""
+                  aria-hidden="true"
+                />
+                <img
+                  className="regulatory-diagnosis-gauge__value"
+                  src="/assets/detail-pages/regulatory-master/progress-arc.svg"
+                  alt=""
+                  aria-hidden="true"
+                />
+                <div>
+                  <strong>85</strong>
+                  <span>/100</span>
+                </div>
+              </div>
+            </div>
+            <div className="regulatory-diagnosis-risk">
+              <WarningCircle size={22} weight="fill" aria-hidden="true" />
+              <span>주요 리스크:</span>
+              <strong>재활용성 등급 미달 부품 존재</strong>
+            </div>
+          </article>
+
+          <div className="regulatory-diagnosis-center">
+            <article className="regulatory-diagnosis-list-card">
+              <h3>미비 서류 리스트</h3>
+              <p>아래 항목을 보완하여 규제 준수를 완료하세요.</p>
+              <div className="regulatory-diagnosis-doc-list">
+                {regulatoryDiagnosisMissingDocs.map((item) => (
+                  <div className="regulatory-diagnosis-doc-item" data-status={item.status} key={item.title}>
+                    <span aria-hidden="true">!</span>
+                    <div>
+                      <strong>{item.title}</strong>
+                      <p>{item.description}</p>
+                    </div>
+                    <button type="button">{item.action}</button>
+                  </div>
+                ))}
+              </div>
+            </article>
+
+            <article className="regulatory-diagnosis-alert-card">
+              <div className="regulatory-diagnosis-alert-head">
+                <div>
+                  <h3>후속 관리 알림</h3>
+                  <p>지속적인 모니터링으로 규제 변화를 놓치지 마세요.</p>
+                </div>
+                <strong>
+                  3건
+                  <Bell size={22} weight="fill" aria-hidden="true" />
+                </strong>
+              </div>
+              <div className="regulatory-diagnosis-alert-list">
+                {regulatoryDiagnosisAlerts.map((item) => (
+                  <div className="regulatory-diagnosis-alert-item" data-tone={item.tone} key={item.title}>
+                    <span aria-hidden="true">
+                      {item.tone === "blue" ? (
+                        <TrendUp size={22} weight="regular" />
+                      ) : item.tone === "yellow" ? (
+                        <Clock size={22} weight="regular" />
+                      ) : (
+                        <FileText size={22} weight="regular" />
+                      )}
+                    </span>
+                    <div>
+                      <strong>{item.title}</strong>
+                      <p>{item.description}</p>
+                    </div>
+                    <time>{item.date}</time>
+                  </div>
+                ))}
+              </div>
+            </article>
+          </div>
+
+          <div className="regulatory-diagnosis-benefits">
+            {regulatoryDiagnosisBenefits.map(({ Icon, tone, title, description }) => (
+              <article className="regulatory-diagnosis-benefit-card" data-tone={tone} key={title}>
+                <span className="regulatory-diagnosis-benefit-card__icon" aria-hidden="true">
+                  <Icon size={24} weight="regular" />
+                </span>
+                <h3>{title}</h3>
+                <p>{description}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function RegulatorySecuritySection() {
+  return (
+    <section className="regulatory-security-section" aria-label="데이터와 서류 보안 안내">
+      <div className="regulatory-security-inner">
+        <div className="regulatory-security-head">
+          <h2>귀사의 데이터, 서류 발급 안심하고 맡기세요.</h2>
+          <p>리스튜디오 규제 마스터 솔루션은 보안과 인증에 철저합니다.</p>
+        </div>
+
+        <div className="regulatory-security-grid">
+          {regulatorySecurityItems.map(({ Icon, title, description }) => (
+            <article className="regulatory-security-card" key={title}>
+              <span className="regulatory-security-card__icon" aria-hidden="true">
+                <Icon size={28} weight="regular" />
+              </span>
+              <div>
+                <h3>{title}</h3>
+                <p>{description}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function RegulatoryFaqCtaSection() {
+  return (
+    <section className="regulatory-faq-cta-section" aria-label="규제 마스터 솔루션 FAQ">
+      <div className="regulatory-faq-cta-banner">
+        <div>
+          <h2>지금 회원가입하고, 흔들리지 않는 규제 대응 인프라를 시작하세요.</h2>
+          <p>AI가 1차 진단하고, 전문가가 최종 보증하는 단 하나의 솔루션</p>
+        </div>
+        <Link className="regulatory-faq-cta-banner__button" to="/project-management/quote?service=regulatory-response">
+          무료로 가입하고 진단 받기
+        </Link>
+      </div>
+
+      <div className="regulatory-faq-layout">
+        <aside className="regulatory-faq-side">
+          <h2>FAQ</h2>
+          <Link className="regulatory-faq-more" to="/resources">
+            더 많은 질문 보기
+            <ArrowRight size={17} weight="bold" aria-hidden="true" />
+          </Link>
+        </aside>
+
+        <div className="regulatory-faq-list">
+          {regulatoryFaqItems.map((question) => (
+            <button className="regulatory-faq-item" type="button" key={question}>
+              <span>{question}</span>
+              <span aria-hidden="true">+</span>
+            </button>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function RegulatoryPpwrSection() {
   return (
     <section className="regulatory-ppwr-section">
       <div className="regulatory-ppwr-section__inner">
@@ -858,7 +1948,7 @@ function RegulatoryPpwrSection() {
   );
 }
 
-function RegulatoryWhySection() {
+export function RegulatoryWhySection() {
   return (
     <section className="regulatory-why-section">
       <div className="regulatory-why-section__inner">
@@ -881,7 +1971,7 @@ function RegulatoryWhySection() {
   );
 }
 
-function RegulatoryPlatformSection() {
+export function RegulatoryPlatformSection() {
   const [activeStep, setActiveStep] = useState(0);
   const stepRefs = useRef<Array<HTMLDivElement | null>>([]);
   const currentStep = regulatoryPlatformSteps[activeStep] ?? regulatoryPlatformSteps[0];
@@ -981,7 +2071,7 @@ function RegulatoryPlatformSection() {
   );
 }
 
-function RegulatoryReportSection() {
+export function RegulatoryReportSection() {
   const [activeStep, setActiveStep] = useState(0);
   const stepRefs = useRef<Array<HTMLDivElement | null>>([]);
   const currentStep = regulatoryReportSteps[activeStep] ?? regulatoryReportSteps[0];
@@ -1081,7 +2171,7 @@ function RegulatoryReportSection() {
   );
 }
 
-function RegulatoryDiagnosisSection() {
+export function RegulatoryDiagnosisSection() {
   const [activeStep, setActiveStep] = useState(0);
   const stepRefs = useRef<Array<HTMLDivElement | null>>([]);
 
@@ -1166,7 +2256,7 @@ function RegulatoryDiagnosisSection() {
   );
 }
 
-function RegulatoryRequestSection() {
+export function RegulatoryRequestSection() {
   return (
     <section className="regulatory-request-section">
       <div className="regulatory-request-section__inner">
@@ -1243,7 +2333,7 @@ function RegulatoryRequestSection() {
   );
 }
 
-function RegulatoryPricingSection() {
+export function RegulatoryPricingSection() {
   return (
     <section className="regulatory-pricing-section">
       <div className="regulatory-pricing-section__inner">
@@ -1341,9 +2431,12 @@ interface ServiceDetailPageProps {
 export function ServiceDetailPage({ variant }: ServiceDetailPageProps) {
   const isProductDevelopment = variant === "product-development";
   const [activeProductTestimonial, setActiveProductTestimonial] = useState(0);
+  const [isFloatingCtaVisible, setIsFloatingCtaVisible] = useState(false);
+  const [isFloatingCtaDismissed, setIsFloatingCtaDismissed] = useState(false);
   const serviceFlowSectionRef = useRef<HTMLElement | null>(null);
   const serviceFlowViewportRef = useRef<HTMLDivElement | null>(null);
   const serviceFlowTrackRef = useRef<HTMLDivElement | null>(null);
+  const floatingCtaVisibleRef = useRef(false);
 
   useTitleReveal();
 
@@ -1414,6 +2507,51 @@ export function ServiceDetailPage({ variant }: ServiceDetailPageProps) {
     };
   }, [isProductDevelopment]);
 
+  useEffect(() => {
+    if (isProductDevelopment || isFloatingCtaDismissed) {
+      floatingCtaVisibleRef.current = false;
+      setIsFloatingCtaVisible(false);
+      return;
+    }
+
+    let lastScrollY = window.scrollY;
+    let frame = 0;
+
+    const setVisible = (nextVisible: boolean) => {
+      if (floatingCtaVisibleRef.current === nextVisible) {
+        return;
+      }
+
+      floatingCtaVisibleRef.current = nextVisible;
+      setIsFloatingCtaVisible(nextVisible);
+    };
+
+    const updateFloatingCta = () => {
+      const currentScrollY = window.scrollY;
+      const scrollDelta = currentScrollY - lastScrollY;
+
+      if (currentScrollY < 160) {
+        setVisible(false);
+      } else if (Math.abs(scrollDelta) > 8) {
+        setVisible(scrollDelta > 0);
+      }
+
+      lastScrollY = Math.max(currentScrollY, 0);
+    };
+
+    const requestUpdate = () => {
+      window.cancelAnimationFrame(frame);
+      frame = window.requestAnimationFrame(updateFloatingCta);
+    };
+
+    window.addEventListener("scroll", requestUpdate, { passive: true });
+
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", requestUpdate);
+    };
+  }, [isFloatingCtaDismissed, isProductDevelopment]);
+
   const showPrevProductTestimonial = () => {
     setActiveProductTestimonial((current) =>
       current === 0 ? productTestimonialPages.length - 1 : current - 1,
@@ -1431,6 +2569,22 @@ export function ServiceDetailPage({ variant }: ServiceDetailPageProps) {
       {isProductDevelopment && (
         <>
           <section className="service-detail-hero">
+            <h1 className="title-reveal mx-auto max-w-[720px] text-center text-[32px] font-semibold leading-[1.16] text-black md:text-[44px] xl:text-[48px]">
+              <AnimatedTitle
+                parts={[
+                  "친환경 패키지, 처음부터 끝까지",
+                  { type: "break" },
+                  {
+                    text: "리스튜디오",
+                    wrapperClassName:
+                      "marker-scribble relative inline-block whitespace-nowrap px-1",
+                    charClassName: "relative z-10",
+                    prefix: markerStroke,
+                  },
+                  " 하나로 완성",
+                ]}
+              />
+            </h1>
             <ServiceDetailAdBanner
               banners={productDevelopmentHeroBanners}
               embedded
@@ -1792,26 +2946,62 @@ export function ServiceDetailPage({ variant }: ServiceDetailPageProps) {
       )}
       {!isProductDevelopment && (
         <>
-          <RegulatoryHero />
-          <ProductClientSection
-            activePage={activeProductTestimonial}
-            onPrev={showPrevProductTestimonial}
-            onNext={showNextProductTestimonial}
-          />
-          <RegulatoryGrowthSection />
-          <RegulatoryPpwrSection />
-          <RegulatoryWhySection />
-          <RegulatoryPlatformSection />
-          <RegulatoryReportSection />
-          <RegulatoryDiagnosisSection />
-          <RegulatoryRequestSection />
-          <RegulatoryPricingSection />
+          <div className="regulatory-master-gradient">
+            <RegulatoryHero />
+            <RegulatoryGrowthSection />
+          </div>
+          <RegulatoryConcernSection />
+          <RegulatoryMasterShowcaseSection />
+          <RegulatorySolutionFitSection />
+          <RegulatoryTrustSection />
+          <CustomerCaseStudiesSection />
+          <RegulatoryExpertSection />
+          <RegulatoryAssetizationSection />
+          <RegulatoryValueSection />
+          <RegulatoryStartSection />
+          <RegulatoryFreeReportSection />
+          <RegulatoryFinalCtaSection />
+          <RegulatoryDiagnosisResultSection />
+          <RegulatorySecuritySection />
+          <RegulatoryFaqCtaSection />
         </>
       )}
-      <ServiceDetailSharedSections
-        showAdBanner={!isProductDevelopment}
-        showCaseStudies={!isProductDevelopment}
-      />
+      {isProductDevelopment && (
+        <ServiceDetailSharedSections
+          showAdBanner={false}
+          showCaseStudies={false}
+        />
+      )}
+      {!isProductDevelopment && !isFloatingCtaDismissed && (
+        <aside
+          className={`service-detail-floating-cta${
+            isFloatingCtaVisible ? " is-visible" : ""
+          }`}
+          aria-label="리스튜디오 회원가입 바로가기"
+        >
+          <div className="service-detail-floating-cta__inner">
+            <p>지금, RESTUDIO와 함께 더 큰 시장으로 나아가세요.</p>
+            <div className="service-detail-floating-cta__actions">
+              <span>지금 시작하는 것이, 더 큰 기회의 시작입니다.</span>
+              <Link
+                className="service-detail-floating-cta__button"
+                to="/project-management/quote?service=regulatory-response"
+              >
+                회원가입하고 시작하기
+                <ArrowRight size={18} weight="bold" aria-hidden="true" />
+              </Link>
+            </div>
+            <button
+              className="service-detail-floating-cta__close"
+              type="button"
+              aria-label="하단 CTA 닫기"
+              onClick={() => setIsFloatingCtaDismissed(true)}
+            >
+              ×
+            </button>
+          </div>
+        </aside>
+      )}
     </main>
   );
 }

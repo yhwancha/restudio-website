@@ -74,7 +74,7 @@ const SERVICE_MENU_GROUPS = [
       },
       {
         label: "친환경 기술 인증",
-        to: "https://www.revation.co.kr/kr/sub/company/greeting.asp#awards",
+        to: "/services/product-development/eco-certification",
       },
     ],
   },

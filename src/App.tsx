@@ -4,6 +4,7 @@ import { Layout } from "./components/Layout";
 import { AiChatFloatingButton } from "./components/AiChatFloatingButton";
 import { ScrollToTop } from "./components/ScrollToTop";
 import { CompanyPage } from "./pages/CompanyPage";
+import { EcoCertificationPage } from "./pages/EcoCertificationPage";
 import { HomePage } from "./pages/HomePage";
 import { IndustryConsultingPage } from "./pages/IndustryConsultingPage";
 import { LoginPage } from "./pages/LoginPage";
@@ -59,6 +60,10 @@ export default function App() {
             <Route
               path="/services/product-development/industry-consulting"
               element={<IndustryConsultingPage />}
+            />
+            <Route
+              path="/services/product-development/eco-certification"
+              element={<EcoCertificationPage />}
             />
             <Route
               path="/services/regulatory-response"

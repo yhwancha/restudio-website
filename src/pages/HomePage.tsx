@@ -3,40 +3,83 @@ import { Link } from "react-router-dom";
 import {
   ArrowRight,
   ArrowUp,
+  ArrowsClockwise,
   CaretLeft,
   CaretRight,
+  Certificate,
+  ChartBar,
+  CheckCircle,
+  ClipboardText,
+  Factory,
+  Flask,
+  Leaf,
+  MagnifyingGlass,
   Paperclip,
+  PaintBrush,
 } from "@phosphor-icons/react";
 import {
   AnimatedTitle,
   useTitleReveal,
 } from "../components/AnimatedTitle";
 
-const serviceMetrics = [
+const homeProcessBenefits = [
+  "제조-규제 동시 해결",
+  "수출 준비 기간 단축",
+  "원스톱으로 비용 절감",
+] as const;
+
+const homeProcessSteps = [
   {
-    title: "평균 개발 기간 단축",
-    description: "AI 기반 검증 프로세스로 제품 출시까지 빠르게 연결합니다.",
-    value: "50%",
+    label: "친환경 소재\n개발 / 큐레이션",
+    Icon: Leaf,
+    tone: "product",
   },
   {
-    title: "개발비용 최대 절감",
-    description:
-      "소재, 금형, 생산 조건을 초기에 비교해 불필요한 샘플링과 재작업 비용을 낮춥니다.",
-    value: "30%",
+    label: "디자인 제작",
+    Icon: PaintBrush,
+    tone: "product",
   },
   {
-    title: "소재 선정부터 양산까지",
-    description:
-      "친환경 소재 검토, 구조 설계, 샘플 제작, 양산 연결까지 한 흐름으로 관리합니다.",
-    value: "원스톱",
+    label: "제품 R&D",
+    Icon: Flask,
+    tone: "product",
   },
   {
-    title: "해외 수출 규제 대응",
-    description:
-      "EU 포장폐기물 규정과 글로벌 인증 요구사항을 제품 개발 단계부터 함께 반영합니다.",
-    value: "PPWR",
+    label: "제품\n대량생산",
+    Icon: Factory,
+    tone: "product",
   },
-];
+  {
+    label: "검수 / 납품",
+    Icon: CheckCircle,
+    tone: "product",
+  },
+  {
+    label: "ESG 리포트\n발행",
+    Icon: ChartBar,
+    tone: "product",
+  },
+  {
+    label: "후속 관리",
+    Icon: ArrowsClockwise,
+    tone: "regulatory",
+  },
+  {
+    label: "규제서류\n작성 / 발급",
+    Icon: Certificate,
+    tone: "regulatory",
+  },
+  {
+    label: "TD/DoC\n기술문서 컨설팅",
+    Icon: ClipboardText,
+    tone: "regulatory",
+  },
+  {
+    label: "규제 대응\n현황 진단",
+    Icon: MagnifyingGlass,
+    tone: "regulatory",
+  },
+] as const;
 
 const coreServices = [
   {
@@ -377,35 +420,21 @@ export function HomePage() {
   useTitleReveal();
 
   useEffect(() => {
-    const revealItems = document.querySelectorAll(".service-excellence__item");
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      {
-        rootMargin: "0px 0px -12% 0px",
-        threshold: 0.18,
-      },
-    );
-
-    revealItems.forEach((item) => observer.observe(item));
-
-    return () => observer.disconnect();
-  }, []);
-
-  useEffect(() => {
     const updateTestimonialSlideWidth = () => {
       const viewport = document.querySelector<HTMLElement>(
         ".client-testimonials__viewport",
       );
+      const pages = document.querySelectorAll<HTMLElement>(
+        ".client-testimonials__page",
+      );
+      const firstPage = pages[0];
+      const secondPage = pages[1];
 
-      setTestimonialSlideWidth(viewport?.clientWidth ?? window.innerWidth);
+      setTestimonialSlideWidth(
+        firstPage && secondPage
+          ? secondPage.offsetLeft - firstPage.offsetLeft
+          : viewport?.clientWidth ?? window.innerWidth,
+      );
     };
 
     updateTestimonialSlideWidth();
@@ -598,43 +627,47 @@ export function HomePage() {
               <span>원스톱 친환경 패키지 솔루션, 리스튜디오</span>
             </h2>
             <p>
-              제품 컨설팅부터 디자인, R&amp;D, 생산, 검수, 탄소저감 리포트까지
-              전 과정을 통합 지원하는 친환경 패키지 개발 서비스를 제공합니다.
+              친환경 패키지의 시작과 끝, 리스튜디오가 함께합니다.
             </p>
           </div>
 
-          <div className="home-video-section__frame">
-            <iframe
-              src="https://www.youtube-nocookie.com/embed/-qfbylgla54?rel=0"
-              title="리스튜디오 소개 영상"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowFullScreen
-            />
-          </div>
-
-          <section className="service-excellence mx-auto mt-10 max-w-[760px] md:mt-12">
-            <div className="service-excellence__stage">
-              <div className="service-excellence__stack">
-                {serviceMetrics.map((item, index) => (
-                  <article
-                    key={item.title}
-                    className="service-excellence__item"
-                    style={{ transitionDelay: `${index * 80}ms` }}
-                  >
-                    <div className="min-w-0">
-                      <h3 className="text-[18px] font-semibold leading-[1.25] text-black md:text-[21px]">
-                        {item.title}
-                      </h3>
-                      <p className="mt-1.5 max-w-[520px] text-[13px] font-medium leading-[1.55] text-[#657181] md:text-[14px]">
-                        {item.description}
-                      </p>
-                    </div>
-                    <div className="service-excellence__badge">
-                      {item.value}
-                    </div>
-                  </article>
+          <section className="home-process" aria-label="리스튜디오 원스톱 친환경 패키지 프로세스">
+            <div className="home-process__outcomes" aria-label="핵심 효과">
+              <div className="home-process__endpoint home-process__endpoint--start">
+                <span>START</span>
+                <strong>DEVELOP</strong>
+                <small>친환경 패키지 개발 / 제작</small>
+              </div>
+              <div className="home-process__benefits">
+                {homeProcessBenefits.map((benefit) => (
+                  <span key={benefit}>{benefit}</span>
                 ))}
               </div>
+              <div className="home-process__endpoint home-process__endpoint--finish">
+                <span>FINISH</span>
+                <strong>CERTIFIED</strong>
+                <small>글로벌 수출 완성</small>
+              </div>
+            </div>
+
+            <ol className="home-process__steps">
+              {homeProcessSteps.map(({ label, Icon, tone }) => (
+                <li className={`home-process__step home-process__step--${tone}`} key={label}>
+                  <strong>
+                    {label.split("\n").map((line) => (
+                      <span key={line}>{line}</span>
+                    ))}
+                  </strong>
+                  <span className="home-process__icon" aria-hidden="true">
+                    <Icon weight="bold" />
+                  </span>
+                </li>
+              ))}
+            </ol>
+
+            <div className="home-process__solution-labels" aria-hidden="true">
+              <span>제품 개발 솔루션</span>
+              <span>규제 해결 솔루션</span>
             </div>
           </section>
         </div>
