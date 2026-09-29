@@ -92,7 +92,10 @@ const SERVICE_MENU_GROUPS = [
         label: "통합 규제 대응 컨트롤",
         to: "/services/regulatory-response/integrated-control",
       },
-      "규제 전문가 밀착진단",
+      {
+        label: "규제 전문가 밀착진단",
+        to: "/services/regulatory-response/expert-diagnosis",
+      },
       "AI Agent 자동화",
       "FAQ",
       {
