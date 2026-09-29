@@ -13386,27 +13386,33 @@ section :where(h1, h2) {
 
   .home-impact-section {
     background: #ffffff;
-    padding: 58px 0 76px;
+    padding: 58px 0 0;
   }
 
   .home-impact-list {
-    width: min(100% - 80px, 940px);
+    width: min(calc(100% - 80px), calc(160px + 31.2em));
     margin: 0 auto;
-    border-top: 1px solid #d8dde1;
+    font-size: clamp(14px, 0.95vw, 17px);
   }
 
   .home-impact-item {
+    position: relative;
     display: grid;
     grid-template-columns: 118px minmax(0, 1fr);
     align-items: center;
     gap: 42px;
     min-height: 116px;
-    border-bottom: 1px solid #d8dde1;
     padding: 20px 0;
   }
 
-  .home-impact-item:last-child {
-    border-bottom: 0;
+  .home-impact-item:not(:last-child)::after {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: #d8dde1;
+    content: "";
   }
 
   .home-impact-item__badge {
