@@ -1900,7 +1900,7 @@ function RegulatoryFaqCtaSection() {
       <div className="regulatory-faq-layout">
         <aside className="regulatory-faq-side">
           <h2>FAQ</h2>
-          <Link className="regulatory-faq-more" to="/resources">
+          <Link className="regulatory-faq-more" to="/services/regulatory-response/faq">
             더 많은 질문 보기
             <ArrowRight size={17} weight="bold" aria-hidden="true" />
           </Link>

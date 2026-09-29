@@ -83,7 +83,10 @@ const SERVICE_MENU_GROUPS = [
     to: "/services/regulatory-response",
     Icon: FileText,
     items: [
-      "요금제",
+      {
+        label: "요금제",
+        to: "/services/regulatory-response/pricing",
+      },
       {
         label: "원스톱 대응 시스템",
         to: "/services/regulatory-response/onestop-system",
@@ -100,21 +103,25 @@ const SERVICE_MENU_GROUPS = [
         label: "AI Agent 자동화",
         to: "/services/regulatory-response/ai-agent-automation",
       },
-      "FAQ",
+      {
+        label: "FAQ",
+        to: "/services/regulatory-response/faq",
+      },
       {
         label: "타 솔루션 비교",
+        to: "/services/regulatory-response/compare/consulting",
         children: [
           {
             label: "일반 컨설팅펌",
-            to: "/services/regulatory-response?compare=consulting",
+            to: "/services/regulatory-response/compare/consulting",
           },
           {
             label: "기존 기술인증사",
-            to: "/services/regulatory-response?compare=certification",
+            to: "/services/regulatory-response/compare/certification",
           },
           {
             label: "패키징 공급사",
-            to: "/services/regulatory-response?compare=supplier",
+            to: "/services/regulatory-response/compare/supplier",
           },
         ],
       },

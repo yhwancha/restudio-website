@@ -16,8 +16,11 @@ import { ProductQuotePage } from "./pages/ProductQuotePage";
 import { ProjectManagementPage } from "./pages/ProjectManagementPage";
 import { RegulatoryAiAgentAutomationPage } from "./pages/RegulatoryAiAgentAutomationPage";
 import { RegulatoryExpertDiagnosisPage } from "./pages/RegulatoryExpertDiagnosisPage";
+import { RegulatoryFaqPage } from "./pages/RegulatoryFaqPage";
 import { RegulatoryIntegratedControlPage } from "./pages/RegulatoryIntegratedControlPage";
 import { RegulatoryOnestopSystemPage } from "./pages/RegulatoryOnestopSystemPage";
+import { RegulatoryPricingPage } from "./pages/RegulatoryPricingPage";
+import { RegulatorySolutionComparePage } from "./pages/RegulatorySolutionComparePage";
 import { ResourceDetailPage } from "./pages/ResourceDetailPage";
 import { ResourcesPage } from "./pages/ResourcesPage";
 import { ServiceDetailPage } from "./pages/ServiceDetailPage";
@@ -79,6 +82,10 @@ export default function App() {
               element={<ServiceDetailPage variant="regulatory-response" />}
             />
             <Route
+              path="/services/regulatory-response/pricing"
+              element={<RegulatoryPricingPage />}
+            />
+            <Route
               path="/services/regulatory-response/onestop-system"
               element={<RegulatoryOnestopSystemPage />}
             />
@@ -93,6 +100,14 @@ export default function App() {
             <Route
               path="/services/regulatory-response/ai-agent-automation"
               element={<RegulatoryAiAgentAutomationPage />}
+            />
+            <Route
+              path="/services/regulatory-response/faq"
+              element={<RegulatoryFaqPage />}
+            />
+            <Route
+              path="/services/regulatory-response/compare/:compareType"
+              element={<RegulatorySolutionComparePage />}
             />
             <Route path="/resources" element={<ResourcesPage />} />
             <Route
