@@ -70,7 +70,7 @@ const SERVICE_MENU_GROUPS = [
       },
       {
         label: "친환경 소재 연구소",
-        to: "https://www.revation.co.kr/kr/sub/product/list.asp",
+        to: "/services/product-development/eco-material-lab",
       },
       {
         label: "친환경 기술 인증",
@@ -522,6 +522,19 @@ export function Header() {
                   </span>
                 </NavLink>
               ))}
+              <NavLink
+                to="/services/product-development/eco-material-lab"
+                className={({ isActive }) =>
+                  [
+                    "ml-3 rounded-lg px-3 py-2.5 text-[14px] font-semibold transition-colors",
+                    isActive
+                      ? "bg-primary-100 text-primary-900"
+                      : "text-primary-700 hover:bg-primary-50",
+                  ].join(" ")
+                }
+              >
+                친환경 소재 연구소
+              </NavLink>
             </div>
           ) : null}
           {MOBILE_NAV_ITEMS.map((item) => (

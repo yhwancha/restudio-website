@@ -400,12 +400,12 @@ const markerStroke = (
     <path
       className="marker-scribble__path marker-scribble__path--base"
       pathLength={1}
-      d="M34 33 C48 15 63 16 76 24 C91 34 99 20 115 18 C133 16 144 31 160 24 C177 17 191 14 206 29 C223 46 235 12 255 17 C272 21 282 14 293 18"
+      d="M8 33 C29 15 51 16 70 24 C91 34 103 20 124 18 C146 16 157 31 178 24 C200 17 217 14 237 29 C258 46 273 12 293 17 C302 19 307 18 312 18"
     />
     <path
       className="marker-scribble__path marker-scribble__path--middle"
       pathLength={1}
-      d="M31 37 C47 46 57 8 75 16 C92 24 96 43 113 36 C132 29 139 9 155 19 C170 29 171 45 189 35 C206 26 211 23 227 30 C244 38 246 17 263 22 C279 27 286 32 296 24"
+      d="M5 37 C26 46 40 8 62 16 C84 24 91 43 112 36 C136 29 147 9 168 19 C188 29 190 45 212 35 C233 26 241 23 261 30 C282 38 288 17 304 22 C309 24 312 25 315 24"
     />
   </svg>
 );
@@ -449,19 +449,19 @@ export function HomePage() {
     <main className="bg-[#f7f8f8]">
       <section className="home-hero-section bg-[#f7f8f8] px-5 py-16 md:px-12 md:py-24 xl:px-[120px]">
         <div className="mx-auto w-full max-w-[1040px]">
-          <h1 className="title-reveal mx-auto max-w-[720px] text-center text-[32px] font-semibold leading-[1.16] text-black md:text-[44px] xl:text-[48px]">
+          <h1 className="title-reveal mx-auto max-w-[920px] text-center text-[32px] font-semibold leading-[1.16] text-black md:text-[44px] xl:text-[48px]">
             <AnimatedTitle
               parts={[
-              "친환경 패키지, 처음부터 끝까지",
+              "친환경 제품 개발과 규제 대응,",
               { type: "break" },
               {
-                text: "리스튜디오",
+                text: "하나의 플랫폼",
                 wrapperClassName:
                   "marker-scribble relative inline-block whitespace-nowrap px-1",
                 charClassName: "relative z-10",
                 prefix: markerStroke,
               },
-              " 하나로 완성",
+              "에서 한 번에 완성",
               ]}
             />
           </h1>

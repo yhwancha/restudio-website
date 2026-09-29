@@ -1,5 +1,1486 @@
 @import "tailwindcss";
 
+/* Eco material lab */
+.eco-material-lab-page {
+  --eco-lab-ink: #101827;
+  --eco-lab-body: #5d6877;
+  --eco-lab-green: #19a86f;
+  min-height: 100dvh;
+  overflow: hidden;
+  background: #ffffff;
+  color: var(--eco-lab-ink);
+}
+
+.eco-material-lab-hero,
+.eco-material-lab-materials {
+  width: min(calc(100% - 240px), 1760px);
+  margin-inline: auto;
+}
+
+.eco-material-lab-hero {
+  display: grid;
+  min-height: auto;
+  grid-template-columns: minmax(0, 1fr) minmax(440px, 0.82fr);
+  align-items: center;
+  gap: clamp(60px, 8vw, 150px);
+  padding-block: clamp(32px, 4vw, 64px);
+}
+
+.eco-material-lab-hero__copy {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.eco-material-lab-hero h1 {
+  max-width: 760px;
+  margin: 0;
+  color: var(--eco-lab-ink);
+  font-size: clamp(34px, 2.75vw, 50px);
+  font-weight: 600;
+  line-height: 1.18;
+  letter-spacing: -0.035em;
+}
+
+.eco-material-lab-hero__eyebrow {
+  margin: 14px 0 0;
+  color: var(--eco-lab-green);
+  font-size: clamp(13px, 0.86vw, 16px);
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.eco-material-lab-hero__description {
+  max-width: 720px;
+  margin: clamp(42px, 4vw, 70px) 0 0;
+  color: var(--eco-lab-body);
+  font-size: clamp(16px, 1vw, 19px);
+  font-weight: 500;
+  line-height: 1.65;
+}
+
+.eco-material-lab-hero__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: clamp(34px, 3vw, 52px);
+}
+
+.eco-material-lab-hero__links a {
+  display: inline-flex;
+  min-height: 58px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border-radius: 999px;
+  padding: 0 26px;
+  background: #f2f4f3;
+  color: #52606d;
+  font-size: clamp(15px, 0.96vw, 18px);
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.eco-material-lab-hero__links a:first-child {
+  background: var(--eco-lab-green);
+  color: #ffffff;
+}
+
+.eco-material-lab-hero__links a:hover {
+  transform: translateY(-1px);
+}
+
+.eco-material-lab-hero__links a:not(:first-child):hover {
+  background: #e8edeb;
+  color: #28382f;
+}
+
+.eco-material-lab-hero__links a:active {
+  transform: scale(0.98);
+}
+
+.eco-material-lab-hero__media {
+  width: 100%;
+  overflow: hidden;
+  margin: 0;
+  border-radius: 28px;
+  background: #e8e2d8;
+}
+
+.eco-material-lab-hero__media img {
+  width: 100%;
+  aspect-ratio: 1.48 / 1;
+  object-fit: cover;
+  object-position: center;
+}
+
+.eco-material-lab-materials {
+  padding: clamp(96px, 9vw, 150px) 0 clamp(112px, 10vw, 180px);
+}
+
+.eco-material-lab-materials__header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.eco-material-lab-materials__header h2 {
+  max-width: 920px;
+  margin: 0;
+  color: var(--eco-lab-ink);
+  font-size: clamp(30px, 2.5vw, 46px);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+}
+
+.eco-material-lab-materials__header p {
+  max-width: 840px;
+  margin: 20px 0 0;
+  color: var(--eco-lab-body);
+  font-size: clamp(16px, 1vw, 19px);
+  font-weight: 500;
+  line-height: 1.65;
+}
+
+.eco-material-lab-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(16px, 1.5vw, 26px);
+  margin: clamp(48px, 4vw, 72px) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.eco-material-card {
+  height: 100%;
+  overflow: hidden;
+  border-radius: 24px;
+  background: #f6f7f7;
+}
+
+.eco-material-card--wood {
+  background: #fff4df;
+}
+
+.eco-material-card--limestone {
+  background: #edf4ff;
+}
+
+.eco-material-card--marble {
+  background: #eafaf7;
+}
+
+.eco-material-card__media {
+  overflow: hidden;
+  margin: 0;
+  background: #e1e5e3;
+}
+
+.eco-material-card__media img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1.62 / 1;
+  object-fit: cover;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.eco-material-card:hover .eco-material-card__media img {
+  transform: scale(1.025);
+}
+
+.eco-material-card__content {
+  padding: clamp(18px, 1.35vw, 24px) clamp(16px, 1.2vw, 22px) clamp(18px, 1.35vw, 24px);
+}
+
+.eco-material-card__category {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin: 0;
+  color: var(--eco-lab-green);
+  font-size: clamp(14px, 0.88vw, 16px);
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.eco-material-card--wood .eco-material-card__category {
+  color: #8b6046;
+}
+
+.eco-material-card--limestone .eco-material-card__category {
+  color: #4788ef;
+}
+
+.eco-material-card--marble .eco-material-card__category {
+  color: #19a591;
+}
+
+.eco-material-card h3 {
+  margin: 15px 0 0;
+  color: var(--eco-lab-ink);
+  font-size: clamp(17px, 1.08vw, 21px);
+  font-weight: 600;
+  line-height: 1.38;
+  letter-spacing: -0.02em;
+}
+
+.eco-material-card__description {
+  margin: 5px 0 0;
+  color: var(--eco-lab-body);
+  font-size: clamp(14px, 0.9vw, 17px);
+  font-weight: 500;
+  line-height: 1.55;
+}
+
+.eco-papermold-section {
+  background: #f6f8fa;
+  padding: clamp(86px, 7.4vw, 138px) 0;
+}
+
+.eco-papermold-section__inner {
+  display: grid;
+  width: min(calc(100% - 240px), 1760px);
+  margin-inline: auto;
+  grid-template-columns: minmax(420px, 0.94fr) minmax(0, 1.78fr);
+  gap: clamp(48px, 3.2vw, 72px);
+}
+
+.eco-papermold-section__overview,
+.eco-papermold-section__proof {
+  min-width: 0;
+}
+
+.eco-papermold-section__header h2,
+.eco-papermold-proof-header h2 {
+  margin: 0;
+  color: var(--eco-lab-ink);
+  font-weight: 600;
+  letter-spacing: -0.035em;
+}
+
+.eco-papermold-section__header h2 {
+  font-size: clamp(34px, 2.8vw, 52px);
+  line-height: 1.13;
+}
+
+.eco-papermold-section__header p {
+  margin: 14px 0 0;
+  color: var(--eco-lab-green);
+  font-size: clamp(14px, 0.95vw, 18px);
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.eco-papermold-section__lead {
+  max-width: 680px;
+  margin: clamp(48px, 4vw, 70px) 0 0;
+  color: var(--eco-lab-body);
+  font-size: clamp(16px, 1vw, 18px);
+  font-weight: 500;
+  line-height: 1.65;
+}
+
+.eco-papermold-process-card,
+.eco-papermold-benefits-card,
+.eco-papermold-certification article,
+.eco-papermold-case-card,
+.eco-papermold-badge-list li {
+  background: #ffffff;
+}
+
+.eco-papermold-process-card,
+.eco-papermold-benefits-card {
+  border-radius: 22px;
+}
+
+.eco-papermold-process-card {
+  margin-top: 28px;
+  padding: clamp(26px, 2vw, 34px) clamp(28px, 2.2vw, 40px) clamp(28px, 2.1vw, 38px);
+}
+
+.eco-papermold-process-card h3 {
+  margin: 0;
+  color: var(--eco-lab-ink);
+  font-size: clamp(18px, 1.04vw, 21px);
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.eco-papermold-process-card ol {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(18px, 2vw, 38px);
+  margin: 32px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.eco-papermold-process-card li {
+  position: relative;
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.eco-papermold-process-card li > span {
+  display: inline-flex;
+  width: 34px;
+  height: 34px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: #e5f7ee;
+  color: var(--eco-lab-green);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.eco-papermold-process-card strong {
+  margin-top: 16px;
+  color: #1c2330;
+  font-size: clamp(15px, 0.95vw, 18px);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.eco-papermold-process-card small {
+  margin-top: 6px;
+  color: #97a2af;
+  font-size: clamp(13px, 0.86vw, 16px);
+  font-weight: 500;
+  line-height: 1.45;
+  white-space: pre-line;
+}
+
+.eco-papermold-process-card svg {
+  position: absolute;
+  top: 50%;
+  right: calc(-1 * clamp(18px, 2vw, 38px) / 2 - 9px);
+  transform: translateY(-50%);
+  color: #a8b0bb;
+}
+
+.eco-papermold-benefits-card {
+  margin-top: 24px;
+  padding: clamp(25px, 1.8vw, 34px) clamp(28px, 2.1vw, 38px);
+}
+
+.eco-papermold-benefits-card ul,
+.eco-papermold-badge-list,
+.eco-papermold-cases ul,
+.eco-papermold-case-card ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.eco-papermold-benefits-card li {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+
+.eco-papermold-benefits-card li + li {
+  margin-top: 29px;
+}
+
+.eco-papermold-benefits-card svg {
+  margin-top: 1px;
+  color: var(--eco-lab-green);
+}
+
+.eco-papermold-benefits-card h3 {
+  margin: 0;
+  color: var(--eco-lab-ink);
+  font-size: clamp(17px, 1.02vw, 20px);
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.eco-papermold-benefits-card p {
+  margin: 4px 0 0;
+  color: var(--eco-lab-body);
+  font-size: clamp(14px, 0.9vw, 17px);
+  font-weight: 500;
+  line-height: 1.62;
+}
+
+.eco-papermold-badge-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.eco-papermold-badge-list li {
+  display: flex;
+  min-height: 56px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border-radius: 22px;
+  color: var(--eco-lab-ink);
+  font-size: clamp(15px, 0.94vw, 18px);
+  font-weight: 600;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.eco-papermold-badge-list svg {
+  flex: 0 0 auto;
+  color: var(--eco-lab-green);
+}
+
+.eco-papermold-section__proof {
+  display: flex;
+  min-height: 100%;
+  flex-direction: column;
+  padding-top: clamp(116px, 8.4vw, 168px);
+}
+
+.eco-papermold-proof-header h2 {
+  max-width: 760px;
+  font-size: clamp(24px, 1.62vw, 31px);
+  line-height: 1.22;
+}
+
+.eco-papermold-certification {
+  margin-top: clamp(34px, 3vw, 48px);
+}
+
+.eco-papermold-certification h3,
+.eco-papermold-cases h3 {
+  margin: 0;
+  color: var(--eco-lab-ink);
+  font-size: clamp(18px, 1.1vw, 22px);
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.eco-papermold-certification article {
+  display: grid;
+  grid-template-columns: auto auto minmax(0, 1fr);
+  gap: 18px;
+  align-items: center;
+  min-height: 72px;
+  margin-top: 24px;
+  border-radius: 22px;
+  padding: 16px 24px;
+}
+
+.eco-papermold-certification img {
+  display: block;
+  width: 82px;
+  height: 58px;
+  object-fit: contain;
+}
+
+.eco-papermold-certification strong {
+  color: var(--eco-lab-ink);
+  font-size: clamp(18px, 1.12vw, 22px);
+  font-weight: 600;
+  line-height: 1.3;
+  white-space: nowrap;
+}
+
+.eco-papermold-certification p {
+  margin: 0;
+  color: var(--eco-lab-body);
+  font-size: clamp(14px, 0.9vw, 16px);
+  font-weight: 500;
+  line-height: 1.55;
+}
+
+.eco-papermold-cases {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  margin-top: clamp(44px, 3.4vw, 64px);
+}
+
+.eco-papermold-cases > ul {
+  display: grid;
+  flex: 1;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(18px, 1.5vw, 28px);
+  margin-top: 24px;
+}
+
+.eco-papermold-cases > ul > li {
+  min-height: 0;
+}
+
+.eco-papermold-case-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 22px;
+}
+
+.eco-papermold-case-card figure {
+  overflow: hidden;
+  margin: 0;
+  background: #e9eef1;
+}
+
+.eco-papermold-case-card img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1.37 / 1;
+  object-fit: cover;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.eco-papermold-case-card:hover img {
+  transform: scale(1.025);
+}
+
+.eco-papermold-case-card__image--cosmetics {
+  object-position: 50% 44%;
+}
+
+.eco-papermold-case-card__image--food {
+  object-position: 50% 50%;
+}
+
+.eco-papermold-case-card__image--fragile {
+  object-position: 50% 50%;
+}
+
+.eco-papermold-case-card > div {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: clamp(17px, 1.3vw, 24px) clamp(17px, 1.3vw, 24px) clamp(19px, 1.4vw, 26px);
+}
+
+.eco-papermold-case-card span {
+  position: absolute;
+  top: clamp(12px, 1vw, 18px);
+  right: clamp(12px, 1vw, 18px);
+  z-index: 2;
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  min-height: 26px;
+  border-radius: 999px;
+  padding: 0 13px;
+  background: #2d8444;
+  color: #ffffff;
+  font-size: clamp(11px, 0.74vw, 13px);
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.eco-papermold-case-card h4 {
+  margin: 0;
+  color: var(--eco-lab-ink);
+  font-size: clamp(18px, 1.12vw, 22px);
+  font-weight: 600;
+  line-height: 1.32;
+}
+
+.eco-papermold-case-card p {
+  margin: 6px 0 0;
+  color: var(--eco-lab-body);
+  font-size: clamp(14px, 0.9vw, 16px);
+  font-weight: 500;
+  line-height: 1.6;
+}
+
+.eco-papermold-case-card ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  margin-top: auto;
+  padding-top: 14px;
+}
+
+.eco-papermold-case-card li {
+  color: #2d8444;
+  font-size: clamp(13px, 0.82vw, 15px);
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.eco-bioplastic-section {
+  background: #ffffff;
+  padding: clamp(86px, 7.4vw, 138px) 0 clamp(104px, 8.2vw, 158px);
+}
+
+.eco-bioplastic-section__inner {
+  display: grid;
+  align-items: stretch;
+  width: min(calc(100% - 240px), 1760px);
+  margin-inline: auto;
+  grid-template-columns: minmax(420px, 0.82fr) minmax(0, 1.56fr);
+  gap: clamp(50px, 3.7vw, 82px);
+}
+
+.eco-bioplastic-section__overview,
+.eco-bioplastic-section__cases {
+  min-width: 0;
+}
+
+.eco-bioplastic-section__overview {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+}
+
+.eco-bioplastic-section__header h2,
+.eco-bioplastic-section__cases > h2 {
+  margin: 0;
+  color: var(--eco-lab-ink);
+  font-weight: 600;
+  letter-spacing: -0.035em;
+}
+
+.eco-bioplastic-section__header h2 {
+  font-size: clamp(31px, 2.42vw, 44px);
+  line-height: 1.16;
+}
+
+.eco-bioplastic-section__header p {
+  margin: 13px 0 0;
+  color: var(--eco-lab-green);
+  font-size: clamp(13px, 0.86vw, 16px);
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.eco-bioplastic-material-list,
+.eco-bioplastic-process-card ol,
+.eco-bioplastic-certification-card ul,
+.eco-bioplastic-case-group ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.eco-bioplastic-material-list {
+  display: grid;
+  gap: 22px;
+  margin-top: clamp(50px, 4.4vw, 78px);
+}
+
+.eco-bioplastic-material-card,
+.eco-bioplastic-process-card,
+.eco-bioplastic-certification-card,
+.eco-bioplastic-case-card {
+  border-radius: 22px;
+}
+
+.eco-bioplastic-material-card {
+  padding: clamp(22px, 1.8vw, 32px);
+}
+
+.eco-bioplastic-material-card--wood {
+  background: #fff4df;
+}
+
+.eco-bioplastic-material-card--limestone {
+  background: #edf4ff;
+}
+
+.eco-bioplastic-material-card--marble {
+  background: #eafaf7;
+}
+
+.eco-bioplastic-material-card h3 {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin: 0;
+  color: var(--eco-lab-ink);
+  font-size: clamp(17px, 1.05vw, 21px);
+  font-weight: 600;
+  line-height: 1.36;
+  letter-spacing: -0.02em;
+}
+
+.eco-bioplastic-material-card--wood h3 svg {
+  color: #8b6046;
+}
+
+.eco-bioplastic-material-card--limestone h3 svg {
+  color: #4788ef;
+}
+
+.eco-bioplastic-material-card--marble h3 svg {
+  color: #19a591;
+}
+
+.eco-bioplastic-material-card p {
+  margin: 10px 0 0;
+  color: var(--eco-lab-body);
+  font-size: clamp(13px, 0.82vw, 15px);
+  font-weight: 500;
+  line-height: 1.55;
+}
+
+.eco-bioplastic-process-card,
+.eco-bioplastic-certification-card {
+  margin-top: 22px;
+  background: #f7f8f8;
+}
+
+.eco-bioplastic-process-card {
+  padding: clamp(24px, 1.8vw, 32px) clamp(24px, 2vw, 36px) clamp(26px, 2vw, 36px);
+}
+
+.eco-bioplastic-process-card h3,
+.eco-bioplastic-certification-card h3 {
+  margin: 0;
+  color: var(--eco-lab-ink);
+  font-size: clamp(18px, 1.04vw, 21px);
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.eco-bioplastic-process-card ol {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(12px, 1.05vw, 20px);
+  margin-top: 28px;
+}
+
+.eco-bioplastic-process-card li:not(.eco-bioplastic-process-card__arrow) {
+  position: relative;
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.eco-bioplastic-process-card li > span {
+  display: inline-flex;
+  width: 30px;
+  height: 30px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: #e5f7ee;
+  color: var(--eco-lab-green);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.eco-bioplastic-process-card strong {
+  margin-top: 17px;
+  color: #1c2330;
+  font-size: clamp(14px, 0.88vw, 16px);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.eco-bioplastic-process-card small {
+  margin-top: 12px;
+  color: #97a2af;
+  font-size: clamp(12px, 0.8vw, 15px);
+  font-weight: 500;
+  line-height: 1.45;
+}
+
+.eco-bioplastic-process-card__arrow {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  color: #a8b0bb;
+}
+
+.eco-bioplastic-certification-card {
+  display: flex;
+  flex: 1;
+  min-height: clamp(180px, 12vw, 260px);
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(24px, 1.8vw, 32px) clamp(24px, 2vw, 36px) clamp(26px, 2vw, 38px);
+}
+
+.eco-bioplastic-certification-card ul {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  align-items: end;
+}
+
+.eco-bioplastic-certification-card li {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.eco-bioplastic-certification-card img {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: 48px;
+  object-fit: contain;
+}
+
+.eco-bioplastic-certification-card__logo--grs {
+  height: 54px;
+}
+
+.eco-bioplastic-certification-card__logo--ok-biobased {
+  height: 48px;
+}
+
+.eco-bioplastic-certification-card__logo--sgs {
+  height: 42px;
+}
+
+.eco-bioplastic-certification-card strong {
+  margin-top: 16px;
+  color: var(--eco-lab-ink);
+  font-size: clamp(14px, 0.9vw, 17px);
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.eco-bioplastic-certification-card span {
+  margin-top: 6px;
+  color: #97a2af;
+  font-size: clamp(13px, 0.82vw, 15px);
+  font-weight: 500;
+  line-height: 1.45;
+  white-space: pre-line;
+}
+
+.eco-bioplastic-section__cases {
+  padding-top: clamp(108px, 7.5vw, 142px);
+}
+
+.eco-bioplastic-section__cases > h2 {
+  font-size: clamp(24px, 1.62vw, 31px);
+  line-height: 1.22;
+}
+
+.eco-bioplastic-case-group {
+  margin-top: clamp(18px, 1.5vw, 28px);
+}
+
+.eco-bioplastic-case-group + .eco-bioplastic-case-group {
+  margin-top: clamp(14px, 1vw, 20px);
+}
+
+.eco-bioplastic-case-card > span {
+  position: absolute;
+  top: clamp(12px, 1vw, 16px);
+  right: clamp(12px, 1vw, 16px);
+  z-index: 2;
+  display: inline-flex;
+  width: fit-content;
+  min-height: 26px;
+  align-items: center;
+  border-radius: 999px;
+  padding: 0 13px;
+  background: #e82387;
+  color: #ffffff;
+  font-size: clamp(11px, 0.73vw, 13px);
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.eco-bioplastic-case-group ul {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(18px, 1.5vw, 28px);
+}
+
+.eco-bioplastic-case-card {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  background: #f7f8f8;
+}
+
+.eco-bioplastic-case-card figure {
+  overflow: hidden;
+  margin: 0;
+  background: #e9eef1;
+}
+
+.eco-bioplastic-case-card img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1.9 / 1;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.eco-bioplastic-case-card:hover img {
+  transform: scale(1.025);
+}
+
+.eco-bioplastic-case-card div {
+  padding: 13px clamp(14px, 1.1vw, 18px) 17px;
+}
+
+.eco-bioplastic-case-card h3 {
+  margin: 0;
+  color: var(--eco-lab-ink);
+  font-size: clamp(15px, 0.92vw, 18px);
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.eco-bioplastic-case-card p {
+  margin: 7px 0 0;
+  color: #97a2af;
+  font-size: clamp(12px, 0.78vw, 14px);
+  font-weight: 500;
+  line-height: 1.55;
+}
+
+.eco-value-section,
+.eco-comparison-section {
+  background: #f6f8fa;
+}
+
+.eco-value-section__inner,
+.eco-comparison-section__inner {
+  width: min(calc(100% - 240px), 1760px);
+  margin-inline: auto;
+}
+
+.eco-value-section {
+  padding: clamp(88px, 7.4vw, 140px) 0 clamp(58px, 4.8vw, 92px);
+}
+
+.eco-comparison-section {
+  padding: clamp(58px, 5vw, 92px) 0 clamp(108px, 8.4vw, 160px);
+}
+
+.eco-value-section__header h2,
+.eco-comparison-section__header h2 {
+  margin: 0;
+  color: var(--eco-lab-ink);
+  font-size: clamp(25px, 1.82vw, 34px);
+  font-weight: 600;
+  line-height: 1.28;
+  letter-spacing: -0.03em;
+}
+
+.eco-value-section__header p,
+.eco-comparison-section__header p {
+  max-width: 980px;
+  margin: 16px 0 0;
+  color: var(--eco-lab-body);
+  font-size: clamp(15px, 0.95vw, 18px);
+  font-weight: 500;
+  line-height: 1.6;
+}
+
+.eco-value-card-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(18px, 1.6vw, 28px);
+  margin: clamp(28px, 2.7vw, 46px) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.eco-value-card-list article {
+  display: grid;
+  min-height: clamp(112px, 7.2vw, 132px);
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(16px, 1.2vw, 22px);
+  border-radius: 22px;
+  background: #ffffff;
+  padding: clamp(26px, 2vw, 38px);
+}
+
+.eco-value-card-list article > span {
+  display: inline-flex;
+  width: clamp(44px, 3.1vw, 54px);
+  height: clamp(44px, 3.1vw, 54px);
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: #e5f7ee;
+  color: var(--eco-lab-green);
+}
+
+.eco-value-card-list article > span svg {
+  width: clamp(21px, 1.55vw, 26px);
+  height: clamp(21px, 1.55vw, 26px);
+}
+
+.eco-value-card-list h3 {
+  margin: 0;
+  color: var(--eco-lab-body);
+  font-size: clamp(17px, 1.05vw, 21px);
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.eco-value-card-list p {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 10px;
+  margin: 9px 0 0;
+  color: var(--eco-lab-green);
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+.eco-value-card-list strong {
+  color: var(--eco-lab-green);
+  font-size: clamp(22px, 1.55vw, 28px);
+  font-weight: 600;
+  letter-spacing: -0.035em;
+}
+
+.eco-value-card-list em {
+  color: var(--eco-lab-green);
+  font-size: clamp(15px, 0.96vw, 18px);
+  font-style: normal;
+  font-weight: 600;
+}
+
+.eco-comparison-table-wrap {
+  margin-top: clamp(42px, 4vw, 70px);
+  overflow-x: auto;
+  border-radius: 22px;
+  background: #ffffff;
+}
+
+.eco-comparison-table {
+  width: 100%;
+  min-width: 1100px;
+  border-collapse: collapse;
+  background: #ffffff;
+  color: var(--eco-lab-body);
+  table-layout: fixed;
+}
+
+.eco-comparison-table th,
+.eco-comparison-table td {
+  border-bottom: 1px solid #e2e7ec;
+  padding: 22px 24px;
+  font-size: clamp(15px, 0.95vw, 18px);
+  font-weight: 500;
+  line-height: 1.45;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.eco-comparison-table thead th {
+  height: 118px;
+  color: var(--eco-lab-body);
+  font-size: clamp(15px, 0.92vw, 17px);
+  font-weight: 600;
+}
+
+.eco-comparison-table th:first-child {
+  width: 190px;
+  background: #eef0f3;
+  color: #394452;
+  text-align: left;
+}
+
+.eco-comparison-table tbody th {
+  height: 62px;
+  color: #394452;
+  font-weight: 600;
+}
+
+.eco-comparison-table tbody tr:last-child th,
+.eco-comparison-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.eco-comparison-table thead th:not(:first-child) {
+  padding-top: 18px;
+}
+
+.eco-comparison-table thead th:not(:first-child) span {
+  display: inline-flex;
+  width: 46px;
+  height: 46px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  margin-bottom: 14px;
+}
+
+.eco-comparison-table thead th:not(:first-child) strong {
+  display: block;
+  font-size: clamp(15px, 0.96vw, 18px);
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.eco-comparison-table__column--paper span,
+.eco-comparison-table__badges span {
+  background: #c9fae2;
+  color: var(--eco-lab-green);
+}
+
+.eco-comparison-table__column--paper strong,
+.eco-comparison-table__text--paper {
+  color: var(--eco-lab-green);
+}
+
+.eco-comparison-table__column--wood span {
+  background: #ffe48d;
+  color: #e88000;
+}
+
+.eco-comparison-table__column--wood strong,
+.eco-comparison-table__text--wood {
+  color: #e88000;
+}
+
+.eco-comparison-table__column--limestone span {
+  background: #dfe8f4;
+  color: #78889c;
+}
+
+.eco-comparison-table__column--limestone strong,
+.eco-comparison-table__text--limestone {
+  color: #6f8095;
+}
+
+.eco-comparison-table__column--marble span {
+  background: #bff7fb;
+  color: #18a7bf;
+}
+
+.eco-comparison-table__column--marble strong,
+.eco-comparison-table__text--marble {
+  color: #18a7bf;
+}
+
+.eco-comparison-table__text--paper,
+.eco-comparison-table__text--wood,
+.eco-comparison-table__text--limestone,
+.eco-comparison-table__text--marble {
+  font-weight: 600;
+}
+
+.eco-comparison-table__badges {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+
+.eco-comparison-table__badges span {
+  display: inline-flex;
+  min-height: 34px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  padding: 0 14px;
+  font-size: clamp(13px, 0.84vw, 16px);
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.eco-comparison-table tbody td:nth-child(3) .eco-comparison-table__badges span {
+  background: #ffe48d;
+  color: #e88000;
+}
+
+.eco-comparison-table tbody td:nth-child(4) .eco-comparison-table__badges span {
+  background: #dfe8f4;
+  color: #78889c;
+}
+
+.eco-comparison-table tbody td:nth-child(5) .eco-comparison-table__badges span {
+  background: #bff7fb;
+  color: #18a7bf;
+}
+
+@media (max-width: 1440px) {
+  .eco-material-lab-hero,
+  .eco-material-lab-materials,
+  .eco-value-section__inner,
+  .eco-comparison-section__inner {
+    width: calc(100% - 160px);
+  }
+
+  .eco-papermold-section__inner {
+    width: calc(100% - 160px);
+    grid-template-columns: minmax(380px, 0.95fr) minmax(0, 1.65fr);
+    gap: 44px;
+  }
+
+  .eco-bioplastic-section__inner {
+    width: calc(100% - 160px);
+    grid-template-columns: minmax(380px, 0.86fr) minmax(0, 1.5fr);
+    gap: 46px;
+  }
+
+  .eco-material-lab-hero {
+    grid-template-columns: minmax(0, 1fr) minmax(400px, 0.8fr);
+    gap: clamp(48px, 6vw, 92px);
+  }
+}
+
+@media (max-width: 1279px) {
+  .eco-papermold-section__inner {
+    grid-template-columns: 1fr;
+  }
+
+  .eco-bioplastic-section__inner {
+    grid-template-columns: 1fr;
+  }
+
+  .eco-papermold-section__proof {
+    padding-top: 0;
+  }
+
+  .eco-bioplastic-section__cases {
+    padding-top: 0;
+  }
+
+  .eco-papermold-section__lead {
+    max-width: 820px;
+  }
+}
+
+@media (max-width: 1100px) {
+  .eco-material-lab-hero,
+  .eco-material-lab-materials,
+  .eco-value-section__inner,
+  .eco-comparison-section__inner {
+    width: calc(100% - 80px);
+  }
+
+  .eco-papermold-section__inner {
+    width: calc(100% - 80px);
+  }
+
+  .eco-bioplastic-section__inner {
+    width: calc(100% - 80px);
+  }
+
+  .eco-material-lab-hero {
+    min-height: auto;
+    grid-template-columns: 1fr;
+    gap: 52px;
+  }
+
+  .eco-material-lab-hero__copy {
+    max-width: 820px;
+  }
+
+  .eco-material-lab-hero__media {
+    max-width: 820px;
+  }
+
+  .eco-material-lab-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .eco-papermold-cases > ul {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .eco-value-card-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 700px) {
+  .eco-material-lab-hero,
+  .eco-material-lab-materials,
+  .eco-value-section__inner,
+  .eco-comparison-section__inner {
+    width: calc(100% - 40px);
+  }
+
+  .eco-papermold-section {
+    padding: 72px 0 86px;
+  }
+
+  .eco-bioplastic-section {
+    padding: 72px 0 92px;
+  }
+
+  .eco-value-section {
+    padding: 72px 0 44px;
+  }
+
+  .eco-comparison-section {
+    padding: 44px 0 92px;
+  }
+
+  .eco-papermold-section__inner {
+    width: calc(100% - 40px);
+    gap: 56px;
+  }
+
+  .eco-bioplastic-section__inner {
+    width: calc(100% - 40px);
+    gap: 54px;
+  }
+
+  .eco-material-lab-hero {
+    gap: 38px;
+    padding-block: 36px 48px;
+  }
+
+  .eco-material-lab-hero h1 {
+    font-size: 32px;
+    line-height: 1.25;
+  }
+
+  .eco-material-lab-hero__description {
+    margin-top: 34px;
+  }
+
+  .eco-material-lab-hero__links {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 1fr;
+  }
+
+  .eco-material-lab-hero__links a {
+    width: 100%;
+    min-height: 54px;
+  }
+
+  .eco-material-lab-hero__media {
+    border-radius: 20px;
+  }
+
+  .eco-material-lab-materials {
+    padding-top: 78px;
+  }
+
+  .eco-material-lab-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    margin-top: 38px;
+  }
+
+  .eco-material-card {
+    border-radius: 20px;
+  }
+
+  .eco-papermold-section__header h2 {
+    font-size: 32px;
+    line-height: 1.2;
+  }
+
+  .eco-papermold-section__lead {
+    margin-top: 34px;
+  }
+
+  .eco-papermold-process-card {
+    padding: 24px 20px 26px;
+  }
+
+  .eco-bioplastic-material-list {
+    margin-top: 38px;
+  }
+
+  .eco-bioplastic-material-card,
+  .eco-bioplastic-process-card,
+  .eco-bioplastic-certification-card,
+  .eco-bioplastic-case-card {
+    border-radius: 20px;
+  }
+
+  .eco-bioplastic-material-card,
+  .eco-bioplastic-process-card,
+  .eco-bioplastic-certification-card {
+    padding: 24px 20px 26px;
+  }
+
+  .eco-papermold-process-card ol {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 26px 34px;
+  }
+
+  .eco-bioplastic-process-card ol {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 26px 30px;
+  }
+
+  .eco-papermold-process-card svg {
+    display: none;
+  }
+
+  .eco-bioplastic-process-card__arrow {
+    display: none;
+  }
+
+  .eco-papermold-benefits-card {
+    padding: 24px 20px;
+  }
+
+  .eco-papermold-badge-list,
+  .eco-papermold-cases > ul {
+    grid-template-columns: 1fr;
+  }
+
+  .eco-papermold-certification article {
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 12px 16px;
+    padding: 18px 20px;
+  }
+
+  .eco-papermold-certification p {
+    grid-column: 1 / -1;
+  }
+
+  .eco-bioplastic-certification-card {
+    min-height: auto;
+  }
+
+  .eco-bioplastic-certification-card ul,
+  .eco-bioplastic-case-group ul {
+    grid-template-columns: 1fr;
+  }
+
+  .eco-bioplastic-certification-card li + li {
+    margin-top: 22px;
+  }
+
+  .eco-value-card-list article {
+    min-height: 122px;
+    border-radius: 20px;
+    padding: 24px 20px;
+  }
+
+  .eco-comparison-table th,
+  .eco-comparison-table td {
+    padding: 18px 16px;
+  }
+}
+
 @theme inline {
   --color-primary-25: #F7FAF8;
   --color-primary-50: #EEF4F0;
