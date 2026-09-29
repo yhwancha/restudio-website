@@ -4,6 +4,8 @@ import { Layout } from "./components/Layout";
 import { AiChatFloatingButton } from "./components/AiChatFloatingButton";
 import { ScrollToTop } from "./components/ScrollToTop";
 import { CompanyPage } from "./pages/CompanyPage";
+import { EcoCertificationPage } from "./pages/EcoCertificationPage";
+import { EcoMaterialLabPage } from "./pages/EcoMaterialLabPage";
 import { HomePage } from "./pages/HomePage";
 import { IndustryConsultingPage } from "./pages/IndustryConsultingPage";
 import { LoginPage } from "./pages/LoginPage";
@@ -12,6 +14,13 @@ import { OnestopDevelopmentSystemPage } from "./pages/OnestopDevelopmentSystemPa
 import { PlaceholderPage } from "./pages/PlaceholderPage";
 import { ProductQuotePage } from "./pages/ProductQuotePage";
 import { ProjectManagementPage } from "./pages/ProjectManagementPage";
+import { RegulatoryAiAgentAutomationPage } from "./pages/RegulatoryAiAgentAutomationPage";
+import { RegulatoryExpertDiagnosisPage } from "./pages/RegulatoryExpertDiagnosisPage";
+import { RegulatoryFaqPage } from "./pages/RegulatoryFaqPage";
+import { RegulatoryIntegratedControlPage } from "./pages/RegulatoryIntegratedControlPage";
+import { RegulatoryOnestopSystemPage } from "./pages/RegulatoryOnestopSystemPage";
+import { RegulatoryPricingPage } from "./pages/RegulatoryPricingPage";
+import { RegulatorySolutionComparePage } from "./pages/RegulatorySolutionComparePage";
 import { ResourceDetailPage } from "./pages/ResourceDetailPage";
 import { ResourcesPage } from "./pages/ResourcesPage";
 import { ServiceDetailPage } from "./pages/ServiceDetailPage";
@@ -61,8 +70,44 @@ export default function App() {
               element={<IndustryConsultingPage />}
             />
             <Route
+              path="/services/product-development/eco-certification"
+              element={<EcoCertificationPage />}
+            />
+            <Route
+              path="/services/product-development/eco-material-lab"
+              element={<EcoMaterialLabPage />}
+            />
+            <Route
               path="/services/regulatory-response"
               element={<ServiceDetailPage variant="regulatory-response" />}
+            />
+            <Route
+              path="/services/regulatory-response/pricing"
+              element={<RegulatoryPricingPage />}
+            />
+            <Route
+              path="/services/regulatory-response/onestop-system"
+              element={<RegulatoryOnestopSystemPage />}
+            />
+            <Route
+              path="/services/regulatory-response/integrated-control"
+              element={<RegulatoryIntegratedControlPage />}
+            />
+            <Route
+              path="/services/regulatory-response/expert-diagnosis"
+              element={<RegulatoryExpertDiagnosisPage />}
+            />
+            <Route
+              path="/services/regulatory-response/ai-agent-automation"
+              element={<RegulatoryAiAgentAutomationPage />}
+            />
+            <Route
+              path="/services/regulatory-response/faq"
+              element={<RegulatoryFaqPage />}
+            />
+            <Route
+              path="/services/regulatory-response/compare/:compareType"
+              element={<RegulatorySolutionComparePage />}
             />
             <Route path="/resources" element={<ResourcesPage />} />
             <Route

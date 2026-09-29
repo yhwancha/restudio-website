@@ -70,11 +70,11 @@ const SERVICE_MENU_GROUPS = [
       },
       {
         label: "친환경 소재 연구소",
-        to: "https://www.revation.co.kr/kr/sub/product/list.asp",
+        to: "/services/product-development/eco-material-lab",
       },
       {
         label: "친환경 기술 인증",
-        to: "https://www.revation.co.kr/kr/sub/company/greeting.asp#awards",
+        to: "/services/product-development/eco-certification",
       },
     ],
   },
@@ -83,26 +83,45 @@ const SERVICE_MENU_GROUPS = [
     to: "/services/regulatory-response",
     Icon: FileText,
     items: [
-      "요금제",
-      "원스톱 대응 시스템",
-      "통합 규제 대응 컨트롤",
-      "규제 전문가 밀착진단",
-      "AI Agent 자동화",
-      "FAQ",
+      {
+        label: "요금제",
+        to: "/services/regulatory-response/pricing",
+      },
+      {
+        label: "원스톱 대응 시스템",
+        to: "/services/regulatory-response/onestop-system",
+      },
+      {
+        label: "통합 규제 대응 컨트롤",
+        to: "/services/regulatory-response/integrated-control",
+      },
+      {
+        label: "규제 전문가 밀착진단",
+        to: "/services/regulatory-response/expert-diagnosis",
+      },
+      {
+        label: "AI Agent 자동화",
+        to: "/services/regulatory-response/ai-agent-automation",
+      },
+      {
+        label: "FAQ",
+        to: "/services/regulatory-response/faq",
+      },
       {
         label: "타 솔루션 비교",
+        to: "/services/regulatory-response/compare/consulting",
         children: [
           {
             label: "일반 컨설팅펌",
-            to: "/services/regulatory-response?compare=consulting",
+            to: "/services/regulatory-response/compare/consulting",
           },
           {
             label: "기존 기술인증사",
-            to: "/services/regulatory-response?compare=certification",
+            to: "/services/regulatory-response/compare/certification",
           },
           {
             label: "패키징 공급사",
-            to: "/services/regulatory-response?compare=supplier",
+            to: "/services/regulatory-response/compare/supplier",
           },
         ],
       },
@@ -522,6 +541,19 @@ export function Header() {
                   </span>
                 </NavLink>
               ))}
+              <NavLink
+                to="/services/product-development/eco-material-lab"
+                className={({ isActive }) =>
+                  [
+                    "ml-3 rounded-lg px-3 py-2.5 text-[14px] font-semibold transition-colors",
+                    isActive
+                      ? "bg-primary-100 text-primary-900"
+                      : "text-primary-700 hover:bg-primary-50",
+                  ].join(" ")
+                }
+              >
+                친환경 소재 연구소
+              </NavLink>
             </div>
           ) : null}
           {MOBILE_NAV_ITEMS.map((item) => (
