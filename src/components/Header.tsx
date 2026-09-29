@@ -96,7 +96,10 @@ const SERVICE_MENU_GROUPS = [
         label: "규제 전문가 밀착진단",
         to: "/services/regulatory-response/expert-diagnosis",
       },
-      "AI Agent 자동화",
+      {
+        label: "AI Agent 자동화",
+        to: "/services/regulatory-response/ai-agent-automation",
+      },
       "FAQ",
       {
         label: "타 솔루션 비교",
