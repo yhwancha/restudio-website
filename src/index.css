@@ -9686,6 +9686,22 @@ section :where(h1, h2) {
   }
 
   @media (max-width: 1280px) {
+    .home-impact-list {
+      width: min(100% - 64px, 900px);
+    }
+
+    .home-impact-item {
+      grid-template-columns: 108px minmax(0, 1fr);
+      gap: 34px;
+      min-height: 106px;
+    }
+
+    .home-impact-item__badge {
+      min-width: 88px;
+      min-height: 52px;
+      padding: 0 18px;
+    }
+
     .home-process__outcomes {
       grid-template-columns: minmax(180px, 0.95fr) repeat(3, minmax(150px, 1fr)) minmax(180px, 0.95fr);
       gap: 18px;
@@ -9728,6 +9744,37 @@ section :where(h1, h2) {
   }
 
   @media (max-width: 980px) {
+    .home-impact-section {
+      padding: 42px 0 60px;
+    }
+
+    .home-impact-list {
+      width: calc(100% - 40px);
+    }
+
+    .home-impact-item {
+      grid-template-columns: 1fr;
+      gap: 14px;
+      min-height: 0;
+      padding: 22px 0;
+    }
+
+    .home-impact-item__badge {
+      min-width: 0;
+      min-height: 44px;
+      font-size: 23px;
+      padding: 0 18px;
+    }
+
+    .home-impact-item h2 {
+      font-size: 24px;
+    }
+
+    .home-impact-item p {
+      margin-top: 10px;
+      font-size: 14px;
+    }
+
     .home-process {
       margin-top: 58px;
     }
@@ -13335,6 +13382,69 @@ section :where(h1, h2) {
     font-size: 19px;
     font-weight: 600;
     line-height: 1;
+  }
+
+  .home-impact-section {
+    background: #ffffff;
+    padding: 58px 0 76px;
+  }
+
+  .home-impact-list {
+    width: min(100% - 80px, 940px);
+    margin: 0 auto;
+    border-top: 1px solid #d8dde1;
+  }
+
+  .home-impact-item {
+    display: grid;
+    grid-template-columns: 118px minmax(0, 1fr);
+    align-items: center;
+    gap: 42px;
+    min-height: 116px;
+    border-bottom: 1px solid #d8dde1;
+    padding: 20px 0;
+  }
+
+  .home-impact-item:last-child {
+    border-bottom: 0;
+  }
+
+  .home-impact-item__badge {
+    display: inline-flex;
+    width: fit-content;
+    min-width: 96px;
+    min-height: 56px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    background: #dbeaff;
+    color: #252b31;
+    font-size: clamp(24px, 2vw, 32px);
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: -0.055em;
+    padding: 0 20px;
+    white-space: nowrap;
+  }
+
+  .home-impact-item h2 {
+    margin: 0;
+    color: #050607;
+    font-size: clamp(22px, 1.72vw, 30px);
+    font-weight: 600;
+    line-height: 1.22;
+    letter-spacing: -0.045em;
+    word-break: keep-all;
+  }
+
+  .home-impact-item p {
+    margin: 12px 0 0;
+    color: #697482;
+    font-size: clamp(14px, 0.95vw, 17px);
+    font-weight: 400;
+    line-height: 1.48;
+    letter-spacing: -0.03em;
+    word-break: keep-all;
   }
 
   .regulatory-concern-section {

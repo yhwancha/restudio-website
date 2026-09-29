@@ -28,6 +28,32 @@ const homeProcessBenefits = [
   "원스톱으로 비용 절감",
 ] as const;
 
+const homeImpactItems = [
+  {
+    badge: "50%",
+    title: "평균 개발 기간 단축",
+    description: "AI 기반 검증 프로세스로 제품 출시까지 빠르게 연결합니다.",
+  },
+  {
+    badge: "30%",
+    title: "개발비용 최대 절감",
+    description:
+      "소재, 금형, 생산 조건을 초기에 비교해 불필요한 샘플링과 재작업 비용을 낮춥니다.",
+  },
+  {
+    badge: "원스톱",
+    title: "소재 선정부터 양산까지",
+    description:
+      "친환경 소재 검토, 구조 설계, 샘플 제작, 양산 연결까지 한 흐름으로 관리합니다.",
+  },
+  {
+    badge: "100%",
+    title: "PPWR 등 글로벌 친환경 규제 대응",
+    description:
+      "EU 포장폐기물 규정과 글로벌 인증 요구사항을 제품 개발 단계부터 함께 반영합니다.",
+  },
+] as const;
+
 const homeProcessSteps = [
   {
     label: "친환경 소재\n개발 / 큐레이션",
@@ -670,6 +696,20 @@ export function HomePage() {
               <span>규제 해결 솔루션</span>
             </div>
           </section>
+        </div>
+      </section>
+
+      <section className="home-impact-section" aria-label="리스튜디오 핵심 성과">
+        <div className="home-impact-list">
+          {homeImpactItems.map((item) => (
+            <article className="home-impact-item" key={item.title}>
+              <span className="home-impact-item__badge">{item.badge}</span>
+              <div>
+                <h2>{item.title}</h2>
+                <p>{item.description}</p>
+              </div>
+            </article>
+          ))}
         </div>
       </section>
 
