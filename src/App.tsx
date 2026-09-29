@@ -14,6 +14,7 @@ import { OnestopDevelopmentSystemPage } from "./pages/OnestopDevelopmentSystemPa
 import { PlaceholderPage } from "./pages/PlaceholderPage";
 import { ProductQuotePage } from "./pages/ProductQuotePage";
 import { ProjectManagementPage } from "./pages/ProjectManagementPage";
+import { RegulatoryOnestopSystemPage } from "./pages/RegulatoryOnestopSystemPage";
 import { ResourceDetailPage } from "./pages/ResourceDetailPage";
 import { ResourcesPage } from "./pages/ResourcesPage";
 import { ServiceDetailPage } from "./pages/ServiceDetailPage";
@@ -73,6 +74,10 @@ export default function App() {
             <Route
               path="/services/regulatory-response"
               element={<ServiceDetailPage variant="regulatory-response" />}
+            />
+            <Route
+              path="/services/regulatory-response/onestop-system"
+              element={<RegulatoryOnestopSystemPage />}
             />
             <Route path="/resources" element={<ResourcesPage />} />
             <Route

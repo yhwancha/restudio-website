@@ -84,7 +84,10 @@ const SERVICE_MENU_GROUPS = [
     Icon: FileText,
     items: [
       "요금제",
-      "원스톱 대응 시스템",
+      {
+        label: "원스톱 대응 시스템",
+        to: "/services/regulatory-response/onestop-system",
+      },
       "통합 규제 대응 컨트롤",
       "규제 전문가 밀착진단",
       "AI Agent 자동화",

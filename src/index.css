@@ -1481,6 +1481,759 @@
   }
 }
 
+/* Regulatory onestop system */
+.regulatory-onestop-page {
+  --regulatory-onestop-ink: #101827;
+  --regulatory-onestop-body: #5d6877;
+  --regulatory-onestop-green: #19a86f;
+  min-height: 100dvh;
+  overflow: hidden;
+  background: #ffffff;
+  color: var(--regulatory-onestop-ink);
+}
+
+.regulatory-onestop-hero {
+  display: grid;
+  width: min(calc(100% - 240px), 1760px);
+  margin-inline: auto;
+  grid-template-columns: minmax(0, 0.98fr) minmax(420px, 0.94fr);
+  align-items: center;
+  gap: clamp(58px, 7vw, 128px);
+  padding: clamp(72px, 7vw, 124px) 0 clamp(86px, 7vw, 132px);
+}
+
+.regulatory-onestop-hero__copy h1 {
+  max-width: 760px;
+  margin: 0;
+  color: var(--regulatory-onestop-ink);
+  font-size: clamp(34px, 2.75vw, 50px);
+  font-weight: 600;
+  line-height: 1.18;
+  letter-spacing: -0.035em;
+}
+
+.regulatory-onestop-hero__copy h1 span {
+  color: var(--regulatory-onestop-green);
+}
+
+.regulatory-onestop-hero__copy p {
+  max-width: 760px;
+  margin: clamp(42px, 3.8vw, 66px) 0 0;
+  color: var(--regulatory-onestop-body);
+  font-size: clamp(15px, 0.96vw, 18px);
+  font-weight: 500;
+  line-height: 1.66;
+}
+
+.regulatory-onestop-hero__media {
+  overflow: hidden;
+  margin: 0;
+  border-radius: 28px;
+  background: #edf3f0;
+}
+
+.regulatory-onestop-hero__media img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1.74 / 1;
+  object-fit: cover;
+  object-position: center;
+}
+
+.regulatory-onestop-flow-section {
+  background: #f6f8fa;
+  padding: clamp(110px, 8vw, 162px) 0 clamp(118px, 8.8vw, 172px);
+}
+
+.regulatory-onestop-flow-section__inner {
+  width: min(calc(100% - 240px), 1760px);
+  margin-inline: auto;
+}
+
+.regulatory-onestop-flow-section h2 {
+  margin: 0;
+  color: var(--regulatory-onestop-ink);
+  font-size: clamp(30px, 2.5vw, 46px);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.035em;
+}
+
+.regulatory-onestop-flow {
+  display: grid;
+  grid-template-columns: minmax(240px, 0.92fr) auto minmax(0, 1.86fr) auto minmax(240px, 0.92fr);
+  align-items: stretch;
+  gap: clamp(14px, 1.7vw, 30px);
+  margin-top: clamp(48px, 4.2vw, 76px);
+}
+
+.regulatory-onestop-flow-side,
+.regulatory-onestop-master-card {
+  border-radius: 24px;
+}
+
+.regulatory-onestop-flow-side {
+  display: flex;
+  min-height: 430px;
+  flex-direction: column;
+  background: #ffffff;
+  padding: clamp(20px, 1.35vw, 26px);
+}
+
+.regulatory-onestop-flow-side__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.regulatory-onestop-flow-side__head h3 {
+  margin: 0;
+  color: var(--regulatory-onestop-ink);
+  font-size: clamp(18px, 1.05vw, 21px);
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.regulatory-onestop-flow-side__head span,
+.regulatory-onestop-master-card__head > span {
+  display: inline-flex;
+  min-height: 30px;
+  align-items: center;
+  border-radius: 999px;
+  padding: 0 18px;
+  background: #dff7ea;
+  color: var(--regulatory-onestop-green);
+  font-size: clamp(12px, 0.78vw, 14px);
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.regulatory-onestop-flow-side ul {
+  display: grid;
+  gap: 12px;
+  margin: 28px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.regulatory-onestop-flow-side li {
+  display: flex;
+  min-height: 58px;
+  align-items: center;
+  gap: 14px;
+  border: 1px solid #dde6ef;
+  border-radius: 14px;
+  padding: 0 18px;
+  color: #334155;
+  font-size: clamp(15px, 0.9vw, 17px);
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.regulatory-onestop-flow-side li svg {
+  flex: 0 0 auto;
+  color: #637083;
+}
+
+.regulatory-onestop-flow-side > p {
+  display: flex;
+  min-height: 58px;
+  align-items: center;
+  justify-content: center;
+  margin: auto 0 0;
+  border-radius: 14px;
+  background: #f4f7f8;
+  color: #6f7b88;
+  font-size: clamp(15px, 0.9vw, 17px);
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.regulatory-onestop-flow__connector {
+  align-self: center;
+  color: #98a5b3;
+}
+
+.regulatory-onestop-master-card {
+  min-height: 450px;
+  background:
+    radial-gradient(circle at 22% 18%, rgb(38 214 132 / 0.42), transparent 32%),
+    linear-gradient(180deg, #18bb70 0%, #067743 100%);
+  padding: clamp(24px, 1.75vw, 34px);
+  color: #ffffff;
+}
+
+.regulatory-onestop-master-card__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.regulatory-onestop-master-card__head h3 {
+  margin: 0;
+  color: #ffffff;
+  font-size: clamp(20px, 1.28vw, 25px);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+}
+
+.regulatory-onestop-master-card__head p {
+  margin: 10px 0 0;
+  color: rgb(255 255 255 / 0.72);
+  font-size: clamp(14px, 0.9vw, 16px);
+  font-weight: 500;
+  line-height: 1.45;
+}
+
+.regulatory-onestop-master-card__head > span {
+  background: #ffffff;
+  color: var(--regulatory-onestop-green);
+}
+
+.regulatory-onestop-master-card ol {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(18px, 2vw, 42px);
+  align-items: start;
+  margin: clamp(42px, 4vw, 72px) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.regulatory-onestop-master-card ol > li {
+  position: relative;
+  display: flex;
+  min-width: 0;
+  justify-content: center;
+}
+
+.regulatory-onestop-master-card ol > li > svg {
+  position: absolute;
+  top: 78px;
+  right: calc(-1 * clamp(18px, 2vw, 42px) / 2 - 14px);
+  color: rgb(255 255 255 / 0.5);
+}
+
+.regulatory-onestop-master-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.regulatory-onestop-master-step__icon {
+  display: inline-flex;
+  width: clamp(78px, 5vw, 96px);
+  height: clamp(78px, 5vw, 96px);
+  align-items: center;
+  justify-content: center;
+  border-radius: 28px;
+  background: #ffffff;
+  color: #116743;
+}
+
+.regulatory-onestop-master-step__number {
+  display: inline-flex;
+  width: 29px;
+  height: 29px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  margin-top: -14px;
+  background: #15b977;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.regulatory-onestop-master-step strong {
+  margin-top: 16px;
+  color: #ffffff;
+  font-size: clamp(16px, 1.02vw, 20px);
+  font-weight: 600;
+  line-height: 1.32;
+}
+
+.regulatory-onestop-master-step small {
+  margin-top: 9px;
+  color: rgb(255 255 255 / 0.68);
+  font-size: clamp(12px, 0.78vw, 14px);
+  font-weight: 500;
+  line-height: 1.45;
+  white-space: pre-line;
+}
+
+.regulatory-onestop-master-card__summary {
+  display: flex;
+  min-height: 62px;
+  align-items: center;
+  justify-content: center;
+  margin: clamp(34px, 3.2vw, 58px) 0 0;
+  border-radius: 16px;
+  background: rgb(255 255 255 / 0.14);
+  color: #ffffff;
+  font-size: clamp(16px, 1vw, 19px);
+  font-weight: 600;
+  line-height: 1.35;
+  text-align: center;
+}
+
+.regulatory-onestop-why-section {
+  background: #ffffff;
+  padding: clamp(104px, 8vw, 156px) 0;
+}
+
+.regulatory-onestop-why-section__inner,
+.regulatory-onestop-benefit-section__inner {
+  width: min(calc(100% - 240px), 1760px);
+  margin-inline: auto;
+}
+
+.regulatory-onestop-why-section h2,
+.regulatory-onestop-benefit-section h2 {
+  margin: 0;
+  color: var(--regulatory-onestop-ink);
+  font-size: clamp(30px, 2.45vw, 44px);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.035em;
+}
+
+.regulatory-onestop-why-layout {
+  display: grid;
+  grid-template-columns: minmax(410px, 0.86fr) minmax(0, 1.72fr);
+  align-items: stretch;
+  gap: clamp(28px, 2.2vw, 48px);
+  margin-top: clamp(48px, 4vw, 72px);
+}
+
+.regulatory-onestop-data-system {
+  display: grid;
+  gap: 18px;
+}
+
+.regulatory-onestop-data-card,
+.regulatory-onestop-engine-card,
+.regulatory-onestop-why-copy article,
+.regulatory-onestop-benefit-card {
+  border-radius: 24px;
+}
+
+.regulatory-onestop-data-card {
+  background: #f7f9fa;
+  padding: clamp(20px, 1.35vw, 26px) clamp(18px, 1.25vw, 24px) clamp(3px, 0.25vw, 5px);
+}
+
+.regulatory-onestop-data-card h3,
+.regulatory-onestop-engine-card h3 {
+  margin: 0;
+  color: var(--regulatory-onestop-ink);
+  font-size: clamp(16px, 1vw, 19px);
+  font-weight: 600;
+  line-height: 1.35;
+  text-align: center;
+}
+
+.regulatory-onestop-data-card ul {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: clamp(14px, 1.3vw, 24px);
+  margin: 16px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.regulatory-onestop-data-card li {
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+  min-width: 0;
+  color: #708091;
+  font-size: clamp(12px, 0.8vw, 15px);
+  font-weight: 600;
+  line-height: 1.25;
+  text-align: center;
+}
+
+.regulatory-onestop-data-card li svg {
+  color: #7d8c9b;
+}
+
+.regulatory-onestop-data-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  color: #7b8892;
+  font-size: clamp(14px, 0.92vw, 17px);
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.regulatory-onestop-engine-card {
+  background: #188b4c;
+  color: #ffffff;
+  padding: clamp(20px, 1.35vw, 26px) clamp(18px, 1.25vw, 24px) clamp(3px, 0.25vw, 5px);
+}
+
+.regulatory-onestop-engine-card h3 {
+  color: #ffffff;
+}
+
+.regulatory-onestop-engine-card ol {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  align-items: center;
+  gap: clamp(8px, 0.9vw, 18px);
+  margin: 20px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.regulatory-onestop-engine-card li {
+  position: relative;
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  justify-content: center;
+}
+
+.regulatory-onestop-engine-card li > svg {
+  flex: 0 0 auto;
+  margin-left: clamp(8px, 0.8vw, 16px);
+  color: rgb(255 255 255 / 0.48);
+}
+
+.regulatory-onestop-engine-step {
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+  min-width: 0;
+  color: rgb(255 255 255 / 0.92);
+  font-size: clamp(12px, 0.78vw, 15px);
+  font-weight: 600;
+  line-height: 1.25;
+  text-align: center;
+}
+
+.regulatory-onestop-engine-step span {
+  white-space: nowrap;
+}
+
+.regulatory-onestop-engine-step svg {
+  color: rgb(255 255 255 / 0.9);
+}
+
+.regulatory-onestop-why-copy {
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  gap: 18px;
+}
+
+.regulatory-onestop-why-copy article {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: #eef4f9;
+  padding: clamp(34px, 3vw, 58px);
+}
+
+.regulatory-onestop-why-copy h3 {
+  margin: 0;
+  color: var(--regulatory-onestop-ink);
+  font-size: clamp(21px, 1.42vw, 27px);
+  font-weight: 600;
+  line-height: 1.28;
+  letter-spacing: -0.03em;
+}
+
+.regulatory-onestop-why-copy ul {
+  display: grid;
+  gap: 8px;
+  margin: clamp(46px, 4vw, 74px) 0 0;
+  padding: 0;
+  color: #263241;
+  font-size: clamp(15px, 0.96vw, 18px);
+  font-weight: 600;
+  line-height: 1.55;
+  list-style: none;
+}
+
+.regulatory-onestop-why-copy li {
+  position: relative;
+  padding-left: 16px;
+}
+
+.regulatory-onestop-why-copy li::before {
+  position: absolute;
+  top: 0.72em;
+  left: 0;
+  width: 4px;
+  height: 4px;
+  border-radius: 999px;
+  background: #263241;
+  content: "";
+}
+
+.regulatory-onestop-why-copy p {
+  margin: 14px 0 0;
+  color: #637083;
+  font-size: clamp(15px, 0.96vw, 18px);
+  font-weight: 500;
+  line-height: 1.62;
+}
+
+.regulatory-onestop-why-copy__highlight {
+  display: flex;
+  min-height: 58px;
+  align-items: center;
+  border-radius: 999px;
+  background: #e5f4eb;
+  padding: 0 clamp(24px, 2vw, 40px);
+  color: #216646 !important;
+  font-weight: 600 !important;
+}
+
+.regulatory-onestop-benefit-section {
+  background: #f6f8fa;
+  padding: clamp(104px, 8vw, 156px) 0 clamp(112px, 8.4vw, 164px);
+}
+
+.regulatory-onestop-benefit-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(20px, 1.8vw, 34px);
+  margin-top: clamp(50px, 4vw, 78px);
+}
+
+.regulatory-onestop-benefit-card {
+  min-height: clamp(190px, 11.8vw, 230px);
+  background: #ffffff;
+  padding: clamp(26px, 2vw, 38px);
+}
+
+.regulatory-onestop-benefit-card__head {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.regulatory-onestop-benefit-card__icon {
+  display: inline-flex;
+  width: clamp(42px, 2.9vw, 52px);
+  height: clamp(42px, 2.9vw, 52px);
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  background: #e4f7ed;
+  color: var(--regulatory-onestop-green);
+}
+
+.regulatory-onestop-benefit-card--yellow .regulatory-onestop-benefit-card__icon {
+  background: #fff0bd;
+  color: #fb8b24;
+}
+
+.regulatory-onestop-benefit-card--mint .regulatory-onestop-benefit-card__icon {
+  background: #e4f7ed;
+  color: #20b778;
+}
+
+.regulatory-onestop-benefit-card--blue .regulatory-onestop-benefit-card__icon {
+  background: #dce9ff;
+  color: #4d84ff;
+}
+
+.regulatory-onestop-benefit-card h3 {
+  margin: 0;
+  color: var(--regulatory-onestop-ink);
+  font-size: clamp(18px, 1.18vw, 22px);
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: -0.02em;
+}
+
+.regulatory-onestop-benefit-card p {
+  margin: 18px 0 0;
+  color: var(--regulatory-onestop-body);
+  font-size: clamp(14px, 0.9vw, 17px);
+  font-weight: 500;
+  line-height: 1.62;
+}
+
+@media (max-width: 1440px) {
+  .regulatory-onestop-hero,
+  .regulatory-onestop-flow-section__inner,
+  .regulatory-onestop-why-section__inner,
+  .regulatory-onestop-benefit-section__inner {
+    width: calc(100% - 160px);
+  }
+
+  .regulatory-onestop-flow {
+    grid-template-columns: minmax(220px, 0.86fr) auto minmax(0, 1.74fr) auto minmax(220px, 0.86fr);
+    gap: 18px;
+  }
+}
+
+@media (max-width: 1180px) {
+  .regulatory-onestop-flow {
+    grid-template-columns: 1fr;
+  }
+
+  .regulatory-onestop-why-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .regulatory-onestop-benefit-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .regulatory-onestop-flow__connector {
+    justify-self: center;
+    rotate: 90deg;
+  }
+
+  .regulatory-onestop-flow-side,
+  .regulatory-onestop-master-card {
+    min-height: auto;
+  }
+}
+
+@media (max-width: 1100px) {
+  .regulatory-onestop-hero,
+  .regulatory-onestop-flow-section__inner,
+  .regulatory-onestop-why-section__inner,
+  .regulatory-onestop-benefit-section__inner {
+    width: calc(100% - 80px);
+  }
+
+  .regulatory-onestop-hero {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 700px) {
+  .regulatory-onestop-hero,
+  .regulatory-onestop-flow-section__inner,
+  .regulatory-onestop-why-section__inner,
+  .regulatory-onestop-benefit-section__inner {
+    width: calc(100% - 40px);
+  }
+
+  .regulatory-onestop-hero {
+    gap: 38px;
+    padding: 58px 0 72px;
+  }
+
+  .regulatory-onestop-hero__copy h1 {
+    font-size: 31px;
+    line-height: 1.25;
+  }
+
+  .regulatory-onestop-hero__copy p {
+    margin-top: 32px;
+  }
+
+  .regulatory-onestop-hero__media,
+  .regulatory-onestop-flow-side,
+  .regulatory-onestop-master-card {
+    border-radius: 20px;
+  }
+
+  .regulatory-onestop-flow-section {
+    padding: 76px 0 92px;
+  }
+
+  .regulatory-onestop-flow-section h2 {
+    font-size: 31px;
+    line-height: 1.25;
+  }
+
+  .regulatory-onestop-why-section,
+  .regulatory-onestop-benefit-section {
+    padding: 76px 0 92px;
+  }
+
+  .regulatory-onestop-why-section h2,
+  .regulatory-onestop-benefit-section h2 {
+    font-size: 31px;
+    line-height: 1.25;
+  }
+
+  .regulatory-onestop-data-card,
+  .regulatory-onestop-engine-card,
+  .regulatory-onestop-why-copy article,
+  .regulatory-onestop-benefit-card {
+    border-radius: 20px;
+  }
+
+  .regulatory-onestop-data-card ul {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .regulatory-onestop-engine-card ol {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+
+  .regulatory-onestop-engine-card li {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .regulatory-onestop-engine-card li > svg {
+    margin-left: 0;
+    rotate: 90deg;
+  }
+
+  .regulatory-onestop-why-copy article {
+    padding: 28px 22px;
+  }
+
+  .regulatory-onestop-why-copy ul {
+    margin-top: 34px;
+  }
+
+  .regulatory-onestop-why-copy__highlight {
+    min-height: auto;
+    border-radius: 18px;
+    padding: 16px 20px;
+  }
+
+  .regulatory-onestop-benefit-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .regulatory-onestop-master-card {
+    padding: 26px 20px;
+  }
+
+  .regulatory-onestop-master-card__head,
+  .regulatory-onestop-flow-side__head {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .regulatory-onestop-master-card ol {
+    grid-template-columns: 1fr;
+    gap: 26px;
+  }
+
+  .regulatory-onestop-master-card ol > li > svg {
+    display: none;
+  }
+
+  .regulatory-onestop-master-card__summary {
+    padding: 14px 16px;
+  }
+}
+
 @theme inline {
   --color-primary-25: #F7FAF8;
   --color-primary-50: #EEF4F0;
@@ -2849,6 +3602,108 @@
   color: #20ad62;
 }
 
+.company-history {
+  width: min(calc(100% - 240px), 1760px);
+  margin: 0 auto;
+  padding: clamp(92px, 7vw, 132px) 0 clamp(70px, 5.6vw, 108px);
+}
+
+.company-history h2 {
+  margin: 0;
+  color: #07100b;
+  font-size: clamp(32px, 2.55vw, 46px);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+  word-break: keep-all;
+}
+
+.company-history__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(170px, 0.42fr) minmax(170px, 0.42fr);
+  gap: clamp(24px, 2.2vw, 44px);
+  margin-top: clamp(44px, 4vw, 70px);
+  min-height: clamp(350px, 21vw, 430px);
+  transition: grid-template-columns 0.48s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.company-history__grid[data-active-year="2025"] {
+  grid-template-columns: minmax(170px, 0.42fr) minmax(0, 1.45fr) minmax(170px, 0.42fr);
+}
+
+.company-history__grid[data-active-year="2024"] {
+  grid-template-columns: minmax(170px, 0.42fr) minmax(170px, 0.42fr) minmax(0, 1.45fr);
+}
+
+.company-history__year {
+  border-top: 1px solid #dfe4e2;
+  outline: 0;
+  padding-top: clamp(12px, 1.05vw, 18px);
+}
+
+.company-history__year h3 {
+  margin: 0;
+  color: #07100b;
+  font-size: clamp(24px, 1.6vw, 34px);
+  font-weight: 600;
+  line-height: 1;
+  transition: color 0.24s ease;
+}
+
+.company-history__year[data-active="true"] h3 {
+  color: #22b46b;
+}
+
+.company-history__items {
+  display: grid;
+  grid-template-rows: 0fr;
+  margin: clamp(14px, 1.1vw, 20px) 0 0;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(-8px);
+  transition:
+    grid-template-rows 0.52s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.28s ease,
+    transform 0.48s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.company-history__year[data-active="true"] .company-history__items {
+  grid-template-rows: 1fr;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.company-history__year ul {
+  display: grid;
+  min-height: 0;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  list-style: none;
+}
+
+.company-history__year li {
+  position: relative;
+  color: #17211b;
+  font-size: clamp(14px, 0.92vw, 18px);
+  font-weight: 500;
+  line-height: 1.45;
+  padding-left: 14px;
+  word-break: keep-all;
+}
+
+.company-history__year li::before {
+  position: absolute;
+  top: 0.72em;
+  left: 0;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: currentColor;
+  content: "";
+}
+
 .company-leaders {
   width: min(calc(100% - 240px), 1760px);
   margin: 0 auto;
@@ -3859,6 +4714,7 @@
 
   .company-solution-cards,
   .company-process,
+  .company-history,
   .company-leaders,
   .company-contact,
   .company-location {
@@ -3878,6 +4734,11 @@
   .company-leaders .company-section-heading {
     grid-template-columns: 1fr;
     gap: 28px;
+  }
+
+  .company-history__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    min-height: 420px;
   }
 
   .company-leaders__grid {
@@ -4069,6 +4930,7 @@
 
   .company-solution-cards,
   .company-process,
+  .company-history,
   .company-leaders,
   .company-contact,
   .company-location {
@@ -4076,9 +4938,39 @@
   }
 
   .company-solution-cards,
+  .company-history__grid,
   .company-leaders__grid,
   .company-partner-form__grid {
     grid-template-columns: 1fr;
+  }
+
+  .company-history {
+    padding-top: 72px;
+    padding-bottom: 58px;
+  }
+
+  .company-history h2 {
+    font-size: 28px;
+  }
+
+  .company-history__grid {
+    gap: 34px;
+    grid-template-columns: 1fr;
+    margin-top: 36px;
+    min-height: 380px;
+  }
+
+  .company-history__grid[data-active-year="2025"],
+  .company-history__grid[data-active-year="2024"] {
+    grid-template-columns: 1fr;
+  }
+
+  .company-history__year ul {
+    margin-top: 22px;
+  }
+
+  .company-history__year li {
+    font-size: 14px;
   }
 
   .company-solution-block {
@@ -6375,7 +7267,6 @@
     min-height: 78px;
     align-items: center;
     justify-content: center;
-    border: 1px solid #27ad63;
     border-radius: 999px;
     background: #ffffff;
     padding: 0 28px;
