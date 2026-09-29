@@ -88,7 +88,10 @@ const SERVICE_MENU_GROUPS = [
         label: "원스톱 대응 시스템",
         to: "/services/regulatory-response/onestop-system",
       },
-      "통합 규제 대응 컨트롤",
+      {
+        label: "통합 규제 대응 컨트롤",
+        to: "/services/regulatory-response/integrated-control",
+      },
       "규제 전문가 밀착진단",
       "AI Agent 자동화",
       "FAQ",

@@ -14,6 +14,7 @@ import { OnestopDevelopmentSystemPage } from "./pages/OnestopDevelopmentSystemPa
 import { PlaceholderPage } from "./pages/PlaceholderPage";
 import { ProductQuotePage } from "./pages/ProductQuotePage";
 import { ProjectManagementPage } from "./pages/ProjectManagementPage";
+import { RegulatoryIntegratedControlPage } from "./pages/RegulatoryIntegratedControlPage";
 import { RegulatoryOnestopSystemPage } from "./pages/RegulatoryOnestopSystemPage";
 import { ResourceDetailPage } from "./pages/ResourceDetailPage";
 import { ResourcesPage } from "./pages/ResourcesPage";
@@ -78,6 +79,10 @@ export default function App() {
             <Route
               path="/services/regulatory-response/onestop-system"
               element={<RegulatoryOnestopSystemPage />}
+            />
+            <Route
+              path="/services/regulatory-response/integrated-control"
+              element={<RegulatoryIntegratedControlPage />}
             />
             <Route path="/resources" element={<ResourcesPage />} />
             <Route
