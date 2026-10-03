@@ -17,10 +17,8 @@ import {
   Paperclip,
   PaintBrush,
 } from "@phosphor-icons/react";
-import {
-  AnimatedTitle,
-  useTitleReveal,
-} from "../components/AnimatedTitle";
+import { AnimatedTitle } from "../components/AnimatedTitle";
+import { NovemberPromotionBannerSlide } from "../components/NovemberPromotionBanner";
 
 const homeProcessBenefits = [
   "제조-규제 동시 해결",
@@ -314,10 +312,7 @@ const caseStudies = [
 const adBanners = [
   {
     theme: "product-development-onestop",
-    title: "처음부터 끝까지 리스튜디오 친환경 패키지 완성",
-    description: "친환경 패키지 원스톱 솔루션 상담 신청 배너",
-    image: "/assets/ads/product-development-onestop-banner.png",
-    alt: "처음부터 끝까지 리스튜디오 친환경 패키지 완성 배너",
+    title: "11월, 신규 회원 대상 무료 이용권 증정, 제품 개발부터 규제 마스터까지.",
   },
 ];
 
@@ -443,8 +438,6 @@ export function HomePage() {
   const [testimonialSlideWidth, setTestimonialSlideWidth] = useState(0);
   const currentAdBanner = adBanners[activeAdBanner];
 
-  useTitleReveal();
-
   useEffect(() => {
     const updateTestimonialSlideWidth = () => {
       const viewport = document.querySelector<HTMLElement>(
@@ -472,7 +465,7 @@ export function HomePage() {
 
   return (
     <>
-    <main className="bg-[#f7f8f8]">
+    <main className="home-page bg-[#f7f8f8]">
       <section className="home-hero-section bg-[#f7f8f8] px-5 py-16 md:px-12 md:py-24 xl:px-[120px]">
         <div className="mx-auto w-full max-w-[1040px]">
           <h1 className="title-reveal mx-auto max-w-[920px] text-center text-[32px] font-semibold leading-[1.16] text-black md:text-[44px] xl:text-[48px]">
@@ -498,16 +491,8 @@ export function HomePage() {
                 className="ad-banner__track"
                 style={{ transform: `translateX(-${activeAdBanner * 100}%)` }}
               >
-                {adBanners.map(({ alt, description, image, theme, title }) => (
-                  <article
-                    key={theme}
-                    className={`ad-banner__slide ad-banner__slide--${theme}`}
-                  >
-                    <img className="ad-banner__image" src={image} alt={alt} />
-                    <span className="sr-only">
-                      {title}. {description}
-                    </span>
-                  </article>
+                {adBanners.map(({ theme }) => (
+                  <NovemberPromotionBannerSlide key={theme} />
                 ))}
               </div>
 
@@ -650,7 +635,9 @@ export function HomePage() {
           <div className="home-video-section__copy">
             <h2>
               대한민국 대표 클린테크 기업, 리베이션이 만든
-              <span>원스톱 친환경 패키지 솔루션, 리스튜디오</span>
+              <span className="home-video-section__highlight">
+                원스톱 친환경 패키지 솔루션, 리스튜디오
+              </span>
             </h2>
             <p>
               친환경 패키지의 시작과 끝, 리스튜디오가 함께합니다.

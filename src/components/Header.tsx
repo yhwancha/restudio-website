@@ -34,26 +34,6 @@ const CASE_INDUSTRIES = [
   "생활용품",
 ] as const;
 
-const SERVICE_ITEMS = [
-  {
-    label: "제품 개발",
-    to: "/services/product-development",
-    marker: "✅",
-    description: [
-      "원스톱 솔루션",
-      "친환경 소재개발",
-      "친환경 기술 인증",
-      "독보적 글로벌 네트워크",
-    ],
-  },
-  {
-    label: "규제 대응",
-    to: "/services/regulatory-response",
-    marker: "🆚",
-    description: ["인증업체", "일반 컨설팅사", "포장재 공급사"],
-  },
-] as const;
-
 const SERVICE_MENU_GROUPS = [
   {
     title: "제품 개발 솔루션",
@@ -158,7 +138,9 @@ function isExternalUrl(to: string) {
 function ServiceDropdown() {
   const location = useLocation();
   const [open, setOpen] = useState(false);
-  const isActive = SERVICE_ITEMS.some((item) => location.pathname.startsWith(item.to));
+  const isActive = SERVICE_MENU_GROUPS.some((group) =>
+    location.pathname.startsWith(group.to),
+  );
 
   return (
     <div className={`group relative${open ? " is-open" : ""}`} onMouseLeave={() => setOpen(false)}>
@@ -482,13 +464,13 @@ export function Header() {
           aria-label={menuOpen ? "메뉴 닫기" : "메뉴 열기"}
           aria-controls="mobile-navigation"
           aria-expanded={menuOpen}
-          className="grid size-9 place-items-center rounded-full border border-primary-600/20 text-primary-800 xl:hidden"
+          className="grid size-8 place-items-center rounded-full border border-primary-600/20 text-primary-700 transition-colors hover:border-primary-600 hover:bg-primary-50 xl:hidden"
           onClick={() => setMenuOpen((open) => !open)}
         >
           {menuOpen ? (
-            <X size={22} weight="regular" aria-hidden="true" />
+            <X size={20} weight="regular" aria-hidden="true" />
           ) : (
-            <List size={23} weight="regular" aria-hidden="true" />
+            <List size={21} weight="regular" aria-hidden="true" />
           )}
         </button>
       </div>
@@ -496,16 +478,16 @@ export function Header() {
       <div
         id="mobile-navigation"
         hidden={!menuOpen}
-        className="border-t border-primary-600/15 bg-warm-neutral px-5 py-4 md:px-12 xl:hidden"
+        className="max-h-[calc(100dvh-3rem)] overflow-y-auto overscroll-contain border-t border-primary-600/10 bg-white/[0.98] px-5 pb-[calc(104px+env(safe-area-inset-bottom))] pt-3 backdrop-blur-xl md:px-12 xl:hidden"
       >
-        <nav className="flex flex-col gap-1" aria-label="모바일 주요 메뉴">
+        <nav className="flex flex-col" aria-label="모바일 주요 메뉴">
           <button
             type="button"
             className={[
-              "flex items-center justify-between rounded-xl px-3 py-3 text-left text-[17px] font-semibold transition-colors",
-              SERVICE_ITEMS.some((item) => item.to === location.pathname)
-                ? "bg-primary-100 text-primary-900"
-                : "text-primary-800 hover:bg-primary-50",
+              "flex min-h-12 items-center justify-between rounded-lg px-2 text-left text-[15px] font-medium transition-colors",
+              SERVICE_MENU_GROUPS.some((group) => location.pathname.startsWith(group.to))
+                ? "text-primary-900"
+                : "text-primary-700/75 hover:bg-primary-50 hover:text-primary-800",
             ].join(" ")}
             aria-expanded={mobileServiceOpen}
             onClick={() => setMobileServiceOpen((current) => !current)}
@@ -519,59 +501,62 @@ export function Header() {
             />
           </button>
           {mobileServiceOpen ? (
-            <div className="grid gap-1 px-3 pb-2">
-              {SERVICE_ITEMS.map((item) => (
-                <NavLink
-                  key={item.to}
-                  to={item.to}
-                  className={({ isActive }) =>
-                    [
-                      "rounded-lg px-3 py-2.5 text-[15px] font-semibold transition-colors",
-                      isActive
-                        ? "bg-primary-100 text-primary-900"
-                        : "text-primary-700 hover:bg-primary-50",
-                    ].join(" ")
-                  }
+            <div className="grid gap-3 pb-3 pt-1 md:grid-cols-2">
+              {SERVICE_MENU_GROUPS.map(({ title, to, Icon, items }) => (
+                <div
+                  className="rounded-[16px] border border-primary-600/10 bg-white p-3 shadow-[0_10px_30px_rgba(23,33,27,0.06)]"
+                  key={title}
                 >
-                  <span className="flex items-center gap-2">
-                    <span aria-hidden="true">{item.marker}</span>
-                    <span>{item.label}</span>
-                  </span>
-                  <span className="mt-2 block space-y-1.5 pl-7 text-[13px] font-medium leading-5 text-primary-700/70">
-                    {item.description.map((line) => (
-                      <span className="block" key={line}>
-                        {line}
-                      </span>
-                    ))}
-                  </span>
-                </NavLink>
+                  <NavLink
+                    className="flex items-center gap-3 rounded-lg px-1 py-1 transition-colors hover:bg-primary-50"
+                    to={to}
+                  >
+                    <span className="grid size-9 shrink-0 place-items-center rounded-lg bg-primary-50 text-primary-900">
+                      <Icon size={20} weight="regular" aria-hidden="true" />
+                    </span>
+                    <strong className="text-[15px] font-semibold leading-snug text-primary-900">
+                      {title}
+                    </strong>
+                  </NavLink>
+
+                  <div className="mt-3 grid gap-1 border-t border-primary-600/10 pt-3 sm:grid-cols-2 md:grid-cols-1">
+                    {items.map((item) => {
+                      const children = "children" in item ? item.children : [];
+
+                      return (
+                        <div key={item.label}>
+                          <NavLink
+                            className={({ isActive }) =>
+                              [
+                                "flex min-h-9 items-center rounded-md px-2 text-[14px] font-semibold leading-snug transition-colors",
+                                isActive
+                                  ? "bg-primary-50 text-primary-900"
+                                  : "text-primary-800 hover:bg-primary-50 hover:text-primary-900",
+                              ].join(" ")
+                            }
+                            to={item.to}
+                          >
+                            {item.label}
+                          </NavLink>
+                          {children.length ? (
+                            <div className="grid gap-1 pb-2 pl-2 text-[13px] font-medium text-primary-700/75">
+                              {children.map((child) => (
+                                <NavLink
+                                  className="rounded-md px-2 py-1.5 transition-colors hover:bg-primary-50 hover:text-primary-900"
+                                  key={child.label}
+                                  to={child.to}
+                                >
+                                  {child.label}
+                                </NavLink>
+                              ))}
+                            </div>
+                          ) : null}
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
               ))}
-              <NavLink
-                to="/services/product-development/eco-material-lab"
-                className={({ isActive }) =>
-                  [
-                    "ml-3 rounded-lg px-3 py-2.5 text-[14px] font-semibold transition-colors",
-                    isActive
-                      ? "bg-primary-100 text-primary-900"
-                      : "text-primary-700 hover:bg-primary-50",
-                  ].join(" ")
-                }
-              >
-                친환경 소재 연구소
-              </NavLink>
-              <NavLink
-                to="/services/product-development/faq"
-                className={({ isActive }) =>
-                  [
-                    "ml-3 rounded-lg px-3 py-2.5 text-[14px] font-semibold transition-colors",
-                    isActive
-                      ? "bg-primary-100 text-primary-900"
-                      : "text-primary-700 hover:bg-primary-50",
-                  ].join(" ")
-                }
-              >
-                FAQ
-              </NavLink>
             </div>
           ) : null}
           {MOBILE_NAV_ITEMS.map((item) => (
@@ -580,10 +565,10 @@ export function Header() {
               to={item.to}
               className={({ isActive }) =>
                 [
-                  "rounded-xl px-3 py-3 text-[17px] font-semibold transition-colors",
+                  "flex min-h-12 items-center rounded-lg px-2 text-[15px] font-medium transition-colors",
                   isActive
-                    ? "bg-primary-100 text-primary-900"
-                    : "text-primary-800 hover:bg-primary-50",
+                    ? "text-primary-900"
+                    : "text-primary-700/75 hover:bg-primary-50 hover:text-primary-800",
                 ].join(" ")
               }
             >
@@ -594,10 +579,10 @@ export function Header() {
             to="/company"
             className={({ isActive }) =>
               [
-                "rounded-xl px-3 py-3 text-[17px] font-semibold transition-colors",
+                "flex min-h-12 items-center rounded-lg px-2 text-[15px] font-medium transition-colors",
                 isActive
-                  ? "bg-primary-100 text-primary-900"
-                  : "text-primary-800 hover:bg-primary-50",
+                  ? "text-primary-900"
+                  : "text-primary-700/75 hover:bg-primary-50 hover:text-primary-800",
               ].join(" ")
             }
           >
@@ -605,14 +590,14 @@ export function Header() {
           </NavLink>
         </nav>
 
-        <div className={`mt-5 grid gap-2 ${isServiceDetailPage ? "" : "md:grid-cols-2"}`}>
+        <div className={`mt-3 grid gap-2 border-t border-primary-600/10 pt-4 ${isServiceDetailPage ? "" : "md:grid-cols-2"}`}>
           {actionItems.map((item) => (
             <NavLink
               key={item.to}
               to={item.to}
               className={[
-                "inline-flex min-h-11 items-center justify-center rounded-full border border-primary-600 px-5",
-                "text-[15px] font-semibold transition-colors active:scale-[0.98]",
+                "inline-flex min-h-10 items-center justify-center rounded-full border border-primary-600 px-5",
+                "text-[14px] font-semibold transition-colors active:scale-[0.98]",
                 "text-primary-700 hover:bg-primary-600 hover:text-primary-25",
               ].join(" ")}
             >
@@ -621,7 +606,7 @@ export function Header() {
           ))}
         </div>
 
-        <div className="mt-5 flex items-center gap-2">
+        <div className="mt-3 flex items-center gap-2">
           {!(isServiceDetailPage && loggedIn) ? (
             <NavLink
               to={
@@ -629,7 +614,7 @@ export function Header() {
                   ? "/project-management?service=product-development"
                   : "/account"
               }
-              className="inline-flex h-10 flex-1 items-center justify-center gap-2 rounded-full border border-primary-600/20 text-[15px] font-medium text-primary-800"
+              className="inline-flex h-10 flex-1 items-center justify-center gap-2 rounded-full border border-primary-600/20 text-[14px] font-medium text-primary-700 transition-colors hover:border-primary-600 hover:bg-primary-50"
             >
               <UserCircle size={20} weight="regular" aria-hidden="true" />
               {loggedIn ? "프로젝트 관리" : "회원가입 및 로그인"}
@@ -637,7 +622,7 @@ export function Header() {
           ) : null}
           <button
             type="button"
-            className="inline-flex h-10 items-center justify-center gap-2 rounded-full border border-primary-600/20 px-4 text-[15px] font-medium text-primary-800"
+            className="inline-flex h-10 items-center justify-center gap-2 rounded-full border border-primary-600/20 px-4 text-[14px] font-medium text-primary-700 transition-colors hover:border-primary-600 hover:bg-primary-50"
           >
             <GlobeHemisphereEast size={20} weight="regular" aria-hidden="true" />
             KO

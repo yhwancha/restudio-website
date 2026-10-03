@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { I18nProvider } from "./i18n";
 import { Layout } from "./components/Layout";
 import { AiChatFloatingButton } from "./components/AiChatFloatingButton";
+import { TitleRevealController } from "./components/AnimatedTitle";
 import { ScrollToTop } from "./components/ScrollToTop";
 import { CompanyPage } from "./pages/CompanyPage";
 import { EcoCertificationPage } from "./pages/EcoCertificationPage";
@@ -51,6 +52,7 @@ export default function App() {
     <I18nProvider>
       <BrowserRouter>
         <ScrollToTop />
+        <TitleRevealController />
         <Routes>
           <Route path="/account" element={<LoginPage />} />
           <Route path="/project-management" element={<ProjectManagementPage />} />

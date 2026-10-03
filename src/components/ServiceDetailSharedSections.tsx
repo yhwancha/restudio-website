@@ -5,7 +5,8 @@ import {
   CaretLeft,
   CaretRight,
 } from "@phosphor-icons/react";
-import { AnimatedTitle, useTitleReveal } from "./AnimatedTitle";
+import { AnimatedTitle } from "./AnimatedTitle";
+import { NovemberPromotionBannerSlide } from "./NovemberPromotionBanner";
 
 const caseStudies = [
   {
@@ -261,17 +262,21 @@ export function ServiceDetailAdBanner({
         className="ad-banner__track"
         style={{ transform: `translateX(-${activeAdBanner * 100}%)` }}
       >
-        {banners.map(({ alt, description, image, theme, title }) => (
-          <article
-            key={theme}
-            className={`ad-banner__slide ad-banner__slide--${theme}`}
-          >
-            <img className="ad-banner__image" src={image} alt={alt} />
-            <span className="sr-only">
-              {title}. {description}
-            </span>
-          </article>
-        ))}
+        {banners.map(({ alt, description, image, theme, title }) =>
+          theme === "product-development-onestop" ? (
+            <NovemberPromotionBannerSlide key={theme} />
+          ) : (
+            <article
+              key={theme}
+              className={`ad-banner__slide ad-banner__slide--${theme}`}
+            >
+              <img className="ad-banner__image" src={image} alt={alt} />
+              <span className="sr-only">
+                {title}. {description}
+              </span>
+            </article>
+          ),
+        )}
       </div>
 
       <div className="ad-banner__controls">
@@ -410,8 +415,6 @@ function CaseStudiesSection({ className = "" }: CaseStudiesSectionProps) {
 }
 
 export function CustomerCaseStudiesSection({ className = "" }: CaseStudiesSectionProps) {
-  useTitleReveal();
-
   return <CaseStudiesSection className={className} />;
 }
 
@@ -420,7 +423,6 @@ export function ServiceDetailSharedSections({
   showCaseStudies = true,
 }: ServiceDetailSharedSectionsProps) {
   const [activeFaq, setActiveFaq] = useState(-1);
-  useTitleReveal();
 
   return (
     <>

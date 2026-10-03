@@ -33,6 +33,7 @@ import {
   Scan,
   ShieldCheck,
   SquaresFour,
+  Timer,
   TrendUp,
   UploadSimple,
   User,
@@ -46,7 +47,8 @@ import {
   ServiceDetailAdBanner,
   ServiceDetailSharedSections,
 } from "../components/ServiceDetailSharedSections";
-import { AnimatedTitle, useTitleReveal } from "../components/AnimatedTitle";
+import { AnimatedTitle } from "../components/AnimatedTitle";
+import { NovemberPromotionBannerSlide } from "../components/NovemberPromotionBanner";
 
 const productClientLogos = Array.from({ length: 14 }, (_, index) => ({
   src: `/assets/clients/client-logo-${String(index + 1).padStart(2, "0")}.svg`,
@@ -111,10 +113,10 @@ const productTestimonialPages = Array.from({ length: 3 }, (_, pageIndex) =>
 const productDevelopmentHeroBanners = [
   {
     theme: "product-development-onestop",
-    title: "처음부터 끝까지 리스튜디오 친환경 패키지 완성",
-    description: "친환경 패키지 원스톱 솔루션 상담 신청 배너",
-    image: "/assets/ads/product-development-onestop-banner.png",
-    alt: "처음부터 끝까지 리스튜디오 친환경 패키지 완성 배너",
+    title: "11월, 신규 회원 대상 무료 이용권 증정, 제품 개발부터 규제 마스터까지.",
+    description: "제품 개발부터 규제 마스터까지.",
+    image: "/assets/ads/november-promotion-banner.png",
+    alt: "11월 신규 회원 무료 이용권 프로모션",
   },
 ];
 
@@ -160,28 +162,24 @@ const regulatoryMarkerStroke = (
 
 const productChallenges = [
   {
-    title: "소재 선택이 어렵습니다",
+    title: "소재 선택이 어렵습니다.",
     description: "우리 제품에 맞는 친환경 소재를 고르는 것부터 막히기 쉽습니다.",
-    image: "/assets/detail-pages/challenges/material-selection.png",
-    alt: "친환경 소재 알갱이와 제품 샘플",
+    Icon: Flask,
   },
   {
-    title: "양산까지가 힘듭니다",
+    title: "양산까지가 힘듭니다.",
     description: "디자인은 나왔지만 실제 생산 가능성과 구조 검토에서 다시 막힙니다.",
-    image: "/assets/detail-pages/challenges/production-ready.png",
-    alt: "제품 양산 설비 이미지",
+    Icon: Factory,
   },
   {
-    title: "시간과 비용이 늘어납니다",
+    title: "시간과 비용이 늘어납니다.",
     description: "여러 파트너를 따로 조율하다 보면 일정도 늘고 비용이 자꾸 커집니다.",
-    image: "/assets/detail-pages/challenges/time-cost-risk.png",
-    alt: "개발 비용과 일정 절감을 표현한 이미지",
+    Icon: Timer,
   },
   {
-    title: "친환경 입증이 부담됩니다",
+    title: "친환경 입증이 부담됩니다.",
     description: "친환경성 검증과 규제 대응 문서를 준비하는 과정이 까다롭습니다.",
-    image: "/assets/detail-pages/challenges/eco-proof.png",
-    alt: "규제 대응 문서와 대시보드 이미지",
+    Icon: Leaf,
   },
 ];
 
@@ -1052,16 +1050,7 @@ function RegulatoryHero() {
         <div className="ad-banner-section ad-banner-section--embedded" aria-label="프로모션 배너">
           <div className="ad-banner">
             <div className="ad-banner__track" style={{ transform: "translateX(0%)" }}>
-              <article className="ad-banner__slide ad-banner__slide--product-development-onestop">
-                <img
-                  className="ad-banner__image"
-                  src="/assets/ads/product-development-onestop-banner.png"
-                  alt="친환경 패키지 처음부터 끝까지 리스튜디오 하나로 완성"
-                />
-                <span className="sr-only">
-                  처음부터 끝까지 리스튜디오 친환경 패키지 완성. 친환경 패키지 원스톱 솔루션 상담 신청 배너
-                </span>
-              </article>
+              <NovemberPromotionBannerSlide />
             </div>
 
             <div className="ad-banner__controls">
@@ -1077,7 +1066,9 @@ function RegulatoryHero() {
               <span className="ad-banner__count">1/1</span>
             </div>
 
-            <span className="sr-only">현재 배너: 처음부터 끝까지 리스튜디오 친환경 패키지 완성</span>
+            <span className="sr-only">
+              현재 배너: 11월, 신규 회원 대상 무료 이용권 증정, 제품 개발부터 규제 마스터까지.
+            </span>
           </div>
         </div>
 
@@ -2443,8 +2434,6 @@ export function ServiceDetailPage({ variant }: ServiceDetailPageProps) {
   const serviceFlowTrackRef = useRef<HTMLDivElement | null>(null);
   const floatingCtaVisibleRef = useRef(false);
 
-  useTitleReveal();
-
   useEffect(() => {
     if (!isProductDevelopment) {
       return;
@@ -2723,6 +2712,7 @@ export function ServiceDetailPage({ variant }: ServiceDetailPageProps) {
           <section className="product-challenge-section">
             <div className="product-challenge-section__inner">
               <div className="product-challenge-section__title">
+                <WarningCircle className="product-challenge-section__warning" weight="fill" aria-hidden="true" />
                 <h2 className="title-reveal">
                   <AnimatedTitle
                     parts={[
@@ -2735,18 +2725,19 @@ export function ServiceDetailPage({ variant }: ServiceDetailPageProps) {
               </div>
 
               <div className="product-challenge-list" aria-label="친환경 패키지 개발 어려움">
-                {productChallenges.map((challenge) => (
-                  <article className="product-challenge-card" key={challenge.title}>
-                    <div className="product-challenge-card__media">
-                      <img src={challenge.image} alt={challenge.alt} />
-                    </div>
+                {productChallenges.map(({ title, description, Icon }, index) => (
+                  <article className={`product-challenge-card product-challenge-card--${index + 1}`} key={title}>
+                    <Icon className="product-challenge-card__icon" weight="fill" aria-hidden="true" />
                     <div className="product-challenge-card__content">
-                      <h3>{challenge.title}</h3>
-                      <p>{challenge.description}</p>
+                      <h3>{title}</h3>
+                      <p>{description}</p>
                     </div>
                   </article>
                 ))}
               </div>
+              <Link className="product-challenge-section__cta" to="/project-management/quote?service=product-development">
+                쉬운 친환경 패키지 개발 신청하기
+              </Link>
             </div>
           </section>
 

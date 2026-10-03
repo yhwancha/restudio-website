@@ -133,6 +133,49 @@ const whyRestudio = [
   ["품질 보장", "양산 전 과정 체크리스트 / 품질 불안정 / 부적합 보고서 관리"],
 ];
 
+const companyHistory = [
+  {
+    year: "2026",
+    items: [
+      "한국디자인진흥원 CMF ‘샘플·적용사례’",
+      "iF디자인어워드 수상: 북촌소주",
+      "iF디자인어워드 수상: 알트 페이퍼 클리너",
+      "유한킴벌리 YK 오픈임팩트 선정",
+      "기후테크 스타트업 선정",
+      "중기부 ‘2026 팁스 창업사업화 지원사업’ 선정",
+      "‘2026 디자인전문기업육성 및 글로벌화’ 사업 지원 대상 선정",
+      "‘2026년 스타일테크 유망기업 8기’ 선정",
+      "IBK 창공 17기 혁신기업 선정",
+      "노루 ‘3-HP 화이트 바이오 실증(PoC)’ 최종 기업 선정",
+    ],
+  },
+  {
+    year: "2025",
+    items: [
+      "한국디자인진흥원, 2024 우수디자인전문기업 선정",
+      "리베이션, ESG 경영 수준 확인서 ‘A등급’ 획득",
+      "‘RESTUDIO CMF SYSTEM’ 2025 레드닷 디자인 어워드 본상 수상",
+      "중기부 ‘딥테크 밸류업 프로그램’ 선정",
+      "‘슈퍼스타트+넥제로 챌린지 X’에 최종 선정",
+      "사회적가치 경영 성과로 사회적가치지표(SVI) 우수 기업 선정",
+      "B2B 친환경 패키지 원스톱 DX 솔루션 ‘리스튜디오(RESTUDIO)’ 공식 런칭",
+      "글로벌 재활용 인증 ‘GRS’ 획득",
+      "‘서울디자인어워드’ 본상",
+    ],
+  },
+  {
+    year: "2024",
+    items: [
+      "환경부 예비사회적기업 지정",
+      "2024 펜타워즈 디자인 어워드 2개 부문 수상",
+      "2024 우수디자인전문기업 유망기업 선정",
+      "LG사이언스파크와 협력 강화를 위한 업무협약 체결",
+      "환경부 장관상 수상... 친환경 산업 혁신 공로 인정",
+      "‘리베이션’, 프리A 브릿지 투자 유치",
+    ],
+  },
+];
+
 const locationSlides = [
   {
     label: "본사",
@@ -268,6 +311,7 @@ const markerStroke = (
 export function CompanyPage() {
   const [activeLocationSlide, setActiveLocationSlide] = useState(0);
   const [isLocationPaused, setIsLocationPaused] = useState(false);
+  const [activeHistoryYear, setActiveHistoryYear] = useState("2026");
 
   useEffect(() => {
     if (isLocationPaused) {
@@ -567,6 +611,31 @@ export function CompanyPage() {
               </article>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="company-history" aria-label="리스튜디오 연혁">
+        <h2>리스튜디오가 걸어온 길</h2>
+        <div className="company-history__grid" data-active-year={activeHistoryYear}>
+          {companyHistory.map(({ year, items }) => (
+            <article
+              className="company-history__year"
+              data-active={activeHistoryYear === year}
+              key={year}
+              onFocus={() => setActiveHistoryYear(year)}
+              onMouseEnter={() => setActiveHistoryYear(year)}
+              tabIndex={0}
+            >
+              <h3>{year}</h3>
+              <div className="company-history__items">
+                <ul>
+                  {items.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+            </article>
+          ))}
         </div>
       </section>
 
