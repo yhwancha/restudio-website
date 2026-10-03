@@ -88,7 +88,7 @@ const papermoldBadges = [
 const papermoldCases = [
   {
     category: "COSMETICS",
-    title: "뷰티 패키지",
+    title: "화장품 패키지",
     description: "기존 플라스틱 트레이를 대체해 제품 보호와 프리미엄 브랜드 이미지를 동시에 구현",
     tags: ["#충격흡수", "#고급질감"],
     image: "/assets/eco-material-lab/case-cosmetics-papermold.jpg",
@@ -217,8 +217,8 @@ const bioplasticCaseGroups = [
         title: "바이오플러스 크림 스파출라",
         description:
           "PCR,PP를 기반으로 제작된 뷰티 도구로, ‘포장재를 하나의 오브제로’ 탈바꿈한 사례",
-        image: "/assets/eco-material-lab/case-replax-pcr-bioplus-spatula.jpg",
-        alt: "바이오플러스 크림 스파출라와 패키지 박스",
+        image: "/assets/eco-material-lab/case-replax-pcr-bioplus-spatula-v2.png",
+        alt: "투명 크림 용기와 스파출라 제품 사례",
       },
     ],
   },

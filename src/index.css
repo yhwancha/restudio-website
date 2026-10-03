@@ -4521,8 +4521,10 @@ section :where(h1, h2) {
 
 /* Eco certification */
 .eco-certification-page {
-  --certificate-bg: #e1d8cf;
-  --certificate-ink: #43564a;
+  --certificate-bg: #ffffff;
+  --certificate-ink: #17211b;
+  --certificate-muted: #64716a;
+  --certificate-line: #cbd5ce;
   min-height: 100dvh;
   overflow: hidden;
   background: var(--certificate-bg);
@@ -4556,7 +4558,7 @@ section :where(h1, h2) {
 .eco-certification-hero > span {
   display: block;
   max-width: 520px;
-  color: rgba(67, 86, 74, 0.78);
+  color: var(--certificate-muted);
   font-size: clamp(15px, 0.98vw, 18px);
   font-weight: 500;
   line-height: 1.68;
@@ -4600,8 +4602,8 @@ section :where(h1, h2) {
   align-items: center;
   justify-content: center;
   margin: 0;
-  border-top: 1px solid var(--certificate-ink);
-  border-bottom: 1px solid var(--certificate-ink);
+  border-top: 1px solid var(--certificate-line);
+  border-bottom: 1px solid var(--certificate-line);
   padding: 9px 8px;
   color: var(--certificate-ink);
   font-size: 16px;
@@ -4622,13 +4624,12 @@ section :where(h1, h2) {
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
-  mix-blend-mode: luminosity;
 }
 
 .eco-certification-grid p {
   max-width: 360px;
   margin: 0 auto;
-  color: rgba(67, 86, 74, 0.82);
+  color: var(--certificate-muted);
   font-size: 16px;
   font-weight: 500;
   line-height: 1.58;
@@ -4654,6 +4655,19 @@ section :where(h1, h2) {
 
 .eco-certification-grid__image--sgs {
   max-width: 150px;
+}
+
+.eco-certification-grid img[src$="industrial-design-company-color.png"] {
+  width: min(140%, 270px);
+  max-width: none;
+}
+
+.eco-certification-grid img[src$="small-business-color.svg"] {
+  width: 175px;
+}
+
+.eco-certification-grid img[src$="fsc-color.png"] {
+  width: 160px;
 }
 
 @media (max-width: 1440px) {
@@ -4726,7 +4740,7 @@ section :where(h1, h2) {
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 640px) {
   .eco-certification-grid {
     grid-template-columns: 1fr;
   }
@@ -4744,10 +4758,8 @@ section :where(h1, h2) {
 
 .industry-consulting-page {
   overflow: hidden;
-  background:
-    radial-gradient(circle at 50% 0%, rgba(151, 255, 82, 0.18), transparent 26%),
-    #07100b;
-  color: #ffffff;
+  background: #ffffff;
+  color: #17211b;
 }
 
 .industry-consulting-hero {
@@ -4760,12 +4772,12 @@ section :where(h1, h2) {
   display: grid;
   width: 100%;
   grid-template-columns: minmax(0, 0.95fr) minmax(360px, 0.8fr);
-  align-items: end;
+  align-items: center;
   gap: clamp(44px, 6vw, 112px);
 }
 
 .industry-consulting-hero__copy h1 {
-  color: #ffffff;
+  color: #17211b;
   font-size: clamp(30px, 2.7vw, 50px);
   font-weight: 600;
   line-height: 1.2;
@@ -4777,7 +4789,7 @@ section :where(h1, h2) {
   max-width: 560px;
   justify-self: end;
   margin-top: 0;
-  color: rgba(255, 255, 255, 0.7);
+  color: #69766f;
   font-size: clamp(16px, 1.05vw, 21px);
   font-weight: 500;
   line-height: 1.75;
@@ -4816,13 +4828,10 @@ section :where(h1, h2) {
   min-height: 100%;
   flex-direction: column;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  border: 0;
   border-radius: 18px;
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.035)),
-    rgba(17, 23, 20, 0.92);
-  color: #ffffff;
-  box-shadow: 0 22px 64px rgba(0, 0, 0, 0.22);
+  background: #f2f4f1;
+  color: #17211b;
 }
 
 .industry-consulting-card__media {
@@ -4830,21 +4839,17 @@ section :where(h1, h2) {
   overflow: hidden;
   margin: 18px 18px 0;
   border-radius: 14px;
-  background: #202a24;
+  background: #dfe5df;
 }
 
 .industry-consulting-card__media img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: saturate(0.86) brightness(0.78);
-  transition:
-    filter 0.24s ease,
-    transform 0.24s ease;
+  transition: transform 0.24s ease;
 }
 
 .industry-consulting-card:hover .industry-consulting-card__media img {
-  filter: saturate(0.98) brightness(0.9);
   transform: scale(1.025);
 }
 
@@ -4864,7 +4869,7 @@ section :where(h1, h2) {
 
 .industry-consulting-card__heading h2 {
   margin: 0;
-  color: #ffffff;
+  color: #17211b;
   font-size: clamp(21px, 1.32vw, 28px);
   font-weight: 600;
   line-height: 1.22;
@@ -4874,7 +4879,7 @@ section :where(h1, h2) {
 
 .industry-consulting-card__heading p {
   margin: 0;
-  color: rgba(255, 255, 255, 0.78);
+  color: #4f5b55;
   font-size: clamp(14px, 0.92vw, 17px);
   font-weight: 500;
   line-height: 1.58;
@@ -4884,8 +4889,9 @@ section :where(h1, h2) {
 .industry-consulting-card__content ul {
   display: grid;
   gap: 13px;
-  margin-top: 24px;
-  margin-bottom: 32px;
+  margin-top: auto;
+  margin-bottom: 0;
+  padding-top: 24px;
 }
 
 .industry-consulting-card__content li {
@@ -4893,39 +4899,61 @@ section :where(h1, h2) {
   grid-template-columns: 20px minmax(0, 1fr);
   align-items: start;
   gap: 10px;
-  color: #ffffff;
+  color: #35413b;
   font-size: clamp(14px, 0.92vw, 16px);
-  font-weight: 600;
+  font-weight: 500;
   line-height: 1.45;
 }
 
 .industry-consulting-card__content li svg {
   margin-top: 2px;
-  color: #9cff4e;
+  color: #2f7d45;
 }
 
-.industry-consulting-card__content a {
-  display: inline-flex;
-  min-height: 58px;
+.industry-consulting-cta-bar {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 95;
+  display: flex;
+  min-height: 86px;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  margin-top: auto;
-  border-radius: 14px;
-  background: linear-gradient(90deg, #4cf45f 0%, #a6ff45 100%);
-  padding: 0 24px;
-  color: #07100b;
+  padding: 12px 20px max(12px, env(safe-area-inset-bottom));
+  background: rgba(224, 230, 225, 0.94);
+  backdrop-filter: blur(10px);
+}
+
+.industry-consulting-cta-bar a {
+  display: inline-flex;
+  width: min(100%, 360px);
+  min-height: 50px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: #2f7d45;
+  padding: 0 28px;
+  color: #ffffff;
   font-size: 16px;
   font-weight: 600;
   line-height: 1;
   transition:
-    filter 0.22s ease,
-  transform 0.22s ease;
+    background-color 0.2s ease,
+    transform 0.2s ease;
 }
 
-.industry-consulting-card__content a:hover {
-  filter: brightness(1.04);
+.industry-consulting-cta-bar a:hover {
+  background: #276c3b;
   transform: translateY(-1px);
+}
+
+.industry-consulting-cta-bar a:active {
+  transform: scale(0.98);
+}
+
+body:has(.industry-consulting-page) .ai-chat-widget {
+  bottom: max(106px, calc(86px + env(safe-area-inset-bottom) + 20px));
 }
 
 .stories-list-page {
@@ -7577,9 +7605,15 @@ section :where(h1, h2) {
     padding: 18px 16px 16px;
   }
 
-  .industry-consulting-card__content a {
-    min-height: 54px;
-    border-radius: 14px;
+  .industry-consulting-cta-bar {
+    min-height: 72px;
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+
+  .industry-consulting-cta-bar a {
+    min-height: 44px;
+    font-size: 14px;
   }
 
   .onestop-system-hero {
@@ -19416,6 +19450,20 @@ section :where(h1, h2) {
   letter-spacing: 0;
 }
 
+.service-detail-hero__kicker {
+  display: block;
+  margin: 0 auto 14px;
+  color: #6f7f78;
+  font-size: clamp(12px, 0.8vw, 14px);
+  font-weight: 600;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.regulatory-hero .service-detail-hero__kicker {
+  color: #64786d;
+}
+
 .regulatory-hero__highlight {
   position: relative;
   display: inline-flex;
@@ -19858,6 +19906,39 @@ section :where(h1, h2) {
   color: #28312e;
   font-size: 15px;
   font-weight: 600;
+}
+
+@media (min-width: 1280px) {
+  .regulatory-master-page .regulatory-concern-testimonials {
+    --testimonial-side-gutter: max(120px, calc((100vw - 1720px) / 2));
+  }
+
+  .regulatory-master-page .regulatory-master-showcase-section {
+    --regulatory-master-gutter: max(120px, calc((100vw - 1720px) / 2));
+  }
+
+  .regulatory-master-page :is(
+    .client-growth-stage,
+    .regulatory-master-showcase-header,
+    .regulatory-solution-fit-inner,
+    .regulatory-trust-inner,
+    .regulatory-expert-inner,
+    .regulatory-assetization-inner,
+    .regulatory-value-inner,
+    .regulatory-start-inner,
+    .regulatory-free-report-inner,
+    .regulatory-final-cta,
+    .regulatory-diagnosis-result-inner,
+    .regulatory-security-inner,
+    .regulatory-faq-cta-banner,
+    .regulatory-faq-layout
+  ) {
+    width: min(calc(100% - 240px), 1720px);
+  }
+
+  .regulatory-master-page .regulatory-growth-section__inner {
+    width: min(calc(100% - 240px), 1460px);
+  }
 }
 
 @media (max-width: 1280px) {

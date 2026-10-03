@@ -306,37 +306,37 @@ const regulatoryMasterHighlights = [
   {
     number: "01",
     title: "원스톱 솔루션",
-    description: "준비 기간 단축 / 비용 절감",
+    description: "50% 비용 절감",
     Icon: PaperPlaneTilt,
   },
   {
     number: "02",
+    title: "2중 철통 보안",
+    description: "문서 암호화 2중 관리",
+    Icon: AirplaneTilt,
+  },
+  {
+    number: "03",
     title: "AI 에이전트",
     description: "쉽고 빠른 서류 작성",
     Icon: Brain,
   },
   {
-    number: "03",
-    title: "2중 철통진단",
-    description: "AI + 규제 전문가 2중 교차검증",
+    number: "04",
+    title: "2중 교차검증",
+    description: "AI 에이전트가 한 번, 전문가가 또 한 번",
     Icon: ShieldCheck,
   },
   {
-    number: "04",
+    number: "05",
     title: "리스크 최소화",
     description: "납기 지연 / 통관 거부 방지",
     Icon: WarningCircle,
   },
   {
-    number: "05",
-    title: "패스트 런칭",
-    description: "빠른 수출 시장 진출",
-    Icon: AirplaneTilt,
-  },
-  {
     number: "06",
     title: "패스트 트랙",
-    description: "한번 등록으로 준비 끝",
+    description: "빠른 시장 진출, 한 번 등록 준비 끝",
     Icon: Scan,
   },
 ];
@@ -1029,6 +1029,7 @@ function RegulatoryHero() {
   return (
     <section className="regulatory-hero">
       <div className="regulatory-hero__inner">
+        <span className="service-detail-hero__kicker">규제 마스터 솔루션</span>
         <h1 className="title-reveal">
           <AnimatedTitle
             parts={[
@@ -1410,7 +1411,7 @@ function RegulatorySolutionFitSection() {
       <div className="regulatory-solution-fit-inner">
         <div className="regulatory-solution-fit-copy">
           <h2>
-            PPWR은 이미 시작되었습니다.
+            PPWR 본격시행.
             <br />
             우리 회사에 맞는 해결책을 제안합니다.
           </h2>
@@ -1862,7 +1863,11 @@ function RegulatorySecuritySection() {
     <section className="regulatory-security-section" aria-label="데이터와 서류 보안 안내">
       <div className="regulatory-security-inner">
         <div className="regulatory-security-head">
-          <h2>귀사의 데이터, 서류 발급 안심하고 맡기세요.</h2>
+          <h2>
+            2중 철통보안으로
+            <br />
+            대외비 걱정 없이 서류 준비하세요.
+          </h2>
           <p>리스튜디오 규제 마스터 솔루션은 보안과 인증에 철저합니다.</p>
         </div>
 
@@ -2565,10 +2570,11 @@ export function ServiceDetailPage({ variant }: ServiceDetailPageProps) {
   };
 
   return (
-    <main className="bg-white">
+    <main className={`bg-white${isProductDevelopment ? "" : " regulatory-master-page"}`}>
       {isProductDevelopment && (
         <>
           <section className="service-detail-hero">
+            <span className="service-detail-hero__kicker">제품 개발 솔루션</span>
             <h1 className="title-reveal mx-auto max-w-[720px] text-center text-[32px] font-semibold leading-[1.16] text-black md:text-[44px] xl:text-[48px]">
               <AnimatedTitle
                 parts={[

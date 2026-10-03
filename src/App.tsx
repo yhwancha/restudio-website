@@ -13,6 +13,7 @@ import { NewsPage } from "./pages/NewsPage";
 import { OnestopDevelopmentSystemPage } from "./pages/OnestopDevelopmentSystemPage";
 import { PlaceholderPage } from "./pages/PlaceholderPage";
 import { ProductQuotePage } from "./pages/ProductQuotePage";
+import { ProductFaqPage } from "./pages/ProductFaqPage";
 import { ProjectManagementPage } from "./pages/ProjectManagementPage";
 import { RegulatoryAiAgentAutomationPage } from "./pages/RegulatoryAiAgentAutomationPage";
 import { RegulatoryExpertDiagnosisPage } from "./pages/RegulatoryExpertDiagnosisPage";
@@ -76,6 +77,10 @@ export default function App() {
             <Route
               path="/services/product-development/eco-material-lab"
               element={<EcoMaterialLabPage />}
+            />
+            <Route
+              path="/services/product-development/faq"
+              element={<ProductFaqPage />}
             />
             <Route
               path="/services/regulatory-response"

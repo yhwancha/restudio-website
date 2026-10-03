@@ -76,6 +76,10 @@ const SERVICE_MENU_GROUPS = [
         label: "친환경 기술 인증",
         to: "/services/product-development/eco-certification",
       },
+      {
+        label: "FAQ",
+        to: "/services/product-development/faq",
+      },
     ],
   },
   {
@@ -283,12 +287,13 @@ function CaseDropdown() {
         <div className="rounded-[20px] bg-white px-5 py-4 shadow-[0_18px_44px_rgba(23,33,27,0.14)]">
           <div className="grid grid-cols-2 gap-x-8 gap-y-8">
             {CASE_INDUSTRIES.map((industry) => (
-              <span
-                className="text-[14px] font-semibold leading-none text-primary-900"
+              <NavLink
+                className="rounded-md text-[14px] font-semibold leading-none text-primary-900 transition-colors hover:text-primary-600"
                 key={industry}
+                to={`/stories?client=${encodeURIComponent(industry)}`}
               >
                 {industry}
-              </span>
+              </NavLink>
             ))}
           </div>
           <NavLink
@@ -553,6 +558,19 @@ export function Header() {
                 }
               >
                 친환경 소재 연구소
+              </NavLink>
+              <NavLink
+                to="/services/product-development/faq"
+                className={({ isActive }) =>
+                  [
+                    "ml-3 rounded-lg px-3 py-2.5 text-[14px] font-semibold transition-colors",
+                    isActive
+                      ? "bg-primary-100 text-primary-900"
+                      : "text-primary-700 hover:bg-primary-50",
+                  ].join(" ")
+                }
+              >
+                FAQ
               </NavLink>
             </div>
           ) : null}

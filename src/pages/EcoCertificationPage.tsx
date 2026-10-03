@@ -1,31 +1,31 @@
 const companyCertificates = [
   {
     title: "벤처 기업 인증 (혁신성장유형)",
-    image: "/assets/certifications/venture-company.png",
+    image: "/assets/certifications/venture-company-color.png",
   },
   {
     title: "산업디자인 전문회사 인증",
-    image: "/assets/certifications/industrial-design-company.png",
+    image: "/assets/certifications/industrial-design-company-color.png",
   },
   {
     title: "기업부설 연구소 인증",
-    image: "/assets/certifications/corporate-research-institute.png",
+    image: "/assets/certifications/corporate-research-institute-color.svg",
   },
   {
     title: "중소기업 확인",
-    image: "/assets/certifications/small-business.png",
+    image: "/assets/certifications/small-business-color.svg",
   },
   {
     title: "FSC 인증기업",
-    image: "/assets/certifications/fsc.png",
+    image: "/assets/certifications/fsc-color.png",
   },
   {
     title: "ISO 9001 인증기업",
-    image: "/assets/certifications/iso-9001.png",
+    image: "/assets/certifications/iso-9001-color.png",
   },
   {
     title: "ISO 14001 인증기업",
-    image: "/assets/certifications/iso-14001.png",
+    image: "/assets/certifications/iso-14001-color.png",
   },
 ] as const;
 
@@ -34,7 +34,7 @@ const globalCertificates = [
     title: "GRS 인증",
     description:
       "재생 원료 함량과 생산 유통 과정을 추적하여 투명성을 보장하는 글로벌 재활용 표준",
-    image: "/assets/certifications/grs.png",
+    image: "/assets/certifications/grs-color.png",
     imageClassName: "eco-certification-grid__image--grs",
   },
   {

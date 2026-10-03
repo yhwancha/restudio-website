@@ -1,5 +1,5 @@
-import { useMemo, useState } from "react";
-import { Link } from "react-router-dom";
+import { useMemo } from "react";
+import { Link, useSearchParams } from "react-router-dom";
 
 type FilterKey = "client" | "material" | "project";
 
@@ -139,11 +139,21 @@ const caseItems: CaseItem[] = [
 ];
 
 export function StoriesListPage() {
-  const [activeFilters, setActiveFilters] = useState<Record<FilterKey, string>>({
-    client: "전체",
-    material: "전체",
-    project: "전체",
-  });
+  const [searchParams, setSearchParams] = useSearchParams();
+  const activeFilters = useMemo<Record<FilterKey, string>>(
+    () => ({
+      client: filters.client.includes(searchParams.get("client") ?? "")
+        ? (searchParams.get("client") as string)
+        : "전체",
+      material: filters.material.includes(searchParams.get("material") ?? "")
+        ? (searchParams.get("material") as string)
+        : "전체",
+      project: filters.project.includes(searchParams.get("project") ?? "")
+        ? (searchParams.get("project") as string)
+        : "전체",
+    }),
+    [searchParams],
+  );
 
   const visibleItems = useMemo(
     () =>
@@ -157,7 +167,15 @@ export function StoriesListPage() {
   );
 
   const selectFilter = (key: FilterKey, value: string) => {
-    setActiveFilters((current) => ({ ...current, [key]: value }));
+    const nextParams = new URLSearchParams(searchParams);
+
+    if (value === "전체") {
+      nextParams.delete(key);
+    } else {
+      nextParams.set(key, value);
+    }
+
+    setSearchParams(nextParams);
   };
 
   return (
