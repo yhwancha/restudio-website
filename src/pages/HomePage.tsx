@@ -10,6 +10,7 @@ import {
   ChartBar,
   CheckCircle,
   ClipboardText,
+  Cube,
   Factory,
   Flask,
   Leaf,
@@ -56,52 +57,42 @@ const homeProcessSteps = [
   {
     label: "친환경 소재\n개발 / 큐레이션",
     Icon: Leaf,
-    tone: "product",
   },
   {
     label: "디자인 제작",
     Icon: PaintBrush,
-    tone: "product",
   },
   {
     label: "제품 R&D",
     Icon: Flask,
-    tone: "product",
   },
   {
     label: "제품\n대량생산",
     Icon: Factory,
-    tone: "product",
   },
   {
     label: "검수 / 납품",
     Icon: CheckCircle,
-    tone: "product",
   },
   {
     label: "ESG 리포트\n발행",
     Icon: ChartBar,
-    tone: "product",
   },
   {
     label: "후속 관리",
     Icon: ArrowsClockwise,
-    tone: "regulatory",
   },
   {
     label: "규제서류\n작성 / 발급",
     Icon: Certificate,
-    tone: "regulatory",
   },
   {
     label: "TD/DoC\n기술문서 컨설팅",
     Icon: ClipboardText,
-    tone: "regulatory",
   },
   {
     label: "규제 대응\n현황 진단",
     Icon: MagnifyingGlass,
-    tone: "regulatory",
   },
 ] as const;
 
@@ -120,7 +111,7 @@ const coreServices = [
     title: "친환경 규제대응 솔루션 바로가기",
     description:
       "국내외 규제 동향 분석과 대응 전략 수립으로 비즈니스 리스크를 최소화하고 해외 수출까지 도와드려요.",
-    image: "/assets/services/regulatory-consulting-clean-white.png",
+    image: "/assets/services/regulatory-consulting.png",
     alt: "PPWR regulatory consulting dashboard preview",
     to: "/services/regulatory-response",
   },
@@ -539,7 +530,7 @@ export function HomePage() {
           </div>
 
           <form
-            className="mx-auto mt-4 max-w-[1040px] rounded-2xl border border-[#d7dde2] bg-white px-4 py-4 shadow-[0_12px_28px_rgba(23,33,27,0.035)] md:mt-5 md:px-5 md:py-4"
+            className="mx-auto mt-4 max-w-[1040px] rounded-2xl border border-[#d7dde2] bg-white px-4 py-4 md:mt-5 md:px-5 md:py-4"
             onSubmit={(event) => event.preventDefault()}
           >
             <div className="flex items-center gap-2.5">
@@ -580,40 +571,48 @@ export function HomePage() {
               에 동의하신 것으로 이해됩니다
             </p>
           </form>
+        </div>
+      </section>
 
-          <section className="mt-28 md:mt-40" aria-label="핵심 서비스">
-            <h2 className="title-reveal text-center text-[26px] font-semibold leading-[1.18] text-black md:text-[34px] xl:text-[38px]">
-              <AnimatedTitle
-                parts={[
-                  "어떤 고민 있으세요?",
-                  { type: "break" },
-                  "리스튜디오와 함께 해결할 분야를 선택해주세요.",
-                ]}
-              />
-            </h2>
+      <section className="home-core-services-section px-5 pb-24 pt-16 md:px-12 md:pb-32 md:pt-24 xl:px-[100px]" aria-label="핵심 서비스">
+        <div className="mx-auto w-full max-w-[1350px]">
+          <h2 className="title-reveal text-center text-[26px] font-semibold leading-[1.18] text-black md:text-[34px] xl:text-[38px]">
+            <AnimatedTitle
+              parts={[
+                "어떤 고민 있으세요?",
+                { type: "break" },
+                "리스튜디오와 함께 해결할 분야를 선택해주세요.",
+              ]}
+            />
+          </h2>
 
-            <div className="mt-10 grid gap-6 lg:grid-cols-2 xl:gap-8">
-              {coreServices.map((service) => (
+          <div className="mt-10 grid gap-6 lg:grid-cols-2">
+            {coreServices.map((service) => (
+              <div key={service.title} className="home-core-service">
+                <p className="home-core-service__prompt">
+                  {service.to === "/services/product-development" ? (
+                    <Cube size={20} weight="regular" aria-hidden="true" />
+                  ) : (
+                    <Leaf size={20} weight="fill" aria-hidden="true" />
+                  )}
+                  {service.eyebrow}
+                </p>
+
                 <Link
-                  key={service.title}
                   to={service.to}
                   className="core-service-card group"
                   aria-label={`${service.title} 자세히 보기`}
                 >
-                  <p className="mb-3 text-[13px] font-medium leading-[1.45] text-[#8d98a4] md:text-[14px]">
-                    {service.eyebrow}
-                  </p>
-
                   <div className="core-service-card__media">
                     <img src={service.image} alt={service.alt} />
                   </div>
 
-                  <div className="mt-6 flex items-end justify-between gap-5 md:mt-7">
+                  <div className="mt-5 flex items-end justify-between gap-5">
                     <div className="min-w-0">
                       <h3 className="text-[18px] font-semibold leading-[1.24] text-black md:text-[22px]">
                         {service.title}
                       </h3>
-                      <p className="mt-3 text-[13px] font-medium leading-[1.55] text-[#9aa3af] md:text-[14px]">
+                      <p className="mt-2 text-[13px] font-medium leading-[1.55] text-[#9aa3af] md:text-[14px]">
                         {service.description}
                       </p>
                     </div>
@@ -623,10 +622,9 @@ export function HomePage() {
                     </span>
                   </div>
                 </Link>
-              ))}
-            </div>
-          </section>
-
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -645,43 +643,50 @@ export function HomePage() {
           </div>
 
           <section className="home-process" aria-label="리스튜디오 원스톱 친환경 패키지 프로세스">
-            <div className="home-process__outcomes" aria-label="핵심 효과">
+            <div className="home-process__outcomes">
               <div className="home-process__endpoint home-process__endpoint--start">
-                <span>START</span>
-                <strong>DEVELOP</strong>
-                <small>친환경 패키지 개발 / 제작</small>
+                <span>DEVELOP</span>
+                <strong>친환경 패키지 개발 / 제작</strong>
               </div>
-              <div className="home-process__benefits">
-                {homeProcessBenefits.map((benefit) => (
-                  <span key={benefit}>{benefit}</span>
-                ))}
-              </div>
+              <span className="home-process__arrow" aria-hidden="true" />
               <div className="home-process__endpoint home-process__endpoint--finish">
-                <span>FINISH</span>
-                <strong>CERTIFIED</strong>
-                <small>글로벌 수출 완성</small>
+                <span>CERTIFIED</span>
+                <strong>글로벌 수출 완성</strong>
               </div>
             </div>
 
-            <ol className="home-process__steps">
-              {homeProcessSteps.map(({ label, Icon, tone }) => (
-                <li className={`home-process__step home-process__step--${tone}`} key={label}>
-                  <strong>
-                    {label.split("\n").map((line) => (
-                      <span key={line}>{line}</span>
-                    ))}
-                  </strong>
-                  <span className="home-process__icon" aria-hidden="true">
-                    <Icon weight="bold" />
-                  </span>
-                </li>
-              ))}
-            </ol>
-
-            <div className="home-process__solution-labels" aria-hidden="true">
-              <span>제품 개발 솔루션</span>
-              <span>규제 해결 솔루션</span>
+            <div className="home-process__panel">
+              <div className="home-process__group">
+                <h3>제품 개발 솔루션</h3>
+                <ol className="home-process__steps">
+                  {homeProcessSteps.slice(0, 6).map(({ label, Icon }) => (
+                    <li className="home-process__step" key={label}>
+                      <Icon weight="fill" aria-hidden="true" />
+                      <span>{label}</span>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+              <div className="home-process__group">
+                <h3>규제 마스터 솔루션</h3>
+                <ol className="home-process__steps">
+                  {homeProcessSteps.slice(6).map(({ label, Icon }) => (
+                    <li className="home-process__step" key={label}>
+                      <Icon weight="fill" aria-hidden="true" />
+                      <span>{label}</span>
+                    </li>
+                  ))}
+                </ol>
+              </div>
             </div>
+            <div className="home-process__benefits" aria-label="핵심 효과">
+              {homeProcessBenefits.map((benefit) => (
+                <span key={benefit}>{benefit}</span>
+              ))}
+            </div>
+            <p className="home-process__closing">
+              제품을 만들면서 동시에 글로벌 규제를 통과하는 유일한 원스톱 솔루션
+            </p>
           </section>
         </div>
       </section>

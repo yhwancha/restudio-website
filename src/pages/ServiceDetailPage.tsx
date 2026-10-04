@@ -873,13 +873,6 @@ const regulatoryPricingPlans = [
     action: "구독하러 가기",
   },
   {
-    name: "연 구독",
-    caption: "다수 SKU / 지속 대응 기업",
-    price: "9,900,000원",
-    unit: "/ 연",
-    action: "구독하러 가기",
-  },
-  {
     name: "엔터프라이즈",
     caption: "대기업 / 다부서 / 다브랜드",
     price: "별도 견적",
@@ -890,57 +883,57 @@ const regulatoryPricingPlans = [
 const regulatoryPricingRows = [
   {
     label: "정기 구독료",
-    values: ["0원", "99,000원 / 월", "9,900,000원 / 연", "별도 견적"],
+    values: ["0원", "99,000원 / 월", "별도 견적"],
   },
   {
     label: "제품, 포장 정보 관리",
-    values: ["check", "check", "check", "check"],
+    values: ["check", "check", "check"],
   },
   {
     label: "AI 데이터 입력 / 작성 지원",
-    values: ["none", "check", "check", "check"],
+    values: ["none", "check", "check"],
   },
   {
     label: "AI 채팅 에이전트 지원",
-    values: ["none", "check", "check", "check"],
+    values: ["none", "check", "check"],
   },
   {
     label: "PPWR 간단 리포트 진단 비용",
-    values: ["300,000원 / 제품", "250,000원 / 제품", "무료, 무제한 진단 가능", "협의"],
+    values: ["300,000원 / 제품", "250,000원 / 제품", "협의"],
   },
   {
     label: "TD / DoC 리포트 발행 비용",
-    values: ["700,000원 / 제품", "550,000원 / 제품", "무료, 무제한 발행 가능", "협의"],
+    values: ["700,000원 / 제품", "550,000원 / 제품", "협의"],
   },
   {
     label: "TD / DoC 리포트 재발행 비용",
-    values: ["400,000원 / 제품", "300,000원 / 제품", "무료, 무제한 재발행 가능", "협의"],
+    values: ["400,000원 / 제품", "300,000원 / 제품", "협의"],
   },
   {
     label: "전문가 TD / DoC 문서 점검 비용",
-    values: ["1,000,000원 / 건", "1,000,000원 / 건", "별도 견적", "협의"],
+    values: ["1,000,000원 / 건", "1,000,000원 / 건", "협의"],
   },
   {
     label: "PPWR 전문가 진단 대행",
-    values: ["3,000,000원~ / 제품", "2,500,000원~ / 제품", "별도 견적", "협의"],
+    values: ["3,000,000원~ / 제품", "2,500,000원~ / 제품", "협의"],
   },
   {
     label: "규제 업데이트 안내",
-    values: ["기본 공지", "시스템 연동 안내", "시스템 연동 안내", "시스템 연동 안내"],
+    values: ["기본 공지", "시스템 연동 안내", "시스템 연동 안내"],
   },
   {
     label: "시험 성적서 발급 대행",
-    values: ["별도 견적", "별도 견적", "별도 견적", "협의"],
+    values: ["별도 견적", "별도 견적", "협의"],
   },
   {
     label: "문서 관리 용량",
-    values: ["500MB", "10GB", "100GB", "협의"],
-    meter: [5, 18, 86, 100],
+    values: ["500MB", "10GB", "협의"],
+    meter: [5, 18, 100],
   },
   {
     label: "TD / DoC 문서 용량",
-    values: ["500MB", "10GB", "100GB", "협의"],
-    meter: [5, 18, 86, 100],
+    values: ["500MB", "10GB", "협의"],
+    meter: [5, 18, 100],
   },
 ];
 
@@ -1073,7 +1066,7 @@ function RegulatoryHero() {
         </div>
 
         <form
-          className="mx-auto mt-4 w-full max-w-[1040px] rounded-2xl border border-[#d7dde2] bg-white px-4 py-4 shadow-[0_12px_28px_rgba(23,33,27,0.035)] md:mt-5 md:px-5 md:py-4"
+          className="mx-auto mt-4 w-full max-w-[1040px] rounded-2xl border border-[#d7dde2] bg-white px-4 py-4 md:mt-5 md:px-5 md:py-4"
           onSubmit={(event) => event.preventDefault()}
         >
           <div className="flex items-center gap-2.5">
@@ -1351,7 +1344,7 @@ function RegulatoryMasterShowcaseSection() {
               자주 바뀌는 규제 변화에도 흔들리지 않는,
               <br />
               리스튜디오{" "}
-              <span>‘규제 마스터 솔루션’</span>을 체험하세요.
+              <span className="regulatory-master-showcase-highlight">‘규제 마스터 솔루션’</span>을 체험하세요.
             </h2>
             <p>
               AI가 데이터를 빠르고 정확하게 1차 진단하고, 규제 전문가가 다시 한번 맞춤
@@ -2585,7 +2578,7 @@ export function ServiceDetailPage({ variant }: ServiceDetailPageProps) {
               embedded
             />
             <form
-              className="mx-auto mt-4 max-w-[1040px] rounded-2xl border border-[#d7dde2] bg-white px-4 py-4 shadow-[0_12px_28px_rgba(23,33,27,0.035)] md:mt-5 md:px-5 md:py-4"
+              className="mx-auto mt-4 max-w-[1040px] rounded-2xl border border-[#d7dde2] bg-white px-4 py-4 md:mt-5 md:px-5 md:py-4"
               onSubmit={(event) => event.preventDefault()}
             >
               <div className="flex items-center gap-2.5">
