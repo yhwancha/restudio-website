@@ -530,7 +530,7 @@ export function HomePage() {
           </div>
 
           <form
-            className="mx-auto mt-4 max-w-[1040px] rounded-2xl border border-[#d7dde2] bg-white px-4 py-4 md:mt-5 md:px-5 md:py-4"
+            className="ai-chat-entry mx-auto mt-4 max-w-[1040px] rounded-2xl px-4 py-4 md:mt-5 md:px-5 md:py-4"
             onSubmit={(event) => event.preventDefault()}
           >
             <div className="flex items-center gap-2.5">
@@ -538,7 +538,7 @@ export function HomePage() {
                 size={21}
                 weight="regular"
                 aria-hidden="true"
-                className="shrink-0 text-[#9aa8b7]"
+                className="shrink-0"
               />
               <label className="sr-only" htmlFor="home-ai-question">
                 AI Agent 리사에게 제품 개발 문의하기
@@ -546,25 +546,25 @@ export function HomePage() {
               <input
                 id="home-ai-question"
                 type="text"
-                className="h-8 min-w-0 flex-1 bg-transparent text-[13px] font-medium text-primary-900 outline-none placeholder:text-[#9aa3af] md:text-[14px]"
+                className="h-8 min-w-0 flex-1 bg-transparent text-[13px] font-medium outline-none md:text-[14px]"
                 placeholder="제품 개발에 대해 궁금한 것이 있나요? AI Agent 리사가 도와드릴게요!"
               />
               <button
                 type="submit"
                 aria-label="문의 보내기"
-                className="grid size-8 shrink-0 place-items-center rounded-full bg-[#bfc5c1] text-white transition hover:bg-primary-600 active:scale-[0.98] md:size-9"
+                className="grid size-8 shrink-0 place-items-center rounded-full transition active:scale-[0.98] md:size-9"
               >
                 <ArrowUp size={18} weight="bold" aria-hidden="true" />
               </button>
             </div>
 
-            <p className="mt-2.5 text-center text-[10px] font-semibold text-[#b6bdc5] md:text-[11px]">
+            <p className="mt-2.5 text-center text-[10px] font-semibold md:text-[11px]">
               대화를 진행하면{" "}
               <a
                 href="https://material-beam-ed6.notion.site/20224acd6ea980ee90cae0df5e5cc6af"
                 target="_blank"
                 rel="noreferrer"
-                className="underline underline-offset-2 hover:text-primary-600"
+                className="underline underline-offset-2"
               >
                 개인정보처리방침
               </a>

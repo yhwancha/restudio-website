@@ -9798,6 +9798,52 @@ body:has(.industry-consulting-page) .ai-chat-widget {
     }
   }
 
+  .ai-chat-entry {
+    border: 0;
+    background:
+      radial-gradient(ellipse at 17% 8%, rgba(77, 147, 122, 0.4), transparent 44%),
+      radial-gradient(ellipse at 85% 90%, rgba(88, 119, 153, 0.34), transparent 48%),
+      linear-gradient(115deg, #244039, #253643 58%, #1e3a32);
+    color: #e8f1ee;
+  }
+
+  .ai-chat-entry:focus-within {
+    box-shadow: 0 10px 28px rgba(35, 111, 87, 0.22);
+  }
+
+  .ai-chat-entry svg {
+    color: #bdd0cc;
+  }
+
+  .ai-chat-entry input {
+    color: #f1f7f4;
+  }
+
+  .ai-chat-entry input::placeholder {
+    color: #c0cfce;
+  }
+
+  .ai-chat-entry button[type="submit"] {
+    background: #f6f8f6;
+    color: #132b25;
+  }
+
+  .ai-chat-entry button[type="submit"] svg {
+    color: inherit;
+  }
+
+  .ai-chat-entry button[type="submit"]:hover {
+    background: #e6efe9;
+  }
+
+  .ai-chat-entry p {
+    color: #c0cfce;
+  }
+
+  .ai-chat-entry a:hover {
+    color: #e6fff2;
+  }
+
   .ai-chat-widget {
     position: fixed;
     right: max(20px, env(safe-area-inset-right));
@@ -9884,9 +9930,9 @@ body:has(.industry-consulting-page) .ai-chat-widget {
     height: min(730px, calc(100dvh - 150px));
     grid-template-rows: auto 1fr auto;
     overflow: hidden;
-    border: 1px solid #dfe4e8;
+    border: 0;
     border-radius: 14px;
-    background: #ffffff;
+    background: #243832;
     box-shadow: 0 18px 52px rgba(23, 33, 27, 0.2);
   }
 
@@ -9896,7 +9942,7 @@ body:has(.industry-consulting-page) .ai-chat-widget {
     grid-template-columns: 42px 1fr 42px;
     align-items: center;
     gap: 8px;
-    background: #43564a;
+    background: linear-gradient(110deg, #2b4b40, #2a3d44 72%, #34584a);
     padding: 0 18px;
     color: #ffffff;
   }
@@ -9935,7 +9981,10 @@ body:has(.industry-consulting-page) .ai-chat-widget {
 
   .ai-chat-panel__body {
     overflow-y: auto;
-    background: #ffffff;
+    background:
+      radial-gradient(ellipse at 18% 12%, rgba(75, 142, 117, 0.3), transparent 46%),
+      radial-gradient(ellipse at 90% 78%, rgba(88, 119, 153, 0.32), transparent 52%),
+      linear-gradient(145deg, #233934, #26343e 62%, #20382f);
     padding: 16px 18px;
   }
 
@@ -9960,7 +10009,7 @@ body:has(.industry-consulting-page) .ai-chat-widget {
 
   .ai-chat-message-row time {
     align-self: end;
-    color: #93a0ad;
+    color: #b7c7c6;
     font-size: 13px;
     font-weight: 600;
     white-space: nowrap;
@@ -9969,9 +10018,9 @@ body:has(.industry-consulting-page) .ai-chat-widget {
   .ai-chat-message {
     max-width: 310px;
     border-radius: 12px;
-    background: #f2f4f6;
+    background: #3a514a;
     padding: 16px 17px;
-    color: #172331;
+    color: #edf5f2;
     font-size: 15px;
     font-weight: 500;
     line-height: 1.65;
@@ -9987,13 +10036,13 @@ body:has(.industry-consulting-page) .ai-chat-widget {
 
   .ai-chat-message--user {
     max-width: 340px;
-    background: #43564a;
-    color: #ffffff;
+    background: #487b66;
+    color: #f5faf7;
   }
 
   .ai-chat-panel__composer {
-    border-top: 1px solid #dfe4e8;
-    background: #ffffff;
+    border-top: 1px solid rgba(150, 208, 190, 0.2);
+    background: #243832;
     padding: 13px 12px 12px;
   }
 
@@ -10002,14 +10051,14 @@ body:has(.industry-consulting-page) .ai-chat-widget {
     grid-template-columns: 30px minmax(0, 1fr) 42px;
     align-items: center;
     gap: 8px;
-    color: #91a0ad;
+    color: #bdd0cc;
   }
 
   .ai-chat-panel__input-row input {
     min-width: 0;
     border: 0;
     background: transparent;
-    color: #172331;
+    color: #f1f7f4;
     font: inherit;
     font-size: 14px;
     font-weight: 500;
@@ -10017,7 +10066,7 @@ body:has(.industry-consulting-page) .ai-chat-widget {
   }
 
   .ai-chat-panel__input-row input::placeholder {
-    color: #99a8b7;
+    color: #c0cfce;
   }
 
   .ai-chat-panel__input-row button {
@@ -10026,21 +10075,21 @@ body:has(.industry-consulting-page) .ai-chat-widget {
     height: 42px;
     place-items: center;
     border-radius: 999px;
-    background: #b8c0bb;
-    color: #ffffff;
+    background: #f6f8f6;
+    color: #132b25;
     transition:
       background-color 0.18s ease,
       transform 0.18s ease;
   }
 
   .ai-chat-panel__input-row button:hover {
-    background: #43564a;
+    background: #e6efe9;
     transform: translateY(-1px);
   }
 
   .ai-chat-panel__composer p {
     margin-top: 8px;
-    color: #b5bdc6;
+    color: #c0cfce;
     font-size: 10px;
     font-weight: 500;
     line-height: 1.4;
