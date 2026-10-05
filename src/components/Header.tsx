@@ -100,12 +100,12 @@ const SERVICE_MENU_GROUPS = [
             to: "/services/regulatory-response/compare/consulting",
           },
           {
-            label: "기존 기술인증사",
-            to: "/services/regulatory-response/compare/certification",
-          },
-          {
             label: "패키징 공급사",
             to: "/services/regulatory-response/compare/supplier",
+          },
+          {
+            label: "기존 기술인증사",
+            to: "/services/regulatory-response/compare/certification",
           },
         ],
       },
@@ -351,6 +351,7 @@ export function Header() {
   const location = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
   const [mobileServiceOpen, setMobileServiceOpen] = useState(false);
+  const [mobileNavHidden, setMobileNavHidden] = useState(false);
   const [loggedIn, setLoggedIn] = useState(() => {
     if (typeof window === "undefined") return false;
     return window.localStorage.getItem("restudio-login-status") === "authenticated";
@@ -379,7 +380,37 @@ export function Header() {
   useEffect(() => {
     setMenuOpen(false);
     setMobileServiceOpen(false);
+    setMobileNavHidden(false);
   }, [location.pathname]);
+
+  useEffect(() => {
+    const mobileViewport = window.matchMedia("(max-width: 1279px)");
+    let lastScrollY = Math.max(0, window.scrollY);
+
+    const handleScroll = () => {
+      const scrollY = Math.max(0, window.scrollY);
+
+      if (!mobileViewport.matches || menuOpen || scrollY <= 16) {
+        setMobileNavHidden(false);
+        lastScrollY = scrollY;
+        return;
+      }
+
+      const scrollDistance = scrollY - lastScrollY;
+      if (Math.abs(scrollDistance) < 8) return;
+
+      setMobileNavHidden(scrollDistance > 0);
+      lastScrollY = scrollY;
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    mobileViewport.addEventListener("change", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      mobileViewport.removeEventListener("change", handleScroll);
+    };
+  }, [menuOpen]);
 
   useEffect(() => {
     const syncLoginStatus = () => {
@@ -402,17 +433,16 @@ export function Header() {
       if (event.key === "Escape") setMenuOpen(false);
     };
 
-    document.body.style.overflow = "hidden";
     window.addEventListener("keydown", handleKeyDown);
 
     return () => {
-      document.body.style.overflow = "";
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, [menuOpen]);
 
   return (
-    <header className="sticky top-0 z-40 bg-white/[0.72] backdrop-blur-xl backdrop-saturate-150">
+    <>
+    <header className={`mobile-scroll-header sticky top-0 ${menuOpen ? "mobile-scroll-header--menu-open z-[130]" : "z-40"} ${mobileNavHidden && !menuOpen ? "mobile-scroll-header--hidden" : ""} bg-white/[0.72] backdrop-blur-xl backdrop-saturate-150`}>
       <div className="mx-auto flex h-12 items-center justify-between px-5 md:px-12 xl:px-[120px]">
         <Link to="/" aria-label="RESTUDIO 홈" className="shrink-0">
           <Logo className="h-[15px] w-auto" />
@@ -475,10 +505,22 @@ export function Header() {
         </button>
       </div>
 
+      <div className="grid grid-cols-2 gap-2 border-t border-primary-600/10 bg-white/[0.95] px-5 py-2 md:px-12 xl:hidden">
+        {ACTION_ITEMS.map((item) => (
+          <NavLink
+            key={item.to}
+            to={item.to}
+            className="inline-flex min-h-10 min-w-0 items-center justify-center whitespace-nowrap rounded-full border border-primary-600 px-2 text-[13px] font-semibold text-primary-700 transition-colors hover:bg-primary-600 hover:text-primary-25 active:scale-[0.98] sm:px-5 sm:text-[14px]"
+          >
+            {item.label}
+          </NavLink>
+        ))}
+      </div>
+
       <div
         id="mobile-navigation"
-        hidden={!menuOpen}
-        className="max-h-[calc(100dvh-3rem)] overflow-y-auto overscroll-contain border-t border-primary-600/10 bg-white/[0.98] px-5 pb-[calc(104px+env(safe-area-inset-bottom))] pt-3 backdrop-blur-xl md:px-12 xl:hidden"
+        aria-hidden={!menuOpen}
+        className={`mobile-navigation absolute inset-x-0 top-full max-h-[calc(100dvh-105px)] overflow-y-auto border-t border-primary-600/10 bg-white/[0.98] px-5 pb-[max(8px,env(safe-area-inset-bottom))] pt-3 shadow-[0_18px_36px_rgba(23,33,27,0.12)] backdrop-blur-xl md:px-12 xl:hidden${menuOpen ? " is-open" : ""}`}
       >
         <nav className="flex flex-col" aria-label="모바일 주요 메뉴">
           <button
@@ -501,7 +543,7 @@ export function Header() {
             />
           </button>
           {mobileServiceOpen ? (
-            <div className="grid gap-3 pb-3 pt-1 md:grid-cols-2">
+            <div className="grid gap-3 pb-3 pt-1">
               {SERVICE_MENU_GROUPS.map(({ title, to, Icon, items }) => (
                 <div
                   className="rounded-[16px] border border-primary-600/10 bg-white p-3 shadow-[0_10px_30px_rgba(23,33,27,0.06)]"
@@ -519,7 +561,7 @@ export function Header() {
                     </strong>
                   </NavLink>
 
-                  <div className="mt-3 grid gap-1 border-t border-primary-600/10 pt-3 sm:grid-cols-2 md:grid-cols-1">
+                  <div className="mt-3 grid grid-cols-2 gap-1 border-t border-primary-600/10 pt-3">
                     {items.map((item) => {
                       const children = "children" in item ? item.children : [];
 
@@ -559,10 +601,25 @@ export function Header() {
               ))}
             </div>
           ) : null}
-          {MOBILE_NAV_ITEMS.map((item) => (
+          <div className="grid grid-cols-2 gap-x-3">
+            {MOBILE_NAV_ITEMS.map((item) => (
+              <NavLink
+                key={item.to}
+                to={item.to}
+                className={({ isActive }) =>
+                  [
+                    "flex min-h-12 items-center rounded-lg px-2 text-[15px] font-medium transition-colors",
+                    isActive
+                      ? "text-primary-900"
+                      : "text-primary-700/75 hover:bg-primary-50 hover:text-primary-800",
+                  ].join(" ")
+                }
+              >
+                {item.label}
+              </NavLink>
+            ))}
             <NavLink
-              key={item.to}
-              to={item.to}
+              to="/company"
               className={({ isActive }) =>
                 [
                   "flex min-h-12 items-center rounded-lg px-2 text-[15px] font-medium transition-colors",
@@ -572,41 +629,26 @@ export function Header() {
                 ].join(" ")
               }
             >
-              {item.label}
+              회사 소개
             </NavLink>
-          ))}
-          <NavLink
-            to="/company"
-            className={({ isActive }) =>
-              [
-                "flex min-h-12 items-center rounded-lg px-2 text-[15px] font-medium transition-colors",
-                isActive
-                  ? "text-primary-900"
-                  : "text-primary-700/75 hover:bg-primary-50 hover:text-primary-800",
-              ].join(" ")
-            }
-          >
-            회사 소개
-          </NavLink>
+          </div>
         </nav>
 
-        <div className={`mt-3 grid gap-2 border-t border-primary-600/10 pt-4 ${isServiceDetailPage ? "" : "md:grid-cols-2"}`}>
-          {actionItems.map((item) => (
-            <NavLink
-              key={item.to}
-              to={item.to}
-              className={[
-                "inline-flex min-h-10 items-center justify-center rounded-full border border-primary-600 px-5",
-                "text-[14px] font-semibold transition-colors active:scale-[0.98]",
-                "text-primary-700 hover:bg-primary-600 hover:text-primary-25",
-              ].join(" ")}
-            >
-              {item.label}
-            </NavLink>
-          ))}
-        </div>
+        {isServiceDetailPage ? (
+          <div className="mt-3 grid gap-2 border-t border-primary-600/10 pt-4">
+            {actionItems.map((item) => (
+              <NavLink
+                key={item.to}
+                to={item.to}
+                className="inline-flex min-h-10 min-w-0 items-center justify-center rounded-full border border-primary-600 px-2 text-[13px] font-semibold text-primary-700 transition-colors hover:bg-primary-600 hover:text-primary-25 active:scale-[0.98] sm:px-5 sm:text-[14px]"
+              >
+                {item.label}
+              </NavLink>
+            ))}
+          </div>
+        ) : null}
 
-        <div className="mt-3 flex items-center gap-2">
+        <div className="mt-2 flex items-center gap-2">
           {!(isServiceDetailPage && loggedIn) ? (
             <NavLink
               to={
@@ -630,5 +672,14 @@ export function Header() {
         </div>
       </div>
     </header>
+    <button
+      type="button"
+      aria-label="메뉴 바깥 영역을 눌러 닫기"
+      aria-hidden={!menuOpen}
+      tabIndex={menuOpen ? 0 : -1}
+      className={`mobile-navigation-backdrop fixed inset-0 z-[120] xl:hidden${menuOpen ? " is-open" : ""}`}
+      onClick={() => setMenuOpen(false)}
+    />
+    </>
   );
 }

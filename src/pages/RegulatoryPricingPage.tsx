@@ -187,6 +187,37 @@ export function RegulatoryPricingPage() {
               </div>
             ))}
           </div>
+          <div className="regulatory-pricing-mobile-plans">
+            {pricingPlans.map((plan) => (
+              <article
+                className={`regulatory-pricing-mobile-plan${
+                  plan.featured ? " is-featured" : ""
+                }`}
+                key={plan.key}
+              >
+                <header>
+                  <h2>{plan.name}</h2>
+                  <p>{plan.subtitle}</p>
+                </header>
+                <ul>
+                  {plan.values.map((value, index) => (
+                    <li key={`${plan.key}-mobile-${pricingRows[index]}`}>
+                      <span className="regulatory-pricing-mobile-plan__label">
+                        {pricingRows[index]}
+                      </span>
+                      {renderPricingValue(value as PricingValue)}
+                    </li>
+                  ))}
+                </ul>
+                <Link
+                  className={`regulatory-pricing-cta${plan.featured ? " is-current" : ""}`}
+                  to={plan.ctaTo}
+                >
+                  {plan.ctaLabel}
+                </Link>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
     </main>

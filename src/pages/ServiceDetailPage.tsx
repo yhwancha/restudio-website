@@ -959,7 +959,32 @@ function ProductClientLogoMarquee() {
   );
 }
 
+function ProductTestimonialCard({ testimonial }: { testimonial: (typeof productTestimonials)[number] }) {
+  return (
+    <article className="product-client-testimonial">
+      {testimonial.logo ? (
+        <div className="product-client-testimonial__logo">
+          <img src={testimonial.logo} alt={testimonial.logoLabel} />
+        </div>
+      ) : (
+        <div className="product-client-testimonial__image">
+          <img src={testimonial.image} alt={testimonial.imageLabel} />
+        </div>
+      )}
+      <div className="product-client-testimonial__content">
+        <p>"{testimonial.quote}"</p>
+        <div>
+          <strong>{testimonial.author}</strong>
+          <span>{testimonial.role}</span>
+        </div>
+      </div>
+    </article>
+  );
+}
+
 function ProductClientSection({ activePage, onPrev, onNext }: ProductClientSectionProps) {
+  const [mobileActive, setMobileActive] = useState(0);
+
   return (
     <section className="product-client-section" aria-label="제품 개발 고객사와 후기">
       <div className="product-client-testimonials">
@@ -976,31 +1001,25 @@ function ProductClientSection({ activePage, onPrev, onNext }: ProductClientSecti
                 key={`product-testimonial-page-${pageIndex}`}
               >
                 {page.map((testimonial) => (
-                  <article className="product-client-testimonial" key={testimonial.author}>
-                    {testimonial.logo ? (
-                      <div className="product-client-testimonial__logo">
-                        <img src={testimonial.logo} alt={testimonial.logoLabel} />
-                      </div>
-                    ) : (
-                      <div className="product-client-testimonial__image">
-                        <img src={testimonial.image} alt={testimonial.imageLabel} />
-                      </div>
-                    )}
-                    <div className="product-client-testimonial__content">
-                      <p>"{testimonial.quote}"</p>
-                      <div>
-                        <strong>{testimonial.author}</strong>
-                        <span>{testimonial.role}</span>
-                      </div>
-                    </div>
-                  </article>
+                  <ProductTestimonialCard testimonial={testimonial} key={testimonial.author} />
                 ))}
               </div>
             ))}
           </div>
         </div>
 
-        <div className="product-client-testimonials__controls">
+        <div className="product-client-testimonials__mobile-viewport">
+          <div
+            className="product-client-testimonials__mobile-track"
+            style={{ transform: `translateX(calc(${-mobileActive * 100}vw + ${mobileActive * 52}px))` }}
+          >
+            {productTestimonials.map((testimonial) => (
+              <ProductTestimonialCard testimonial={testimonial} key={testimonial.author} />
+            ))}
+          </div>
+        </div>
+
+        <div className="product-client-testimonials__controls product-client-testimonials__controls--desktop">
           <button type="button" aria-label="이전 제품 개발 후기 보기" onClick={onPrev}>
             <CaretLeft size={18} weight="bold" aria-hidden="true" />
           </button>
@@ -1010,6 +1029,15 @@ function ProductClientSection({ activePage, onPrev, onNext }: ProductClientSecti
           <span>
             {activePage + 1}/{productTestimonialPages.length}
           </span>
+        </div>
+        <div className="product-client-testimonials__controls product-client-testimonials__controls--mobile">
+          <button type="button" aria-label="이전 제품 개발 후기 보기" onClick={() => setMobileActive((current) => (current + productTestimonials.length - 1) % productTestimonials.length)}>
+            <CaretLeft size={18} weight="bold" aria-hidden="true" />
+          </button>
+          <button type="button" aria-label="다음 제품 개발 후기 보기" onClick={() => setMobileActive((current) => (current + 1) % productTestimonials.length)}>
+            <CaretRight size={18} weight="bold" aria-hidden="true" />
+          </button>
+          <span>{mobileActive + 1}/{productTestimonials.length}</span>
         </div>
       </div>
     </section>
@@ -1027,12 +1055,13 @@ function RegulatoryHero() {
               "EU수출, 서류때문에 발목 잡히지 마세요.",
               { type: "break" },
               {
-                text: "PPWR 준비부터 서류 제출까지,",
+                text: "PPWR",
                 wrapperClassName:
                   "marker-scribble regulatory-hero__highlight",
                 charClassName: "relative z-10",
                 prefix: regulatoryMarkerStroke,
               },
+              " 준비부터 서류 제출까지,",
               { type: "break" },
               "리스튜디오 하나로 끝냅니다.",
             ]}
@@ -1138,36 +1167,38 @@ function RegulatoryGrowthSection() {
         </div>
 
         <div className="regulatory-growth-preview" aria-label="PPWR 서류 준비 화면 예시">
-          <div className="regulatory-growth-dashboard">
-            <img
-              src="/assets/detail-pages/regulatory-product-detail.png"
-              alt="리스튜디오 PPWR 포장재 관리 대시보드 화면"
-            />
-          </div>
-          <div className="regulatory-growth-floating-panel">
-            <strong>1. 포장 데이터</strong>
-            <p>보호해야 할 제품과 포장 구성을 선택하세요.</p>
-            <div className="regulatory-growth-segment">
-              <span>용기·캡</span>
-              <span>라벨·박스</span>
+          <div className="regulatory-growth-preview__stage">
+            <div className="regulatory-growth-dashboard">
+              <img
+                src="/assets/detail-pages/regulatory-product-detail.png"
+                alt="리스튜디오 PPWR 포장재 관리 대시보드 화면"
+              />
             </div>
-            <p>필요한 증빙 유형을 선택하면 AI가 누락 자료를 정리합니다.</p>
-            <div className="regulatory-growth-checks">
-              <span>
-                <i />
-                <b>재질</b>
-                자동 검토
-              </span>
-              <span>
-                <i />
-                <b>시험</b>
-                자동 검토
-              </span>
-              <span>
-                <i />
-                <b>선언</b>
-                자동 검토
-              </span>
+            <div className="regulatory-growth-floating-panel">
+              <strong>1. 포장 데이터</strong>
+              <p>보호해야 할 제품과 포장 구성을 선택하세요.</p>
+              <div className="regulatory-growth-segment">
+                <span>용기·캡</span>
+                <span>라벨·박스</span>
+              </div>
+              <p>필요한 증빙 유형을 선택하면 AI가 누락 자료를 정리합니다.</p>
+              <div className="regulatory-growth-checks">
+                <span>
+                  <i />
+                  <b>재질</b>
+                  자동 검토
+                </span>
+                <span>
+                  <i />
+                  <b>시험</b>
+                  자동 검토
+                </span>
+                <span>
+                  <i />
+                  <b>선언</b>
+                  자동 검토
+                </span>
+              </div>
             </div>
           </div>
         </div>
@@ -1594,6 +1625,44 @@ function RegulatoryAssetizationSection() {
 }
 
 function RegulatoryValueSection() {
+  const tableScrollRef = useRef<HTMLDivElement | null>(null);
+  const tableViewportRef = useRef<HTMLDivElement | null>(null);
+  const tableRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const scrollArea = tableScrollRef.current;
+    const viewport = tableViewportRef.current;
+    const table = tableRef.current;
+    if (!scrollArea || !viewport || !table) return;
+
+    let frame = 0;
+    const updateTableScroll = () => {
+      if (window.innerWidth > 767) return;
+      const travel = Math.max(table.scrollWidth - viewport.clientWidth, 0);
+      scrollArea.style.setProperty("--table-travel", `${travel}px`);
+      scrollArea.style.setProperty("--table-height", `${table.offsetHeight}px`);
+      const scrollDistance = scrollArea.offsetHeight - viewport.offsetHeight;
+      const stickyTop = parseFloat(window.getComputedStyle(viewport).top) || 0;
+      const progress = scrollDistance > 0
+        ? Math.min(Math.max((stickyTop - scrollArea.getBoundingClientRect().top) / scrollDistance, 0), 1)
+        : 0;
+      table.style.setProperty("--table-offset", `${-progress * travel}px`);
+    };
+    const requestUpdate = () => {
+      window.cancelAnimationFrame(frame);
+      frame = window.requestAnimationFrame(updateTableScroll);
+    };
+
+    updateTableScroll();
+    window.addEventListener("scroll", requestUpdate, { passive: true });
+    window.addEventListener("resize", requestUpdate);
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", requestUpdate);
+      window.removeEventListener("resize", requestUpdate);
+    };
+  }, []);
+
   return (
     <section className="regulatory-value-section" aria-label="규제 마스터 솔루션 가치 비교">
       <div className="regulatory-value-inner">
@@ -1628,23 +1697,27 @@ function RegulatoryValueSection() {
           ))}
         </div>
 
-        <div className="regulatory-value-table" role="table" aria-label="규제 대응 서비스 비교표">
-          <div className="regulatory-value-table__row regulatory-value-table__row--head" role="row">
-            <span role="columnheader">비교 항목</span>
-            <strong role="columnheader">리스튜디오 규제 해결 솔루션</strong>
-            <span role="columnheader">일반 컨설팅사</span>
-            <span role="columnheader">패키징 제조사</span>
-            <span role="columnheader">일반 기술 / 인증사</span>
-          </div>
-          {regulatoryComparisonRows.map((row) => (
-            <div className="regulatory-value-table__row" role="row" key={row.label}>
-              <span role="cell">{row.label}</span>
-              <strong role="cell">{row.restudio}</strong>
-              <span role="cell">{row.consulting}</span>
-              <span role="cell">{row.packaging}</span>
-              <span role="cell">{row.certification}</span>
+        <div className="regulatory-value-table-scroll" ref={tableScrollRef}>
+          <div className="regulatory-value-table-viewport" ref={tableViewportRef}>
+            <div className="regulatory-value-table" ref={tableRef} role="table" aria-label="규제 대응 서비스 비교표">
+              <div className="regulatory-value-table__row regulatory-value-table__row--head" role="row">
+                <span role="columnheader">비교 항목</span>
+                <strong role="columnheader">리스튜디오 규제 해결 솔루션</strong>
+                <span role="columnheader">일반 컨설팅사</span>
+                <span role="columnheader">패키징 제조사</span>
+                <span role="columnheader">일반 기술 / 인증사</span>
+              </div>
+              {regulatoryComparisonRows.map((row) => (
+                <div className="regulatory-value-table__row" role="row" key={row.label}>
+                  <span role="cell">{row.label}</span>
+                  <strong role="cell">{row.restudio}</strong>
+                  <span role="cell">{row.consulting}</span>
+                  <span role="cell">{row.packaging}</span>
+                  <span role="cell">{row.certification}</span>
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
         </div>
       </div>
     </section>
@@ -2557,7 +2630,7 @@ export function ServiceDetailPage({ variant }: ServiceDetailPageProps) {
         <>
           <section className="service-detail-hero">
             <span className="service-detail-hero__kicker">제품 개발 솔루션</span>
-            <h1 className="title-reveal mx-auto max-w-[720px] text-center text-[32px] font-semibold leading-[1.16] text-black md:text-[44px] xl:text-[48px]">
+            <h1 className="title-reveal mx-auto max-w-[720px] text-center text-[28px] font-semibold leading-[1.16] text-black md:text-[44px] xl:text-[48px]">
               <AnimatedTitle
                 parts={[
                   "친환경 패키지, 처음부터 끝까지",

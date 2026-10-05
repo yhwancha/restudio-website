@@ -323,6 +323,7 @@ function SubscribeWidget() {
 }
 
 function NewsListPage() {
+  const [activeCategory, setActiveCategory] = useState<"전체" | NewsCategory>("전체");
   const groupedItems = useMemo(() => {
     return categories.slice(1).map((category) => ({
       category,
@@ -334,7 +335,17 @@ function NewsListPage() {
     <main className="news-page news-page--list">
       <nav className="news-category-tabs" aria-label="새로운 소식 카테고리">
         {categories.map((category) => (
-          <a key={category} href={category === "전체" ? "#news-all" : `#news-${category}`}>
+          <a
+            key={category}
+            href={category === "전체" ? "#news-all" : `#news-${category}`}
+            data-selected={activeCategory === category}
+            onClick={(event) => {
+              if (window.matchMedia("(max-width: 767px)").matches) {
+                event.preventDefault();
+                setActiveCategory(category);
+              }
+            }}
+          >
             {category}
           </a>
         ))}
@@ -342,7 +353,11 @@ function NewsListPage() {
 
       <div id="news-all" className="news-list-sections">
         {groupedItems.map(({ category, items }) => (
-          <section key={category} id={`news-${category}`} className="news-list-section">
+          <section
+            key={category}
+            id={`news-${category}`}
+            className={`news-list-section${activeCategory !== "전체" && activeCategory !== category ? " is-filtered-out" : ""}`}
+          >
             <h2>{category}</h2>
             <div className="news-list-grid">
               {items.map((item) => (

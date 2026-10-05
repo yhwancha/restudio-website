@@ -398,7 +398,7 @@ export function CompanyPage() {
         <h2>
           제품 개발부터 글로벌 규제 대응까지
           <br />
-          <span>하나의 통합 솔루션</span>으로 관리합니다.
+          <span className="company-venn__title-highlight">하나의 통합 솔루션</span>으로 관리합니다.
         </h2>
         <div className="company-venn__diagram" aria-label="제품 개발과 규제 대응 통합 다이어그램">
           <svg
@@ -422,6 +422,27 @@ export function CompanyPage() {
               fill="#159557"
               opacity="0.94"
               clipPath="url(#company-venn-left-ellipse)"
+            />
+          </svg>
+          <svg
+            className="company-venn__circles"
+            viewBox="0 0 360 580"
+            aria-hidden="true"
+          >
+            <defs>
+              <clipPath id="company-venn-top-circle">
+                <circle cx="180" cy="180" r="174" />
+              </clipPath>
+            </defs>
+            <circle cx="180" cy="180" r="174" fill="#e9eceb" opacity="0.58" />
+            <circle cx="180" cy="400" r="174" fill="#e9eceb" opacity="0.58" />
+            <circle
+              cx="180"
+              cy="400"
+              r="174"
+              fill="#159557"
+              opacity="0.94"
+              clipPath="url(#company-venn-top-circle)"
             />
           </svg>
           <div className="company-venn__panel company-venn__panel--left">

@@ -459,7 +459,7 @@ export function HomePage() {
     <main className="home-page bg-[#f7f8f8]">
       <section className="home-hero-section bg-[#f7f8f8] px-5 py-16 md:px-12 md:py-24 xl:px-[120px]">
         <div className="mx-auto w-full max-w-[1040px]">
-          <h1 className="title-reveal mx-auto max-w-[920px] text-center text-[32px] font-semibold leading-[1.16] text-black md:text-[44px] xl:text-[48px]">
+          <h1 className="title-reveal mx-auto max-w-[920px] text-center text-[28px] font-semibold leading-[1.16] text-black md:text-[44px] xl:text-[48px]">
             <AnimatedTitle
               parts={[
               "친환경 제품 개발과 규제 대응,",

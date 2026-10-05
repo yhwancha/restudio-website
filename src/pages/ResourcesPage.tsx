@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { ArrowRight } from "@phosphor-icons/react";
 import { Link } from "react-router-dom";
 
@@ -28,6 +29,7 @@ const featuredResources = [
 
 const ppwrResources = [
   {
+    id: "ppwr-guides",
     tag: "가이드",
     title: "PPWR 규제 용어",
     description: "PPWR 문서에서 자주 등장하는 핵심 용어를 쉽게 정리했습니다.",
@@ -49,6 +51,7 @@ const ppwrResources = [
     image: "/assets/resources/resource-book-ppwr-commerce.png",
   },
   {
+    id: "ppwr-checklists",
     tag: "체크리스트",
     title: "PPWR 수출기업 실무자가 바로 쓰는 필수 체크리스트",
     description: "수출 전 확인해야 할 문서, 소재, 표시 요건을 한 장으로 점검하세요.",
@@ -70,6 +73,7 @@ const ppwrResources = [
     image: "/assets/resources/resource-book-package-checklist.png",
   },
   {
+    id: "ppwr-collections",
     tag: "자료집",
     title: "EU PPWR FAQ 자료집_가장 자주 묻는 질문 총망라",
     description: "PPWR 대응 과정에서 자주 묻는 질문을 실무 관점으로 정리했습니다.",
@@ -80,6 +84,7 @@ const ppwrResources = [
 
 function ResourceCard({
   description,
+  id,
   image,
   tag,
   title,
@@ -88,6 +93,7 @@ function ResourceCard({
 }: {
   description: string;
   href?: string;
+  id?: string;
   image: string;
   tag: string;
   title: string;
@@ -106,20 +112,22 @@ function ResourceCard({
 
   if (href) {
     return (
-      <Link className="resource-card resource-card--link" to={href}>
+      <Link className="resource-card resource-card--link" id={id} to={href}>
         {content}
       </Link>
     );
   }
 
   return (
-    <article className="resource-card">
+    <article className="resource-card" id={id}>
       {content}
     </article>
   );
 }
 
 export function ResourcesPage() {
+  const [activePpwrTab, setActivePpwrTab] = useState("가이드");
+
   return (
     <main className="resources-page">
       <section className="resources-hero" aria-label="자료실 대표 리포트">
@@ -155,9 +163,27 @@ export function ResourcesPage() {
         <div className="resources-section__header">
           <h2>PPWR 규제, 용어부터 체크리스트까지</h2>
           <div className="resources-tabs" aria-label="자료 카테고리">
-            <span className="is-active">가이드</span>
-            <span>체크리스트</span>
-            <span>자료집</span>
+            <a
+              className={activePpwrTab === "가이드" ? "is-active" : ""}
+              href="#ppwr-guides"
+              onClick={() => setActivePpwrTab("가이드")}
+            >
+              가이드
+            </a>
+            <a
+              className={activePpwrTab === "체크리스트" ? "is-active" : ""}
+              href="#ppwr-checklists"
+              onClick={() => setActivePpwrTab("체크리스트")}
+            >
+              체크리스트
+            </a>
+            <a
+              className={activePpwrTab === "자료집" ? "is-active" : ""}
+              href="#ppwr-collections"
+              onClick={() => setActivePpwrTab("자료집")}
+            >
+              자료집
+            </a>
           </div>
         </div>
         <div className="resources-card-grid">

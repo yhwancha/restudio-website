@@ -316,7 +316,9 @@ export function EcoMaterialLabPage() {
       <section className="eco-material-lab-hero" aria-labelledby="eco-material-lab-title">
         <div className="eco-material-lab-hero__copy">
           <div>
-            <h1 id="eco-material-lab-title">리스튜디오 친환경 소재 연구 R&amp;D</h1>
+            <h1 id="eco-material-lab-title">
+              리스튜디오<br className="eco-mobile-break" /> 친환경 소재 연구 R&amp;D
+            </h1>
             <p className="eco-material-lab-hero__eyebrow">
               ECO-MATERIAL RESEARCH &amp; DEVELOPMENT
             </p>
@@ -357,7 +359,9 @@ export function EcoMaterialLabPage() {
         aria-labelledby="eco-materials-title"
       >
         <header className="eco-material-lab-materials__header">
-          <h2 id="eco-materials-title">페이퍼몰드와 바이오플라스틱 친환경 소재</h2>
+          <h2 id="eco-materials-title">
+            페이퍼몰드와<br className="eco-mobile-break" /> 바이오플라스틱 친환경 소재
+          </h2>
           <p>
             리스튜디오는 페이퍼몰드와 바이오플라스틱을 중심으로 다양한 산업에 적용 가능한
             친환경 포장 소재를 연구하고 개발합니다.

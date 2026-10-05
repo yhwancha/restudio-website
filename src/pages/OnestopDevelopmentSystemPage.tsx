@@ -121,7 +121,10 @@ export function OnestopDevelopmentSystemPage() {
         <div className="onestop-service-timeline" aria-label="서비스 진행 단계">
           {serviceSteps.map(({ step, title, description, Icon }) => (
             <article className="onestop-service-timeline__item" key={step}>
-              <span className="onestop-service-timeline__step">{step}</span>
+              <span className="onestop-service-timeline__step">
+                <span className="onestop-service-timeline__step-word">step </span>
+                {step.slice(-1)}
+              </span>
               <span className="onestop-service-timeline__marker">
                 <Icon size={26} weight="regular" aria-hidden="true" />
               </span>
