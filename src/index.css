@@ -5695,6 +5695,7 @@ body:has(.industry-consulting-page) .ai-chat-widget {
 
 .company-hero h1 .company-hero__highlight .marker-scribble__path {
   animation: none;
+  opacity: 0;
   stroke-dashoffset: 1;
   vector-effect: none;
 }
@@ -5703,7 +5704,7 @@ body:has(.industry-consulting-page) .ai-chat-widget {
   .company-hero h1.title-reveal.is-visible
     .company-hero__highlight
     .marker-scribble__path {
-    animation: marker-path-draw 1.08s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation: company-marker-path-draw 1.08s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   }
 
   .company-hero h1.title-reveal.is-visible
@@ -7551,7 +7552,7 @@ body:has(.industry-consulting-page) .ai-chat-widget {
 
   .company-hero h1 .company-hero__highlight .marker-scribble__path,
   .company-hero h1.title-reveal.is-visible .company-hero__highlight .marker-scribble__path {
-    animation: marker-path-draw 0.72s cubic-bezier(0.22, 1, 0.36, 1) 1.65s forwards;
+    animation: company-marker-path-draw 0.72s cubic-bezier(0.22, 1, 0.36, 1) 1.65s forwards;
     stroke-dashoffset: 1;
     stroke-linecap: butt;
   }
@@ -16839,6 +16840,23 @@ body:has(.industry-consulting-page) .ai-chat-widget {
 
 @keyframes marker-path-draw {
   to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes company-marker-path-draw {
+  0% {
+    opacity: 0;
+    stroke-dashoffset: 1;
+  }
+
+  0.1% {
+    opacity: 1;
+    stroke-dashoffset: 1;
+  }
+
+  100% {
+    opacity: 1;
     stroke-dashoffset: 0;
   }
 }

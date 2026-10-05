@@ -1055,13 +1055,13 @@ function RegulatoryHero() {
               "EU수출, 서류때문에 발목 잡히지 마세요.",
               { type: "break" },
               {
-                text: "PPWR",
+                text: "PPWR 준비부터 서류 제출까지",
                 wrapperClassName:
                   "marker-scribble regulatory-hero__highlight",
                 charClassName: "relative z-10",
                 prefix: regulatoryMarkerStroke,
               },
-              " 준비부터 서류 제출까지,",
+              ",",
               { type: "break" },
               "리스튜디오 하나로 끝냅니다.",
             ]}
