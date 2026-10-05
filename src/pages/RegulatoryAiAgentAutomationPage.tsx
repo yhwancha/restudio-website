@@ -126,7 +126,7 @@ export function RegulatoryAiAgentAutomationPage() {
           <h1 id="regulatory-ai-agent-title">
             범용 AI가 아닌, 규제 대응에 최적화된
             <br />
-            <span>리스튜디오 AI 에이전트</span>
+            <span className="regulatory-ai-agent-hero__highlight">리스튜디오 AI 에이전트</span>
           </h1>
           <p className="regulatory-ai-agent-hero__description">
             리스튜디오의 AI 에이전트는 단순 검색형 AI가 아닙니다.

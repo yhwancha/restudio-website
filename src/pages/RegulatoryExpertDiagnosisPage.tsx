@@ -102,7 +102,7 @@ export function RegulatoryExpertDiagnosisPage() {
           <h1 id="regulatory-expert-title">
             AI가 빠르게 분석하고,
             <br />
-            <span>규제 전문가</span>가 더 깊게 짚어줍니다.
+            <span className="regulatory-expert-hero__highlight">규제 전문가</span>가 더 깊게 짚어줍니다.
           </h1>
           <p className="regulatory-expert-hero__description">
             경력 10년 차 이상의 리스튜디오 친환경 제품 개발 연구원 및 규제 전문가가 귀사의 제품과

@@ -107,9 +107,11 @@ export function RegulatoryIntegratedControlPage() {
           <h1 id="regulatory-control-title">
             EU PPWR부터 미국 규제까지,
             <br />
-            글로벌 규제 대응을
-            <br />
-            하나의 <span>컨트롤 타워</span>로 관리합니다.
+            <span className="regulatory-control-hero__highlight">
+              글로벌 규제 대응을
+              <br />
+              하나의 컨트롤 타워로 관리합니다.
+            </span>
           </h1>
           <p>
             리스튜디오 규제 마스터 솔루션은 지역별 규제 흐름을 읽고,

@@ -9,6 +9,21 @@ section :where(h1, h2) {
   :is(h1, h2, h3, h4, h5, h6) {
     zoom: 0.9;
   }
+
+  .title-reveal__word,
+  .title-reveal__char {
+    display: inline;
+  }
+
+  .title-reveal__word,
+  .title-reveal__space {
+    white-space: normal;
+  }
+
+  .title-reveal__char {
+    transform: none;
+    will-change: auto;
+  }
 }
 
 /* Eco material lab */
@@ -1750,7 +1765,7 @@ section :where(h1, h2) {
   letter-spacing: -0.035em;
 }
 
-.regulatory-onestop-hero__copy h1 span {
+.regulatory-onestop-hero__highlight {
   color: var(--regulatory-onestop-green);
 }
 
@@ -2350,7 +2365,7 @@ section :where(h1, h2) {
   letter-spacing: -0.035em;
 }
 
-.regulatory-control-hero__copy h1 span {
+.regulatory-control-hero__highlight {
   color: var(--regulatory-control-green);
 }
 
@@ -3461,7 +3476,7 @@ section :where(h1, h2) {
   letter-spacing: -0.045em;
 }
 
-.regulatory-ai-agent-hero__copy h1 span {
+.regulatory-ai-agent-hero__highlight {
   color: var(--regulatory-ai-agent-green);
 }
 
@@ -4087,7 +4102,7 @@ section :where(h1, h2) {
   letter-spacing: -0.038em;
 }
 
-.regulatory-expert-hero__copy h1 span {
+.regulatory-expert-hero__highlight {
   color: #18a86c;
 }
 
@@ -7534,7 +7549,10 @@ body:has(.industry-consulting-page) .ai-chat-widget {
     font-size: clamp(21px, 5.7vw, 24px);
   }
 
-  .company-hero h1 .company-hero__highlight .marker-scribble__path {
+  .company-hero h1 .company-hero__highlight .marker-scribble__path,
+  .company-hero h1.title-reveal.is-visible .company-hero__highlight .marker-scribble__path {
+    animation: marker-path-draw 0.72s cubic-bezier(0.22, 1, 0.36, 1) 1.65s forwards;
+    stroke-dashoffset: 1;
     stroke-linecap: butt;
   }
 
@@ -8047,8 +8065,8 @@ body:has(.industry-consulting-page) .ai-chat-widget {
   }
 
   .industry-consulting-hero__copy h1 {
-    font-size: clamp(18px, 5vw, 20px);
-    white-space: nowrap;
+    font-size: 28px;
+    white-space: normal;
   }
 
   .industry-consulting-hero__copy p {
@@ -21334,10 +21352,12 @@ body:has(.industry-consulting-page) .ai-chat-widget {
   }
 
   .regulatory-expert-hero__features article {
+    flex-direction: column;
     min-height: auto;
     align-items: center;
-    gap: 10px;
-    padding: 18px 14px;
+    gap: 8px;
+    padding: 16px 8px;
+    text-align: center;
   }
 
   .regulatory-expert-hero__features span {
@@ -21363,6 +21383,43 @@ body:has(.industry-consulting-page) .ai-chat-widget {
     padding: 76px 0 92px;
   }
 
+  .regulatory-expert-need-grid article {
+    display: grid;
+    grid-template-columns: 46px minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    align-items: center;
+    column-gap: 12px;
+    row-gap: 4px;
+    min-height: 0;
+    padding: 18px 16px;
+  }
+
+  .regulatory-expert-need-grid__head {
+    display: contents;
+  }
+
+  .regulatory-expert-need-grid span {
+    grid-column: 1;
+    grid-row: 1 / 3;
+    width: 46px;
+    height: 46px;
+  }
+
+  .regulatory-expert-need-grid h3 {
+    grid-column: 2;
+    grid-row: 1;
+    align-self: end;
+    font-size: 16px;
+  }
+
+  .regulatory-expert-need-grid p {
+    grid-column: 2;
+    grid-row: 2;
+    align-self: start;
+    margin: 2px 0 0;
+    font-size: 14px;
+  }
+
   .regulatory-expert-process-section,
   .regulatory-expert-check-section {
     padding: 76px 0 92px;
@@ -21379,15 +21436,66 @@ body:has(.industry-consulting-page) .ai-chat-widget {
     line-height: 1.3;
   }
 
-  .regulatory-expert-process-list,
-  .regulatory-expert-check-grid {
+  .regulatory-expert-process-list {
     grid-template-columns: 1fr;
+    gap: 12px;
   }
 
   .regulatory-expert-process-list article {
+    display: grid;
+    grid-template-columns: 39px minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    align-items: start;
+    column-gap: 12px;
+    row-gap: 4px;
     min-height: auto;
     border-radius: 20px;
-    padding: 24px 20px;
+    padding: 18px 16px;
+  }
+
+  .regulatory-expert-process-list article > span {
+    grid-column: 1;
+    grid-row: 1 / 3;
+    align-self: start;
+  }
+
+  .regulatory-expert-process-list h3 {
+    grid-column: 2;
+    grid-row: 1;
+    margin: 0;
+    font-size: 16px;
+  }
+
+  .regulatory-expert-process-list p {
+    grid-column: 2;
+    grid-row: 2;
+    margin: 2px 0 0;
+    font-size: 14px;
+  }
+
+  .regulatory-expert-process-list > li > svg {
+    display: none;
+  }
+
+  .regulatory-expert-check-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px 12px;
+    margin-top: 24px;
+  }
+
+  .regulatory-expert-check-grid h3 {
+    margin-top: 10px;
+    font-size: 16px;
+  }
+
+  .regulatory-expert-check-grid ul {
+    gap: 4px;
+    margin-top: 8px;
+    font-size: 12px;
+  }
+
+  .regulatory-expert-check-grid li {
+    padding-left: 17px;
   }
 
   .regulatory-expert-need-section__intro p {
@@ -21813,19 +21921,40 @@ body:has(.industry-consulting-page) .ai-chat-widget {
   }
 
   .regulatory-ai-agent-feature-grid article {
+    grid-template-columns: 56px minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    align-items: center;
+    column-gap: 14px;
+    row-gap: 2px;
     min-height: auto;
-    justify-items: start;
     text-align: left;
-    padding: 24px 22px;
+    padding: 18px 20px;
   }
 
   .regulatory-ai-agent-feature-grid span {
+    grid-column: 1;
+    grid-row: 1 / 3;
     width: 56px;
     height: 56px;
   }
 
   .regulatory-ai-agent-feature-grid h2 {
-    margin-top: 18px;
+    grid-column: 2;
+    grid-row: 1;
+    width: 100%;
+    justify-self: stretch;
+    margin: 0;
+    font-size: 16px;
+    text-align: left;
+  }
+
+  .regulatory-ai-agent-feature-grid p {
+    grid-column: 2;
+    grid-row: 2;
+    width: 100%;
+    justify-self: stretch;
+    margin: 2px 0 0;
+    text-align: left;
   }
 
   .regulatory-ai-agent-compare-section,
@@ -21843,9 +21972,10 @@ body:has(.industry-consulting-page) .ai-chat-widget {
     margin-top: 28px;
   }
 
-  .regulatory-ai-agent-compare-grid,
-  .regulatory-ai-agent-work-grid {
-    grid-template-columns: 1fr;
+  .regulatory-ai-agent-compare-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    width: 100%;
   }
 
   .regulatory-ai-agent-compare-grid article {
@@ -21856,7 +21986,18 @@ body:has(.industry-consulting-page) .ai-chat-widget {
     gap: 14px;
     margin-top: 18px;
     border-radius: 18px;
-    padding: 24px 20px;
+    padding: 20px 14px;
+    font-size: 14px;
+  }
+
+  .regulatory-ai-agent-compare-grid li {
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .regulatory-ai-agent-compare-grid li svg {
+    width: 18px;
+    height: 18px;
   }
 
   .regulatory-ai-agent-work-section__head {
@@ -21868,19 +22009,57 @@ body:has(.industry-consulting-page) .ai-chat-widget {
   .regulatory-ai-agent-work-grid article {
     min-height: auto;
     border-radius: 18px;
-    padding: 24px 20px;
+    padding: 18px 14px;
+  }
+
+  .regulatory-ai-agent-work-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin-top: 32px;
+  }
+
+  .regulatory-ai-agent-work-card__head {
+    gap: 8px;
+    padding-bottom: 12px;
+  }
+
+  .regulatory-ai-agent-work-card__head h3 {
+    margin-top: 3px;
+    font-size: 15px;
+  }
+
+  .regulatory-ai-agent-work-card__head svg {
+    width: 36px;
+    height: 36px;
+    padding: 8px;
+  }
+
+  .regulatory-ai-agent-work-grid ul {
+    gap: 7px;
+    margin-top: 14px;
+    font-size: 12px;
   }
 
   .regulatory-ai-agent-work-flow {
     min-height: auto;
     flex-wrap: wrap;
-    gap: 12px 16px;
-    padding: 18px 20px;
+    gap: 12px 6px;
+    padding: 16px 12px;
+  }
+
+  .regulatory-ai-agent-work-flow strong {
+    font-size: 14px;
+  }
+
+  .regulatory-ai-agent-work-flow svg {
+    width: 14px;
+    height: 14px;
   }
 
   .regulatory-ai-agent-work-flow span {
     width: 100%;
     margin-left: 0;
+    font-size: 14px;
     white-space: normal;
   }
 }
