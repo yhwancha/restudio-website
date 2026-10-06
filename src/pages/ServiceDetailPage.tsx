@@ -12,7 +12,6 @@ import {
   Briefcase,
   CheckCircle,
   CheckSquare,
-  ChartBar,
   Clock,
   ClipboardText,
   ClockCounterClockwise,
@@ -35,9 +34,7 @@ import {
   SquaresFour,
   Timer,
   TrendUp,
-  UploadSimple,
   User,
-  UserCircle,
   WarningCircle,
   XCircle,
 } from "@phosphor-icons/react";
@@ -498,49 +495,26 @@ const regulatoryComparisonRows = [
 
 const regulatoryStartSteps = [
   {
-    title: "회원가입",
-    description: "지금 바로 시작하세요",
-    Icon: UserCircle,
-  },
-  {
-    title: "회사/제품 정보 등록",
-    description: "기본 정보를 입력합니다",
-    Icon: FileText,
-  },
-  {
-    title: "서류 업로드",
-    description: "필요한 자료를 올려주세요",
-    Icon: UploadSimple,
-  },
-  {
-    title: "진단 리포트 확인",
-    description: "AI와 전문가가 분석한 결과를 확인하세요",
-    Icon: ChartBar,
-  },
-];
-
-const regulatoryFreeReportSteps = [
-  {
     number: "1",
-    title: "회원가입",
+    title: "무료 진단",
     description: "이메일 등 기본 계정 생성",
   },
   {
     number: "2",
-    title: "기본 정보 입력",
-    description: "제품·업종 등 간단 정보만 입력",
+    title: "진단 리포트 확인",
+    description: "우리 회사가 부족한 진단 내용 확인",
   },
   {
     number: "3",
-    title: "진단 현황 리포트 확인",
-    description: "우리 회사 맞춤 규제 진단 현황을 무료로 즉시 확인",
+    title: "심층 진단",
+    description: "제품, 업종 등 추가 정보 입력",
     badge: "무료",
     featured: true,
   },
   {
     number: "4",
-    title: "심층 진단 신청",
-    description: "증빙서류 업로드 후 AI+전문가 정밀 진단",
+    title: "맞춤 서류 발급",
+    description: "TD, DoC 등 자동 작성",
   },
 ];
 
@@ -640,12 +614,36 @@ const regulatorySecurityItems = [
 ];
 
 const regulatoryFaqItems = [
-  "서류(TD·DoC)는 바로 제출 가능한 형태로 발급되나요?",
-  "진단을 시작하려면 어떤 자료를 준비해야 하나요?",
-  "AI 진단과 전문가 검토는 어떻게 함께 진행되나요?",
-  "규제 변경이 생기면 후속 관리도 받을 수 있나요?",
-  "요금제는 어떻게 구성되어 있나요?",
-  "필요한 자료(시험성적서 등)가 부족해도 신청할 수 있나요?",
+  {
+    question: "서류(TD·DoC)는 바로 제출 가능한 형태로 발급되나요?",
+    answer:
+      "네, 수출 시 바로 제출 가능한 PDF 문서로 제공합니다.\n제출용 TD/DoC 문서를 리스튜디오 에이전트가 직접 작성하고, 규제 전문가가 교차 검증해 최종 완성합니다.",
+  },
+  {
+    question: "진단을 시작하려면 어떤 자료를 준비해야 하나요?",
+    answer:
+      "처음부터 모든 자료를 완벽하게 준비하실 필요는 없습니다.\n현재 보유한 제품·포장재 정보, 시험성적서, 인증서 등을 먼저 제출해 주세요.\n리스튜디오가 현재 자료를 꼼꼼히 확인해 갖고 오면 되는 항목과 추후 필요한 자료를 안내해 따라 하나씩 보완하시면 됩니다.",
+  },
+  {
+    question: "AI 진단과 전문가 검토는 어떻게 함께 진행되나요?",
+    answer:
+      "리스튜디오는 규정 안내에 그치지 않고, 제품에 무엇이 부족하고 어떤 부분을 보완해야 하는지까지 진단합니다.\nAI 에이전트가 제출 서류를 기반으로 대응 현황, 부족한 증빙, 보완 항목을 신속하게 분석합니다.\n이후 규제 전문가가 최신 공지 등 환경과 실무까지 반영은 물론 최종 검토합니다.\n필요한 경우 소재·구조 변경 등 친환경 패키지 개발까지 연결해 제품과 규제를 함께 대응할 수 있습니다.",
+  },
+  {
+    question: "규제 변경이 생기면 후속 관리도 받을 수 있나요?",
+    answer:
+      "네, 가능합니다.\n글로벌 규제는 적용 시점과 세부 기준이 계속 바뀌기 때문에 한 번의 진단으로 끝나지 않습니다.\n리스튜디오는 규제 변화를 지속적으로 확인하고, 등록된 제품에 영향이 있으면 해당 항목과 추가 준비 사항을 안내해 드립니다.\n등록된 제품 정보와 증빙자료를 기반으로 필요한 부분만 보완하면 되므로, 규제가 바뀔 때마다 처음부터 다시 준비할 필요가 없습니다.",
+  },
+  {
+    question: "요금제는 어떻게 구성되어 있나요?",
+    answer:
+      "저렴한 요금제부터 프로그램을 이용하실 수 있습니다.\n이후에는 수출 상황, 제품·브랜드 SKU, 필요한 지원 범위에 맞춰 유료 서비스를 선택해 이용하실 수 있습니다.\n상세 요금제는 회원 상담의 [규제 마스터 솔루션 > 요금제] 메뉴에서 확인하세요.",
+  },
+  {
+    question: "필요한 자료(시험성적서 등)가 부족해도 신청할 수 있나요?",
+    answer:
+      "네, 가능합니다. 보유 자료와 준비 상황이 다르므로, 모든 자료가 갖춰질 때까지 기다리실 필요는 없습니다.\n자료가 부족하다면 어떤 자료가 필요한지, 어디서 어떻게 확보할 수 있는지, 다른 대응 방법은 없는지까지 함께 안내해 드립니다.\n보유한 자료로 먼저 진단받고, 필요한 내용을 하나씩 보완해 나가세요.\n지금 바로 무료 진단부터 부담 없이 시작해 보세요.",
+  },
 ];
 
 const regulatoryWhyItems = [
@@ -1205,7 +1203,7 @@ function RegulatoryConcernSection() {
   return (
     <section className="client-growth-section regulatory-concern-section" aria-label="규제 대응 어려움">
       <div className="client-growth-stage">
-        <h2>규제 대응, 이렇게 어려우신가요?</h2>
+        <h2>규제 대응, 왜 이렇게 어려울까요?</h2>
 
         <div className="client-testimonials regulatory-concern-testimonials">
           <div className="client-testimonials__viewport">
@@ -1330,24 +1328,22 @@ function RegulatoryMasterShowcaseSection() {
         <div className="regulatory-master-showcase-header">
           <div className="regulatory-master-showcase-copy">
             <h2>
-              자주 바뀌는 규제 변화에도 흔들리지 않는,
+              까다롭고 복잡한 규제,
               <br />
-              리스튜디오{" "}
-              <span className="regulatory-master-showcase-highlight">‘규제 마스터 솔루션’</span>을 체험하세요.
+              <span className="regulatory-master-showcase-highlight">원스톱 솔루션</span>으로 해결합니다.
             </h2>
             <p>
-              AI가 데이터를 빠르고 정확하게 1차 진단하고, 규제 전문가가 다시 한번 맞춤
-              검증해 최종 보증합니다.
+              AI가 데이터를 빠르고 정확하게 1차 진단, 규제 전문가가 다시 한번 맞춤 검증해 최종 보증.
             </p>
           </div>
           <div className="regulatory-master-showcase-cta">
             <Link to="/project-management/quote?service=regulatory-response">
-              무료로 가입하고 진단받기
+              무료로 첫 진단받기
             </Link>
             <p>
-              무료로 PPWR 3가지 핵심 진단을 받고,
+              우리 브랜드 PPWR 맞춤 진단 혜택
               <br />
-              필요한만큼 이어서 활용하세요.
+              놓치지 마세요.
             </p>
           </div>
         </div>
@@ -1384,9 +1380,9 @@ function RegulatorySolutionFitSection() {
       <div className="regulatory-solution-fit-inner">
         <div className="regulatory-solution-fit-copy">
           <h2>
-            PPWR 본격시행.
+            어떤 상황이든 원스톱 솔루션으로
             <br />
-            우리 회사에 맞는 해결책을 제안합니다.
+            PPWR 해결해드립니다.
           </h2>
           <p>이런 기업들도 리스튜디오 규제 솔루션을 찾고 있어요.</p>
           <div className="regulatory-solution-fit-tags" aria-label="규제 솔루션 대상 기업">
@@ -1425,25 +1421,88 @@ function RegulatorySolutionFitSection() {
 }
 
 function RegulatoryTrustSection() {
+  const trackRef = useRef<HTMLDivElement | null>(null);
+  const [activeSlide, setActiveSlide] = useState(0);
+  const [slideStep, setSlideStep] = useState(0);
+  const [isSliding, setIsSliding] = useState(true);
+
+  useEffect(() => {
+    const track = trackRef.current;
+
+    if (!track) {
+      return;
+    }
+
+    const updateSlideStep = () => {
+      const card = track.querySelector<HTMLElement>(".regulatory-trust-card");
+
+      if (!card) {
+        return;
+      }
+
+      const gap = Number.parseFloat(getComputedStyle(track).gap) || 0;
+      setSlideStep(card.offsetWidth + gap);
+    };
+
+    const resizeObserver = new ResizeObserver(updateSlideStep);
+    resizeObserver.observe(track);
+    updateSlideStep();
+
+    return () => resizeObserver.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      return;
+    }
+
+    const interval = window.setInterval(() => {
+      setIsSliding(true);
+      setActiveSlide((current) => (current === regulatoryTrustTestimonials.length - 1 ? regulatoryTrustTestimonials.length : current + 1));
+    }, 3000);
+
+    return () => window.clearInterval(interval);
+  }, []);
+
+  const resetTrustSlide = () => {
+    if (activeSlide !== regulatoryTrustTestimonials.length) {
+      return;
+    }
+
+    setIsSliding(false);
+    setActiveSlide(0);
+    window.requestAnimationFrame(() => setIsSliding(true));
+  };
+
   return (
     <section className="regulatory-trust-section" aria-label="규제 대응 고객 후기와 고객사 로고">
       <div className="regulatory-trust-inner">
         <h2>
-          이미 많은 기업들이 리스튜디오와 함께
+          이미 많은 기업들이 리스튜디오와
           <br />
-          규제를 준비하고 있습니다.
+          규제를 해결하고 있습니다.
         </h2>
 
         <div className="regulatory-trust-cards">
-          {regulatoryTrustTestimonials.map((testimonial) => (
-            <article className="regulatory-trust-card" key={testimonial.tag}>
-              <span>{testimonial.tag}</span>
-              <p>{testimonial.quote}</p>
-              <strong>
-                {testimonial.author} <em>{testimonial.role}</em>
-              </strong>
-            </article>
-          ))}
+          <div
+            className="regulatory-trust-cards__track"
+            ref={trackRef}
+            style={{
+              transform: `translateX(-${activeSlide * slideStep}px)`,
+              transition: isSliding ? "transform 620ms cubic-bezier(0.22, 1, 0.36, 1)" : "none",
+            }}
+            onTransitionEnd={resetTrustSlide}
+          >
+            {[...regulatoryTrustTestimonials, ...regulatoryTrustTestimonials].map((testimonial, index) => (
+              <article className="regulatory-trust-card" key={`${testimonial.tag}-${index}`}>
+                <span>{testimonial.tag}</span>
+                <p>{testimonial.quote}</p>
+                <strong>
+                  {testimonial.author} <em>{testimonial.role}</em>
+                </strong>
+              </article>
+            ))}
+          </div>
         </div>
       </div>
 
@@ -1583,37 +1642,41 @@ function RegulatoryAssetizationSection() {
 }
 
 function RegulatoryValueSection() {
-  const tableScrollRef = useRef<HTMLDivElement | null>(null);
-  const tableViewportRef = useRef<HTMLDivElement | null>(null);
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const viewportRef = useRef<HTMLDivElement | null>(null);
   const tableRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    const scrollArea = tableScrollRef.current;
-    const viewport = tableViewportRef.current;
+    const section = sectionRef.current;
+    const viewport = viewportRef.current;
     const table = tableRef.current;
-    if (!scrollArea || !viewport || !table) return;
+
+    if (!section || !viewport || !table) {
+      return;
+    }
 
     let frame = 0;
-    const updateTableScroll = () => {
-      if (window.innerWidth > 767) return;
-      const travel = Math.max(table.scrollWidth - viewport.clientWidth, 0);
-      scrollArea.style.setProperty("--table-travel", `${travel}px`);
-      scrollArea.style.setProperty("--table-height", `${table.offsetHeight}px`);
-      const scrollDistance = scrollArea.offsetHeight - viewport.offsetHeight;
-      const stickyTop = parseFloat(window.getComputedStyle(viewport).top) || 0;
-      const progress = scrollDistance > 0
-        ? Math.min(Math.max((stickyTop - scrollArea.getBoundingClientRect().top) / scrollDistance, 0), 1)
-        : 0;
-      table.style.setProperty("--table-offset", `${-progress * travel}px`);
-    };
-    const requestUpdate = () => {
-      window.cancelAnimationFrame(frame);
-      frame = window.requestAnimationFrame(updateTableScroll);
+    const updateTablePosition = () => {
+      if (window.innerWidth > 960) {
+        table.style.transform = "translateX(0)";
+        return;
+      }
+
+      const distance = Math.max(table.scrollWidth - viewport.clientWidth, 0);
+      const scrollDistance = Math.max(section.offsetHeight - window.innerHeight, 1);
+      const progress = Math.min(Math.max(-section.getBoundingClientRect().top / scrollDistance, 0), 1);
+      table.style.transform = `translateX(-${distance * progress}px)`;
     };
 
-    updateTableScroll();
+    const requestUpdate = () => {
+      window.cancelAnimationFrame(frame);
+      frame = window.requestAnimationFrame(updateTablePosition);
+    };
+
+    updateTablePosition();
     window.addEventListener("scroll", requestUpdate, { passive: true });
     window.addEventListener("resize", requestUpdate);
+
     return () => {
       window.cancelAnimationFrame(frame);
       window.removeEventListener("scroll", requestUpdate);
@@ -1622,13 +1685,14 @@ function RegulatoryValueSection() {
   }, []);
 
   return (
-    <section className="regulatory-value-section" aria-label="규제 마스터 솔루션 가치 비교">
+    <>
+      <section className="regulatory-value-section" aria-label="규제 마스터 솔루션 가치">
       <div className="regulatory-value-inner">
         <div className="regulatory-value-head">
           <h2>
-            규제 마스터 솔루션은 이런 기업에게
+            지금 바로 규제 대응 / 수출 리소스 /
             <br />
-            더 큰 가치와 효용성을 제공해 드립니다.
+            리스크를 줄이세요.
           </h2>
           <p>
             규제는 계속 변합니다. 하지만 귀사의 글로벌 비즈니스는 멈추지 않아야 합니다.
@@ -1654,31 +1718,77 @@ function RegulatoryValueSection() {
             </article>
           ))}
         </div>
+      </div>
+      </section>
 
-        <div className="regulatory-value-table-scroll" ref={tableScrollRef}>
-          <div className="regulatory-value-table-viewport" ref={tableViewportRef}>
-            <div className="regulatory-value-table" ref={tableRef} role="table" aria-label="규제 대응 서비스 비교표">
-              <div className="regulatory-value-table__row regulatory-value-table__row--head" role="row">
-                <span role="columnheader">비교 항목</span>
-                <strong role="columnheader">리스튜디오 규제 해결 솔루션</strong>
-                <span role="columnheader">일반 컨설팅사</span>
-                <span role="columnheader">패키징 제조사</span>
-                <span role="columnheader">일반 기술 / 인증사</span>
-              </div>
-              {regulatoryComparisonRows.map((row) => (
-                <div className="regulatory-value-table__row" role="row" key={row.label}>
-                  <span role="cell">{row.label}</span>
-                  <strong role="cell">{row.restudio}</strong>
-                  <span role="cell">{row.consulting}</span>
-                  <span role="cell">{row.packaging}</span>
-                  <span role="cell">{row.certification}</span>
+      <RegulatoryMasterShowcaseSection />
+
+      <section className="regulatory-value-table-section" ref={sectionRef} aria-label="규제 마스터 솔루션 가치 비교">
+        <div className="regulatory-value-inner">
+          <div className="regulatory-value-table-head">
+            <h2>
+              리스튜디오는 다릅니다.
+              <br />
+              반드시 타사 솔루션과 비교하세요.
+            </h2>
+            <p>기간/비용/전문성을 꼼꼼히 따지세요.</p>
+          </div>
+
+          <div className="regulatory-value-table-scroll" ref={viewportRef}>
+            <div className="regulatory-value-table-viewport">
+              <div className="regulatory-value-table" ref={tableRef} role="table" aria-label="규제 대응 서비스 비교표">
+                <div className="regulatory-value-table__row regulatory-value-table__row--head" role="row">
+                  <span role="columnheader">비교 항목</span>
+                  <strong role="columnheader">리스튜디오 규제 해결 솔루션</strong>
+                  <span role="columnheader">일반 컨설팅사</span>
+                  <span role="columnheader">패키징 제조사</span>
+                  <span role="columnheader">일반 기술 / 인증사</span>
                 </div>
-              ))}
+                {regulatoryComparisonRows.map((row) => (
+                  <div className="regulatory-value-table__row" role="row" key={row.label}>
+                    <span role="cell">{row.label}</span>
+                    <strong role="cell">{row.restudio}</strong>
+                    <span role="cell">{row.consulting}</span>
+                    <span role="cell">{row.packaging}</span>
+                    <span role="cell">{row.certification}</span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
+  );
+}
+
+function RegulatoryReportSteps({
+  steps,
+}: {
+  steps: Array<{
+    number: string;
+    title: string;
+    description: string;
+    badge?: string;
+    featured?: boolean;
+  }>;
+}) {
+  return (
+    <div className="regulatory-free-report-steps">
+      {steps.map(({ number, title, description, badge, featured }, index) => (
+        <Fragment key={title}>
+          <article className={featured ? "regulatory-free-report-step is-featured" : "regulatory-free-report-step"}>
+            {badge && <span className="regulatory-free-report-step__badge">{badge}</span>}
+            <span className="regulatory-free-report-step__number">{number}</span>
+            <h3>{title}</h3>
+            <p>{description}</p>
+          </article>
+          {index < steps.length - 1 && (
+            <span className="regulatory-free-report-steps__line" aria-hidden="true" />
+          )}
+        </Fragment>
+      ))}
+    </div>
   );
 }
 
@@ -1687,64 +1797,30 @@ function RegulatoryStartSection() {
     <section className="regulatory-start-section" aria-label="규제 마스터 솔루션 시작 프로세스">
       <div className="regulatory-start-inner">
         <div className="regulatory-start-head">
-          <h2>규제 마스터 솔루션, 지금 바로 시작하세요.</h2>
+          <h2>지금 바로 무료 진단받고 부담 없이 시작하세요.</h2>
           <p>간단한 4단계 프로세스로 글로벌 수출 규제 준비가 시작됩니다.</p>
         </div>
 
-        <div className="regulatory-start-process" aria-label="규제 마스터 솔루션 4단계 프로세스">
-          {regulatoryStartSteps.map(({ title, description, Icon }, index) => (
-            <Fragment key={title}>
-              <article className="regulatory-start-step">
-                <span className="regulatory-start-step__icon" aria-hidden="true">
-                  <Icon size={24} weight="regular" />
-                </span>
-                <div>
-                  <strong>{title}</strong>
-                  <p>{description}</p>
-                </div>
-              </article>
-              {index < regulatoryStartSteps.length - 1 && (
-                <CaretRight
-                  className="regulatory-start-step__arrow"
-                  size={22}
-                  weight="bold"
-                  aria-hidden="true"
-                />
-              )}
-            </Fragment>
-          ))}
-        </div>
+        <RegulatoryReportSteps steps={regulatoryStartSteps} />
+
+        <RegulatoryStartCta />
       </div>
     </section>
   );
 }
 
-function RegulatoryFreeReportSection() {
+function RegulatoryStartCta() {
   return (
-    <section className="regulatory-free-report-section" aria-label="무료 진단 리포트 시작 단계">
-      <div className="regulatory-free-report-inner">
-        <div className="regulatory-free-report-head">
-          <h2>회원가입만 하면, 무료 진단 리포트부터 시작됩니다</h2>
-          <p>기본 정보만 입력해도 무료로 현황을 바로 확인할 수 있습니다.</p>
-        </div>
-
-        <div className="regulatory-free-report-steps">
-          {regulatoryFreeReportSteps.map(({ number, title, description, badge, featured }, index) => (
-            <Fragment key={title}>
-              <article className={featured ? "regulatory-free-report-step is-featured" : "regulatory-free-report-step"}>
-                {badge && <span className="regulatory-free-report-step__badge">{badge}</span>}
-                <span className="regulatory-free-report-step__number">{number}</span>
-                <h3>{title}</h3>
-                <p>{description}</p>
-              </article>
-              {index < regulatoryFreeReportSteps.length - 1 && (
-                <span className="regulatory-free-report-steps__line" aria-hidden="true" />
-              )}
-            </Fragment>
-          ))}
-        </div>
+    <div className="regulatory-start-cta">
+      <div>
+        <h2>내일하면 늦습니다. 지금 받고 PPWR 제대로 준비하세요</h2>
+        <p>AI가 1차 진단하고, 전문가가 최종 보증하는 단 하나의 솔루션</p>
       </div>
-    </section>
+      <div className="regulatory-start-cta__actions">
+        <Link to="/project-management/quote?service=regulatory-response">무료로 진단받기</Link>
+        <Link to="/resources">자료 먼저 보기</Link>
+      </div>
+    </div>
   );
 }
 
@@ -1801,7 +1877,7 @@ function RegulatoryDiagnosisResultSection() {
               </div>
             </article>
             <Link
-              className="regulatory-diagnosis-score-cta"
+              className="regulatory-diagnosis-score-cta regulatory-diagnosis-score-cta--desktop"
               to="/project-management/quote?service=regulatory-response"
             >
               무료 진단 받기
@@ -1872,6 +1948,12 @@ function RegulatoryDiagnosisResultSection() {
             ))}
           </div>
         </div>
+        <Link
+          className="regulatory-diagnosis-score-cta regulatory-diagnosis-score-cta--mobile"
+          to="/project-management/quote?service=regulatory-response"
+        >
+          무료 진단 받기
+        </Link>
       </div>
     </section>
   );
@@ -1883,9 +1965,7 @@ function RegulatorySecuritySection() {
       <div className="regulatory-security-inner">
         <div className="regulatory-security-head">
           <h2>
-            2중 철통보안으로
-            <br />
-            대외비 걱정 없이 서류 준비하세요.
+            2중 철통보안 시스템으로 안심하고 맡기세요.
           </h2>
           <p>리스튜디오 규제 마스터 솔루션은 보안과 인증에 철저합니다.</p>
         </div>
@@ -1908,35 +1988,65 @@ function RegulatorySecuritySection() {
   );
 }
 
+function RegulatoryResourceCtaSection() {
+  return (
+    <section className="regulatory-resource-cta" aria-labelledby="regulatory-resource-cta-title">
+      <div className="regulatory-resource-cta__inner">
+        <div className="regulatory-resource-cta__copy">
+          <h2 id="regulatory-resource-cta-title">
+            친환경 패키지 트렌드부터 규제 정보까지,
+            <br />
+            핵심 리포트와 가이드북을 무료로 마음껏 읽어보세요.
+          </h2>
+          <p>
+            부담 없이 자료부터 읽고 천천히 알아보세요.
+            <br />
+            친환경 전환에 성공한 대기업 고객사들의 인사이트만을 모아 전해드려요.
+          </p>
+        </div>
+        <img
+          src="/assets/resources/resource-book-export-checklist.png"
+          alt="PPWR 수출기업 필수 체크리스트 가이드북"
+        />
+        <Link to="/resources#ppwr-checklists">무료 다운로드</Link>
+      </div>
+    </section>
+  );
+}
+
 function RegulatoryFaqCtaSection() {
+  const [openFaqIndex, setOpenFaqIndex] = useState(-1);
+
   return (
     <section className="regulatory-faq-cta-section" aria-label="규제 마스터 솔루션 FAQ">
-      <div className="regulatory-faq-cta-banner">
-        <div>
-          <h2>지금 회원가입하고, 흔들리지 않는 규제 대응 인프라를 시작하세요.</h2>
-          <p>AI가 1차 진단하고, 전문가가 최종 보증하는 단 하나의 솔루션</p>
-        </div>
-        <Link className="regulatory-faq-cta-banner__button" to="/project-management/quote?service=regulatory-response">
-          무료로 가입하고 진단 받기
-        </Link>
-      </div>
-
       <div className="regulatory-faq-layout">
-        <aside className="regulatory-faq-side">
+        <div className="regulatory-faq-heading">
           <h2>FAQ</h2>
           <Link className="regulatory-faq-more" to="/services/regulatory-response/faq">
             더 많은 질문 보기
             <ArrowRight size={17} weight="bold" aria-hidden="true" />
           </Link>
-        </aside>
+        </div>
 
         <div className="regulatory-faq-list">
-          {regulatoryFaqItems.map((question) => (
-            <button className="regulatory-faq-item" type="button" key={question}>
-              <span>{question}</span>
-              <span aria-hidden="true">+</span>
-            </button>
-          ))}
+          {regulatoryFaqItems.map(({ question, answer }, index) => {
+            const isOpen = openFaqIndex === index;
+
+            return (
+              <div className={`regulatory-faq-item${isOpen ? " is-open" : ""}`} key={question}>
+                <button
+                  type="button"
+                  aria-expanded={isOpen}
+                  aria-controls={`regulatory-faq-answer-${index}`}
+                  onClick={() => setOpenFaqIndex(isOpen ? -1 : index)}
+                >
+                  <span>{question}</span>
+                  <span aria-hidden="true">{isOpen ? "−" : "+"}</span>
+                </button>
+                <p id={`regulatory-faq-answer-${index}`}>{answer}</p>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>
@@ -2977,16 +3087,15 @@ export function ServiceDetailPage({ variant }: ServiceDetailPageProps) {
           <RegulatoryAssetizationSection />
           <RegulatoryExpertSection />
           <RegulatoryFinalCtaSection />
+          <RegulatoryConcernSection />
           <RegulatorySolutionFitSection />
           <RegulatoryTrustSection />
           <CustomerCaseStudiesSection />
           <RegulatoryValueSection />
           <RegulatoryStartSection />
-          <RegulatoryFreeReportSection />
           <RegulatorySecuritySection />
+          <RegulatoryResourceCtaSection />
           <RegulatoryFaqCtaSection />
-          <RegulatoryConcernSection />
-          <RegulatoryMasterShowcaseSection />
         </>
       )}
       {isProductDevelopment && (
@@ -3003,14 +3112,18 @@ export function ServiceDetailPage({ variant }: ServiceDetailPageProps) {
           aria-label="리스튜디오 회원가입 바로가기"
         >
           <div className="service-detail-floating-cta__inner">
-            <p>지금, RESTUDIO와 함께 더 큰 시장으로 나아가세요.</p>
+            <p>
+              원스톱으로 비용절감,
+              <br />
+              가장 빠른 PPWR 대응 솔루션
+            </p>
             <div className="service-detail-floating-cta__actions">
               <span>지금 시작하는 것이, 더 큰 기회의 시작입니다.</span>
               <Link
                 className="service-detail-floating-cta__button"
                 to="/project-management/quote?service=regulatory-response"
               >
-                회원가입하고 시작하기
+                무료로 진단받기
                 <ArrowRight size={18} weight="bold" aria-hidden="true" />
               </Link>
             </div>

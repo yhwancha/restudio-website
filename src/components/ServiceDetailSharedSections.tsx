@@ -181,11 +181,6 @@ const faqs = [
       "오히려 그렇지 않습니다. 리스튜디오는 세계 3대 디자인 어워드인 red dot Design Award, iF Design Award에서 입상한 사례가 있어 글로벌에서 인정받는 수준의 친환경 패키지 디자인을 제공드리고 있습니다. SSOULSSEOUL 사례는 브랜드 정체성을 담은 조형적 패키지를, 노스텔지어 북촌 소주 사례는 전통적 미감을 담은 프리미엄 주류 패키지를 보여줍니다. 친환경 패키지에서도 충분히 차별화된 브랜딩과 고급스러운 심미성을 구현할 수 있습니다.",
   },
   {
-    question: "규제 시행까지 시간이 있는데, 지금 당장 움직여야 할 이유가 있나요?",
-    answer:
-      "있습니다. 그것도 아주 급하게요. PPWR 대응은 소재 선정 -> 설계 -> R&D -> 양산 안정화까지 평균 3~6개월 이상 소요됩니다. 게다가 PFAS 규제는 이미 2026년 8월 12일부터 시행됩니다. 식품 접촉 포장재를 쓰고 있다면 사실상 '지금이 마감'입니다. 2027년 전체 PPWR 시행 기준으로도, 양산 안정화와 DoC/TD 서류 준비를 역산하면 늦어도 2026년 하반기 안에 소재 전환 결정이 완료되어야 합니다. 지금 시작하는 기업이 선제적으로 바이어 신뢰를 확보하고, 경쟁사보다 먼저 시장을 지킬 수 있습니다.",
-  },
-  {
     question: "아직 구체적인 사양이 없어도 상담 가능한가요?",
     answer:
       "네, 가능합니다. 대부분의 프로젝트가 초기 구상 단계에서 시작됩니다. 제품 특성과 목표만 공유해 주시면, 소재 추천부터 구조 설계까지 단계별로 안내해 드립니다.",
@@ -194,11 +189,6 @@ const faqs = [
     question: "업종에 상관없이 제작 가능한가요?",
     answer:
       "네, 가능합니다. 제품의 업종과 대략적인 수량, 목표만 알려주시면 기획 단계부터 함께 구조와 소재를 설계해 드립니다. 도면이 없어도 시작할 수 있습니다.",
-  },
-  {
-    question: "친환경 검증이나 규제 대응 관련 상담도 가능한가요?",
-    answer:
-      "GRS, FSC 등 주요 친환경 인증 대응과 함께 객관적인 친환경성 데이터 및 검증 리포트를 발행합니다. EU PPWR 등 수출용 규제 대응 자료도 함께 준비해 드립니다.",
   },
   {
     question: "예상 견적은 얼마나 빨리 받을 수 있나요?",
@@ -432,9 +422,15 @@ export function ServiceDetailSharedSections({
 
       <section className="faq-section" id="faq">
         <div className="faq-section__inner">
-          <h2 className="title-reveal section-title">
-            <AnimatedTitle parts="FAQ" />
-          </h2>
+          <div className="faq-section__header">
+            <h2 className="title-reveal section-title">
+              <AnimatedTitle parts="FAQ" />
+            </h2>
+            <Link className="faq-section__more" to="/services/product-development/faq">
+              더 많은 질문 보기
+              <ArrowRight size={17} weight="bold" aria-hidden="true" />
+            </Link>
+          </div>
 
           <div className="faq-list">
             {faqs.map((faq, index) => {
