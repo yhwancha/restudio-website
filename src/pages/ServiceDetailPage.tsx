@@ -120,46 +120,6 @@ const productDevelopmentHeroBanners = [
   },
 ];
 
-const markerStroke = (
-  <svg
-    className="marker-scribble__stroke"
-    viewBox="0 0 320 62"
-    preserveAspectRatio="none"
-    aria-hidden="true"
-  >
-    <path
-      className="marker-scribble__path marker-scribble__path--base"
-      pathLength={1}
-      d="M34 33 C48 15 63 16 76 24 C91 34 99 20 115 18 C133 16 144 31 160 24 C177 17 191 14 206 29 C223 46 235 12 255 17 C272 21 282 14 293 18"
-    />
-    <path
-      className="marker-scribble__path marker-scribble__path--middle"
-      pathLength={1}
-      d="M31 37 C47 46 57 8 75 16 C92 24 96 43 113 36 C132 29 139 9 155 19 C170 29 171 45 189 35 C206 26 211 23 227 30 C244 38 246 17 263 22 C279 27 286 32 296 24"
-    />
-  </svg>
-);
-
-const regulatoryMarkerStroke = (
-  <svg
-    className="regulatory-marker-scribble__stroke"
-    viewBox="0 0 520 78"
-    preserveAspectRatio="none"
-    aria-hidden="true"
-  >
-    <path
-      className="regulatory-marker-scribble__path regulatory-marker-scribble__path--base"
-      pathLength={1}
-      d="M13 43 C33 19 55 23 74 33 C96 45 106 18 131 22 C157 26 169 42 193 31 C218 20 238 15 261 34 C286 55 304 13 333 21 C362 29 381 46 407 30 C434 14 455 21 477 29 C492 34 503 29 512 24"
-    />
-    <path
-      className="regulatory-marker-scribble__path regulatory-marker-scribble__path--middle"
-      pathLength={1}
-      d="M10 48 C34 58 49 10 74 19 C99 28 107 55 132 43 C160 30 171 10 195 22 C219 34 224 55 250 40 C277 25 292 27 317 37 C344 48 353 17 379 25 C405 33 420 47 445 34 C470 21 493 38 510 28"
-    />
-  </svg>
-);
-
 const productChallenges = [
   {
     title: "소재 선택이 어렵습니다.",
@@ -462,21 +422,21 @@ const regulatoryExpertCards = [
     title: "심층 진단 리포팅 서비스",
     highlight: "AI Agent + 전문가",
     description:
-      "회사 정보, 수출 제품/브랜드, 패키지 정보, 증빙 자료를 업로드하면 AI가 빠르게 진단하고 전문가가 한번 더 자세히 검토하여 이해하기 쉬운 리포트를 제공합니다.",
+      "회사 정보, 수출 제품/브랜드, 패키지 정보, 증빙 자료를 업로드하면 AI가 빠르게 진단하고 전문가가 한번 더 자세히 검토하여 이해하기 쉬운 리포트를 제공.",
   },
   {
     number: "02",
     title: "TD / DoC 작성 및 발급 서비스",
     highlight: "AI Agent",
     description:
-      "진단 리포트를 바탕으로 필요한 기술문서(TD)와 적합성 선언서(DoC)를 자동으로 작성하고 발급합니다. 언제든지 항목을 추가하거나 수정할 수 있습니다.",
+      "진단 리포트를 바탕으로 필요한 기술문서(TD)와 적합성 선언서(DoC)를 자동으로 작성하고 발급. 언제든지 항목을 추가하거나 수정 가능.",
   },
   {
     number: "03",
     title: "후속 관리 서비스",
     highlight: "지속적인 규제 모니터링",
     description:
-      "변화하는 글로벌 규제를 모니터링하고, 문서 수정이 필요한 때 신속히 대응합니다. 추가 컨설팅과 지속적인 지원으로 항상 안정적인 수출을 도와드립니다.",
+      "변화하는 글로벌 규제 모니터링, 지속 대응 지원. 추가 컨설팅과 지속적인 지원으로 항상 안정적인 수출을 도와드립니다.",
   },
 ];
 
@@ -1057,9 +1017,8 @@ function RegulatoryHero() {
               {
                 text: "PPWR 준비부터 서류 제출까지",
                 wrapperClassName:
-                  "marker-scribble regulatory-hero__highlight",
-                charClassName: "relative z-10",
-                prefix: regulatoryMarkerStroke,
+                  "regulatory-hero__highlight text-[#22aa62]",
+                charClassName: "relative",
               },
               ",",
               { type: "break" },
@@ -1138,11 +1097,10 @@ function RegulatoryHero() {
         </form>
 
         <div className="regulatory-hero__cta">
-          <strong>PPWR 3가지 핵심 진단 무료 제공</strong>
+          <strong>우리 브랜드 PPWR 준비 걱정된다면?</strong>
           <Link to="/project-management/quote?service=regulatory-response">
-            무료로 가입하고 진단받기
+            무료 진단 받기
           </Link>
-          <p>지금 가입 후 우리 회사 대응 준비 수준을 체크해 보세요.</p>
         </div>
       </div>
     </section>
@@ -1506,10 +1464,14 @@ function RegulatoryExpertSection() {
   return (
     <section className="regulatory-expert-section" aria-label="AI와 규제 전문가 결합 서비스">
       <div className="regulatory-expert-inner">
+        <div className="regulatory-assetization-badges" aria-label="리스튜디오 서비스 방향">
+          <span>단순 컨설팅 NO</span>
+          <span>단순 서류 준비 NO</span>
+        </div>
         <h2>
-          지금 가장 시급한 EU PPWR 대응부터, 앞으로의 글로벌 수출 규제까지,
+          나 대신 AI 에이전트가 편하게 알아서,
           <br />
-          AI와 규제 전문가의 결합으로 빠르고, 더 정확하게, 이제 더 쉽고 스마트하게 준비하세요.
+          규제 전문가가 교차 검증까지 한번에.
         </h2>
 
         <div className="regulatory-expert-layout">
@@ -1520,10 +1482,10 @@ function RegulatoryExpertSection() {
               </span>
               <div>
                 <strong>
-                  AI가 1차 진단하고, <em>전문가가 최종 보증</em>
+                  AI가 1차 진단, <em>전문가가 최종 보증</em>
                 </strong>
                 <p>
-                  빠르고 정확한 AI, 그리고 풍부한 경험의 전문가가 함께 만들어가는 신뢰할 수 있는 결과입니다.
+                  빠르고 정확한 AI, 그리고 풍부한 경험의 전문가가 함께 만들어가는 신뢰할 수 있는 결과물 제공.
                 </p>
               </div>
             </article>
@@ -1542,7 +1504,7 @@ function RegulatoryExpertSection() {
                   AI로 편리하게, <em>전문가가 또 한번 맞춤 검증</em>
                 </strong>
                 <p>
-                  AI가 시간을 줄여주고, 전문가가 비즈니스에 맞는 최적의 솔루션을 제안합니다.
+                  AI가 시간을 줄여주고, 전문가가 비즈니스에 맞는 최적의 솔루션을 제안.
                 </p>
               </div>
             </article>
@@ -1571,14 +1533,10 @@ function RegulatoryAssetizationSection() {
     <section className="regulatory-assetization-section" aria-label="제품 데이터와 서류 자산화">
       <div className="regulatory-assetization-inner">
         <div className="regulatory-assetization-copy">
-          <div className="regulatory-assetization-badges" aria-label="리스튜디오 서비스 방향">
-            <span>단순 규제 이론 컨설팅 NO</span>
-            <span>단순 서류 작성 대행 NO</span>
-          </div>
           <h2>
-            귀사의 제품 데이터와 서류를 자산화하고,
+            제품 데이터와 서류발급 자동화로
             <br />
-            경쟁사보다 더 빠른 출시로 더 큰 시장 기회를 만들어드립니다.
+            더 쉽고 더 빠르게 수출하세요.
           </h2>
         </div>
 
@@ -1794,17 +1752,13 @@ function RegulatoryFinalCtaSection() {
   return (
     <section className="regulatory-final-cta-section" aria-label="규제 마스터 솔루션 무료 진단 신청">
       <div className="regulatory-final-cta">
-        <p>규제 마스터 솔루션,</p>
-        <h2>
-          규제 대응을 넘어,
-          <br />
-          지속 가능한 글로벌 비즈니스를 위한 단 하나의 솔루션
-        </h2>
-        <span>지금 우리 회사만의 수출 규제 해결 인프라를 구축하세요.</span>
+        <div className="regulatory-final-cta__copy">
+          <h2>규제 대응 진단받고 PPWR 빠르게 해결하세요.</h2>
+          <span>지금 우리 회사만의 수출 규제 해결 인프라를 구축하세요.</span>
+        </div>
         <Link className="regulatory-final-cta__button" to="/project-management/quote?service=regulatory-response">
-          무료로 가입하고 진단 받기
+          누구나 무료로 첫 진단받기
         </Link>
-        <small>간단한 회원가입 후 'PPWR 3가지 핵심 진단'을 무료로 받으실 수 있습니다.</small>
       </div>
     </section>
   );
@@ -1814,37 +1768,45 @@ function RegulatoryDiagnosisResultSection() {
   return (
     <section className="regulatory-diagnosis-result-section" aria-label="진단 후 제공 결과">
       <div className="regulatory-diagnosis-result-inner">
-        <h2>진단 후, 무엇을 받게 되나요?</h2>
+        <h2>무료 진단으로 무엇을 얻게 되나요?</h2>
 
         <div className="regulatory-diagnosis-result-layout">
-          <article className="regulatory-diagnosis-score-card">
-            <h3>규제 진단 점수</h3>
-            <div className="regulatory-diagnosis-gauge-wrap">
-              <div className="regulatory-diagnosis-gauge" aria-label="규제 진단 점수 85점">
-                <img
-                  className="regulatory-diagnosis-gauge__track"
-                  src="/assets/detail-pages/regulatory-master/track-arc.svg"
-                  alt=""
-                  aria-hidden="true"
-                />
-                <img
-                  className="regulatory-diagnosis-gauge__value"
-                  src="/assets/detail-pages/regulatory-master/progress-arc.svg"
-                  alt=""
-                  aria-hidden="true"
-                />
-                <div>
-                  <strong>85</strong>
-                  <span>/100</span>
+          <div className="regulatory-diagnosis-score-column">
+            <article className="regulatory-diagnosis-score-card">
+              <h3>규제 진단 점수</h3>
+              <div className="regulatory-diagnosis-gauge-wrap">
+                <div className="regulatory-diagnosis-gauge" aria-label="규제 진단 점수 85점">
+                  <img
+                    className="regulatory-diagnosis-gauge__track"
+                    src="/assets/detail-pages/regulatory-master/track-arc.svg"
+                    alt=""
+                    aria-hidden="true"
+                  />
+                  <img
+                    className="regulatory-diagnosis-gauge__value"
+                    src="/assets/detail-pages/regulatory-master/progress-arc.svg"
+                    alt=""
+                    aria-hidden="true"
+                  />
+                  <div>
+                    <strong>85</strong>
+                    <span>/100</span>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="regulatory-diagnosis-risk">
-              <WarningCircle size={22} weight="fill" aria-hidden="true" />
-              <span>주요 리스크:</span>
-              <strong>재활용성 등급 미달 부품 존재</strong>
-            </div>
-          </article>
+              <div className="regulatory-diagnosis-risk">
+                <WarningCircle size={22} weight="fill" aria-hidden="true" />
+                <span>주요 리스크:</span>
+                <strong>재활용성 등급 미달 부품 존재</strong>
+              </div>
+            </article>
+            <Link
+              className="regulatory-diagnosis-score-cta"
+              to="/project-management/quote?service=regulatory-response"
+            >
+              무료 진단 받기
+            </Link>
+          </div>
 
           <div className="regulatory-diagnosis-center">
             <article className="regulatory-diagnosis-list-card">
@@ -2638,9 +2600,8 @@ export function ServiceDetailPage({ variant }: ServiceDetailPageProps) {
                   {
                     text: "리스튜디오",
                     wrapperClassName:
-                      "marker-scribble relative inline-block whitespace-nowrap px-1",
-                    charClassName: "relative z-10",
-                    prefix: markerStroke,
+                      "relative inline-block whitespace-nowrap px-1 text-[#22aa62]",
+                    charClassName: "relative",
                   },
                   " 하나로 완성",
                 ]}
@@ -2714,9 +2675,8 @@ export function ServiceDetailPage({ variant }: ServiceDetailPageProps) {
                 <div className="product-summary-proof__copy">
                   <h2>
                     이미{" "}
-                    <span className="marker-scribble product-summary-proof__highlight">
-                      {markerStroke}
-                      <span>다양한 업종의 브랜드</span>
+                    <span className="product-summary-proof__highlight title-reveal__no-split">
+                      다양한 업종의 브랜드
                     </span>
                     가
                     <br />
@@ -3013,20 +2973,20 @@ export function ServiceDetailPage({ variant }: ServiceDetailPageProps) {
             <RegulatoryHero />
             <RegulatoryGrowthSection />
           </div>
-          <RegulatoryConcernSection />
-          <RegulatoryMasterShowcaseSection />
+          <RegulatoryDiagnosisResultSection />
+          <RegulatoryAssetizationSection />
+          <RegulatoryExpertSection />
+          <RegulatoryFinalCtaSection />
           <RegulatorySolutionFitSection />
           <RegulatoryTrustSection />
           <CustomerCaseStudiesSection />
-          <RegulatoryExpertSection />
-          <RegulatoryAssetizationSection />
           <RegulatoryValueSection />
           <RegulatoryStartSection />
           <RegulatoryFreeReportSection />
-          <RegulatoryFinalCtaSection />
-          <RegulatoryDiagnosisResultSection />
           <RegulatorySecuritySection />
           <RegulatoryFaqCtaSection />
+          <RegulatoryConcernSection />
+          <RegulatoryMasterShowcaseSection />
         </>
       )}
       {isProductDevelopment && (

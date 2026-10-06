@@ -44,7 +44,9 @@ function wrapTitleText(title: HTMLElement) {
 
       if (
         !parent ||
-        parent.closest(".title-reveal__char, .sr-only, svg, [aria-hidden='true']") ||
+        parent.closest(
+          ".title-reveal__char, .title-reveal__no-split, .sr-only, svg, [aria-hidden='true']",
+        ) ||
         !node.textContent?.trim()
       ) {
         return NodeFilter.FILTER_REJECT;

@@ -3424,6 +3424,14 @@ section :where(h1, h2) {
   word-break: keep-all;
 }
 
+.product-faq-page .regulatory-faq-detail__item.is-open .regulatory-faq-detail__answer {
+  max-height: 640px;
+}
+
+.product-faq-page .regulatory-faq-detail__answer p {
+  white-space: pre-line;
+}
+
 .regulatory-faq-detail__answer p::before {
   position: absolute;
   top: 0.06em;
@@ -8334,42 +8342,49 @@ body:has(.industry-consulting-page) .ai-chat-widget {
   color: var(--color-primary-900);
 }
 
+.resources-intro {
+  position: relative;
+  isolation: isolate;
+}
+
+.resources-intro::before {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  pointer-events: none;
+  content: "";
+  background:
+    radial-gradient(circle at 10% 34%, rgba(247, 240, 149, 0.32), transparent 28%),
+    radial-gradient(circle at 82% 12%, rgba(159, 230, 139, 0.34), transparent 33%);
+}
+
 .resources-hero {
   position: relative;
   display: grid;
   width: min(100%, 1760px);
-  min-height: 640px;
   margin: 0 auto;
-  grid-template-columns: minmax(0, 0.82fr) minmax(420px, 0.9fr);
   align-items: center;
-  gap: clamp(48px, 7vw, 132px);
-  padding: 132px 120px 132px;
+  padding: 84px 120px;
 }
 
-.resources-hero::before {
-  position: absolute;
-  top: 0;
-  right: 50%;
-  bottom: 0;
-  left: 50%;
-  z-index: 0;
-  pointer-events: none;
-  content: "";
-  background:
-    radial-gradient(circle at 10% 84%, rgba(247, 240, 149, 0.32), transparent 28%),
-    radial-gradient(circle at 82% 26%, rgba(159, 230, 139, 0.34), transparent 33%);
-  transform: translateX(-50%);
-  width: 100vw;
+.resources-hero,
+.resources-intro .resources-section {
+  position: relative;
+  z-index: 1;
 }
 
-.resources-hero__copy,
-.resources-hero__visual {
+.resources-intro .resources-section {
+  padding-top: 0;
+}
+
+.resources-hero__copy {
   position: relative;
   z-index: 1;
 }
 
 .resources-hero__copy h1 {
-  max-width: 780px;
   color: #050b08;
   font-size: clamp(26px, 1.85vw, 34px);
   font-weight: 600;
@@ -8384,38 +8399,6 @@ body:has(.industry-consulting-page) .ai-chat-widget {
   font-size: clamp(15px, 1vw, 18px);
   font-weight: 400;
   line-height: 1.75;
-}
-
-.resources-hero__button {
-  display: inline-flex;
-  min-height: 58px;
-  align-items: center;
-  justify-content: center;
-  margin-top: 58px;
-  border-radius: 6px;
-  background: var(--color-primary-600);
-  padding: 0 44px;
-  color: #ffffff;
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 1;
-  text-decoration: none;
-}
-
-.resources-hero__visual {
-  position: relative;
-  display: grid;
-  min-height: 560px;
-  place-items: center;
-  overflow: hidden;
-  border-radius: 34px;
-  background: transparent;
-}
-
-.resources-hero__visual img {
-  width: min(72%, 440px);
-  max-height: 560px;
-  object-fit: contain;
 }
 
 .resources-section {
@@ -8472,7 +8455,10 @@ body:has(.industry-consulting-page) .ai-chat-widget {
 }
 
 .resource-card {
+  display: flex;
+  min-height: 100%;
   min-width: 0;
+  flex-direction: column;
 }
 
 .resource-card__media {
@@ -8546,7 +8532,7 @@ body:has(.industry-consulting-page) .ai-chat-widget {
 }
 
 .resource-card h3 {
-  margin-top: 20px;
+  margin-top: 16px;
   color: #0b130f;
   font-size: clamp(15px, 1.02vw, 18px);
   font-weight: 600;
@@ -8555,11 +8541,27 @@ body:has(.industry-consulting-page) .ai-chat-widget {
 }
 
 .resource-card p {
-  margin-top: 8px;
+  margin-top: 6px;
+  margin-bottom: 14px;
   color: #7a8580;
   font-size: 13px;
   font-weight: 400;
   line-height: 1.6;
+}
+
+.resource-card__button {
+  display: inline-flex;
+  min-height: 48px;
+  align-items: center;
+  justify-content: center;
+  margin-top: auto;
+  border-radius: 8px;
+  padding: 14px 18px;
+  background: #f1f3f4;
+  color: #1f9f65;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
 }
 
 .resources-more-link {
@@ -8574,7 +8576,6 @@ body:has(.industry-consulting-page) .ai-chat-widget {
 }
 
 .resource-card--link {
-  display: block;
   color: inherit;
   text-decoration: none;
 }
@@ -8837,14 +8838,6 @@ body:has(.industry-consulting-page) .ai-chat-widget {
   transition: transform 0.42s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.resource-detail-reason h2 {
-  color: #07100b;
-  font-size: clamp(34px, 2.8vw, 54px);
-  font-weight: 600;
-  line-height: 1.16;
-  letter-spacing: 0;
-}
-
 .resource-detail-recommend__copy h2 {
   color: #07100b;
   font-size: clamp(26px, 2vw, 38px);
@@ -8874,23 +8867,6 @@ body:has(.industry-consulting-page) .ai-chat-widget {
   color: #a8b1ad;
   font-size: 15px;
   font-weight: 600;
-}
-
-.resource-detail-reason {
-  display: grid;
-  grid-template-columns: minmax(300px, 0.72fr) minmax(0, 1fr);
-  gap: clamp(88px, 12vw, 220px);
-  padding: clamp(96px, 8vw, 140px) 120px;
-  background: linear-gradient(110deg, #ffad5d 0%, #fff59b 100%);
-}
-
-.resource-detail-reason > div {
-  display: grid;
-  gap: 28px;
-  color: #0e130f;
-  font-size: clamp(15px, 0.95vw, 18px);
-  font-weight: 600;
-  line-height: 1.72;
 }
 
 .resource-detail-form-section {
@@ -9045,6 +9021,22 @@ body:has(.industry-consulting-page) .ai-chat-widget {
   display: grid;
   gap: 46px;
   margin-top: 40px;
+}
+
+.news-instagram-link {
+  display: inline-flex;
+  min-height: 52px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 52px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #833ab4 0%, #fd1d1d 52%, #fcb045 100%);
+  padding: 0 22px;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1;
 }
 
 .news-list-section {
@@ -9598,7 +9590,6 @@ body:has(.industry-consulting-page) .ai-chat-widget {
     padding-left: 48px;
   }
 
-  .resources-hero__visual,
   .resource-detail-hero__visual {
     min-height: 440px;
   }
@@ -9610,19 +9601,13 @@ body:has(.industry-consulting-page) .ai-chat-widget {
     padding-left: 48px;
   }
 
-  .resource-detail-recommend,
-  .resource-detail-reason {
+  .resource-detail-recommend {
     grid-template-columns: 1fr;
     gap: 56px;
   }
 
   .resource-detail-recommend {
     width: 100%;
-  }
-
-  .resource-detail-reason {
-    padding-right: 48px;
-    padding-left: 48px;
   }
 
   .resources-card-grid,
@@ -9646,7 +9631,7 @@ body:has(.industry-consulting-page) .ai-chat-widget {
   .resource-detail-hero {
     min-height: 0;
     gap: 34px;
-    padding: 96px 20px 82px;
+    padding: 64px 20px 60px;
   }
 
   .resources-hero {
@@ -9670,16 +9655,6 @@ body:has(.industry-consulting-page) .ai-chat-widget {
     grid-row: 2;
   }
 
-  .resources-hero__visual {
-    grid-row: 3;
-    margin-top: 34px;
-  }
-
-  .resources-hero__button {
-    grid-row: 4;
-    justify-self: center;
-  }
-
   .resources-hero__copy h1,
   .resource-detail-hero__copy h1 {
     font-size: 25px;
@@ -9691,7 +9666,6 @@ body:has(.industry-consulting-page) .ai-chat-widget {
     font-size: 14px;
   }
 
-  .resources-hero__button,
   .resource-detail-button {
     min-height: 48px;
     margin-top: 34px;
@@ -9699,17 +9673,11 @@ body:has(.industry-consulting-page) .ai-chat-widget {
     font-size: 14px;
   }
 
-  .resources-hero__button {
-    margin-top: 24px;
-  }
-
-  .resources-hero__visual,
   .resource-detail-hero__visual {
     min-height: 300px;
     border-radius: 22px;
   }
 
-  .resources-hero__visual img,
   .resource-detail-hero__visual img {
     width: min(74%, 260px);
     max-height: 280px;
@@ -9749,8 +9717,7 @@ body:has(.industry-consulting-page) .ai-chat-widget {
     gap: 18px;
   }
 
-  .resource-detail-recommend__copy h2,
-  .resource-detail-reason h2 {
+  .resource-detail-recommend__copy h2 {
     font-size: 28px;
     white-space: normal;
   }
@@ -9764,17 +9731,6 @@ body:has(.industry-consulting-page) .ai-chat-widget {
     grid-template-columns: 28px minmax(0, 1fr);
     gap: 14px;
     font-size: 15px;
-  }
-
-  .resource-detail-reason {
-    grid-template-columns: 1fr;
-    gap: 34px;
-    padding: 72px 20px;
-  }
-
-  .resource-detail-reason > div {
-    gap: 20px;
-    font-size: 14px;
   }
 
   .resource-detail-form-section {
@@ -9845,6 +9801,11 @@ body:has(.industry-consulting-page) .ai-chat-widget {
   .news-list-sections {
     gap: 40px;
     margin-top: 34px;
+  }
+
+  .news-instagram-link {
+    width: 100%;
+    margin-top: 40px;
   }
 
   .news-list-section h1 {
@@ -12018,21 +11979,15 @@ body:has(.industry-consulting-page) .ai-chat-widget {
   }
 
   .product-summary-proof__highlight {
-    position: relative;
-    display: inline-block;
-    padding: 0 0.08em;
+    background-color: #688c6c;
+    background-image: linear-gradient(90deg, #688c6c 0%, #3f8296 100%);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
     white-space: nowrap;
-  }
-
-  .product-summary-proof__highlight > span {
-    position: relative;
-    z-index: 1;
-  }
-
-  .product-summary-proof__highlight .marker-scribble__stroke {
-    top: 56%;
-    height: 1.08em;
-    opacity: 0.92;
+    -webkit-text-fill-color: transparent;
   }
 
   .product-summary-proof__copy p {
@@ -14730,11 +14685,15 @@ body:has(.industry-consulting-page) .ai-chat-widget {
   .regulatory-expert-section h2 {
     margin: 0;
     color: #050807;
-    font-size: clamp(22px, 1.55vw, 30px);
+    font-size: clamp(26px, 2.1vw, 40px);
     font-weight: 600;
     line-height: 1.45;
     letter-spacing: -0.025em;
     word-break: keep-all;
+  }
+
+  .regulatory-expert-inner > .regulatory-assetization-badges + h2 {
+    margin-top: 28px;
   }
 
   .regulatory-expert-layout {
@@ -14900,7 +14859,7 @@ body:has(.industry-consulting-page) .ai-chat-widget {
   .regulatory-assetization-copy h2 {
     margin: 28px 0 0;
     color: #050807;
-    font-size: clamp(22px, 1.55vw, 30px);
+    font-size: clamp(26px, 2.1vw, 40px);
     font-weight: 600;
     line-height: 1.42;
     letter-spacing: -0.025em;
@@ -15417,39 +15376,27 @@ body:has(.industry-consulting-page) .ai-chat-widget {
 
   .regulatory-final-cta-section {
     background: #ffffff;
-    padding: 0 0 148px;
+    padding: 0;
   }
 
   .regulatory-final-cta {
-    display: grid;
+    display: flex;
     width: min(100% - 160px, 1720px);
-    min-height: 220px;
-    grid-template-columns: minmax(0, 1fr) minmax(360px, 0.34fr);
-    column-gap: 96px;
     align-items: center;
+    justify-content: space-between;
+    gap: 48px;
     margin: 0 auto;
     border-radius: 36px;
     background:
       radial-gradient(circle at 16% 18%, rgba(107, 230, 95, 0.44), transparent 38%),
       linear-gradient(145deg, #64d957 0%, #17a66c 100%);
     color: #ffffff;
-    padding: 38px 48px;
+    padding: 48px;
     text-align: left;
   }
 
-  .regulatory-final-cta p {
-    grid-column: 1;
-    margin: 0;
-    color: rgba(255, 255, 255, 0.78);
-    font-size: clamp(13px, 0.92vw, 16px);
-    font-weight: 600;
-    line-height: 1.35;
-    word-break: keep-all;
-  }
-
   .regulatory-final-cta h2 {
-    grid-column: 1;
-    margin: 10px 0 0;
+    margin: 0;
     color: #ffffff;
     font-size: clamp(20px, 1.48vw, 29px);
     font-weight: 600;
@@ -15458,9 +15405,9 @@ body:has(.industry-consulting-page) .ai-chat-widget {
     word-break: keep-all;
   }
 
-  .regulatory-final-cta > span {
-    grid-column: 1;
-    margin-top: 10px;
+  .regulatory-final-cta__copy > span {
+    display: block;
+    margin-top: 6px;
     color: rgba(255, 255, 255, 0.9);
     font-size: clamp(12px, 0.82vw, 15px);
     font-weight: 600;
@@ -15474,9 +15421,6 @@ body:has(.industry-consulting-page) .ai-chat-widget {
     min-height: 64px;
     align-items: center;
     justify-content: center;
-    grid-column: 2;
-    grid-row: 1 / span 2;
-    justify-self: end;
     margin-top: 0;
     border-radius: 12px;
     background: #ffffff;
@@ -15488,23 +15432,10 @@ body:has(.industry-consulting-page) .ai-chat-widget {
     word-break: keep-all;
   }
 
-  .regulatory-final-cta small {
-    grid-column: 2;
-    grid-row: 3;
-    justify-self: end;
-    margin-top: 0;
-    color: rgba(255, 255, 255, 0.58);
-    font-size: clamp(12px, 0.78vw, 14px);
-    font-weight: 600;
-    line-height: 1.45;
-    text-align: right;
-    white-space: nowrap;
-    word-break: keep-all;
-  }
 
   .regulatory-diagnosis-result-section {
     background: #ffffff;
-    padding: 0 0 148px;
+    padding: clamp(96px, 8vw, 140px) 0 148px;
   }
 
   .regulatory-diagnosis-result-inner {
@@ -15542,6 +15473,26 @@ body:has(.industry-consulting-page) .ai-chat-widget {
     min-height: 660px;
     flex-direction: column;
     padding: 30px;
+  }
+
+  .regulatory-diagnosis-score-column {
+    display: grid;
+    align-content: start;
+    gap: 16px;
+  }
+
+  .regulatory-diagnosis-score-cta {
+    display: inline-flex;
+    min-height: 58px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #20bd5b 0%, #7dea66 100%);
+    color: #ffffff;
+    font-size: clamp(15px, 0.95vw, 17px);
+    font-weight: 600;
+    line-height: 1;
+    text-decoration: none;
   }
 
   .regulatory-diagnosis-score-card h3,
@@ -16421,7 +16372,7 @@ body:has(.industry-consulting-page) .ai-chat-widget {
 
   .faq-section {
     background: #ffffff;
-    padding: 8px 20px 104px;
+    padding: 72px 20px 104px;
   }
 
   .faq-section__inner {
@@ -16475,15 +16426,17 @@ body:has(.industry-consulting-page) .ai-chat-widget {
   }
 
   .faq-item__answer {
+    position: relative;
     display: block;
     max-height: 0;
     max-width: 980px;
     overflow: hidden;
-    padding: 0 58px 0 0;
+    padding: 0 58px 0 34px;
     color: #66727f;
     font-size: clamp(16px, 1vw, 19px);
     font-weight: 400;
     line-height: 1.65;
+    white-space: pre-line;
     opacity: 0;
     transform: translateY(-6px);
     transition:
@@ -16493,12 +16446,23 @@ body:has(.industry-consulting-page) .ai-chat-widget {
       transform 0.38s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
+  .faq-item__answer::before {
+    position: absolute;
+    top: 0.06em;
+    left: 0;
+    color: #7c8794;
+    content: "↳";
+    font-size: 1.05em;
+    font-weight: 500;
+    line-height: 1;
+  }
+
   .faq-item.is-open .faq-item__icon {
     transform: rotate(180deg);
   }
 
   .faq-item.is-open .faq-item__answer {
-    max-height: 160px;
+    max-height: 450px;
     padding-bottom: 28px;
     opacity: 1;
     transform: translateY(0);
@@ -19385,8 +19349,12 @@ body:has(.industry-consulting-page) .ai-chat-widget {
   }
 
   .regulatory-expert-section h2 {
-    font-size: 20px;
+    font-size: 24px;
     line-height: 1.42;
+  }
+
+  .regulatory-expert-inner > .regulatory-assetization-badges + h2 {
+    margin-top: 18px;
   }
 
   .regulatory-expert-section h2 br {
@@ -19487,7 +19455,7 @@ body:has(.industry-consulting-page) .ai-chat-widget {
 
   .regulatory-assetization-copy h2 {
     margin-top: 18px;
-    font-size: 20px;
+    font-size: 24px;
     line-height: 1.42;
   }
 
@@ -19815,34 +19783,33 @@ body:has(.industry-consulting-page) .ai-chat-widget {
   }
 
   .regulatory-final-cta-section {
-    padding: 0 0 64px;
+    padding: 0;
   }
 
   .regulatory-final-cta {
     width: calc(100% - 40px);
-    min-height: 0;
-    grid-template-columns: minmax(0, 1fr);
+    flex-direction: column;
+    gap: 0;
     border-radius: 28px;
-    padding: 28px 24px;
+    padding: 24px;
     text-align: center;
   }
 
-  .regulatory-final-cta p,
-  .regulatory-final-cta > span {
+  .regulatory-final-cta__copy > span {
     display: none;
   }
 
+  .regulatory-final-cta__copy {
+    width: 100%;
+  }
+
   .regulatory-final-cta h2 {
-    grid-column: 1;
     margin-top: 0;
     font-size: 16px;
     line-height: 1.38;
   }
 
   .regulatory-final-cta__button {
-    grid-column: 1;
-    grid-row: auto;
-    justify-self: stretch;
     width: 100%;
     min-width: 0;
     min-height: 46px;
@@ -19851,21 +19818,9 @@ body:has(.industry-consulting-page) .ai-chat-widget {
     font-size: 14px;
   }
 
-  .regulatory-final-cta small {
-    grid-column: 1;
-    grid-row: auto;
-    justify-self: center;
-    width: 100%;
-    min-width: 0;
-    margin-top: 18px;
-    font-size: 11px;
-    text-align: center;
-    white-space: normal;
-    word-break: keep-all;
-  }
 
   .regulatory-diagnosis-result-section {
-    padding: 0 0 96px;
+    padding: 72px 0 96px;
   }
 
   .regulatory-diagnosis-result-inner {
@@ -20289,7 +20244,7 @@ body:has(.industry-consulting-page) .ai-chat-widget {
   }
 
   .faq-item__answer {
-    padding: 0 38px 0 0;
+    padding: 0 38px 0 28px;
     font-size: 14px;
     line-height: 1.6;
   }
@@ -20517,39 +20472,6 @@ body:has(.industry-consulting-page) .ai-chat-widget {
   isolation: isolate;
 }
 
-.regulatory-marker-scribble__stroke {
-  position: absolute;
-  left: -5%;
-  top: 50%;
-  width: 110%;
-  height: 1.38em;
-  overflow: visible;
-  pointer-events: none;
-  transform: translateY(-50%) rotate(-0.9deg);
-}
-
-.regulatory-marker-scribble__path {
-  fill: none;
-  opacity: 0;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-dasharray: 1;
-  stroke-dashoffset: 1;
-  animation: regulatory-marker-path-draw 1.08s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-}
-
-.regulatory-marker-scribble__path--base {
-  stroke: rgba(112, 230, 96, 0.9);
-  stroke-width: 46;
-  animation-delay: 1.62s;
-}
-
-.regulatory-marker-scribble__path--middle {
-  stroke: rgba(136, 242, 112, 0.68);
-  stroke-width: 32;
-  animation-delay: 1.72s;
-}
-
 .regulatory-hero__highlight > span {
   position: relative;
   z-index: 1;
@@ -20562,28 +20484,6 @@ body:has(.industry-consulting-page) .ai-chat-widget {
   font-size: clamp(14px, 0.9vw, 17px);
   font-weight: 500;
   line-height: 1.55;
-}
-
-@keyframes regulatory-marker-path-draw {
-  0% {
-    opacity: 0;
-    stroke-dashoffset: 1;
-  }
-
-  1% {
-    opacity: 1;
-  }
-
-  100% {
-    opacity: 1;
-    stroke-dashoffset: 0;
-  }
-}
-
-@keyframes regulatory-marker-sweep {
-  to {
-    transform: scaleX(1) rotate(-0.8deg);
-  }
 }
 
 .regulatory-hero .ad-banner-section--embedded {
@@ -20751,14 +20651,6 @@ body:has(.industry-consulting-page) .ai-chat-widget {
 
 .regulatory-hero__cta a:hover {
   transform: translateY(-2px);
-}
-
-.regulatory-hero__cta p {
-  margin: 6px 0 0;
-  color: #7b8c94;
-  font-size: clamp(13px, 0.9vw, 16px);
-  font-weight: 500;
-  line-height: 1.45;
 }
 
 .regulatory-growth-section {

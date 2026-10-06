@@ -364,17 +364,18 @@ export function Header() {
       ? "regulatory-response"
       : "product-development";
   const actionItems = isServiceDetailPage
-    ? [
-        loggedIn
-          ? { label: "프로젝트 관리", to: `/project-management?service=${currentService}` }
-          : {
-              label: "무료로 시작하기",
-              to:
-                currentService === "product-development"
-                  ? "/project-management/quote?service=product-development"
-                  : `/account?service=${currentService}`,
-            },
-      ]
+    ? loggedIn
+      ? [{ label: "프로젝트 관리", to: `/project-management?service=${currentService}` }]
+      : [
+          {
+            label: "무료 진단 받기",
+            to:
+              currentService === "product-development"
+                ? "/project-management/quote?service=product-development"
+                : `/account?service=${currentService}`,
+          },
+          { label: "자료집 다운받기", to: "/resources" },
+        ]
     : ACTION_ITEMS;
 
   useEffect(() => {

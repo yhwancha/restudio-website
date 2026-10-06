@@ -107,6 +107,7 @@ function ResourceCard({
       </div>
       <h3>{title}</h3>
       <p>{description}</p>
+      <span className="resource-card__button">읽어보기</span>
     </>
   );
 
@@ -130,34 +131,31 @@ export function ResourcesPage() {
 
   return (
     <main className="resources-page">
-      <section className="resources-hero" aria-label="자료실 대표 리포트">
-        <div className="resources-hero__copy">
-          <h1>
-            친환경 패키지 트렌드부터 규제 정보까지,
-            <br />
-            핵심 리포트와 가이드북을 무료로 마음껏 읽어보세요.
+      <div className="resources-intro">
+        <section className="resources-hero" aria-label="자료실 대표 리포트">
+          <div className="resources-hero__copy">
+            <h1>
+              친환경 패키지 트렌드부터 규제 정보까지,
+              <br />
+              핵심 리포트와 가이드북을 무료로 마음껏 읽어보세요.
           </h1>
           <p>
-            견적을 알아보기 전 단계라면, 부담 없이 자료부터 읽고 천천히 알아보세요.
+            부담 없이 자료부터 읽고 천천히 알아보세요.
+            <br />
             친환경 전환에 성공한 대기업 고객사들의 인사이트만을 모아 전해드려요.
-          </p>
-          <a className="resources-hero__button" href="#resource-list">
-            무료 다운로드
-          </a>
-        </div>
-        <div className="resources-hero__visual" aria-hidden="true">
-          <img src="/assets/resources/hero-package-insight.png" alt="" />
-        </div>
-      </section>
+            </p>
+          </div>
+        </section>
 
-      <section className="resources-section" id="resource-list">
-        <h2>친환경 패키지, 기초부터 실무까지</h2>
-        <div className="resources-card-grid resources-card-grid--featured">
-          {featuredResources.map((resource) => (
-            <ResourceCard key={resource.title} {...resource} />
-          ))}
-        </div>
-      </section>
+        <section className="resources-section" id="resource-list">
+          <h2>친환경 패키지, 기초부터 실무까지</h2>
+          <div className="resources-card-grid resources-card-grid--featured">
+            {featuredResources.map((resource) => (
+              <ResourceCard key={resource.title} {...resource} />
+            ))}
+          </div>
+        </section>
+      </div>
 
       <section className="resources-section resources-section--ppwr">
         <div className="resources-section__header">
