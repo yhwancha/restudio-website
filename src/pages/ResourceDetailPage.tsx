@@ -1,4 +1,4 @@
-import { Download } from "@phosphor-icons/react";
+import { ArrowRight } from "@phosphor-icons/react";
 import { useState } from "react";
 
 const recommendedReaders = [
@@ -129,30 +129,6 @@ export function ResourceDetailPage() {
         </div>
       </section>
 
-      <section className="resource-detail-reason">
-        <h2>
-          이 리포트가
-          <br />
-          세상에 나온 이유
-        </h2>
-        <div>
-          <p>
-            업종마다 친환경 패키지를 받아들이는 기준과 구매 맥락은 다릅니다. 화장품은 브랜드
-            경험과 소재 감성이 중요하고, F&B는 안전성과 유통 안정성이 우선이며, 라이프스타일
-            제품은 사용 후 보관과 재사용 가능성이 함께 고려됩니다.
-          </p>
-          <p>
-            이번 리포트는 업종별로 반복되는 친환경 패키지 고민을 실무 관점에서 정리했습니다.
-            소재 선택, 구조 설계, 디자인 표현, 생산 가능성까지 연결해 2026년 패키지 전략을
-            세우는 데 필요한 판단 기준을 제공합니다.
-          </p>
-          <p>
-            리스튜디오는 국내외 브랜드의 패키지 개발 프로젝트를 수행하며 쌓은 인사이트를
-            바탕으로, 더 빠르고 실행 가능한 친환경 전환을 돕고자 이 자료를 만들었습니다.
-          </p>
-        </div>
-      </section>
-
       <section className="resource-detail-form-section" id="resource-download-form">
         <form className="resource-detail-form">
           <h2>
@@ -203,8 +179,8 @@ export function ResourceDetailPage() {
             뉴스레터 구독하고 리포트 받기 *
           </label>
           <button type="button">
-            무료 다운로드
-            <Download size={16} weight="bold" aria-hidden="true" />
+            제출하기
+            <ArrowRight size={16} weight="bold" aria-hidden="true" />
           </button>
         </form>
       </section>

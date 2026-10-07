@@ -76,29 +76,6 @@ const pricingPlans = [
     ],
   },
   {
-    key: "annual",
-    name: "연 구독",
-    subtitle: "다수 SKU / 지속 대응 기업",
-    featured: false,
-    ctaLabel: "구독하러 가기",
-    ctaTo: "/project-management/quote?service=regulatory-response&plan=annual",
-    values: [
-      "9,900,000원 / 연",
-      { type: "check" },
-      { type: "check" },
-      { type: "check" },
-      "무료, 무제한 진단 가능",
-      "무료, 무제한 발행 가능",
-      "무료, 무제한 재발행 가능",
-      "별도 견적",
-      "별도 견적",
-      "시스템 연동 안내",
-      "별도 견적",
-      { type: "storage", label: "100GB", ratio: 0.9 },
-      { type: "storage", label: "100GB", ratio: 0.9 },
-    ],
-  },
-  {
     key: "enterprise",
     name: "엔터프라이즈",
     subtitle: "대기업 / 다부서 / 다브랜드",
@@ -208,6 +185,37 @@ export function RegulatoryPricingPage() {
                   {plan.ctaLabel}
                 </Link>
               </div>
+            ))}
+          </div>
+          <div className="regulatory-pricing-mobile-plans">
+            {pricingPlans.map((plan) => (
+              <article
+                className={`regulatory-pricing-mobile-plan${
+                  plan.featured ? " is-featured" : ""
+                }`}
+                key={plan.key}
+              >
+                <header>
+                  <h2>{plan.name}</h2>
+                  <p>{plan.subtitle}</p>
+                </header>
+                <ul>
+                  {plan.values.map((value, index) => (
+                    <li key={`${plan.key}-mobile-${pricingRows[index]}`}>
+                      <span className="regulatory-pricing-mobile-plan__label">
+                        {pricingRows[index]}
+                      </span>
+                      {renderPricingValue(value as PricingValue)}
+                    </li>
+                  ))}
+                </ul>
+                <Link
+                  className={`regulatory-pricing-cta${plan.featured ? " is-current" : ""}`}
+                  to={plan.ctaTo}
+                >
+                  {plan.ctaLabel}
+                </Link>
+              </article>
             ))}
           </div>
         </div>

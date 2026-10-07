@@ -1,9 +1,8 @@
-import { ArrowRight, Check } from "@phosphor-icons/react";
+import { Check } from "@phosphor-icons/react";
 import { Link } from "react-router-dom";
 
 const industryCards = [
   {
-    label: "화장품",
     title: "화장품",
     description: "브랜드 경험은 살리고, 플라스틱 의존도는 낮추는 패키지 제안",
     bullets: [
@@ -13,10 +12,8 @@ const industryCards = [
     ],
     image: "/assets/cases/featured/dweather-01.jpg",
     alt: "화장품 친환경 패키지 사례",
-    service: "cosmetics",
   },
   {
-    label: "F&B",
     title: "F&B",
     description: "식품 안전 기준을 지키면서도 지속가능한 포장재 솔루션 제안",
     bullets: [
@@ -26,10 +23,8 @@ const industryCards = [
     ],
     image: "/assets/cases/featured/tway-01.jpg",
     alt: "F&B 친환경 패키지 사례",
-    service: "fnb",
   },
   {
-    label: "바이오/헬스케어",
     title: "바이오/헬스케어",
     description: "의약품·건강기능식품에 특화된 신뢰감 있는 패키지 솔루션",
     bullets: [
@@ -39,10 +34,8 @@ const industryCards = [
     ],
     image: "/assets/cases/featured/ppt-image-5.png",
     alt: "헬스케어 제품 패키지 사례",
-    service: "healthcare",
   },
   {
-    label: "전자기기",
     title: "전자기기",
     description: "프리미엄 언박싱 경험과 내충격 보호를 동시에 충족하는 패키지",
     bullets: [
@@ -52,10 +45,8 @@ const industryCards = [
     ],
     image: "/assets/showcase/pcr-pir2.png",
     alt: "전자기기 보호 패키지 소재 사례",
-    service: "electronics",
   },
   {
-    label: "패션",
     title: "패션",
     description: "의류·잡화의 브랜드 감도와 물류 효율을 함께 고려한 패키지 제안",
     bullets: [
@@ -65,10 +56,8 @@ const industryCards = [
     ],
     image: "/assets/cases/featured/ppt-image-6.png",
     alt: "패션 리유저블 패키지 사례",
-    service: "fashion",
   },
   {
-    label: "생활용품",
     title: "생활용품",
     description: "반복 구매 제품의 사용성, 진열성, 분리배출성을 고려한 패키지 제안",
     bullets: [
@@ -78,64 +67,64 @@ const industryCards = [
     ],
     image: "/assets/showcase/upcycle2.png",
     alt: "생활용품 친환경 소재 패키지 사례",
-    service: "lifestyle-goods",
   },
 ] as const;
 
 export function IndustryConsultingPage() {
   return (
-    <main className="industry-consulting-page">
-      <section className="industry-consulting-hero">
-        <div className="industry-consulting-hero__copy">
-          <h1>
-            친환경 패키지,
-            <br />
-            업종이 다르면 접근도 달라져야 합니다
-          </h1>
-          <p>
-            제품 특성과 유통 조건, 브랜드 경험까지 함께 검토해 업종별로 실행 가능한
-            친환경 패키지 개발 방향을 제안합니다.
-          </p>
-        </div>
-      </section>
-
-      <section className="industry-consulting-section" aria-label="업종별 맞춤 설계 카드">
-        <div className="industry-consulting-carousel">
-          <div className="industry-consulting-track">
-            {[...industryCards, ...industryCards].map(
-              ({ label, title, description, bullets, image, alt, service }, index) => (
-                <article
-                  className="industry-consulting-card"
-                  key={`${title}-${index}`}
-                  aria-hidden={index >= industryCards.length}
-                >
-                  <div className="industry-consulting-card__media">
-                    <img src={image} alt={alt} />
-                  </div>
-                  <div className="industry-consulting-card__content">
-                    <div className="industry-consulting-card__heading">
-                      <h2>{title}</h2>
-                      <p>{description}</p>
-                    </div>
-                    <ul>
-                      {bullets.map((bullet) => (
-                        <li key={bullet}>
-                          <Check size={18} weight="bold" aria-hidden="true" />
-                          <span>{bullet}</span>
-                        </li>
-                      ))}
-                    </ul>
-                    <Link to={`/project-management/quote?service=product-development&industry=${service}`}>
-                      {label} 견적 받기
-                      <ArrowRight size={18} weight="bold" aria-hidden="true" />
-                    </Link>
-                  </div>
-                </article>
-              ),
-            )}
+    <>
+      <main className="industry-consulting-page">
+        <section className="industry-consulting-hero">
+          <div className="industry-consulting-hero__copy">
+            <h1>
+              친환경 패키지,
+              <br />
+              업종이 다르면 접근도 달라져야 합니다
+            </h1>
+            <p>
+              제품 특성과 유통 조건, 브랜드 경험까지 함께 검토해 업종별로 실행 가능한
+              친환경 패키지 개발 방향을 제안합니다.
+            </p>
           </div>
-        </div>
-      </section>
-    </main>
+        </section>
+
+        <section className="industry-consulting-section" aria-label="업종별 맞춤 설계 카드">
+          <div className="industry-consulting-carousel">
+            <div className="industry-consulting-track">
+              {[...industryCards, ...industryCards].map(
+                ({ title, description, bullets, image, alt }, index) => (
+                  <article
+                    className="industry-consulting-card"
+                    key={`${title}-${index}`}
+                    aria-hidden={index >= industryCards.length}
+                  >
+                    <div className="industry-consulting-card__media">
+                      <img src={image} alt={alt} />
+                    </div>
+                    <div className="industry-consulting-card__content">
+                      <div className="industry-consulting-card__heading">
+                        <h2>{title}</h2>
+                        <p>{description}</p>
+                      </div>
+                      <ul>
+                        {bullets.map((bullet) => (
+                          <li key={bullet}>
+                            <Check size={18} weight="bold" aria-hidden="true" />
+                            <span>{bullet}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </article>
+                ),
+              )}
+            </div>
+          </div>
+        </section>
+      </main>
+      <nav className="industry-consulting-cta-bar" aria-label="견적 문의">
+        <Link to="/project-management/quote?service=product-development">견적받기</Link>
+      </nav>
+    </>
   );
 }

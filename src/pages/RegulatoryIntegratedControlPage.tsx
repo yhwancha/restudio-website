@@ -107,9 +107,11 @@ export function RegulatoryIntegratedControlPage() {
           <h1 id="regulatory-control-title">
             EU PPWR부터 미국 규제까지,
             <br />
-            <span>글로벌 규제 대응을</span>
-            <br />
-            <span>하나의 컨트롤 타워로 관리합니다.</span>
+            <span className="regulatory-control-hero__highlight">
+              글로벌 규제 대응을
+              <br />
+              하나의 컨트롤 타워로 관리합니다.
+            </span>
           </h1>
           <p>
             리스튜디오 규제 마스터 솔루션은 지역별 규제 흐름을 읽고,
@@ -218,7 +220,7 @@ export function RegulatoryIntegratedControlPage() {
       <section className="regulatory-control-ppwr-section" aria-labelledby="regulatory-control-ppwr-title">
         <div className="regulatory-control-ppwr-section__inner">
           <p className="regulatory-control-section-lead">
-            EU PPWR를 시작으로, 복잡한 규제를 체계적인 프로세스로 단순하게
+            EU PPWR를 시작으로,<br className="regulatory-control-mobile-break" /> 복잡한 규제를 체계적인 프로세스로 단순하게
           </p>
           <h2 id="regulatory-control-ppwr-title">PPWR 규제 대응, 이렇게 관리합니다.</h2>
 
@@ -230,7 +232,7 @@ export function RegulatoryIntegratedControlPage() {
             <ol aria-label="PPWR 규제 대응 프로세스">
               {["인사이트", "점검", "문서화", "제출", "사후 관리"].map((label, index) => (
                 <li key={label}>
-                  {label}
+                  <span>{label}</span>
                   {index < 4 ? <ArrowRight size={18} weight="bold" aria-hidden="true" /> : null}
                 </li>
               ))}
@@ -262,7 +264,10 @@ export function RegulatoryIntegratedControlPage() {
 
       <section className="regulatory-control-difference-section" aria-labelledby="regulatory-control-difference-title">
         <div className="regulatory-control-difference-section__inner">
-          <h2 id="regulatory-control-difference-title">왜 리스튜디오의 규제 대응 컨트롤은 다른가요?</h2>
+          <h2 id="regulatory-control-difference-title">
+            왜 리스튜디오의 규제 대응 컨트롤은{" "}
+            <br className="regulatory-control-mobile-break" />다른가요?
+          </h2>
 
           <div className="regulatory-control-difference-grid">
             {controlDifferenceCards.map(({ title, description, Icon }) => (

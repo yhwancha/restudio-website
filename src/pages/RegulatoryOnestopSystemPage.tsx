@@ -110,7 +110,7 @@ export function RegulatoryOnestopSystemPage() {
           <h1 id="regulatory-onestop-title">
             제품 개발부터 규제 대응까지,
             <br />
-            수출을 완성하는 <span>원스톱 대응 시스템</span>
+            수출을 완성하는 <span className="regulatory-onestop-hero__highlight">원스톱 대응 시스템</span>
           </h1>
           <p>
             제품을 만드는 것에서 끝나지 않고, 수출 가능한 상태까지 연결하는 것이
@@ -132,7 +132,10 @@ export function RegulatoryOnestopSystemPage() {
 
       <section className="regulatory-onestop-flow-section" aria-labelledby="regulatory-onestop-flow-title">
         <div className="regulatory-onestop-flow-section__inner">
-          <h2 id="regulatory-onestop-flow-title">리스튜디오 원스톱 대응 시스템 전체 흐름</h2>
+          <h2 id="regulatory-onestop-flow-title">
+            리스튜디오 원스톱 대응
+            <br className="regulatory-onestop-mobile-break" />시스템 전체 흐름
+          </h2>
 
           <div className="regulatory-onestop-flow">
             <aside className="regulatory-onestop-flow-side">

@@ -10,6 +10,7 @@ import {
   ChartBar,
   CheckCircle,
   ClipboardText,
+  Cube,
   Factory,
   Flask,
   Leaf,
@@ -17,10 +18,8 @@ import {
   Paperclip,
   PaintBrush,
 } from "@phosphor-icons/react";
-import {
-  AnimatedTitle,
-  useTitleReveal,
-} from "../components/AnimatedTitle";
+import { AnimatedTitle } from "../components/AnimatedTitle";
+import { NovemberPromotionBannerSlide } from "../components/NovemberPromotionBanner";
 
 const homeProcessBenefits = [
   "제조-규제 동시 해결",
@@ -58,52 +57,42 @@ const homeProcessSteps = [
   {
     label: "친환경 소재\n개발 / 큐레이션",
     Icon: Leaf,
-    tone: "product",
   },
   {
     label: "디자인 제작",
     Icon: PaintBrush,
-    tone: "product",
   },
   {
     label: "제품 R&D",
     Icon: Flask,
-    tone: "product",
   },
   {
     label: "제품\n대량생산",
     Icon: Factory,
-    tone: "product",
   },
   {
     label: "검수 / 납품",
     Icon: CheckCircle,
-    tone: "product",
   },
   {
     label: "ESG 리포트\n발행",
     Icon: ChartBar,
-    tone: "product",
   },
   {
     label: "후속 관리",
     Icon: ArrowsClockwise,
-    tone: "regulatory",
   },
   {
     label: "규제서류\n작성 / 발급",
     Icon: Certificate,
-    tone: "regulatory",
   },
   {
     label: "TD/DoC\n기술문서 컨설팅",
     Icon: ClipboardText,
-    tone: "regulatory",
   },
   {
     label: "규제 대응\n현황 진단",
     Icon: MagnifyingGlass,
-    tone: "regulatory",
   },
 ] as const;
 
@@ -122,7 +111,7 @@ const coreServices = [
     title: "친환경 규제대응 솔루션 바로가기",
     description:
       "국내외 규제 동향 분석과 대응 전략 수립으로 비즈니스 리스크를 최소화하고 해외 수출까지 도와드려요.",
-    image: "/assets/services/regulatory-consulting-clean-white.png",
+    image: "/assets/services/regulatory-consulting.png",
     alt: "PPWR regulatory consulting dashboard preview",
     to: "/services/regulatory-response",
   },
@@ -314,10 +303,7 @@ const caseStudies = [
 const adBanners = [
   {
     theme: "product-development-onestop",
-    title: "처음부터 끝까지 리스튜디오 친환경 패키지 완성",
-    description: "친환경 패키지 원스톱 솔루션 상담 신청 배너",
-    image: "/assets/ads/product-development-onestop-banner.png",
-    alt: "처음부터 끝까지 리스튜디오 친환경 패키지 완성 배너",
+    title: "11월, 신규 회원 대상 무료 이용권 증정, 제품 개발부터 규제 마스터까지.",
   },
 ];
 
@@ -330,47 +316,37 @@ const faqs = [
   {
     question: "리스튜디오의 차별점은 무엇인가요?",
     answer:
-      "단순 제조사, 소재 개발사, 디자인 에이전시가 아닙니다. 친환경 규제 대응 컨설팅, 친환경 소재 개발 역량부터 패키지 디자인, 생산, ESG 리포트까지 친환경 패키징의 전 과정을 통합 제공 가능한 원스톱 솔루션입니다. 원스톱 프로세스를 통해 개발 비용 절감, 개발 시간 단축이 가능합니다.",
+      "리스튜디오는 디자인·소재 R&D·생산·납품까지 한 곳에서 해결하는 원스톱(End-to-End) 친환경 패키지 개발 서비스라는 점이 가장 큰 차별점입니다.\n• 내부에서 6개월 이상 걸리던 개발을 평균 3개월 이내로 단축합니다.\n• 페이퍼몰드·바이오플라스틱·재생플라스틱 등 검증된 친환경 소재 라인업을 보유해 제품에 맞는 최적 소재를 제안합니다.\n• 여러 업체를 따로 관리할 필요 없이, 기획부터 양산까지 한 곳에서 책임집니다.",
   },
   {
     question: "친환경 패키지로 바꾸면 원가가 무조건 올라가나요?",
     answer:
-      "그렇지 않습니다. 오히려 원스톱 시스템으로 제작되기 때문에 개발 비용과 개발 기간을 획기적으로 줄이실 수 있습니다. 즉 설계 방식과 소재, 구조 최적화에 따라 비용 경쟁력까지 함께 확보할 수 있기 때문에 1석 2조의 효과를 거두실 수 있습니다.",
+      "꼭 그렇지 않습니다. 구조와 소재에 따라 오히려 원가를 낮출 수 있습니다.\n• 리스튜디오의 페이퍼몰드는 기존 일반 펄프몰드 대비 금형 비용 약 60%, 제품 단가 약 30% 절감이 가능합니다.\n• 플라스틱 사용량을 줄여 재활용 분담금 감면 효과도 기대할 수 있습니다.\n• 다품종 소량 생산이 가능해 초기 금형·재고 투자 부담을 줄일 수 있습니다.",
   },
   {
     question: "친환경 패키지로 바꾸면 디자인 자유도가 떨어지지 않나요?",
     answer:
-      "오히려 그렇지 않습니다. 리스튜디오는 세계 3대 디자인 어워드인 red dot Design Award, iF Design Award에서 입상한 사례가 있어 글로벌에서 인정받는 수준의 친환경 패키지 디자인을 제공드리고 있습니다. SSOULSSEOUL 사례는 브랜드 정체성을 담은 조형적 패키지를, 노스텔지어 북촌 소주 사례는 전통적 미감을 담은 프리미엄 주류 패키지를 보여줍니다. 친환경 패키지에서도 충분히 차별화된 브랜딩과 고급스러운 심미성을 구현할 수 있습니다.",
+      "아닙니다. 리스튜디오에서는 디자인이 친환경의 핵심 경쟁력입니다.\n• 디자인 R&D 조직과 CMF(색상·소재·마감) 역량을 갖춰, 소재 특성에 맞는 차별화 디자인을 제안합니다.\n• 페이퍼몰드는 성형으로 자유로운 형태 구현이 가능하고 인쇄까지 적용할 수 있습니다.\n• 페이퍼몰드·석회석·목재 바이오플라스틱·재생플라스틱 등 소재 선택 폭이 넓어 색감과 질감을 살릴 수 있습니다.\n\"친환경이라 디자인을 포기한다\"가 아니라, 친환경 소재로 브랜드만의 개성을 살리는 방향으로 설계합니다.",
   },
   {
     question: "규제 시행까지 시간이 있는데, 지금 당장 움직여야 할 이유가 있나요?",
     answer:
-      "있습니다. 그것도 아주 급하게요. PPWR 대응은 소재 선정 -> 설계 -> R&D -> 양산 안정화까지 평균 3~6개월 이상 소요됩니다. 게다가 PFAS 규제는 이미 2026년 8월 12일부터 시행됩니다. 식품 접촉 포장재를 쓰고 있다면 사실상 '지금이 마감'입니다. 2027년 전체 PPWR 시행 기준으로도, 양산 안정화와 DoC/TD 서류 준비를 역산하면 늦어도 2026년 하반기 안에 소재 전환 결정이 완료되어야 합니다. 지금 시작하는 기업이 선제적으로 바이어 신뢰를 확보하고, 경쟁사보다 먼저 시장을 지킬 수 있습니다.",
+      "준비에 걸리는 시간이 생각보다 길기 때문입니다.\n• 친환경 패키지 개발은 소재 검토·샘플·금형·양산 검증까지 기업 내부 기준 6개월 이상의 기간이 필요합니다.\n• 규제 시행 직전에 시작하면 물량과 일정이 몰려 대응이 늦어질 수 있습니다.\n• 미리 바꿔두면 친환경 스토리(마케팅·세일즈 포인트)와 탄소 저감 실적을 확보해, 규제 대응은 물론 브랜드 경쟁력까지 얻을 수 있습니다.\n지금 시작할수록 검증과 개선을 위한 여유 시간을 확보할 수 있습니다.",
   },
   {
     question: "아직 구체적인 사양이 없어도 상담 가능한가요?",
     answer:
-      "네, 가능합니다. 대부분의 프로젝트가 초기 구상 단계에서 시작됩니다. 제품 특성과 목표만 공유해 주시면, 소재 추천부터 구조 설계까지 단계별로 안내해 드립니다.",
+      "네 가능합니다. 오히려 초기일수록 도움이 됩니다.\n• 제품 컨셉팅 단계에서 고객 니즈와 시장 트렌드를 함께 분석해 방향을 잡아드립니다.\n• 적용 품목 협의 → 디자인 제작 → 소재 선정 → 목업·샘플 제작 순으로, 사양이 정해지지 않은 상태에서 함께 구체화합니다.\n• 아이디어나 참고 이미지만 있어도 상담을 시작할 수 있습니다.",
   },
   {
     question: "업종에 상관없이 제작 가능한가요?",
     answer:
-      "네, 가능합니다. 제품의 업종과 대략적인 수량, 목표만 알려주시면 기획 단계부터 함께 구조와 소재를 설계해 드립니다. 도면이 없어도 시작할 수 있습니다.",
+      "네 다양한 업종에 적용 가능합니다.\n화장품·뷰티, 전자, 생활용품, 식품, 리테일·럭셔리 등 폭넓은 분야에서 프로젝트를 수행해 왔습니다.\n• 소재 라인업이 넓어 업종별 요구(강도·내유성·내구성·식품 접촉 등)에 맞춰 제안할 수 있습니다.",
   },
   {
     question: "친환경 검증이나 규제 대응 관련 상담도 가능한가요?",
     answer:
-      "GRS, FSC 등 주요 친환경 인증 대응과 함께 객관적인 친환경성 데이터 및 검증 리포트를 발행합니다. EU PPWR 등 수출용 규제 대응 자료도 함께 준비해 드립니다.",
-  },
-  {
-    question: "예상 견적은 얼마나 빨리 받을 수 있나요?",
-    answer:
-      "문의 내용을 검토한 뒤 예상 견적을 빠르게 회신하며, 구조 확정 후 샘플 제작 일정을 별도로 안내합니다. 개발 기간을 단축하는 통합 파이프라인으로 빠른 시장 검증을 지원합니다.",
-  },
-  {
-    question: "최소 제작 수량은 어느 정도인가요?",
-    answer:
-      "품목과 공정에 따라 다르지만, 성장 단계 브랜드를 위한 소량 생산부터 대량 운영까지 폭넓게 대응합니다. 정확한 기준은 상담 시 품목 기준으로 안내해 드립니다.",
+      "네, 가능합니다.\n• 플라스틱 저감·예상 탄소배출 분석 레포트 등 정량 검증 시스템을 제공해, 마케팅·세금 감면 자료로 활용할 수 있습니다.\n• 글로벌 친환경 기업들과의 업무협약을 통해 환경 인증 서비스도 함께 제공합니다.\n• 국제 규제에 대응 가능한 글로벌 네트워크와 가이드라인을 보유해, 수출 제품의 규제 대응도 상담할 수 있습니다.\n검증·인증이 필요한 항목을 알려주시면 필요한 절차와 일정을 안내해 드립니다.",
   },
 ];
 
@@ -416,34 +392,12 @@ const testimonialPages = Array.from(
     testimonialSlides.slice(pageIndex * 2, pageIndex * 2 + 2),
 );
 
-const markerStroke = (
-  <svg
-    className="marker-scribble__stroke"
-    viewBox="0 0 320 62"
-    preserveAspectRatio="none"
-    aria-hidden="true"
-  >
-    <path
-      className="marker-scribble__path marker-scribble__path--base"
-      pathLength={1}
-      d="M8 33 C29 15 51 16 70 24 C91 34 103 20 124 18 C146 16 157 31 178 24 C200 17 217 14 237 29 C258 46 273 12 293 17 C302 19 307 18 312 18"
-    />
-    <path
-      className="marker-scribble__path marker-scribble__path--middle"
-      pathLength={1}
-      d="M5 37 C26 46 40 8 62 16 C84 24 91 43 112 36 C136 29 147 9 168 19 C188 29 190 45 212 35 C233 26 241 23 261 30 C282 38 288 17 304 22 C309 24 312 25 315 24"
-    />
-  </svg>
-);
-
 export function HomePage() {
   const [activeTestimonial, setActiveTestimonial] = useState(0);
   const [activeAdBanner, setActiveAdBanner] = useState(0);
   const [activeFaq, setActiveFaq] = useState(-1);
   const [testimonialSlideWidth, setTestimonialSlideWidth] = useState(0);
   const currentAdBanner = adBanners[activeAdBanner];
-
-  useTitleReveal();
 
   useEffect(() => {
     const updateTestimonialSlideWidth = () => {
@@ -472,10 +426,10 @@ export function HomePage() {
 
   return (
     <>
-    <main className="bg-[#f7f8f8]">
+    <main className="home-page bg-[#f7f8f8]">
       <section className="home-hero-section bg-[#f7f8f8] px-5 py-16 md:px-12 md:py-24 xl:px-[120px]">
         <div className="mx-auto w-full max-w-[1040px]">
-          <h1 className="title-reveal mx-auto max-w-[920px] text-center text-[32px] font-semibold leading-[1.16] text-black md:text-[44px] xl:text-[48px]">
+          <h1 className="title-reveal mx-auto max-w-[920px] text-center text-[28px] font-semibold leading-[1.16] text-black md:text-[44px] xl:text-[48px]">
             <AnimatedTitle
               parts={[
               "친환경 제품 개발과 규제 대응,",
@@ -483,9 +437,8 @@ export function HomePage() {
               {
                 text: "하나의 플랫폼",
                 wrapperClassName:
-                  "marker-scribble relative inline-block whitespace-nowrap px-1",
-                charClassName: "relative z-10",
-                prefix: markerStroke,
+                  "relative inline-block whitespace-nowrap px-1 text-[#22aa62]",
+                charClassName: "relative",
               },
               "에서 한 번에 완성",
               ]}
@@ -498,16 +451,8 @@ export function HomePage() {
                 className="ad-banner__track"
                 style={{ transform: `translateX(-${activeAdBanner * 100}%)` }}
               >
-                {adBanners.map(({ alt, description, image, theme, title }) => (
-                  <article
-                    key={theme}
-                    className={`ad-banner__slide ad-banner__slide--${theme}`}
-                  >
-                    <img className="ad-banner__image" src={image} alt={alt} />
-                    <span className="sr-only">
-                      {title}. {description}
-                    </span>
-                  </article>
+                {adBanners.map(({ theme }) => (
+                  <NovemberPromotionBannerSlide key={theme} />
                 ))}
               </div>
 
@@ -554,7 +499,7 @@ export function HomePage() {
           </div>
 
           <form
-            className="mx-auto mt-4 max-w-[1040px] rounded-2xl border border-[#d7dde2] bg-white px-4 py-4 shadow-[0_12px_28px_rgba(23,33,27,0.035)] md:mt-5 md:px-5 md:py-4"
+            className="ai-chat-entry mx-auto mt-4 max-w-[1040px] rounded-2xl px-4 py-4 md:mt-5 md:px-5 md:py-4"
             onSubmit={(event) => event.preventDefault()}
           >
             <div className="flex items-center gap-2.5">
@@ -562,7 +507,7 @@ export function HomePage() {
                 size={21}
                 weight="regular"
                 aria-hidden="true"
-                className="shrink-0 text-[#9aa8b7]"
+                className="shrink-0"
               />
               <label className="sr-only" htmlFor="home-ai-question">
                 AI Agent 리사에게 제품 개발 문의하기
@@ -570,65 +515,73 @@ export function HomePage() {
               <input
                 id="home-ai-question"
                 type="text"
-                className="h-8 min-w-0 flex-1 bg-transparent text-[13px] font-medium text-primary-900 outline-none placeholder:text-[#9aa3af] md:text-[14px]"
+                className="h-8 min-w-0 flex-1 bg-transparent text-[13px] font-medium outline-none md:text-[14px]"
                 placeholder="제품 개발에 대해 궁금한 것이 있나요? AI Agent 리사가 도와드릴게요!"
               />
               <button
                 type="submit"
                 aria-label="문의 보내기"
-                className="grid size-8 shrink-0 place-items-center rounded-full bg-[#bfc5c1] text-white transition hover:bg-primary-600 active:scale-[0.98] md:size-9"
+                className="grid size-8 shrink-0 place-items-center rounded-full transition active:scale-[0.98] md:size-9"
               >
                 <ArrowUp size={18} weight="bold" aria-hidden="true" />
               </button>
             </div>
 
-            <p className="mt-2.5 text-center text-[10px] font-semibold text-[#b6bdc5] md:text-[11px]">
+            <p className="mt-2.5 text-center text-[10px] font-semibold md:text-[11px]">
               대화를 진행하면{" "}
               <a
                 href="https://material-beam-ed6.notion.site/20224acd6ea980ee90cae0df5e5cc6af"
                 target="_blank"
                 rel="noreferrer"
-                className="underline underline-offset-2 hover:text-primary-600"
+                className="underline underline-offset-2"
               >
                 개인정보처리방침
               </a>
               에 동의하신 것으로 이해됩니다
             </p>
           </form>
+        </div>
+      </section>
 
-          <section className="mt-28 md:mt-40" aria-label="핵심 서비스">
-            <h2 className="title-reveal text-center text-[26px] font-semibold leading-[1.18] text-black md:text-[34px] xl:text-[38px]">
-              <AnimatedTitle
-                parts={[
-                  "어떤 고민 있으세요?",
-                  { type: "break" },
-                  "리스튜디오와 함께 해결할 분야를 선택해주세요.",
-                ]}
-              />
-            </h2>
+      <section className="home-core-services-section px-5 pb-24 pt-16 md:px-12 md:pb-32 md:pt-24 xl:px-[100px]" aria-label="핵심 서비스">
+        <div className="mx-auto w-full max-w-[1350px]">
+          <h2 className="title-reveal text-center text-[26px] font-semibold leading-[1.18] text-black md:text-[34px] xl:text-[38px]">
+            <AnimatedTitle
+              parts={[
+                "어떤 고민 있으세요?",
+                { type: "break" },
+                "리스튜디오와 함께 해결할 분야를 선택해주세요.",
+              ]}
+            />
+          </h2>
 
-            <div className="mt-10 grid gap-6 lg:grid-cols-2 xl:gap-8">
-              {coreServices.map((service) => (
+          <div className="mt-10 grid gap-6 lg:grid-cols-2">
+            {coreServices.map((service) => (
+              <div key={service.title} className="home-core-service">
+                <p className="home-core-service__prompt">
+                  {service.to === "/services/product-development" ? (
+                    <Cube size={20} weight="regular" aria-hidden="true" />
+                  ) : (
+                    <Leaf size={20} weight="fill" aria-hidden="true" />
+                  )}
+                  {service.eyebrow}
+                </p>
+
                 <Link
-                  key={service.title}
                   to={service.to}
                   className="core-service-card group"
                   aria-label={`${service.title} 자세히 보기`}
                 >
-                  <p className="mb-3 text-[13px] font-medium leading-[1.45] text-[#8d98a4] md:text-[14px]">
-                    {service.eyebrow}
-                  </p>
-
                   <div className="core-service-card__media">
                     <img src={service.image} alt={service.alt} />
                   </div>
 
-                  <div className="mt-6 flex items-end justify-between gap-5 md:mt-7">
+                  <div className="mt-5 flex items-end justify-between gap-5">
                     <div className="min-w-0">
                       <h3 className="text-[18px] font-semibold leading-[1.24] text-black md:text-[22px]">
                         {service.title}
                       </h3>
-                      <p className="mt-3 text-[13px] font-medium leading-[1.55] text-[#9aa3af] md:text-[14px]">
+                      <p className="mt-2 text-[13px] font-medium leading-[1.55] text-[#9aa3af] md:text-[14px]">
                         {service.description}
                       </p>
                     </div>
@@ -638,10 +591,9 @@ export function HomePage() {
                     </span>
                   </div>
                 </Link>
-              ))}
-            </div>
-          </section>
-
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -650,7 +602,9 @@ export function HomePage() {
           <div className="home-video-section__copy">
             <h2>
               대한민국 대표 클린테크 기업, 리베이션이 만든
-              <span>원스톱 친환경 패키지 솔루션, 리스튜디오</span>
+              <span className="home-video-section__highlight">
+                원스톱 친환경 패키지 솔루션, 리스튜디오
+              </span>
             </h2>
             <p>
               친환경 패키지의 시작과 끝, 리스튜디오가 함께합니다.
@@ -658,43 +612,50 @@ export function HomePage() {
           </div>
 
           <section className="home-process" aria-label="리스튜디오 원스톱 친환경 패키지 프로세스">
-            <div className="home-process__outcomes" aria-label="핵심 효과">
+            <div className="home-process__outcomes">
               <div className="home-process__endpoint home-process__endpoint--start">
-                <span>START</span>
-                <strong>DEVELOP</strong>
-                <small>친환경 패키지 개발 / 제작</small>
+                <span>DEVELOP</span>
+                <strong>친환경 패키지 개발 / 제작</strong>
               </div>
-              <div className="home-process__benefits">
-                {homeProcessBenefits.map((benefit) => (
-                  <span key={benefit}>{benefit}</span>
-                ))}
-              </div>
+              <span className="home-process__arrow" aria-hidden="true" />
               <div className="home-process__endpoint home-process__endpoint--finish">
-                <span>FINISH</span>
-                <strong>CERTIFIED</strong>
-                <small>글로벌 수출 완성</small>
+                <span>CERTIFIED</span>
+                <strong>글로벌 수출 완성</strong>
               </div>
             </div>
 
-            <ol className="home-process__steps">
-              {homeProcessSteps.map(({ label, Icon, tone }) => (
-                <li className={`home-process__step home-process__step--${tone}`} key={label}>
-                  <strong>
-                    {label.split("\n").map((line) => (
-                      <span key={line}>{line}</span>
-                    ))}
-                  </strong>
-                  <span className="home-process__icon" aria-hidden="true">
-                    <Icon weight="bold" />
-                  </span>
-                </li>
-              ))}
-            </ol>
-
-            <div className="home-process__solution-labels" aria-hidden="true">
-              <span>제품 개발 솔루션</span>
-              <span>규제 해결 솔루션</span>
+            <div className="home-process__panel">
+              <div className="home-process__group">
+                <h3>제품 개발 솔루션</h3>
+                <ol className="home-process__steps">
+                  {homeProcessSteps.slice(0, 6).map(({ label, Icon }) => (
+                    <li className="home-process__step" key={label}>
+                      <Icon weight="fill" aria-hidden="true" />
+                      <span>{label}</span>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+              <div className="home-process__group">
+                <h3>규제 마스터 솔루션</h3>
+                <ol className="home-process__steps">
+                  {homeProcessSteps.slice(6).map(({ label, Icon }) => (
+                    <li className="home-process__step" key={label}>
+                      <Icon weight="fill" aria-hidden="true" />
+                      <span>{label}</span>
+                    </li>
+                  ))}
+                </ol>
+              </div>
             </div>
+            <div className="home-process__benefits" aria-label="핵심 효과">
+              {homeProcessBenefits.map((benefit) => (
+                <span key={benefit}>{benefit}</span>
+              ))}
+            </div>
+            <p className="home-process__closing">
+              제품을 만들면서 동시에 글로벌 규제를 통과하는 유일한 원스톱 솔루션
+            </p>
           </section>
         </div>
       </section>

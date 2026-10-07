@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { I18nProvider } from "./i18n";
 import { Layout } from "./components/Layout";
 import { AiChatFloatingButton } from "./components/AiChatFloatingButton";
+import { TitleRevealController } from "./components/AnimatedTitle";
 import { ScrollToTop } from "./components/ScrollToTop";
 import { CompanyPage } from "./pages/CompanyPage";
 import { EcoCertificationPage } from "./pages/EcoCertificationPage";
@@ -13,6 +14,7 @@ import { NewsPage } from "./pages/NewsPage";
 import { OnestopDevelopmentSystemPage } from "./pages/OnestopDevelopmentSystemPage";
 import { PlaceholderPage } from "./pages/PlaceholderPage";
 import { ProductQuotePage } from "./pages/ProductQuotePage";
+import { ProductFaqPage } from "./pages/ProductFaqPage";
 import { ProjectManagementPage } from "./pages/ProjectManagementPage";
 import { RegulatoryAiAgentAutomationPage } from "./pages/RegulatoryAiAgentAutomationPage";
 import { RegulatoryExpertDiagnosisPage } from "./pages/RegulatoryExpertDiagnosisPage";
@@ -50,6 +52,7 @@ export default function App() {
     <I18nProvider>
       <BrowserRouter>
         <ScrollToTop />
+        <TitleRevealController />
         <Routes>
           <Route path="/account" element={<LoginPage />} />
           <Route path="/project-management" element={<ProjectManagementPage />} />
@@ -76,6 +79,10 @@ export default function App() {
             <Route
               path="/services/product-development/eco-material-lab"
               element={<EcoMaterialLabPage />}
+            />
+            <Route
+              path="/services/product-development/faq"
+              element={<ProductFaqPage />}
             />
             <Route
               path="/services/regulatory-response"

@@ -1,8 +1,8 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link as RouterLink, useParams } from "react-router-dom";
-import { CaretDown, Check, LinkSimple, X } from "@phosphor-icons/react";
+import { CaretDown, Check, InstagramLogo, LinkSimple, X } from "@phosphor-icons/react";
 
-type NewsCategory = "블로그" | "뉴스레터" | "인스타그램" | "보도자료";
+type NewsCategory = "블로그" | "보도자료";
 
 interface NewsItem {
   slug: string;
@@ -46,66 +46,6 @@ const newsItems: NewsItem[] = [
     alt: "리스튜디오 프로세스 썸네일",
   },
   {
-    slug: "monthly-regulation-note",
-    category: "뉴스레터",
-    title: "9월 친환경 패키지 규제 업데이트",
-    description:
-      "EU PPWR, PFAS 제한, 재활용 표시 관련 실무자가 확인해야 할 이슈를 모았습니다.",
-    date: "2026.09.04.",
-    image: "/assets/news/news-ppwr.webp",
-    alt: "친환경 패키지 규제 뉴스레터 썸네일",
-  },
-  {
-    slug: "package-cost-insight",
-    category: "뉴스레터",
-    title: "개발 비용과 시간을 줄이는 패키지 설계 기준",
-    description:
-      "초기 설계 단계에서 반복 수정을 줄이는 체크 포인트와 협업 방식을 소개합니다.",
-    date: "2026.09.04.",
-    image: "/assets/news/news-restudio.webp",
-    alt: "친환경 패키지 개발 인사이트 썸네일",
-  },
-  {
-    slug: "material-selection-guide",
-    category: "뉴스레터",
-    title: "친환경 소재를 고를 때 놓치기 쉬운 기준",
-    description:
-      "소재의 친환경성, 가공성, 공급 안정성을 함께 검토하는 방법을 정리했습니다.",
-    date: "2026.09.04.",
-    image: "/assets/news/news-revation.webp",
-    alt: "친환경 소재 선정 가이드 썸네일",
-  },
-  {
-    slug: "instagram-studio-note",
-    category: "인스타그램",
-    title: "패키지 샘플이 완성되기까지의 스튜디오 기록",
-    description:
-      "리스튜디오 팀이 실제 샘플을 검토하며 확인하는 디테일을 짧게 담았습니다.",
-    date: "2026.09.04.",
-    image: "/assets/news/news-restudio.webp",
-    alt: "리스튜디오 인스타그램 콘텐츠 썸네일",
-  },
-  {
-    slug: "instagram-material-test",
-    category: "인스타그램",
-    title: "소재 테스트 현장에서 확인한 재활용성 포인트",
-    description:
-      "표면 처리, 접착 방식, 후가공 조건이 재활용성에 미치는 영향을 소개합니다.",
-    date: "2026.09.04.",
-    image: "/assets/news/news-ppwr.webp",
-    alt: "소재 테스트 인스타그램 콘텐츠 썸네일",
-  },
-  {
-    slug: "instagram-brand-case",
-    category: "인스타그램",
-    title: "브랜드 경험을 해치지 않는 친환경 전환 사례",
-    description:
-      "기존 브랜드 무드를 유지하면서 구조와 소재를 바꾼 프로젝트 장면을 공유합니다.",
-    date: "2026.09.04.",
-    image: "/assets/news/news-revation.webp",
-    alt: "브랜드 친환경 전환 사례 썸네일",
-  },
-  {
     slug: "revation-launches-restudio",
     category: "보도자료",
     title: "리베이션, 친환경 패키지 원스톱 솔루션 리스튜디오 공개",
@@ -140,8 +80,6 @@ const newsItems: NewsItem[] = [
 const categories: Array<"전체" | NewsCategory> = [
   "전체",
   "블로그",
-  "뉴스레터",
-  "인스타그램",
   "보도자료",
 ];
 
@@ -323,6 +261,7 @@ function SubscribeWidget() {
 }
 
 function NewsListPage() {
+  const [activeCategory, setActiveCategory] = useState<"전체" | NewsCategory>("전체");
   const groupedItems = useMemo(() => {
     return categories.slice(1).map((category) => ({
       category,
@@ -334,7 +273,17 @@ function NewsListPage() {
     <main className="news-page news-page--list">
       <nav className="news-category-tabs" aria-label="새로운 소식 카테고리">
         {categories.map((category) => (
-          <a key={category} href={category === "전체" ? "#news-all" : `#news-${category}`}>
+          <a
+            key={category}
+            href={category === "전체" ? "#news-all" : `#news-${category}`}
+            data-selected={activeCategory === category}
+            onClick={(event) => {
+              if (window.matchMedia("(max-width: 767px)").matches) {
+                event.preventDefault();
+                setActiveCategory(category);
+              }
+            }}
+          >
             {category}
           </a>
         ))}
@@ -342,7 +291,11 @@ function NewsListPage() {
 
       <div id="news-all" className="news-list-sections">
         {groupedItems.map(({ category, items }) => (
-          <section key={category} id={`news-${category}`} className="news-list-section">
+          <section
+            key={category}
+            id={`news-${category}`}
+            className={`news-list-section${activeCategory !== "전체" && activeCategory !== category ? " is-filtered-out" : ""}`}
+          >
             <h2>{category}</h2>
             <div className="news-list-grid">
               {items.map((item) => (
@@ -352,6 +305,15 @@ function NewsListPage() {
           </section>
         ))}
       </div>
+      <a
+        className="news-instagram-link"
+        href="https://www.instagram.com/revation.co.kr/"
+        target="_blank"
+        rel="noreferrer"
+      >
+        <InstagramLogo size={20} weight="fill" aria-hidden="true" />
+        인스타그램 바로가기
+      </a>
       <SubscribeWidget />
     </main>
   );
