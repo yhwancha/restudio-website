@@ -359,10 +359,11 @@ export function Header() {
   const isServiceDetailPage = SERVICE_DETAIL_PATHS.some((path) =>
     location.pathname.startsWith(path),
   );
-  const currentService =
-    location.pathname === "/services/regulatory-response"
-      ? "regulatory-response"
-      : "product-development";
+  // Sub-pages (e.g. /services/regulatory-response/pricing) belong to the same service.
+  const isRegulatoryPath =
+    location.pathname === "/services/regulatory-response" ||
+    location.pathname.startsWith("/services/regulatory-response/");
+  const currentService = isRegulatoryPath ? "regulatory-response" : "product-development";
   const actionItems = isServiceDetailPage
     ? loggedIn
       ? [{ label: "프로젝트 관리", to: `/project-management?service=${currentService}` }]
