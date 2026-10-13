@@ -584,32 +584,58 @@ const regulatoryDiagnosisBenefits = [
   },
 ];
 
-const regulatorySecurityItems = [
+const regulatorySecurityGroups = [
   {
-    Icon: LockKey,
-    title: "검증된 인프라",
-    description:
-      "Supabase 인프라에서 운영되며, 인증과 보안 정책으로 데이터베이스 접근을 관리합니다.",
+    tone: "blue",
+    step: "01",
+    title: "철통보안 솔루션",
+    description: "검증된 인프라부터 데이터 격리, 인증·결제 관리까지 안정적으로 운영합니다.",
+    items: [
+      {
+        Icon: LockKey,
+        title: "검증된 인프라",
+        description:
+          "Supabase와 Microsoft Azure 국내 리전에서 운영되며, 모든 통신은 HTTPS로 암호화됩니다.",
+      },
+      {
+        Icon: ShieldCheck,
+        title: "계정별 데이터 격리",
+        description:
+          "데이터베이스 단계의 접근 정책으로, 고객은 자기 회사의 제품·포장재·증빙 데이터만 조회할 수 있습니다.",
+      },
+      {
+        Icon: CreditCard,
+        title: "안전한 인증과 결제 관리",
+        description:
+          "인증은 Supabase Auth가 관리하고, 결제는 포트원이 처리합니다. 리스튜디오는 카드 번호를 저장하지 않습니다.",
+      },
+    ],
   },
   {
-    Icon: ShieldCheck,
-    title: "DDoS 보호",
-    description: "Vercel의 DDoS 보호 기능은 악성 트래픽을 탐지하고 완화하는 데 도움을 줍니다.",
-  },
-  {
-    Icon: CreditCard,
-    title: "안전한 결제 처리",
-    description: "결제는 판매 대행사의 포트원이 처리합니다. 리스튜디오는 카드 정보를 저장하지 않습니다.",
-  },
-  {
-    Icon: ClockCounterClockwise,
-    title: "버전 기록",
-    description: "저장된 버전을 확인하고 페이지와 사이트 레이아웃을 이전 버전으로 되돌릴 수 있습니다.",
-  },
-  {
-    Icon: Key,
-    title: "인증과 결제 관리",
-    description: "인증은 Supabase Auth가 관리하고, 결제는 포트원이 처리합니다.",
+    tone: "green",
+    step: "02",
+    title: "철통보안 시스템",
+    description: "내부 관리자의 접근도 권한과 기록으로 통제해 또 한번 안심할 수 있습니다.",
+    items: [
+      {
+        Icon: FileText,
+        title: "비공개 문서 저장소",
+        description:
+          "업로드한 증빙 서류와 회사 문서는 비공개 저장소에 보관되며, 열람할 때마다 짧은 시간만 유효한 일회성 링크가 발급됩니다.",
+      },
+      {
+        Icon: Key,
+        title: "관리자 권한 분리와 접속 기록",
+        description:
+          "내부 관리자는 역할과 메뉴별로 부여된 권한 안에서만 접근합니다. 관리자가 고객 화면에 접속하면 누가, 언제 접속했고 수정했는지가 기록됩니다.",
+      },
+      {
+        Icon: ClockCounterClockwise,
+        title: "변경 이력 관리",
+        description:
+          "포장재·부자재 정보는 수정할 때마다 이력이 남아, 언제 무엇이 바뀌었는지 확인할 수 있습니다.",
+      },
+    ],
   },
 ];
 
@@ -1971,16 +1997,33 @@ function RegulatorySecuritySection() {
         </div>
 
         <div className="regulatory-security-grid">
-          {regulatorySecurityItems.map(({ Icon, title, description }) => (
-            <article className="regulatory-security-card" key={title}>
-              <span className="regulatory-security-card__icon" aria-hidden="true">
-                <Icon size={28} weight="regular" />
-              </span>
-              <div>
-                <h3>{title}</h3>
-                <p>{description}</p>
+          {regulatorySecurityGroups.map(({ tone, step, title, description, items }) => (
+            <div
+              className={`regulatory-security-group regulatory-security-group--${tone}`}
+              key={title}
+            >
+              <div className="regulatory-security-group__head">
+                <span className="regulatory-security-group__step">{step}</span>
+                <div>
+                  <h3>{title}</h3>
+                  <p>{description}</p>
+                </div>
               </div>
-            </article>
+
+              <div className="regulatory-security-group__cards">
+                {items.map(({ Icon, title: itemTitle, description: itemDescription }) => (
+                  <article className="regulatory-security-card" key={itemTitle}>
+                    <span className="regulatory-security-card__icon" aria-hidden="true">
+                      <Icon size={26} weight="regular" />
+                    </span>
+                    <div>
+                      <h4>{itemTitle}</h4>
+                      <p>{itemDescription}</p>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </div>
           ))}
         </div>
       </div>
