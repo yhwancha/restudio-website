@@ -114,7 +114,7 @@ const SERVICE_MENU_GROUPS = [
 ] as const;
 
 const ACTION_ITEMS = [
-  { label: "제품 개발 문의", to: "/project-management/quote?service=product-development" },
+  { label: "제품 개발 문의", to: "/services/product-development" },
   { label: "규제 대응 문의", to: "/services/regulatory-response" },
 ] as const;
 
@@ -365,10 +365,15 @@ export function Header() {
       : "product-development";
   const actionItems = isServiceDetailPage
     ? loggedIn
-      ? [{ label: "프로젝트 관리", to: `/project-management?service=${currentService}` }]
+      ? [
+          {
+            label: "프로젝트 관리",
+            to: `/project-management/quote?service=${currentService}`,
+          },
+        ]
       : [
           {
-            label: "무료 진단 받기",
+            label: "제품 개발 문의",
             to:
               currentService === "product-development"
                 ? "/project-management/quote?service=product-development"

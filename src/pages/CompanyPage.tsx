@@ -99,38 +99,42 @@ const developmentProcessSteps = [
 
 const materialLineup = [
   {
-    title: "페이퍼 몰드",
+    title: "페이퍼몰드",
+    subtitle: "PAPERMOLD",
+    headline: "플라스틱을 종이로 바꾸는 고성능 친환경 패키징",
     description:
-      "PS/PET/PP 플라스틱 패키지를 종이 소재로 대체하는 주력 소재. 독자 셀룰로오스 배합 공정으로 기존 펄프 대비 강도 2.5배.",
+      "PS·PET·PP 플라스틱 트레이와 EPS 완충재를 대체하는 종이 기반 성형 패키지입니다. 독자적인 펄프 배합과 성형 기술로 기존 펄프 몰드의 성능과 가격 한계를 개선했습니다.",
     bullets: [
-      "100% 분리배출 / 완전 재활용 가능",
-      "재활용 분담금 감면 / 소비자 분리 편의",
-      "기존 펄프몰드 대비 금형비 60% / 제품가 30% 절감",
-      "강도 2.5배 / 재활용성 99% 이상",
+      "기존 펄프 몰드 대비 강도 최대 2.5배",
+      "금형비 최대 60%, 제품비 최대 30% 절감",
+      "재활용성 99% 이상의 종이 기반 소재 설계",
+      "제품 형상에 맞춘 맞춤형 패키지·완충 구조 구현",
     ],
     image: "/assets/services/paper-mold-lineup.png",
   },
   {
-    title: "REPLAX",
-    subtitle: "바이오 / 재생 플라스틱",
+    title: "리플랙스",
+    subtitle: "REPLAX",
+    headline: "기존 플라스틱처럼 만들고, 바이오·재생원료로 바꾸는 친환경 소재",
     description:
-      "기존 1세대 바이오플라스틱의 약한 물성을 극복한 소재. 일반 사출 금형과 호환되며 버진 플라스틱 수준의 가격 경쟁력.",
+      "바이오매스와 재생원료를 활용하면서도 기존 플라스틱 생산공정에 적용할 수 있도록 설계한 친환경 플라스틱 컴파운드입니다. 별도의 대규모 설비 변경 없이 소재 전환이 가능해 상용화 부담을 낮춥니다.",
     bullets: [
-      "일반 사출 금형 그대로 사용 가능",
+      "기존 사출 금형 및 생산공정 적용 가능",
       "버진 플라스틱 수준의 가격 경쟁력",
-      "라인업: Limestone / Wood / Marble",
-      "탄소 저감 인증 / OK Biobased 등 친환경 인증",
+      "Limestone · Wood · Marble 등 다양한 소재 라인업",
+      "제품 용도에 맞춘 바이오·재생원료 맞춤 배합",
+      "OK biobased 인증 제품군 보유",
     ],
     image: "/assets/services/replax-lineup.png",
   },
 ];
 
 const whyRestudio = [
-  ["CMF R&D + 부설연구소", "대기업 수준 CMF 인프라와 사내 부설연구소로 물성 / 단가 문제 자체 해결"],
-  ["핵심 특허 기술", "CCR / MCTP 등 독자 IP, 강도 2.5배 / 재활용성 99%+"],
-  ["레시피 데이터 자산화", "누적 249건 소재 데이터와 13개 생산 네트워크 표준화"],
-  ["120여 개사 경험", "전문 PM이 기업 내부 5명 이상 역할을 대신 수행"],
-  ["품질 보장", "양산 전 과정 체크리스트 / 품질 불안정 / 부적합 보고서 관리"],
+  ["CMF R&D + 부설연구소", "CMF 전문 R&D 인프라 기반 소재·물성·가공조건 검토 및 제안"],
+  ["특허 기반 기술력", "특허 10건 등록 · 5건 출원 / 소재·제조·솔루션 핵심 IP 확보"],
+  ["소재/생산 데이터 자산화", "249건 소재·배합 데이터 / 13개 생산 네트워크 표준화 제안"],
+  ["120여 개 기업 프로젝트 경험", "전문성과 다양한 프로젝트 경험을 보유한 리스튜디오 매니저가 전 과정을 담당하여 진행"],
+  ["양산 품질관리", "공정 체크리스트 / 품질 이슈 대응 / 부적합 보고서 이력 관리"],
 ];
 
 const companyHistory = [
@@ -156,7 +160,7 @@ const companyHistory = [
       "리베이션, ESG 경영 수준 확인서 ‘A등급’ 획득",
       "‘RESTUDIO CMF SYSTEM’ 2025 레드닷 디자인 어워드 본상 수상",
       "중기부 ‘딥테크 밸류업 프로그램’ 선정",
-      "‘슈퍼스타트+넥제로 챌린지 X’에 최종 선정",
+      "‘슈퍼스타트+넷제로 챌린지 X’에 최종 선정",
       "사회적가치 경영 성과로 사회적가치지표(SVI) 우수 기업 선정",
       "B2B 친환경 패키지 원스톱 DX 솔루션 ‘리스튜디오(RESTUDIO)’ 공식 런칭",
       "글로벌 재활용 인증 ‘GRS’ 획득",
@@ -192,7 +196,6 @@ const locationSlides = [
 const regulationSteps = [
   {
     title: "진단 & 대응 리포트",
-    summary: "보유 자료 검토 후 PPWR 대응 준비 수준과 실대응 필요 항목 컨설팅",
     bullets: [
       "보유 자료 검토 결과 분석",
       "시험성적서 / 사양서 활용 가능성 점검",
@@ -201,33 +204,26 @@ const regulationSteps = [
     ],
   },
   {
-    title: "DoC 문서 컨설팅",
-    summary: "제품 / 포장재 정보와 증빙자료 기반 EU 적합성 선언서(DoC) 초안 작성 지원",
+    title: "TD/DoC 문서 자동 생성",
     bullets: [
-      "PPWR 적용 요구사항 검토",
-      "EU 적합성 선언서(DoC) 초안 작성",
-      "규제 조항별 증빙자료 연결",
-      "미비 자료 / 보완사항 안내",
+      "진단 데이터를 활용한 기술문서(TD) 및 적합성 선언서(DoC) 초안 생성",
+      "AI 초안 검토 및 고객 수정/승인",
+      "제출용 PDF 발행 및 스냅샷 보관",
     ],
   },
   {
-    title: "TD 문서 컨설팅",
-    summary: "포장재 구성 / 시험성적서 / 공급망 증빙을 체계화해 기술문서(TD) 작성 지원",
+    title: "규제 변경 상시 모니터링 (후속 관리)",
     bullets: [
-      "사양 / BOM / 소재 / 중량 / 재생원료 정보 정리",
-      "시험성적서 / 인증서 / 공급사 자료 정리",
-      "규제 요건별 적합성 근거 구성",
-      "추가 시험 필요사항 안내",
+      "규제 트렌드 및 변경 사항 자동 알림",
+      "보유 SKU 영향도 자동 분석",
+      "증빙자료 유효기간 관리 및 갱신 요청",
     ],
   },
   {
-    title: "후속 관리 프로세스",
-    summary: "진단 / 문서 작성에서 확인된 이슈 기반 기업별 후속 대응 방안 제안",
+    title: "패키지 개선 및 개발 전환",
     bullets: [
-      "추가 시험성적서 확보 방향",
-      "공급사 자료 요청 방향",
-      "포장재 구조 개선 필요 여부 판단",
-      "개선 실행 지원 (Solution 01 연결)",
+      "규제 리스크 기반 제품 개선안(Improvement Brief) 제안",
+      "친환경 소재 전환 및 패키지 개발/양산 연계",
     ],
   },
 ];
@@ -512,7 +508,10 @@ export function CompanyPage() {
         </div>
       </section>
 
-      <section className="company-process company-process--development">
+      <section
+        className="company-process company-process--development"
+        id="company-onestop-solution"
+      >
         <aside>
           <span>Solution 01</span>
           <h2>
@@ -550,6 +549,7 @@ export function CompanyPage() {
                     {item.subtitle ? <span>{item.subtitle}</span> : null}
                   </div>
                   <div className="company-materials__copy">
+                    <strong>{item.headline}</strong>
                     <p>{item.description}</p>
                     <ul>
                       {item.bullets.map((bullet) => (
@@ -578,7 +578,10 @@ export function CompanyPage() {
         </div>
       </section>
 
-      <section className="company-process company-process--regulation">
+      <section
+        className="company-process company-process--regulation"
+        id="company-regulatory-solution"
+      >
         <aside>
           <span>Solution 02</span>
           <h2>
@@ -601,7 +604,6 @@ export function CompanyPage() {
                 <span>{String(index + 1).padStart(2, "0")}</span>
                 <strong>{step.title}</strong>
                 <div>
-                  <p>{step.summary}</p>
                   <ul>
                     {step.bullets.map((bullet) => (
                       <li key={bullet}>{bullet}</li>
@@ -614,7 +616,7 @@ export function CompanyPage() {
         </div>
       </section>
 
-      <section className="company-history" aria-label="리스튜디오 연혁">
+      <section className="company-history" id="company-history" aria-label="리스튜디오 연혁">
         <h2>리스튜디오가 걸어온 길</h2>
         <div className="company-history__grid" data-active-year={activeHistoryYear}>
           {companyHistory.map(({ year, items }) => (
@@ -662,7 +664,7 @@ export function CompanyPage() {
         </div>
       </section>
 
-      <section className="company-contact">
+      <section className="company-contact" id="company-contact">
         <div className="company-recruit">
           <h2>채용</h2>
           <div className="company-recruit__list">

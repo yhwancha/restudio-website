@@ -15,11 +15,13 @@ import {
   Clock,
   ClipboardText,
   ClockCounterClockwise,
+  Coins,
   CreditCard,
   Cube,
   Factory,
   FileMagnifyingGlass,
   FileText,
+  HeadCircuit,
   Key,
   Flask,
   Leaf,
@@ -27,25 +29,25 @@ import {
   MagnifyingGlass,
   Network,
   Paperclip,
-  PaperPlaneTilt,
   PlusCircle,
-  Scan,
   ShieldCheck,
+  ShieldWarning,
   SquaresFour,
   Timer,
   TrendUp,
   User,
   WarningCircle,
+  Wrench,
   XCircle,
 } from "@phosphor-icons/react";
 import { Link } from "react-router-dom";
 import {
   CustomerCaseStudiesSection,
-  ServiceDetailAdBanner,
   ServiceDetailSharedSections,
 } from "../components/ServiceDetailSharedSections";
 import { AnimatedTitle } from "../components/AnimatedTitle";
-import { NovemberPromotionBannerSlide } from "../components/NovemberPromotionBanner";
+import { HeroBannerGroup } from "../components/HeroBannerGroup";
+import { RegulatoryOnboardingDemo } from "../components/RegulatoryOnboardingDemo";
 
 const productClientLogos = Array.from({ length: 14 }, (_, index) => ({
   src: `/assets/clients/client-logo-${String(index + 1).padStart(2, "0")}.svg`,
@@ -106,16 +108,6 @@ const productTestimonials = [
 const productTestimonialPages = Array.from({ length: 3 }, (_, pageIndex) =>
   productTestimonials.slice(pageIndex * 2, pageIndex * 2 + 2),
 );
-
-const productDevelopmentHeroBanners = [
-  {
-    theme: "product-development-onestop",
-    title: "11월, 신규 회원 대상 무료 이용권 증정, 제품 개발부터 규제 마스터까지.",
-    description: "제품 개발부터 규제 마스터까지.",
-    image: "/assets/ads/november-promotion-banner.png",
-    alt: "11월 신규 회원 무료 이용권 프로모션",
-  },
-];
 
 const productChallenges = [
   {
@@ -260,39 +252,39 @@ const productCapabilityItems = [
 const regulatoryMasterHighlights = [
   {
     number: "01",
-    title: "원스톱 솔루션",
-    description: "50% 비용 절감",
-    Icon: PaperPlaneTilt,
+    title: "인건비 절감",
+    description: "전담인력 필요 없이",
+    Icon: Coins,
   },
   {
     number: "02",
-    title: "2중 철통 보안",
-    description: "문서 암호화 2중 관리",
-    Icon: AirplaneTilt,
+    title: "대응 비용 절감",
+    description: "AI에이전트 전담 실행",
+    Icon: HeadCircuit,
   },
   {
     number: "03",
-    title: "AI 에이전트",
-    description: "쉽고 빠른 서류 작성",
-    Icon: Brain,
+    title: "SKU확장 OK",
+    description: "제품 늘어도 빠르게",
+    Icon: Cube,
   },
   {
     number: "04",
-    title: "2중 교차검증",
-    description: "AI 에이전트가 한 번, 전문가가 또 한 번",
-    Icon: ShieldCheck,
+    title: "빠른 시장 출시",
+    description: "바이어 바로 대응",
+    Icon: AirplaneTilt,
   },
   {
     number: "05",
-    title: "리스크 최소화",
-    description: "납기 지연 / 통관 거부 방지",
-    Icon: WarningCircle,
+    title: "통관 리스크 제거",
+    description: "AI와 전문가 이중검증",
+    Icon: ShieldWarning,
   },
   {
     number: "06",
-    title: "패스트 트랙",
-    description: "빠른 시장 진출, 한 번 등록 준비 끝",
-    Icon: Scan,
+    title: "지속 대응 관리",
+    description: "변경 보완까지 케어",
+    Icon: Wrench,
   },
 ];
 
@@ -508,8 +500,6 @@ const regulatoryStartSteps = [
     number: "3",
     title: "심층 진단",
     description: "제품, 업종 등 추가 정보 입력",
-    badge: "무료",
-    featured: true,
   },
   {
     number: "4",
@@ -941,8 +931,6 @@ function ProductTestimonialCard({ testimonial }: { testimonial: (typeof productT
 }
 
 function ProductClientSection({ activePage, onPrev, onNext }: ProductClientSectionProps) {
-  const [mobileActive, setMobileActive] = useState(0);
-
   return (
     <section className="product-client-section" aria-label="제품 개발 고객사와 후기">
       <div className="product-client-testimonials">
@@ -969,7 +957,6 @@ function ProductClientSection({ activePage, onPrev, onNext }: ProductClientSecti
         <div className="product-client-testimonials__mobile-viewport">
           <div
             className="product-client-testimonials__mobile-track"
-            style={{ transform: `translateX(calc(${-mobileActive * 100}vw + ${mobileActive * 52}px))` }}
           >
             {productTestimonials.map((testimonial) => (
               <ProductTestimonialCard testimonial={testimonial} key={testimonial.author} />
@@ -987,15 +974,6 @@ function ProductClientSection({ activePage, onPrev, onNext }: ProductClientSecti
           <span>
             {activePage + 1}/{productTestimonialPages.length}
           </span>
-        </div>
-        <div className="product-client-testimonials__controls product-client-testimonials__controls--mobile">
-          <button type="button" aria-label="이전 제품 개발 후기 보기" onClick={() => setMobileActive((current) => (current + productTestimonials.length - 1) % productTestimonials.length)}>
-            <CaretLeft size={18} weight="bold" aria-hidden="true" />
-          </button>
-          <button type="button" aria-label="다음 제품 개발 후기 보기" onClick={() => setMobileActive((current) => (current + 1) % productTestimonials.length)}>
-            <CaretRight size={18} weight="bold" aria-hidden="true" />
-          </button>
-          <span>{mobileActive + 1}/{productTestimonials.length}</span>
         </div>
       </div>
     </section>
@@ -1026,30 +1004,7 @@ function RegulatoryHero() {
         </h1>
         <p>AI와 규제 전문가가 함께 진단부터 통과까지 하나의 흐름으로 완성합니다.</p>
 
-        <div className="ad-banner-section ad-banner-section--embedded" aria-label="프로모션 배너">
-          <div className="ad-banner">
-            <div className="ad-banner__track" style={{ transform: "translateX(0%)" }}>
-              <NovemberPromotionBannerSlide />
-            </div>
-
-            <div className="ad-banner__controls">
-              <button type="button" aria-label="이전 광고 배너 보기">
-                <CaretLeft size={19} weight="bold" aria-hidden="true" />
-              </button>
-              <button type="button" aria-label="다음 광고 배너 보기">
-                <CaretRight size={19} weight="bold" aria-hidden="true" />
-              </button>
-              <div className="ad-banner__indicator" aria-hidden="true">
-                <span style={{ transform: "translateX(0%)", width: "100%" }} />
-              </div>
-              <span className="ad-banner__count">1/1</span>
-            </div>
-
-            <span className="sr-only">
-              현재 배너: 11월, 신규 회원 대상 무료 이용권 증정, 제품 개발부터 규제 마스터까지.
-            </span>
-          </div>
-        </div>
+        <HeroBannerGroup />
 
         <form
           className="ai-chat-entry mx-auto mt-4 w-full max-w-[1040px] rounded-2xl px-4 py-4 md:mt-5 md:px-5 md:py-4"
@@ -1122,42 +1077,7 @@ function RegulatoryGrowthSection() {
           ))}
         </div>
 
-        <div className="regulatory-growth-preview" aria-label="PPWR 서류 준비 화면 예시">
-          <div className="regulatory-growth-preview__stage">
-            <div className="regulatory-growth-dashboard">
-              <img
-                src="/assets/detail-pages/regulatory-product-detail.png"
-                alt="리스튜디오 PPWR 포장재 관리 대시보드 화면"
-              />
-            </div>
-            <div className="regulatory-growth-floating-panel">
-              <strong>1. 포장 데이터</strong>
-              <p>보호해야 할 제품과 포장 구성을 선택하세요.</p>
-              <div className="regulatory-growth-segment">
-                <span>용기·캡</span>
-                <span>라벨·박스</span>
-              </div>
-              <p>필요한 증빙 유형을 선택하면 AI가 누락 자료를 정리합니다.</p>
-              <div className="regulatory-growth-checks">
-                <span>
-                  <i />
-                  <b>재질</b>
-                  자동 검토
-                </span>
-                <span>
-                  <i />
-                  <b>시험</b>
-                  자동 검토
-                </span>
-                <span>
-                  <i />
-                  <b>선언</b>
-                  자동 검토
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
+        <RegulatoryOnboardingDemo />
       </div>
     </section>
   );
@@ -1270,6 +1190,8 @@ function RegulatoryConcernSection() {
 }
 
 function RegulatoryMasterShowcaseSection() {
+  const [activeCard, setActiveCard] = useState(0);
+  const cardCount = regulatoryMasterShowcaseCards.length;
   const sectionRef = useRef<HTMLElement | null>(null);
   const viewportRef = useRef<HTMLDivElement | null>(null);
   const trackRef = useRef<HTMLDivElement | null>(null);
@@ -1300,6 +1222,11 @@ function RegulatoryMasterShowcaseSection() {
       const offset = -horizontalProgress * trackDistance;
 
       track.style.setProperty("--regulatory-master-offset", `${offset}px`);
+      const cards = track.children;
+      const step = (cards[1] as HTMLElement).offsetLeft - (cards[0] as HTMLElement).offsetLeft;
+      setActiveCard(
+        horizontalProgress >= 0.999 ? cardCount - 1 : Math.min(Math.round(-offset / step), cardCount - 1),
+      );
     };
 
     const requestUpdate = () => {
@@ -1316,7 +1243,25 @@ function RegulatoryMasterShowcaseSection() {
       window.removeEventListener("scroll", requestUpdate);
       window.removeEventListener("resize", requestUpdate);
     };
-  }, []);
+  }, [cardCount]);
+
+  const moveCard = (direction: number) => {
+    const section = sectionRef.current;
+    const viewport = viewportRef.current;
+    const track = trackRef.current;
+    if (!section || !viewport || !track) return;
+
+    const nextCard = (activeCard + direction + cardCount) % cardCount;
+    const cards = track.children;
+    const step = (cards[1] as HTMLElement).offsetLeft - (cards[0] as HTMLElement).offsetLeft;
+    const distance = Math.max(track.scrollWidth - viewport.clientWidth, 0);
+    const progress = distance > 0 ? Math.min(nextCard * step / distance, 1) : 0;
+    window.scrollTo({
+      top: window.scrollY + section.getBoundingClientRect().top
+        + progress * (section.offsetHeight - window.innerHeight),
+      behavior: "smooth",
+    });
+  };
 
   return (
     <section
@@ -1348,6 +1293,16 @@ function RegulatoryMasterShowcaseSection() {
           </div>
         </div>
 
+        <div className="regulatory-master-showcase-controls">
+          <button type="button" aria-label="이전 솔루션 보기" onClick={() => moveCard(-1)}>
+            <CaretLeft size={24} aria-hidden="true" />
+          </button>
+          <button type="button" aria-label="다음 솔루션 보기" onClick={() => moveCard(1)}>
+            <CaretRight size={24} aria-hidden="true" />
+          </button>
+          <span aria-live="polite">{activeCard + 1}/{cardCount}</span>
+        </div>
+
         <div className="regulatory-master-showcase-viewport" ref={viewportRef}>
           <div className="regulatory-master-showcase-track" ref={trackRef}>
             {regulatoryMasterShowcaseCards.map((card) => (
@@ -1365,6 +1320,78 @@ function RegulatoryMasterShowcaseSection() {
               </article>
             ))}
           </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function RegulatorySkuExpansionSection() {
+  const benefits = [
+    {
+      Icon: Cube,
+      title: "SKU별 데이터 정리",
+      description: "제품 정보를 체계적으로 한눈에 관리합니다.",
+    },
+    {
+      Icon: Clock,
+      title: "반복 대응 자동화",
+      description: "동일한 규제 업무는 자동으로 처리합니다.",
+    },
+    {
+      Icon: AirplaneTilt,
+      title: "제품이 늘어도 빠르게",
+      description: "SKU가 많아져도 대응 속도는 그대로 유지됩니다.",
+    },
+  ];
+
+  return (
+    <section className="regulatory-sku-expansion-section" aria-labelledby="regulatory-sku-expansion-title">
+      <div className="regulatory-sku-expansion-inner">
+        <header className="regulatory-sku-expansion-head">
+          <h2 id="regulatory-sku-expansion-title">
+            <span className="regulatory-sku-expansion-head__title">제품이 늘어도</span>{' '}
+            <span className="regulatory-sku-expansion-head__accent">빠르게 대응</span>
+          </h2>
+          <p>SKU가 많아지거나 늘어나도, 한 번 쌓은 데이터로 빠르게 대응합니다.</p>
+        </header>
+
+        <div className="regulatory-sku-expansion-visuals">
+          <div className="regulatory-sku-expansion-visual regulatory-sku-expansion-visual--products">
+            <img
+              src="/assets/detail-pages/regulatory-master/sku-expansion-products.png"
+              alt="여러 제품 SKU 데이터를 정리하는 흐름"
+            />
+            <strong>계속 늘어나는<br />SKU</strong>
+          </div>
+          <div className="regulatory-sku-expansion-visual regulatory-sku-expansion-visual--dashboard">
+            <strong>규제 대응<br />관리 시스템</strong>
+            <img
+              src="/assets/detail-pages/regulatory-master/sku-expansion-dashboard.png"
+              alt="SKU별 규제 대응 현황을 관리하는 대시보드"
+            />
+          </div>
+          <div className="regulatory-sku-expansion-bridge" aria-label="한 번 쌓은 데이터로 자동 분석과 대응">
+            <CaretRight weight="fill" aria-hidden="true" />
+            <div aria-hidden="true"><Brain weight="fill" /></div>
+            <p>한 번 쌓은 데이터로<br />자동 분석 / 대응</p>
+            <CaretRight weight="fill" aria-hidden="true" />
+            <CaretDown className="regulatory-sku-expansion-bridge__mobile-caret" weight="fill" aria-hidden="true" />
+          </div>
+        </div>
+
+        <div className="regulatory-sku-expansion-benefits">
+          {benefits.map(({ Icon, title, description }) => (
+            <article key={title}>
+              <span aria-hidden="true">
+                <Icon size={28} weight="fill" />
+              </span>
+              <div>
+                <h3>{title}</h3>
+                <p>{description}</p>
+              </div>
+            </article>
+          ))}
         </div>
       </div>
     </section>
@@ -1723,6 +1750,8 @@ function RegulatoryValueSection() {
 
       <RegulatoryMasterShowcaseSection />
 
+      <RegulatorySkuExpansionSection />
+
       <section className="regulatory-value-table-section" ref={sectionRef} aria-label="규제 마스터 솔루션 가치 비교">
         <div className="regulatory-value-inner">
           <div className="regulatory-value-table-head">
@@ -1803,24 +1832,8 @@ function RegulatoryStartSection() {
 
         <RegulatoryReportSteps steps={regulatoryStartSteps} />
 
-        <RegulatoryStartCta />
       </div>
     </section>
-  );
-}
-
-function RegulatoryStartCta() {
-  return (
-    <div className="regulatory-start-cta">
-      <div>
-        <h2>내일하면 늦습니다. 지금 받고 PPWR 제대로 준비하세요</h2>
-        <p>AI가 1차 진단하고, 전문가가 최종 보증하는 단 하나의 솔루션</p>
-      </div>
-      <div className="regulatory-start-cta__actions">
-        <Link to="/project-management/quote?service=regulatory-response">무료로 진단받기</Link>
-        <Link to="/resources">자료 먼저 보기</Link>
-      </div>
-    </div>
   );
 }
 
@@ -1829,7 +1842,7 @@ function RegulatoryFinalCtaSection() {
     <section className="regulatory-final-cta-section" aria-label="규제 마스터 솔루션 무료 진단 신청">
       <div className="regulatory-final-cta">
         <div className="regulatory-final-cta__copy">
-          <h2>규제 대응 진단받고 PPWR 빠르게 해결하세요.</h2>
+          <h2>지금 비용 없이 ‘0’원으로 바로 시작할 수 있어요.</h2>
           <span>지금 우리 회사만의 수출 규제 해결 인프라를 구축하세요.</span>
         </div>
         <Link className="regulatory-final-cta__button" to="/project-management/quote?service=regulatory-response">
@@ -1959,6 +1972,33 @@ function RegulatoryDiagnosisResultSection() {
   );
 }
 
+function RegulatoryLaborSavingsSection() {
+  return (
+    <section className="regulatory-labor-savings-section" aria-label="규제 대응 인건비 절감">
+      <div className="regulatory-labor-savings-inner">
+        <div className="regulatory-labor-savings-copy">
+          <h2>
+            전담 인력 없이
+            <br />
+            인건비와 대응 비용을 확 줄이세요.
+          </h2>
+        </div>
+
+        <article className="regulatory-labor-savings-card">
+          <div className="regulatory-labor-savings-card__head">
+            <h3>인건비 절감</h3>
+            <p>전담 인력 추가 없이 반복 문서 업무를 자동화</p>
+          </div>
+          <img
+            src="/assets/detail-pages/regulatory-master/labor-cost-automation.png"
+            alt="문서 업무가 자동화된 규제 대응 대시보드"
+          />
+        </article>
+      </div>
+    </section>
+  );
+}
+
 function RegulatorySecuritySection() {
   return (
     <section className="regulatory-security-section" aria-label="데이터와 서류 보안 안내">
@@ -2003,12 +2043,12 @@ function RegulatoryResourceCtaSection() {
             <br />
             친환경 전환에 성공한 대기업 고객사들의 인사이트만을 모아 전해드려요.
           </p>
+          <Link to="/resources#ppwr-checklists">무료 다운로드</Link>
         </div>
         <img
           src="/assets/resources/resource-book-export-checklist.png"
           alt="PPWR 수출기업 필수 체크리스트 가이드북"
         />
-        <Link to="/resources#ppwr-checklists">무료 다운로드</Link>
       </div>
     </section>
   );
@@ -2717,10 +2757,7 @@ export function ServiceDetailPage({ variant }: ServiceDetailPageProps) {
                 ]}
               />
             </h1>
-            <ServiceDetailAdBanner
-              banners={productDevelopmentHeroBanners}
-              embedded
-            />
+            <HeroBannerGroup />
             <form
               className="ai-chat-entry mx-auto mt-4 max-w-[1040px] rounded-2xl px-4 py-4 md:mt-5 md:px-5 md:py-4"
               onSubmit={(event) => event.preventDefault()}
@@ -2929,7 +2966,10 @@ export function ServiceDetailPage({ variant }: ServiceDetailPageProps) {
                     })}
                   </div>
                 </div>
-                <Link className="product-service-flow__cta" to="/quote/product-development">
+                <Link
+                  className="product-service-flow__cta"
+                  to="/project-management/quote?service=product-development"
+                >
                   한 번에 가능한 원스톱 시스템 상담받기
                   <ArrowRight size={18} weight="bold" aria-hidden="true" />
                 </Link>
@@ -2995,7 +3035,10 @@ export function ServiceDetailPage({ variant }: ServiceDetailPageProps) {
                   리스튜디오를{" "}
                   <span className="product-choice-section__accent">선택하는 것만으로,</span>
                 </h2>
-                <Link className="product-choice-section__link" to="/quote/product-development">
+                <Link
+                  className="product-choice-section__link"
+                  to="/project-management/quote?service=product-development"
+                >
                   친환경 전환, 빠르게 알아보기
                   <ArrowRight size={18} weight="bold" aria-hidden="true" />
                 </Link>
@@ -3064,7 +3107,7 @@ export function ServiceDetailPage({ variant }: ServiceDetailPageProps) {
                   className="product-sticky-bar__button product-sticky-bar__button--light"
                   to="/resources"
                 >
-                  리포트 자료 다운로드
+                  자료집 다운받기
                 </Link>
                 <Link
                   className="product-sticky-bar__button product-sticky-bar__button--dark"
@@ -3084,6 +3127,7 @@ export function ServiceDetailPage({ variant }: ServiceDetailPageProps) {
             <RegulatoryGrowthSection />
           </div>
           <RegulatoryDiagnosisResultSection />
+          <RegulatoryLaborSavingsSection />
           <RegulatoryAssetizationSection />
           <RegulatoryExpertSection />
           <RegulatoryFinalCtaSection />
@@ -3112,11 +3156,7 @@ export function ServiceDetailPage({ variant }: ServiceDetailPageProps) {
           aria-label="리스튜디오 회원가입 바로가기"
         >
           <div className="service-detail-floating-cta__inner">
-            <p>
-              원스톱으로 비용절감,
-              <br />
-              가장 빠른 PPWR 대응 솔루션
-            </p>
+            <p>먼저 경험해보시고 결정하셔도 괜찮아요.</p>
             <div className="service-detail-floating-cta__actions">
               <span>지금 시작하는 것이, 더 큰 기회의 시작입니다.</span>
               <Link

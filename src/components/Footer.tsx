@@ -26,20 +26,26 @@ const footerSocialLinks = [
 
 const footerCaseLinks = [
   { label: "패키지 개발 사례", to: "/stories" },
-  { label: "규제 대응 사례", to: "/stories" },
-  { label: "통합 수행 사례", to: "/stories" },
 ];
 
 const footerResourceLinks = [
-  { label: "사용설명서", to: "/resources" },
   { label: "가이드북", to: "/resources" },
+  { label: "리포트 다운로드", to: "/resources#resource-list" },
+  { label: "가이드 다운로드", to: "/resources#ppwr-guides" },
 ];
 
 const footerNewsLinks = [
   { label: "블로그", to: "/news" },
   { label: "뉴스레터", to: "/news" },
-  { label: "인스타", href: "https://www.instagram.com/revation.co.kr/" },
   { label: "보도자료", to: "/news" },
+  { label: "인스타", href: "https://www.instagram.com/revation.co.kr/" },
+];
+
+const footerCompanyLinks = [
+  { label: "원스톱 솔루션", to: "/company#company-onestop-solution" },
+  { label: "규제 대응 솔루션", to: "/company#company-regulatory-solution" },
+  { label: "리스튜디오가 걸어온 길", to: "/company#company-history" },
+  { label: "기업 협력 / 투자 문의", to: "/company#company-contact" },
 ];
 
 export function Footer() {
@@ -103,6 +109,11 @@ export function Footer() {
 
           <nav className="site-footer__column" aria-label="회사 소개">
             <strong>회사 소개</strong>
+            {footerCompanyLinks.map((item) => (
+              <Link key={item.label} to={item.to}>
+                {item.label}
+              </Link>
+            ))}
           </nav>
         </div>
 
@@ -141,6 +152,16 @@ export function Footer() {
             <span aria-hidden="true" />
             <a href="mailto:sales@revation.co.kr">sales@revation.co.kr</a>
           </p>
+          <p><strong>패밀리 사이트</strong></p>
+          <a
+            className="site-footer__family-link"
+            href="https://www.revation.co.kr/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <img src="/assets/company-revation-logo.svg" alt="REVATION" />
+            리베이션 바로가기
+          </a>
         </address>
       </div>
 

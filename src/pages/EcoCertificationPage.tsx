@@ -16,16 +16,16 @@ const companyCertificates = [
     image: "/assets/certifications/small-business-color.svg",
   },
   {
-    title: "FSC 인증기업",
-    image: "/assets/certifications/fsc-color.png",
-  },
-  {
     title: "ISO 9001 인증기업",
     image: "/assets/certifications/iso-9001-color.png",
   },
   {
     title: "ISO 14001 인증기업",
     image: "/assets/certifications/iso-14001-color.png",
+  },
+  {
+    title: "ISO 45001 인증기업",
+    image: "/assets/certifications/iso-9001-color.png",
   },
 ] as const;
 
@@ -45,11 +45,11 @@ const globalCertificates = [
     imageClassName: "eco-certification-grid__image--ok-biobased",
   },
   {
-    title: "SGS 인증",
+    title: "FSC 인증기업",
     description:
-      "국제 시험·검증 기관을 통해 유해물질, 물성, 규제 적합성 등을 객관적으로 검증하는 글로벌 품질 인증",
-    image: "/assets/certifications/sgs.svg",
-    imageClassName: "eco-certification-grid__image--sgs",
+      "책임 있게 관리된 산림에서 생산된 원료를 사용했음을 보증하는 국제 산림 인증",
+    image: "/assets/certifications/fsc-color.png",
+    imageClassName: "eco-certification-grid__image--fsc",
   },
 ] as const;
 

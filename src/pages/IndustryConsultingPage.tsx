@@ -43,8 +43,8 @@ const industryCards = [
       "플라스틱 트레이 대체 검토",
       "대량생산과 제작비용의 효율성",
     ],
-    image: "/assets/showcase/pcr-pir2.png",
-    alt: "전자기기 보호 패키지 소재 사례",
+    image: "/assets/stories/fintin-01.jpg",
+    alt: "원콤 핀틴 V1 전자기기 패키지 사례",
   },
   {
     title: "패션",
@@ -65,8 +65,8 @@ const industryCards = [
       "생활 방수·내구 조건에 맞춘 소재 제안",
       "매장 진열과 물류 효율을 함께 설계",
     ],
-    image: "/assets/showcase/upcycle2.png",
-    alt: "생활용품 친환경 소재 패키지 사례",
+    image: "/assets/eco-material-lab/case-replax-limestone-goldframe.jpg",
+    alt: "콜드프레임 주얼리 패키지 사례",
   },
 ] as const;
 

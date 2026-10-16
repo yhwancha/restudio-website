@@ -19,7 +19,7 @@ import {
   PaintBrush,
 } from "@phosphor-icons/react";
 import { AnimatedTitle } from "../components/AnimatedTitle";
-import { NovemberPromotionBannerSlide } from "../components/NovemberPromotionBanner";
+import { HeroBannerGroup } from "../components/HeroBannerGroup";
 
 const homeProcessBenefits = [
   "제조-규제 동시 해결",
@@ -300,13 +300,6 @@ const caseStudies = [
   },
 ];
 
-const adBanners = [
-  {
-    theme: "product-development-onestop",
-    title: "11월, 신규 회원 대상 무료 이용권 증정, 제품 개발부터 규제 마스터까지.",
-  },
-];
-
 const faqs = [
   {
     question: "리스튜디오는 왜 만들어졌나요?",
@@ -394,10 +387,8 @@ const testimonialPages = Array.from(
 
 export function HomePage() {
   const [activeTestimonial, setActiveTestimonial] = useState(0);
-  const [activeAdBanner, setActiveAdBanner] = useState(0);
   const [activeFaq, setActiveFaq] = useState(-1);
   const [testimonialSlideWidth, setTestimonialSlideWidth] = useState(0);
-  const currentAdBanner = adBanners[activeAdBanner];
 
   useEffect(() => {
     const updateTestimonialSlideWidth = () => {
@@ -428,7 +419,7 @@ export function HomePage() {
     <>
     <main className="home-page bg-[#f7f8f8]">
       <section className="home-hero-section bg-[#f7f8f8] px-5 py-16 md:px-12 md:py-24 xl:px-[120px]">
-        <div className="mx-auto w-full max-w-[1040px]">
+        <div className="home-hero-content mx-auto w-full">
           <h1 className="title-reveal mx-auto max-w-[920px] text-center text-[28px] font-semibold leading-[1.16] text-black md:text-[44px] xl:text-[48px]">
             <AnimatedTitle
               parts={[
@@ -445,58 +436,7 @@ export function HomePage() {
             />
           </h1>
 
-          <div className="ad-banner-section ad-banner-section--embedded" aria-label="프로모션 배너">
-            <div className="ad-banner">
-              <div
-                className="ad-banner__track"
-                style={{ transform: `translateX(-${activeAdBanner * 100}%)` }}
-              >
-                {adBanners.map(({ theme }) => (
-                  <NovemberPromotionBannerSlide key={theme} />
-                ))}
-              </div>
-
-              <div className="ad-banner__controls">
-                <button
-                  type="button"
-                  aria-label="이전 광고 배너 보기"
-                  onClick={() =>
-                    setActiveAdBanner((current) =>
-                      current === 0 ? adBanners.length - 1 : current - 1,
-                    )
-                  }
-                >
-                  <CaretLeft size={19} weight="bold" aria-hidden="true" />
-                </button>
-                <button
-                  type="button"
-                  aria-label="다음 광고 배너 보기"
-                  onClick={() =>
-                    setActiveAdBanner((current) =>
-                      current === adBanners.length - 1 ? 0 : current + 1,
-                    )
-                  }
-                >
-                  <CaretRight size={19} weight="bold" aria-hidden="true" />
-                </button>
-                <div className="ad-banner__indicator" aria-hidden="true">
-                  <span
-                    style={{
-                      transform: `translateX(${activeAdBanner * 100}%)`,
-                      width: `${100 / adBanners.length}%`,
-                    }}
-                  />
-                </div>
-                <span className="ad-banner__count">
-                  {activeAdBanner + 1}/{adBanners.length}
-                </span>
-              </div>
-
-              <span className="sr-only">
-                현재 배너: {currentAdBanner.title}
-              </span>
-            </div>
-          </div>
+          <HeroBannerGroup />
 
           <form
             className="ai-chat-entry mx-auto mt-4 max-w-[1040px] rounded-2xl px-4 py-4 md:mt-5 md:px-5 md:py-4"

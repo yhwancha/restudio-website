@@ -16,7 +16,7 @@ type CaseItem = {
 
 const filters: Record<FilterKey, string[]> = {
   client: ["전체", "화장품", "F&B", "패션", "헬스케어", "전자제품", "생활용품"],
-  material: ["전체", "페이퍼몰드", "바이오플라스틱", "PCR/PIR", "업사이클"],
+  material: ["전체", "페이퍼몰드", "바이오플라스틱", "PCR/PIR"],
   project: ["전체", "제품 개발", "규제 대응", "통합 수행"],
 };
 
