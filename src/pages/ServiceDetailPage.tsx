@@ -209,7 +209,7 @@ const productTransitionRows = [
 const productChoiceBenefits = [
   {
     value: "50%",
-    label: "개발 기간 최대 단축",
+    label: "개발 기간 단축",
     Icon: null,
   },
   {
@@ -2769,7 +2769,7 @@ export function ServiceDetailPage({ variant }: ServiceDetailPageProps) {
             <div className="product-summary-section__inner">
               <div className="product-summary-metrics" aria-label="제품개발 성과 지표">
                 {[
-                  ["50%", "평균 개발 기간 단축"],
+                  ["50%", "개발 기간 단축"],
                   ["30%", "개발비용 최대 절감"],
                   ["원스톱", "소재 선정부터 양산까지"],
                   ["ESG", "친환경 검증 · 규제 대응"],

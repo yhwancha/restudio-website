@@ -20,7 +20,8 @@ section :where(h1, h2) {
     white-space: normal;
   }
 
-  .title-reveal__char {
+  .title-reveal__char,
+  .title-reveal--pending:not(.is-visible) .title-reveal__char {
     transform: none;
     will-change: auto;
   }
@@ -9120,22 +9121,6 @@ body:has(.industry-consulting-page) .ai-chat-widget {
   margin-top: 40px;
 }
 
-.news-instagram-link {
-  display: inline-flex;
-  min-height: 52px;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  margin-top: 52px;
-  border-radius: 10px;
-  background: linear-gradient(135deg, #833ab4 0%, #fd1d1d 52%, #fcb045 100%);
-  padding: 0 22px;
-  color: #ffffff;
-  font-size: 15px;
-  font-weight: 600;
-  line-height: 1;
-}
-
 .news-list-section {
   scroll-margin-top: 92px;
 }
@@ -9900,11 +9885,6 @@ body:has(.industry-consulting-page) .ai-chat-widget {
     margin-top: 34px;
   }
 
-  .news-instagram-link {
-    width: 100%;
-    margin-top: 40px;
-  }
-
   .news-list-section h1 {
     font-size: 30px;
   }
@@ -10080,18 +10060,17 @@ body:has(.industry-consulting-page) .ai-chat-widget {
 
   .title-reveal__char {
     display: inline-block;
-    opacity: 0;
-    transform: translateY(0.72em);
     transition:
-      opacity 0.54s ease,
-      transform 0.72s cubic-bezier(0.22, 1, 0.36, 1);
-    transition-delay: calc(var(--char-index) * 28ms);
+      opacity 0.48s ease,
+      transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: min(calc(var(--char-index) * 16ms), 320ms);
     will-change: opacity, transform;
   }
 
-  .title-reveal.is-visible .title-reveal__char {
-    opacity: 1;
-    transform: translateY(0);
+  /* 제목은 기본으로 보이고, 스크립트가 관찰을 시작한 제목만 진입 전까지 숨긴다. */
+  .title-reveal--pending:not(.is-visible) .title-reveal__char {
+    opacity: 0;
+    transform: translateY(0.32em);
   }
 
   .marker-scribble__stroke {
@@ -11869,6 +11848,7 @@ body:has(.industry-consulting-page) .ai-chat-widget {
   }
 
   .product-client-testimonials {
+    padding-right: 120px;
     padding-left: 120px;
   }
 
@@ -11877,8 +11857,7 @@ body:has(.industry-consulting-page) .ai-chat-widget {
     overflow: hidden;
   }
 
-  .product-client-testimonials__mobile-viewport,
-  .product-client-testimonials__controls--mobile {
+  .product-client-testimonials__mobile-viewport {
     display: none;
   }
 
@@ -11981,6 +11960,11 @@ body:has(.industry-consulting-page) .ai-chat-widget {
     font-size: 17px;
     font-weight: 600;
     line-height: 1;
+  }
+
+  /* 공통 __controls 의 display: flex 보다 뒤에 둬야 데스크톱에서 모바일 페이지네이션이 숨겨진다. */
+  .product-client-testimonials__controls--mobile {
+    display: none;
   }
 
   .product-summary-section {
@@ -13446,13 +13430,12 @@ body:has(.industry-consulting-page) .ai-chat-widget {
     top: 0;
     display: grid;
     width: 100%;
-    min-height: 100dvh;
     grid-template-columns: 1fr;
     align-items: start;
     align-content: start;
     gap: clamp(46px, 6vw, 76px);
     overflow: hidden;
-    padding: 118px 0 126px;
+    padding: 118px 0 72px;
   }
 
   .product-service-flow__copy {
@@ -15073,7 +15056,7 @@ body:has(.industry-consulting-page) .ai-chat-widget {
 
   .regulatory-value-table-section {
     background: #ffffff;
-    padding: 132px 0 154px;
+    padding: 132px 0 56px;
   }
 
   .regulatory-value-table-head {
@@ -17197,7 +17180,8 @@ body:has(.industry-consulting-page) .ai-chat-widget {
     animation: none;
   }
 
-  .title-reveal__char {
+  .title-reveal__char,
+  .title-reveal--pending:not(.is-visible) .title-reveal__char {
     opacity: 1;
     transform: none;
     transition: none;
@@ -17424,6 +17408,7 @@ body:has(.industry-consulting-page) .ai-chat-widget {
   }
 
   .product-client-testimonials {
+    padding-right: 48px;
     padding-left: 48px;
   }
 
@@ -17781,6 +17766,7 @@ body:has(.industry-consulting-page) .ai-chat-widget {
   }
 
   .product-client-testimonials {
+    padding-right: 120px;
     padding-left: 120px;
   }
 

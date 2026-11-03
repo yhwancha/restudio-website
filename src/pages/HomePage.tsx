@@ -30,7 +30,7 @@ const homeProcessBenefits = [
 const homeImpactItems = [
   {
     badge: "50%",
-    title: "평균 개발 기간 단축",
+    title: "개발 기간 단축",
     description: "AI 기반 검증 프로세스로 제품 출시까지 빠르게 연결합니다.",
   },
   {
@@ -108,7 +108,7 @@ const coreServices = [
   },
   {
     eyebrow: "EU PPWR 같은 친환경 규제 준비가 필요해요.",
-    title: "친환경 규제대응 솔루션 바로가기",
+    title: "친환경 규제 마스터 솔루션 바로가기",
     description:
       "국내외 규제 동향 분석과 대응 전략 수립으로 비즈니스 리스크를 최소화하고 해외 수출까지 도와드려요.",
     image: "/assets/services/regulatory-consulting.png",
@@ -934,9 +934,9 @@ export function HomePage() {
     </main>
     <nav className="home-sticky-cta" aria-label="빠른 문의">
       <Link to="/services/product-development">
-        제품 개발 문의
+        제품 개발 솔루션 보기
       </Link>
-      <Link to="/services/regulatory-response">규제 대응 문의</Link>
+      <Link to="/services/regulatory-response">규제 마스터 솔루션 보기</Link>
     </nav>
     </>
   );

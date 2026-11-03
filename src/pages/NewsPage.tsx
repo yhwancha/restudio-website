@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link as RouterLink, useParams } from "react-router-dom";
-import { CaretDown, Check, InstagramLogo, LinkSimple, X } from "@phosphor-icons/react";
+import { CaretDown, Check, LinkSimple, X } from "@phosphor-icons/react";
 
 type NewsCategory = "블로그" | "보도자료";
 
@@ -305,15 +305,6 @@ function NewsListPage() {
           </section>
         ))}
       </div>
-      <a
-        className="news-instagram-link"
-        href="https://www.instagram.com/revation.co.kr/"
-        target="_blank"
-        rel="noreferrer"
-      >
-        <InstagramLogo size={20} weight="fill" aria-hidden="true" />
-        인스타그램 바로가기
-      </a>
       <SubscribeWidget />
     </main>
   );

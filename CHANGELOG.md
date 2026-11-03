@@ -95,3 +95,10 @@
 - Aligned the footer divider and footer content with the site responsive page margins.
 - Added scroll-triggered per-character reveal animation to the main section titles.
 - Delayed the hero marker stroke so it draws after the title text finishes revealing.
+
+### Fixed
+- 2026-11-03 마케팅 UI/UX 검수 반영: 회사소개 대표 인터뷰 섹션 삭제, 뉴스 하단 인스타그램 CTA 삭제, 홈 분기 버튼 라벨을 목적지 기준으로 변경.
+- 솔루션2 명칭을 '규제 마스터 솔루션'으로 통일하고 성과 지표 문구를 '개발 기간 단축 50%'로 맞춤.
+- 제품개발 후기 캐러셀의 데스크톱 페이지네이션 중복 노출과 카드 우측 잘림 수정.
+- 서비스 카드 가로 스크롤 구간 종료 후 공백, 규제 비교표 하단 공백 축소.
+- 섹션 제목 글자 나타나기 애니메이션을 기본 노출 + 진입 전 시작 + 지연 상한 방식으로 변경.
