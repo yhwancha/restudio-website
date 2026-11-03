@@ -29,7 +29,7 @@ const solutionCards = [
     intent: "EU PPWR 같은 친환경 규제 준비가 필요해요.",
     badge: "Solution 02",
     Icon: Leaf,
-    title: "친환경 글로벌 규제 대응 솔루션",
+    title: "친환경 글로벌 규제 마스터 솔루션",
     description:
       "유럽 PPWR / 미국 등 글로벌 친환경 규제에 맞춰 진단부터 적합성 선언서(DoC) / 기술문서(TD) 작성까지 지원.",
     image: "/assets/services/regulatory-consulting-clean-white.png",
@@ -448,7 +448,7 @@ export function CompanyPage() {
             <p>단 하나의 원스톱 통합 솔루션</p>
           </div>
           <div className="company-venn__panel company-venn__panel--right">
-            <h3>규제 대응 솔루션</h3>
+            <h3>규제 마스터 솔루션</h3>
             <p>
               진단부터 핵심 문서 작성 지원, 제출용 증빙 발급과
               <br />
@@ -584,7 +584,7 @@ export function CompanyPage() {
           <h2>
             친환경 글로벌
             <br />
-            규제 대응 솔루션
+            규제 마스터 솔루션
           </h2>
           <p>
             EU PPWR 시행으로 포장재 규제는 선택이 아닙니다.
@@ -636,29 +636,6 @@ export function CompanyPage() {
               </div>
             </article>
           ))}
-        </div>
-      </section>
-
-      <section className="company-leaders">
-        <h2>환경에 좋은 선택이, 다시 찾게 되는 선택이 되도록.</h2>
-        <div className="company-leaders__interview">
-          <div className="company-leaders__photo">
-            <img src="/assets/company/revation-ceo.png" alt="리베이션 대표 이민성" />
-          </div>
-          <article className="company-leaders__message">
-            <span>리베이션(주) 대표 이민성</span>
-            <h3>"친환경을 당위가 아닌 지속가능한 사업으로 - 리베이션"</h3>
-            <strong>리베이션이 말하는 친환경은 사업의 '지속가능성'까지 포함합니다.</strong>
-            <p>안녕하세요. 리베이션 대표 이민성입니다.</p>
-            <p>
-              리베이션은 기획과 소재 개발, 디자인, 양산, 품질검증, ESG 증빙까지 친환경 패키징의 전 과정을 하나의 시스템으로 연결하는 클린테크 기업입니다.
-              <br />
-              친환경 전환에 옳다는 데는 모두가 동의하면서도 실제 개발 현장에서는 비용과 시간, 소재와 양산이라는 벽에 부딪히는 모습을 지켜봤습니다. 그래서 리베이션은 환경에 좋다는 당위성만으로 한 번의 선택을 이끌어내기보다, 개발 과정의 시간과 비용을 줄이고 디자인과 양산 품질을 갖춰 고객이 다시 찾을 이유를 만드는 일에 집중해 왔습니다. 누적 고객사 120여 곳과 재구매율 77%는 그 선택의 결과입니다.
-            </p>
-            <p>
-              앞으로 리베이션은 리스튜디오의 친환경 소재 개발 역량을 한층 더 고도화해, 패션·뷰티뿐만 아니라 패키징 전환이 필요한 다양한 업종의 기업들이 성공적으로 친환경 체질 개선을 이룰 수 있도록 통합 솔루션을 제공하겠습니다. 국내외 이종 산업 간의 친환경 협업 체계를 공고히 하여 글로벌 친환경 패키지 시장의 표준을 선도하는 기업으로 나아가겠습니다. 감사합니다.
-            </p>
-          </article>
         </div>
       </section>
 

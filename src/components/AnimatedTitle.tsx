@@ -105,8 +105,9 @@ export function useTitleReveal() {
         });
       },
       {
-        rootMargin: "0px 0px -10% 0px",
-        threshold: 0.24,
+        // 화면에 들어오기 직전에 시작해야 스크롤 진입 시 제목이 비어 보이지 않는다.
+        rootMargin: "0px 0px 15% 0px",
+        threshold: 0,
       },
     );
 
@@ -118,6 +119,7 @@ export function useTitleReveal() {
       }
 
       if (!title.classList.contains("is-visible")) {
+        title.classList.add("title-reveal--pending");
         observer.observe(title);
       }
     };

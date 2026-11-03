@@ -115,7 +115,7 @@ const SERVICE_MENU_GROUPS = [
 
 const ACTION_ITEMS = [
   { label: "제품 개발 문의", to: "/project-management/quote?service=product-development" },
-  { label: "규제 대응 문의", to: "/services/regulatory-response" },
+  { label: "규제 마스터 솔루션 보기", to: "/services/regulatory-response" },
 ] as const;
 
 const SERVICE_DETAIL_PATHS = [

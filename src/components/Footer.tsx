@@ -64,7 +64,7 @@ export function Footer() {
             </Link>
             <Link to="/services/regulatory-response">
               <ShieldCheck size={22} weight="fill" aria-hidden="true" />
-              친환경 규제대응 솔루션
+              친환경 규제 마스터 솔루션
             </Link>
           </div>
 
