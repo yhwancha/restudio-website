@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+### Fixed
+- Fixed the header CTA on regulatory response sub-pages (e.g. pricing, FAQ, onestop system) pointing to the product development quote form instead of the regulatory response flow.
+
 ### Added
 - Added the product development detail hero section with a generated office meeting product prototype image.
 - Added the shared customer case, promotional banner, FAQ, and news sections to the product development and regulatory response detail pages.
